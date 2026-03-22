@@ -361,8 +361,8 @@
         <section class="section">
           <h2>3) Configuration &amp; Personnalisation</h2>
           <p>
-            The customer app is highly configurable. You can adapt it to your brand, choose your preferred language, 
-            enable demo mode for presentations, and customize the visual appearance.
+            The customer app is highly configurable: branding, demo mode, and visuals. Languages (EN/FR and adding locales) are documented once for every app on
+            <a href="./environment-setup.html#i18n-languages" style="color: var(--accent); font-weight: 600;">Environment setup → Languages (i18n)</a>.
           </p>
 
           <h3 style="margin: 28px 0 12px 0; font-size: 19px;">API Configuration</h3>
@@ -392,22 +392,6 @@ VERSION: <span class="tok-str">'1.0.0'</span></code></pre>
 DEMO_EMAIL: <span class="tok-str">'demo@customer.com'</span>,
 DEMO_PASSWORD: <span class="tok-str">'demo123'</span></code></pre>
           </div>
-
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Multi-language Support</h3>
-          <p>
-            The customer app is currently available in <strong>English and French</strong>. The system 
-            automatically detects the language of the user's device using <code>expo-localization</code> 
-            and displays the interface in the appropriate language.
-          </p>
-          <p class="sub">
-            To add a new language, you need to:
-          </p>
-          <ol>
-            <li>Create a new translation file in the <code>lang/</code> folder (for example <code>es.json</code> for Spanish)</li>
-            <li>Copy the complete structure from <code>en.json</code> or <code>fr.json</code> and translate all the text</li>
-            <li>Update the file <code>lang/i18n.js</code> to import and register your new language</li>
-            <li>The app will then automatically support the new language for users who have their device set to that language</li>
-          </ol>
 
           <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Visual Customization</h3>
           <p>

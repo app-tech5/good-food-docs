@@ -326,7 +326,7 @@
         <header class="hero">
           <h1 id="top">Environment setup</h1>
           <p class="subtitle">
-            Node.js, Expo tooling, how to reach your API from a phone, and Google Maps keys for production builds — one place for the whole suite, so we do not repeat the same steps on every page.
+            Node.js, Expo CLI (command lines), languages (i18n), API reachability from devices, and Google Maps for production — one place for the whole suite.
           </p>
           <p class="back-links">
             Then continue with
@@ -392,15 +392,84 @@
         </section>
 
         <section class="section" id="expo-tooling">
-          <h2>Expo and native tooling</h2>
-          <p>Every Good Food mobile app in this documentation uses React Native with Expo. You will typically need:</p>
+          <h2>Expo — installation and commands</h2>
+          <p>
+            Good Food mobile apps use <strong>React Native</strong> with <strong>Expo</strong>. The Expo packages are installed <em>with the project</em> when you run <code>npm install</code> in <code>customer-app</code> or <code>delivery-app</code>.
+          </p>
+
+          <h3>1) Use Expo from the project (recommended)</h3>
+          <p>After Node.js is installed, open the app folder and install dependencies. Then start the dev server with <code>npx</code> (uses the CLI shipped in <code>node_modules</code>):</p>
+          <div class="code-block">
+            <div class="code-head">
+              <span class="code-title">Customer or driver repo — install and start</span>
+            </div>
+            <pre><code><span class="tok-cmd">cd</span> <span class="tok-arg">customer-app</span>   <span class="tok-comment"># or: cd delivery-app</span>
+<span class="tok-cmd">npm</span> <span class="tok-cmd">install</span>
+<span class="tok-cmd">npx</span> <span class="tok-arg">expo</span> <span class="tok-arg">--version</span>
+<span class="tok-cmd">npx</span> <span class="tok-arg">expo</span> <span class="tok-cmd">start</span></code></pre>
+          </div>
+          <p class="sub">
+            The same thing is usually wired as <code>npm start</code> in <code>package.json</code>, so you can run <code>npm start</code> instead of <code>npx expo start</code> if you prefer.
+          </p>
+          <p class="sub">
+            In the terminal UI, press <code>a</code> for Android emulator, <code>i</code> for iOS simulator (macOS + Xcode), or scan the QR code with <strong>Expo Go</strong> on your phone.
+          </p>
+
+          <h3>2) Optional — global Expo CLI</h3>
+          <p>If you want the <code>expo</code> command available in any directory (without <code>npx</code>):</p>
+          <div class="code-block">
+            <div class="code-head">
+              <span class="code-title">Install Expo CLI globally</span>
+            </div>
+            <pre><code><span class="tok-cmd">npm</span> <span class="tok-cmd">install</span> <span class="tok-arg">-g</span> @expo/cli
+<span class="tok-cmd">expo</span> <span class="tok-arg">--version</span>
+<span class="tok-comment"># then from the app folder:</span>
+<span class="tok-cmd">expo</span> <span class="tok-cmd">start</span></code></pre>
+          </div>
+
+          <h3>3) Optional — EAS CLI (cloud builds, store submission)</h3>
+          <p>For <code>eas build</code>, <code>eas submit</code>, and related workflows:</p>
+          <div class="code-block">
+            <div class="code-head">
+              <span class="code-title">EAS CLI</span>
+            </div>
+            <pre><code><span class="tok-cmd">npm</span> <span class="tok-cmd">install</span> <span class="tok-arg">-g</span> eas-cli
+<span class="tok-cmd">eas</span> <span class="tok-arg">--version</span>
+<span class="tok-cmd">eas</span> <span class="tok-cmd">login</span></code></pre>
+          </div>
+          <p class="sub">Official reference: <a href="https://docs.expo.dev/get-started/installation/">Expo — installation</a> and <a href="https://docs.expo.dev/build/setup/">EAS Build</a>.</p>
+
+          <h3>4) Expo Go on a physical device</h3>
+          <p>Install the <strong>Expo Go</strong> app from the Apple App Store or Google Play. When <code>npx expo start</code> is running, scan the QR code from the terminal or browser to open the project.</p>
+
+          <h3>5) Android Studio and Xcode</h3>
           <ul>
-            <li><strong>Expo CLI</strong> / Expo tooling (follow the official Expo docs for the current install command, or use <code>npx expo</code> via your project&apos;s scripts)</li>
-            <li><strong>Android Studio</strong> for Android emulators and store builds</li>
-            <li><strong>Xcode</strong> on macOS for the iOS simulator and App Store builds</li>
-            <li>A running <strong>Good Food REST API</strong> (for example the <code>my-backend</code> project) reachable from your machine and from any physical device you test with</li>
+            <li><strong>Android Studio</strong> — Android emulator, SDK, and local Android builds.</li>
+            <li><strong>Xcode</strong> (macOS only) — iOS Simulator and App Store builds.</li>
           </ul>
-          <p class="sub">Keep Node and the native tools on current stable releases to avoid odd build failures.</p>
+          <p class="sub">On macOS, <strong>Watchman</strong> can speed up file watching: <code>brew install watchman</code>.</p>
+
+          <h3>6) Backend</h3>
+          <p>Keep a running <strong>Good Food REST API</strong> (for example <code>my-backend</code>) reachable from your computer and from any phone you use for testing — see <a href="#api-reachability">API reachability</a>.</p>
+        </section>
+
+        <section class="section" id="i18n-languages">
+          <h2>Languages (i18n)</h2>
+          <p>
+            All Good Food mobile apps documented here ship in <strong>English and French</strong>. The UI language follows the device locale using <code>expo-localization</code>.
+          </p>
+          <p class="sub">Where the files live:</p>
+          <ul>
+            <li><strong>Customer app:</strong> <code>lang/en.json</code>, <code>lang/fr.json</code>, configured in <code>lang/i18n.js</code></li>
+            <li><strong>Driver app:</strong> <code>lang/en.json</code>, <code>lang/fr.json</code>, configured in <code>i18n.js</code> at the project root</li>
+          </ul>
+          <p class="sub">To add another language (same workflow for both apps):</p>
+          <ol>
+            <li>Create a new JSON file in <code>lang/</code> (for example <code>es.json</code> for Spanish).</li>
+            <li>Copy the full key structure from <code>en.json</code> or <code>fr.json</code> and translate only the values.</li>
+            <li>Import and register the locale in the app&apos;s i18n entry file (<code>lang/i18n.js</code> or <code>i18n.js</code>) the same way English and French are registered.</li>
+          </ol>
+          <p class="sub">Restart the dev server after editing translations (<code>npm start</code> or <code>npx expo start</code>).</p>
         </section>
 
         <section class="section" id="api-reachability">

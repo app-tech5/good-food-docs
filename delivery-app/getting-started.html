@@ -381,18 +381,10 @@ DEMO_PASSWORD: <span class="tok-str">'driver123'</span>,
             When <code>DEMO_MODE</code> is <code>true</code>, the login screen can be pre-filled with sample credentials—handy for demos.
             Before a real release, set it to <code>false</code> and rely on real courier accounts.
           </p>
-
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Languages</h3>
-          <p>
-            The interface ships in <strong>English and French</strong>. Translations live in <code>lang/en.json</code> and <code>lang/fr.json</code>,
-            and the active language follows the phone settings (via <code>expo-localization</code>).
+          <p class="sub">
+            Languages (EN/FR, <code>lang/</code>, <code>i18n.js</code>): see
+            <a href="../environment-setup.html#i18n-languages" style="color: var(--accent); font-weight: 600;">Environment setup → Languages (i18n)</a>.
           </p>
-          <p class="sub">To add another language:</p>
-          <ol>
-            <li>Copy <code>en.json</code> to a new file (for example <code>es.json</code>).</li>
-            <li>Translate every string value, keeping the keys identical.</li>
-            <li>Register the new file inside <code>i18n.js</code> the same way English and French are registered.</li>
-          </ol>
 
           <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Look and feel</h3>
           <p>
