@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Good Food — Delivery (Driver) App Documentation</title>
+    <style>
+      :root {
+        --bg: #ffffff;
+        --panel: #fcfcfc;
+        --text: #0f172a;
+        --muted: #475569;
+        --border: #e2e8f0;
+        --soft: #f8fafc;
+        --primary: #000000;
+        --accent: #3d5c5c;
+        --sidebar-bg: #f8fafc;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.65;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr);
+        min-height: 100vh;
+      }
+
+      .sidebar {
+        position: sticky;
+        top: 0;
+        align-self: start;
+        height: 100vh;
+        padding: 28px 18px;
+        border-right: 1px solid var(--border);
+        background: var(--sidebar-bg);
+      }
+
+      .sidebar-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+
+      .brand-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: var(--accent);
+      }
+
+      .brand-title {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 700;
+        color: #0f172a;
+      }
+
+      .sidebar-label {
+        margin: 16px 0 10px;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #64748b;
+      }
+
+      .sidebar-label:first-of-type {
+        margin-top: 0;
+      }
+
+      .nav {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .nav a {
+        color: var(--text);
+        text-decoration: none;
+        font-size: 14px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 11px;
+        background: #ffffff;
+        font-weight: 500;
+        transition: all 0.18s ease;
+      }
+
+      .nav a:hover {
+        border-color: #cbd5e1;
+        background: var(--soft);
+      }
+
+      .nav a.active {
+        border-color: #b8c6d8;
+        background: #eef3f7;
+        color: #0f172a;
+      }
+
+      .content {
+        padding: 44px 56px 92px;
+        max-width: 980px;
+      }
+
+      .hero {
+        padding: 0 0 30px;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 30px;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: 46px;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+      }
+
+      .subtitle {
+        margin: 0;
+        color: var(--muted);
+        font-size: 18px;
+        max-width: 62ch;
+        font-weight: 500;
+      }
+
+      .section-block {
+        padding: 30px 0 28px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .section-block:first-child {
+        padding-top: 0;
+      }
+
+      h2 {
+        margin: 0 0 12px;
+        font-size: 29px;
+        letter-spacing: -0.01em;
+      }
+
+      h3 {
+        margin: 20px 0 8px;
+        font-size: 18px;
+        color: #0f172a;
+      }
+
+      p {
+        margin: 0;
+        color: #334155;
+        max-width: 70ch;
+        font-size: 16px;
+      }
+
+      .section-subtext {
+        margin-top: 12px;
+      }
+
+      .product-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 10px;
+        padding: 7px 12px;
+        border: 1px solid #cbd5e1;
+        border-radius: 999px;
+        background: #ffffff;
+        color: #0f172a;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .product-link:hover {
+        background: var(--soft);
+        border-color: #94a3b8;
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 20px;
+        color: #334155;
+      }
+
+      li + li {
+        margin-top: 8px;
+      }
+
+      .chip {
+        display: inline-block;
+        margin: 8px 10px 0 0;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: #ffffff;
+        font-size: 14px;
+        color: #0f172a;
+      }
+
+      .stack-wrap {
+        margin-top: 8px;
+      }
+
+      .highlight {
+        border-left: 4px solid var(--accent);
+        padding: 4px 0 4px 12px;
+        font-weight: 500;
+      }
+
+      .intro-line {
+        margin-top: 14px;
+        color: var(--muted);
+        max-width: 64ch;
+        font-size: 16px;
+      }
+
+      .meta-strip {
+        margin-top: 22px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .meta-pill {
+        font-size: 12px;
+        color: #1e293b;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 6px 11px;
+        background: #ffffff;
+      }
+
+      .project-structure {
+        margin-top: 20px;
+      }
+
+      .tree-container {
+        background: var(--soft);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+        margin: 20px 0;
+        font-size: 13px;
+        line-height: 1.5;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      }
+
+      .tree-title {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 16px;
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .tree {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+      }
+
+      .tree li {
+        position: relative;
+        padding-left: 24px;
+        margin: 2px 0;
+      }
+
+      .tree li:before {
+        content: '';
+        position: absolute;
+        left: 8px;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: var(--border);
+      }
+
+      .tree li:last-child:before {
+        bottom: 50%;
+      }
+
+      .tree li .node {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 4px 8px;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+        color: var(--muted);
+      }
+
+      .tree li .node:hover {
+        background: #f1f5f9;
+        color: var(--text);
+      }
+
+      .tree li .node.folder {
+        color: #ca8a04;
+        font-weight: 500;
+      }
+
+      .tree li .node.file {
+        color: #64748b;
+      }
+
+      .tree li .node .icon {
+        font-size: 15px;
+        width: 18px;
+      }
+
+      .tree li ul {
+        margin-top: 2px;
+        padding-left: 20px;
+        list-style: none;
+      }
+
+      .tree-path {
+        font-family: monospace;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 12px;
+        padding: 8px 12px;
+        background: rgba(0, 0, 0, 0.02);
+        border-radius: 6px;
+        border: 1px dashed var(--border);
+      }
+
+      code {
+        background: #f1f5f9;
+        padding: 2px 6px;
+        border-radius: 6px;
+        font-size: 13px;
+      }
+
+      @media (max-width: 920px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+          position: relative;
+          height: auto;
+          border-right: 0;
+          border-bottom: 1px solid var(--border);
+        }
+
+        .content {
+          padding: 24px 18px 42px;
+          max-width: 100%;
+        }
+
+        h1 {
+          font-size: 34px;
+        }
+
+        .section-block {
+          padding: 24px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <span class="brand-dot"></span>
+          <p class="brand-title">Good Food Docs</p>
+        </div>
+        <p class="sidebar-label">Customer app</p>
+        <nav class="nav">
+          <a href="../index.html">Overview</a>
+          <a href="../getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Delivery app (driver)</p>
+        <nav class="nav">
+          <a class="active" href="#overview">Overview</a>
+          <a href="./getting-started.html">Getting Started</a>
+        </nav>
+      </aside>
+
+      <section class="content">
+        <header id="overview" class="hero">
+          <h1>Good Food — Delivery (Driver) App</h1>
+          <p class="subtitle">
+            Mobile workspace for couriers: see assignments, update delivery status, track earnings, and stay on route.
+          </p>
+          <p class="intro-line">
+            This page summarizes what the driver app does in the Good Food suite, how it talks to your backend over REST, and how the codebase is organized.
+          </p>
+          <div class="meta-strip">
+            <span class="meta-pill">Expo &amp; React Native</span>
+            <span class="meta-pill">Drawer + stack navigation</span>
+            <span class="meta-pill">REST API + offline-friendly cache</span>
+          </div>
+        </header>
+
+        <section class="overview">
+          <section class="section-block">
+            <h2>Role in the ecosystem</h2>
+            <p>
+              The delivery app is the <strong>courier-facing</strong> companion to the customer and restaurant apps.
+              Drivers sign in with an account that has a <strong>driver profile</strong> on the backend; the app then loads orders, status, and account data over HTTPS.
+            </p>
+            <p class="section-subtext">
+              It uses the same <strong>Good Food REST API</strong> (Express + MongoDB) as the customer and restaurant apps. Authentication uses <code>/auth/login</code>, then the client verifies a driver profile with <code>/drivers/profile</code>.
+            </p>
+            <a class="product-link" href="../index.html">Customer app documentation</a>
+          </section>
+
+          <section class="section-block">
+            <h2>What drivers can do</h2>
+            <ul>
+              <li>Sign in and maintain session (token stored via AsyncStorage).</li>
+              <li>View a home dashboard and toggle availability / delivery-related status (via driver status API).</li>
+              <li>Browse and open active deliveries; update order progress along the delivery workflow.</li>
+              <li>See earnings, transactions, delivery history, and summary reports.</li>
+              <li>Manage profile and vehicle details; adjust app settings and theme-related preferences.</li>
+              <li>Use support and notifications screens; optional flows include ratings and payment methods when enabled in navigation.</li>
+            </ul>
+            <p class="section-subtext">
+              Maps and location (<code>expo-location</code>, <code>react-native-maps</code>) support routing and on-duty behavior—ensure location permissions and map keys are configured for real devices and store builds.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Main function</h2>
+            <p class="highlight">
+              Connect authenticated drivers to live order data, let them accept and progress deliveries, and surface earnings and history in one place.
+            </p>
+            <p class="section-subtext">
+              The <code>DriverProvider</code> composes authentication, driver statistics, and order/delivery hooks so screens share one source of truth and can invalidate caches after actions.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Navigation model</h2>
+            <p>
+              <strong>Root stack</strong> (<code>navigation/AppNavigator.js</code>): Splash → Login → Drawer when authenticated. Navigation resets when auth state changes.
+            </p>
+            <p class="section-subtext">
+              <strong>Drawer</strong> (<code>navigation/DrawerNavigator.js</code>): Home, Deliveries (stack), Earnings, Transactions, History, Reports, Notifications, Support, Profile (stack), Settings (stack). Some routes (e.g. order details) are hidden from the drawer but reachable from other screens.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>API layer (summary)</h2>
+            <p>
+              A single client in <code>api.js</code> wraps <code>fetch</code> with JSON headers, bearer token, and timeout. It implements driver login (including post-login check for a driver profile), registration, status updates, orders, settings, profile updates, payment methods, and related resources.
+            </p>
+            <p class="section-subtext">
+              <strong>Demo mode</strong> (<code>config.js</code>): when <code>DEMO_MODE</code> is true, parts of the stack can use mock or simplified data paths for demos—disable for production and point <code>API_BASE_URL</code> at your deployed API.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Supported platforms</h2>
+            <ul>
+              <li>Android (<code>com.goodfood.driver</code>)</li>
+              <li>iOS (<code>com.goodfood.driver</code>)</li>
+            </ul>
+            <p class="section-subtext">
+              Built with Expo; one JavaScript codebase targets both platforms. Web script exists in <code>package.json</code> but the product is intended for native mobile.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Tech stack</h2>
+            <div class="stack-wrap">
+              <div class="chip">JavaScript</div>
+              <div class="chip">React 19</div>
+              <div class="chip">React Native</div>
+              <div class="chip">Expo ~54</div>
+              <div class="chip">React Navigation (Stack, Drawer)</div>
+              <div class="chip">React Redux</div>
+              <div class="chip">REST API</div>
+              <div class="chip">expo-location</div>
+              <div class="chip">react-native-maps</div>
+              <div class="chip">i18n-js + expo-localization</div>
+              <div class="chip">AsyncStorage</div>
+            </div>
+            <p class="section-subtext">
+              UI helpers include Reanimated, Gesture Handler, bottom sheets, Lottie, and various list and modal components—see <code>package.json</code> for the full dependency set.
+            </p>
+          </section>
+
+          <section id="project-structure" class="section-block">
+            <h2>Project structure</h2>
+            <p class="section-subtext">
+              High-level layout of the <code>delivery-app</code> repository (representative; the repo contains additional screens, hooks, and utilities).
+            </p>
+            <div class="project-structure">
+              <div class="tree-container">
+                <div class="tree-title">
+                  <span class="icon">📁</span>
+                  delivery-app/
+                </div>
+                <ul class="tree">
+                  <li>
+                    <div class="node file"><span class="icon">📄</span> App.js</div>
+                  </li>
+                  <li>
+                    <div class="node file"><span class="icon">📄</span> api.js <span style="font-size:10px; color:#94a3b8;">(REST client, auth, orders, driver)</span></div>
+                  </li>
+                  <li>
+                    <div class="node file"><span class="icon">📄</span> config.js <span style="font-size:10px; color:#94a3b8;">(API URL, demo, maps key)</span></div>
+                  </li>
+                  <li>
+                    <div class="node file"><span class="icon">📄</span> global.js <span style="font-size:10px; color:#94a3b8;">(theme, colors)</span></div>
+                  </li>
+                  <li>
+                    <div class="node file"><span class="icon">📄</span> i18n.js</div>
+                  </li>
+                  <li>
+                    <div class="node folder"><span class="icon">📁</span> navigation/</div>
+                    <ul>
+                      <li><div class="node file"><span class="icon">📄</span> AppNavigator.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> DrawerNavigator.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> DeliveriesStackNavigator.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> ProfileStackNavigator.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> SettingsStackNavigator.js</div></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="node folder"><span class="icon">📁</span> contexts/</div>
+                    <ul>
+                      <li><div class="node file"><span class="icon">📄</span> DriverContext.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> SettingContext.js</div></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="node folder"><span class="icon">📁</span> screens/</div>
+                    <ul>
+                      <li><div class="node file"><span class="icon">📄</span> HomeScreen.js, DeliveriesScreen.js, DeliveryDetailsScreen.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> EarningsScreen.js, TransactionsScreen.js, HistoryScreen.js, ReportsScreen.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> LoginScreen.js, ProfileScreen.js, SettingsScreen.js, …</div></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="node folder"><span class="icon">📁</span> components/</div>
+                    <ul>
+                      <li><div class="node file"><span class="icon">📄</span> 50+ UI modules (cards, maps, settings rows, …)</div></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="node folder"><span class="icon">📁</span> hooks/</div>
+                    <ul>
+                      <li><div class="node file"><span class="icon">📄</span> useDriverAuth.js, useDriverOrders.js, useDriverStats.js, …</div></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="node folder"><span class="icon">📁</span> utils/</div>
+                    <ul>
+                      <li><div class="node file"><span class="icon">📄</span> cacheUtils.js, locationUtils.js, storageUtils.js, …</div></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="node folder"><span class="icon">📁</span> lang/</div>
+                    <ul>
+                      <li><div class="node file"><span class="icon">📄</span> en.json, fr.json</div></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="tree-path">
+                App entry: Expo → App.js → providers → AppNavigator
+              </div>
+            </div>
+          </section>
+
+          <section class="section-block">
+            <h2>Current version</h2>
+            <p><strong>1.0.0</strong> (aligned with <code>package.json</code> and Expo config)</p>
+            <p class="section-subtext">
+              Display name in stores: <strong>Good Food Driver</strong> (<code>app.json</code>).
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Prerequisites</h2>
+            <ul>
+              <li>Node.js LTS (16+ recommended)</li>
+              <li>npm or yarn</li>
+              <li>Expo CLI / Expo Go or dev builds</li>
+              <li>Android Studio or Xcode for emulators and release builds</li>
+              <li>A running Good Food REST API with driver-capable user accounts</li>
+            </ul>
+            <p class="section-subtext">
+              Next: follow <a href="./getting-started.html">Getting Started</a> for install, <code>config.js</code>, and run instructions.
+            </p>
+          </section>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

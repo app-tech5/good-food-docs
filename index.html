@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Customer App Documentation</title>
+    <title>Good Food — Customer App Documentation</title>
     <style>
       :root {
         --bg: #ffffff;
@@ -161,26 +161,6 @@
 
       .section-subtext {
         margin-top: 12px;
-      }
-
-      .product-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        margin-top: 10px;
-        padding: 7px 12px;
-        border: 1px solid #cbd5e1;
-        border-radius: 999px;
-        background: #ffffff;
-        color: #0f172a;
-        font-size: 13px;
-        font-weight: 600;
-        text-decoration: none;
-      }
-
-      .product-link:hover {
-        background: var(--soft);
-        border-color: #94a3b8;
       }
 
       .compare-note {
@@ -415,18 +395,23 @@
       <aside class="sidebar">
         <div class="sidebar-brand">
           <span class="brand-dot"></span>
-          <p class="brand-title">Good Food Pro Docs</p>
+          <p class="brand-title">Good Food Docs</p>
         </div>
-        <p class="sidebar-label">Documentation</p>
+        <p class="sidebar-label">Customer app</p>
         <nav class="nav">
           <a class="active" href="#overview">Overview</a>
           <a href="./getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Delivery app (driver)</p>
+        <nav class="nav">
+          <a href="./delivery-app/index.html">Overview</a>
+          <a href="./delivery-app/getting-started.html">Getting Started</a>
         </nav>
       </aside>
 
       <section class="content">
         <header id="overview" class="hero">
-          <h1>Good Food Pro - Customer App</h1>
+          <h1>Good Food — Customer App</h1>
           <p class="subtitle">
             Build a modern food-ordering experience your customers enjoy from day one.
           </p>
@@ -437,7 +422,7 @@
           <div class="meta-strip">
             <span class="meta-pill">Easy to launch</span>
             <span class="meta-pill">Android & iOS ready</span>
-            <span class="meta-pill">Production-focused</span>
+            <span class="meta-pill">Self-hosted REST API</span>
           </div>
         </header>
 
@@ -445,60 +430,25 @@
           <section class="section-block">
             <h2>Overview (Presentation)</h2>
             <p>
-              Good Food Pro - Customer App is the mobile storefront of your food delivery business.
+              The Good Food <strong>customer app</strong> is the mobile storefront of your food delivery business.
               It turns restaurant browsing and ordering into a clear, smooth, and user-friendly journey.
             </p>
             <p class="section-subtext">
-              Good Food Pro is the advanced multi-app edition of Good Food, and this customer app is
-              the buyer-facing mobile experience within that ecosystem.
+              This codebase is the updated <strong>Good Food</strong> stack: mobile clients talk to your own
+              <strong>REST API</strong> and database. You host the backend (for example Express.js + MongoDB)
+              and point the apps at your API base URL.
             </p>
-            <a class="product-link" href="https://codecanyon.net/item/multi-restaurants-food-delivery-app-admin-panel/39532345" target="_blank" rel="noopener noreferrer">
-              View Good Food on CodeCanyon
-            </a>
             <p class="section-subtext">
-              As the customer-facing part of the Good Food Pro ecosystem, it is designed to help
-              users go from "I am hungry" to "Order confirmed" with minimal friction and maximum clarity.
+              As the buyer-facing app in the suite, it is designed to take users from &quot;I am hungry&quot; to
+              &quot;Order confirmed&quot; with minimal friction, while order and account data stay on your server.
             </p>
             <div class="compare-note">
-              <p class="compare-title">Good Food vs Good Food Pro</p>
-              <div class="compare-table-wrap">
-                <table class="compare-table" aria-label="Good Food versus Good Food Pro">
-                  <thead>
-                    <tr>
-                      <th>Feature</th>
-                      <th>Good Food</th>
-                      <th>Good Food Pro</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Backend</td>
-                      <td>Firebase</td>
-                      <td>Custom REST API (Express.js + MongoDB)</td>
-                    </tr>
-                    <tr>
-                      <td>Apps included</td>
-                      <td>Customer + Delivery + Restaurant + Admin</td>
-                      <td>Customer + Delivery + Restaurant + Admin + Backend</td>
-                    </tr>
-                    <tr>
-                      <td>Backend source code</td>
-                      <td>❌</td>
-                      <td>✅ Included</td>
-                    </tr>
-                    <tr>
-                      <td>Monthly costs</td>
-                      <td>Firebase fees</td>
-                      <td>Self-hosted (free)</td>
-                    </tr>
-                    <tr>
-                      <td>Full customization</td>
-                      <td>Limited</td>
-                      <td>✅ Full control</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              <p class="compare-title">Backend architecture</p>
+              <p style="margin: 0; color: #334155; font-size: 15px; max-width: none;">
+                Data and auth go through your <strong>Good Food REST API</strong>.
+                You run the API and MongoDB (or your chosen hosting), configure <code>API_BASE_URL</code> in the app,
+                and scale or customize the backend like any Node.js service.
+              </p>
             </div>
           </section>
 
@@ -561,19 +511,19 @@
               <div class="chip">React Navigation</div>
               <div class="chip">Redux</div>
               <div class="chip">REST API</div>
+              <div class="chip">Express.js</div>
               <div class="chip">MongoDB</div>
             </div>
             <p class="section-subtext">
-              In customer-app, the stack is centered on the JavaScript ecosystem with React Native
-              and Expo for mobile delivery on Android and iOS.
+              The customer app uses React Native and Expo for Android and iOS. State and navigation patterns
+              are built for production ordering flows against your HTTP API.
             </p>
             <p class="section-subtext">
-              The architecture combines robust mobile UI foundations (navigation + state management)
-              with REST API integration for production-ready ordering workflows.
+              Persistence and business rules live on your API and database; the mobile app consumes your HTTP endpoints.
             </p>
             <p class="section-subtext">
-              Note: the backend is sold separately. This customer app connects to a compatible
-              Good Food Pro backend API when available.
+              Run the backend from the repository that ships with the suite (for example <code>my-backend</code>),
+              then connect the app using <code>config/index.js</code> as described in Getting Started.
             </p>
           </section>
 
@@ -670,7 +620,7 @@
               <li>npm or yarn</li>
               <li>Expo CLI / Expo tooling</li>
               <li>Android Studio (Android) or Xcode (iOS)</li>
-              <li>A running and reachable backend API (sold separately)</li>
+              <li>A running and reachable Good Food REST API (backend project in the suite)</li>
             </ul>
             <p class="section-subtext">
               These are the only essentials you need to install, run, and test the app successfully.
