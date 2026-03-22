@@ -72,6 +72,10 @@
         color: #64748b;
       }
 
+      .nav + .sidebar-label {
+        margin-top: 24px;
+      }
+
       .nav {
         display: flex;
         flex-direction: column;
@@ -261,93 +265,6 @@
         font-size: 13px;
       }
 
-      /* Node.js Installation Styles */
-      .node-install {
-        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        padding: 28px;
-        margin: 24px 0;
-      }
-
-      .install-header {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        margin-bottom: 20px;
-      }
-
-      .node-logo {
-        width: 52px;
-        height: 52px;
-        background: #339933;
-        color: white;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 28px;
-        font-weight: bold;
-        box-shadow: 0 4px 12px rgba(51, 153, 51, 0.2);
-      }
-
-      .install-step {
-        display: flex;
-        gap: 18px;
-        margin-bottom: 24px;
-        padding-bottom: 24px;
-        border-bottom: 1px solid var(--border);
-      }
-
-      .install-step:last-child {
-        border-bottom: none;
-        margin-bottom: 0;
-        padding-bottom: 0;
-      }
-
-      .step-number {
-        width: 32px;
-        height: 32px;
-        background: var(--accent);
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-        font-size: 15px;
-        flex-shrink: 0;
-      }
-
-      .step-content h4 {
-        margin: 0 0 8px 0;
-        font-size: 17px;
-        color: var(--text);
-      }
-
-      .platform-tabs {
-        display: flex;
-        gap: 8px;
-        margin-bottom: 16px;
-        flex-wrap: wrap;
-      }
-
-      .platform-tab {
-        padding: 6px 14px;
-        border-radius: 999px;
-        font-size: 13px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.2s;
-        border: 1px solid var(--border);
-      }
-
-      .platform-tab.active {
-        background: var(--accent);
-        color: white;
-        border-color: var(--accent);
-      }
-
       @media (max-width: 920px) {
         .layout {
           grid-template-columns: 1fr;
@@ -370,32 +287,6 @@
         }
       }
     </style>
-    <script>
-      function switchPlatform(el) {
-        // Remove active class from all tabs
-        document.querySelectorAll('.platform-tab').forEach(tab => {
-          tab.classList.remove('active');
-        });
-        
-        // Add active class to clicked tab
-        el.classList.add('active');
-        
-        // Hide all contents
-        document.getElementById('mac-content').style.display = 'none';
-        document.getElementById('win-content').style.display = 'none';
-        document.getElementById('linux-content').style.display = 'none';
-        
-        // Show selected content
-        const platform = el.getAttribute('data-platform');
-        if (platform === 'mac') {
-          document.getElementById('mac-content').style.display = 'block';
-        } else if (platform === 'win') {
-          document.getElementById('win-content').style.display = 'block';
-        } else if (platform === 'linux') {
-          document.getElementById('linux-content').style.display = 'block';
-        }
-      }
-    </script>
   </head>
   <body>
     <main class="layout">
@@ -404,6 +295,10 @@
           <span class="brand-dot"></span>
           <p class="brand-title">Good Food Docs</p>
         </div>
+        <p class="sidebar-label">All apps</p>
+        <nav class="nav">
+          <a href="./environment-setup.html">Environment setup</a>
+        </nav>
         <p class="sidebar-label">Customer app</p>
         <nav class="nav">
           <a href="./index.html">Overview</a>
@@ -435,62 +330,10 @@
             <strong>Important:</strong> Start your backend (for example the <code>my-backend</code> project) before launching this app so login and API calls succeed.
           </div>
 
-          <h3 style="margin: 32px 0 16px 0; font-size: 20px;">Node.js Installation</h3>
-          <p>
-            Node.js is the foundation of this project. It allows you to run JavaScript on your computer and includes <code>npm</code>, the package manager we'll use to install all other tools.
-          </p>
           <p class="sub">
-            We recommend using an LTS (Long Term Support) version for maximum stability. Choose your operating system below:
+            Install <strong>Node.js LTS</strong> and the usual Expo / Android / iOS tooling once for the whole suite — the full walkthrough (macOS, Windows, Linux, verify commands) lives on
+            <a href="./environment-setup.html#nodejs" style="color: var(--accent); font-weight: 600;">Environment setup → Node.js</a>.
           </p>
-
-          <div style="margin: 20px 0 24px 0;">
-            <div style="display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap;" id="platformTabs">
-              <div onclick="switchPlatform(this)" class="platform-tab active" data-platform="mac" style="padding: 8px 18px; border-radius: 999px; border: 1px solid #e2e8f0; cursor: pointer; font-size: 14px; font-weight: 500;">macOS</div>
-              <div onclick="switchPlatform(this)" class="platform-tab" data-platform="win" style="padding: 8px 18px; border-radius: 999px; border: 1px solid #e2e8f0; cursor: pointer; font-size: 14px; font-weight: 500;">Windows</div>
-              <div onclick="switchPlatform(this)" class="platform-tab" data-platform="linux" style="padding: 8px 18px; border-radius: 999px; border: 1px solid #e2e8f0; cursor: pointer; font-size: 14px; font-weight: 500;">Linux</div>
-            </div>
-
-            <!-- macOS -->
-            <div id="mac-content">
-              <div class="code-block">
-                <div class="code-head">
-                  <span class="code-title">macOS - Using Homebrew (recommended)</span>
-                </div>
-                <pre><code><span class="tok-cmd">brew</span> <span class="tok-cmd">install</span> <span class="tok-arg">node</span></code></pre>
-              </div>
-            </div>
-
-            <!-- Windows -->
-            <div id="win-content" style="display: none;">
-              <div class="code-block">
-                <div class="code-head">
-                  <span class="code-title">Windows - Official Installer</span>
-                </div>
-                <pre><code><span class="tok-comment"># 1. Go to https://nodejs.org</span>
-<span class="tok-comment"># 2. Download the LTS version</span>
-<span class="tok-comment"># 3. Run the installer (.msi file)</span></code></pre>
-              </div>
-            </div>
-
-            <!-- Linux -->
-            <div id="linux-content" style="display: none;">
-              <div class="code-block">
-                <div class="code-head">
-                  <span class="code-title">Linux - Using NodeSource</span>
-                </div>
-                <pre><code><span class="tok-cmd">curl</span> -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
-<span class="tok-cmd">sudo</span> <span class="tok-cmd">apt-get</span> <span class="tok-cmd">install</span> <span class="tok-arg">-y</span> nodejs</code></pre>
-              </div>
-            </div>
-          </div>
-
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">Verify your installation (all platforms)</span>
-            </div>
-            <pre><code><span class="tok-cmd">node</span> <span class="tok-arg">--version</span>
-<span class="tok-cmd">npm</span> <span class="tok-arg">--version</span></code></pre>
-          </div>
         </section>
 
 
@@ -579,43 +422,8 @@ DEMO_PASSWORD: <span class="tok-str">'demo123'</span></code></pre>
 
           <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Maps Configuration for Production APK</h3>
           <p>
-            The customer app displays restaurants on a map. When you test the app with <code>npm start</code>, the map works without any special setup.
-          </p>
-          <p class="sub">
-            However, when you create a real APK file to install on Android phones, Google requires an API key to display the maps correctly.
-          </p>
-
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">Step 1: Get a Google Maps API Key</span>
-            </div>
-            <pre><code><span class="tok-comment">1. Open your browser and go to: https://console.cloud.google.com</span>
-<span class="tok-comment">2. Sign in with your Google account</span>
-<span class="tok-comment">3. Create a new project or select an existing one</span>
-<span class="tok-comment">4. In the search bar, type "Maps SDK for Android" and enable it</span>
-<span class="tok-comment">5. Go to "Credentials" and click "Create Credentials" → "API key"</span></code></pre>
-          </div>
-
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">Step 2: Add the key to your project</span>
-            </div>
-            <pre><code>{
-  "expo": {
-    "android": {
-      "config": {
-        "googleMaps": {
-          "apiKey": "<span class="tok-str">AIzaSyYourGoogleMapsAPIKeyHere123456789</span>"
-        }
-      }
-    }
-  }
-}</code></pre>
-          </div>
-
-          <p class="sub">
-            After adding your key, rebuild your APK with the command:
-            <br><code>eas build --platform android</code> or <code>expo build:android</code>
+            Maps keys and <code>app.json</code> steps are shared by every Expo app in this suite. See
+            <a href="./environment-setup.html#google-maps-expo" style="color: var(--accent); font-weight: 600;">Environment setup → Google Maps (Expo)</a>.
           </p>
         </section>
 
@@ -626,13 +434,9 @@ DEMO_PASSWORD: <span class="tok-str">'demo123'</span></code></pre>
             menus, cart actions, checkout, and order tracking updates.
           </p>
           <p class="sub">
-            Keep the API endpoint stable and reachable from the simulator/phone network. No code
-            changes are needed here for this quick-start page.
+            Keep <code>API_BASE_URL</code> stable and reachable from the simulator or phone. Why <code>localhost</code> often fails on a real device is explained on
+            <a href="./environment-setup.html#api-reachability" style="color: var(--accent); font-weight: 600;">Environment setup → API reachability</a>.
           </p>
-          <div class="callout">
-            Example: if your backend runs on <code>192.168.1.20:5000</code>, your API base URL should
-            use that same reachable IP instead of <code>localhost</code> when testing on a physical device.
-          </div>
         </section>
 
         <section class="section">

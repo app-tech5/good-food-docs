@@ -78,6 +78,10 @@
         color: #64748b;
       }
 
+      .nav + .sidebar-label {
+        margin-top: 24px;
+      }
+
       .nav {
         display: flex;
         flex-direction: column;
@@ -397,6 +401,10 @@
           <span class="brand-dot"></span>
           <p class="brand-title">Good Food Docs</p>
         </div>
+        <p class="sidebar-label">All apps</p>
+        <nav class="nav">
+          <a href="./environment-setup.html">Environment setup</a>
+        </nav>
         <p class="sidebar-label">Customer app</p>
         <nav class="nav">
           <a class="active" href="#overview">Overview</a>
@@ -614,23 +622,15 @@
           </section>
 
           <section class="section-block">
-            <h2>Global Prerequisites</h2>
-            <ul>
-              <li>Node.js LTS (>= 16)</li>
-              <li>npm or yarn</li>
-              <li>Expo CLI / Expo tooling</li>
-              <li>Android Studio (Android) or Xcode (iOS)</li>
-              <li>A running and reachable Good Food REST API (backend project in the suite)</li>
-            </ul>
-            <p class="section-subtext">
-              These are the only essentials you need to install, run, and test the app successfully.
-              If you are new to mobile projects, this setup is still beginner-friendly with clear tools.
+            <h2>What you need to run the app</h2>
+            <p>
+              Node.js, Expo, simulators, API URLs, and Maps keys are documented once for the whole suite on
+              <a href="./environment-setup.html" style="color: var(--accent); font-weight: 600;">Environment setup</a>.
             </p>
-            <ul class="detail-list">
-              <li>Use a stable Node.js LTS version for smoother installation.</li>
-              <li>Make sure your phone/simulator can reach the backend API URL.</li>
-              <li>Keep Android/iOS tools updated for predictable builds and tests.</li>
-            </ul>
+            <p class="section-subtext">
+              For this customer app specifically: clone <code>customer-app</code>, install dependencies, set <code>API_BASE_URL</code> in <code>config/index.js</code>,
+              start <code>my-backend</code>, then follow <a href="./getting-started.html" style="color: var(--accent); font-weight: 600;">Getting Started</a>.
+            </p>
           </section>
         </section>
       </section>
