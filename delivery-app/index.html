@@ -44,9 +44,32 @@
         top: 0;
         align-self: start;
         height: 100vh;
+        overflow-y: auto;
         padding: 28px 18px;
         border-right: 1px solid var(--border);
         background: var(--sidebar-bg);
+        scrollbar-width: thin;
+        scrollbar-color: #cbd5e1 transparent;
+      }
+
+      .sidebar::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .sidebar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .sidebar::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 999px;
+        border: 2px solid transparent;
+        background-clip: padding-box;
+      }
+
+      .sidebar::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+        background-clip: padding-box;
       }
 
       .sidebar-brand {
@@ -414,15 +437,20 @@
           <a href="../index.html">Overview</a>
           <a href="../getting-started.html">Getting Started</a>
         </nav>
+        <p class="sidebar-label">Delivery app (driver)</p>
+        <nav class="nav">
+          <a class="active" href="#overview">Overview</a>
+          <a href="./getting-started.html">Getting Started</a>
+        </nav>
         <p class="sidebar-label">Restaurant app</p>
         <nav class="nav">
           <a href="../restaurant-app/index.html">Overview</a>
           <a href="../restaurant-app/getting-started.html">Getting Started</a>
         </nav>
-        <p class="sidebar-label">Delivery app (driver)</p>
+        <p class="sidebar-label">Admin app (web)</p>
         <nav class="nav">
-          <a class="active" href="#overview">Overview</a>
-          <a href="./getting-started.html">Getting Started</a>
+          <a href="../admin-app/index.html">Overview</a>
+          <a href="../admin-app/getting-started.html">Getting Started</a>
         </nav>
       </aside>
 
@@ -595,54 +623,30 @@
                     <div class="node file"><span class="icon">📄</span> i18n.js</div>
                   </li>
                   <li>
-                    <div class="node folder"><span class="icon">📁</span> navigation/</div>
+                    <div class="node folder"><span class="icon">📁</span> navigation/ <span style="font-size:10px; color:#94a3b8;">(9 files)</span></div>
                     <ul>
-                      <li><div class="node file"><span class="icon">📄</span> AppNavigator.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> DrawerNavigator.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> DeliveriesStackNavigator.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> ProfileStackNavigator.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> SettingsStackNavigator.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> AppNavigator.js, DrawerNavigator.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> DeliveriesStackNavigator.js, ProfileStackNavigator.js</div></li>
                     </ul>
                   </li>
                   <li>
-                    <div class="node folder"><span class="icon">📁</span> contexts/</div>
-                    <ul>
-                      <li><div class="node file"><span class="icon">📄</span> DriverContext.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> SettingContext.js</div></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> screens/</div>
+                    <div class="node folder"><span class="icon">📁</span> screens/ <span style="font-size:10px; color:#94a3b8;">(20+ screens)</span></div>
                     <ul>
                       <li><div class="node file"><span class="icon">📄</span> HomeScreen.js, DeliveriesScreen.js, DeliveryDetailsScreen.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> EarningsScreen.js, TransactionsScreen.js, HistoryScreen.js, ReportsScreen.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> LoginScreen.js, ProfileScreen.js, SettingsScreen.js, …</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> EarningsScreen.js, ReportsScreen.js, SettingsScreen.js</div></li>
                     </ul>
                   </li>
                   <li>
-                    <div class="node folder"><span class="icon">📁</span> components/</div>
+                    <div class="node folder"><span class="icon">📁</span> components/ <span style="font-size:10px; color:#94a3b8;">(61+ files)</span></div>
                     <ul>
-                      <li><div class="node file"><span class="icon">📄</span> 50+ UI modules (cards, maps, settings rows, …)</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> DeliveryCard.js, DriverStats.js, RatingStats.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> OrderHeaderCard.js, OrderItemsCard.js, TransactionList.js</div></li>
                     </ul>
                   </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> hooks/</div>
-                    <ul>
-                      <li><div class="node file"><span class="icon">📄</span> useDriverAuth.js, useDriverOrders.js, useDriverStats.js, …</div></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> utils/</div>
-                    <ul>
-                      <li><div class="node file"><span class="icon">📄</span> cacheUtils.js, locationUtils.js, storageUtils.js, …</div></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> lang/</div>
-                    <ul>
-                      <li><div class="node file"><span class="icon">📄</span> en.json, fr.json</div></li>
-                    </ul>
-                  </li>
+                  <li><div class="node folder"><span class="icon">📁</span> hooks/ <span style="font-size:10px; color:#94a3b8;">(20+ hooks)</span></div></li>
+                  <li><div class="node folder"><span class="icon">📁</span> utils/ <span style="font-size:10px; color:#94a3b8;">(16+ helpers)</span></div></li>
+                  <li><div class="node folder"><span class="icon">📁</span> contexts/ <span style="font-size:10px; color:#94a3b8;">(2 files)</span></div></li>
+                  <li><div class="node folder"><span class="icon">📁</span> lang/ <span style="font-size:10px; color:#94a3b8;">(i18n EN/FR)</span></div></li>
                 </ul>
               </div>
               <div class="tree-path">

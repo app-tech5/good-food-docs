@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Getting Started — Good Food Driver App</title>
+    <title>Getting Started — Good Food Admin App</title>
     <style>
       :root {
         --bg: #ffffff;
@@ -307,8 +307,8 @@
         </nav>
         <p class="sidebar-label">Delivery app (driver)</p>
         <nav class="nav">
-          <a href="./index.html">Overview</a>
-          <a class="active" href="#getting-started">Getting Started</a>
+          <a href="../delivery-app/index.html">Overview</a>
+          <a href="../delivery-app/getting-started.html">Getting Started</a>
         </nav>
         <p class="sidebar-label">Restaurant app</p>
         <nav class="nav">
@@ -317,8 +317,8 @@
         </nav>
         <p class="sidebar-label">Admin app (web)</p>
         <nav class="nav">
-          <a href="../admin-app/index.html">Overview</a>
-          <a href="../admin-app/getting-started.html">Getting Started</a>
+          <a href="./index.html">Overview</a>
+          <a class="active" href="#getting-started">Getting Started</a>
         </nav>
       </aside>
 
@@ -326,36 +326,34 @@
         <header id="getting-started" class="hero">
           <h1>Getting Started</h1>
           <p class="subtitle">
-            Launch the Good Food driver app with the same gentle, step-by-step style as the customer app—even if this is your first mobile project.
+            Launch the Good Food admin dashboard quickly and validate the core admin flow: login, dashboard, entity management, and settings.
           </p>
           <p class="meta">
-            Goal: install tools, connect to your API, and complete one successful login as a driver. You will need a user account that is registered as a courier on the server (not only a customer).
+            Goal: install dependencies, connect to your API, and complete one successful admin session.
           </p>
         </header>
 
         <section class="section">
           <h2>1) Prerequisites</h2>
           <p>
-            Before the driver app can run, you need a few free tools on your computer. This section explains each one in plain language.
-            Follow the steps for your operating system; you can always come back if something fails the first time.
+            Before running the app, install Node.js once for the suite, then make sure your backend API is reachable.
           </p>
 
           <div class="callout">
-            <strong>Important:</strong> Start your Good Food backend (for example the <code>my-backend</code> project) before opening the driver app.
-            The mobile app only shows real data when the server is online and reachable from your phone or emulator.
+            <strong>Important:</strong> Start your Good Food backend (for example the <code>my-backend</code> project) before opening the admin app.
+            The dashboard loads protected resources and requires a live API.
           </div>
 
           <div class="callout" style="margin-top: 12px;">
-            <strong>Driver account:</strong> The email you use to log in must belong to someone your backend recognizes as a <strong>driver</strong>.
-            If you try a normal customer account, the app may refuse login after the password step. Create or promote a test driver in your database or admin tools first.
+            <strong>Admin account:</strong> Use credentials with admin/manager permissions.
+            Limited roles may authenticate but not have access to all dashboard sections.
           </div>
 
           <p class="sub">
-            Install <strong>Node.js LTS</strong>, Expo tooling, and Android Studio / Xcode using the shared guide:
+            Install <strong>Node.js LTS</strong> using the shared guide:
             <a href="../environment-setup.html#nodejs" style="color: var(--accent); font-weight: 600;">Environment setup → Node.js</a>
-            and
-            <a href="../environment-setup.html#expo-tooling" style="color: var(--accent); font-weight: 600;">Expo and native tooling</a>.
-            When the app asks for <strong>location</strong> access, allow it if you want maps and GPS-based features.
+            . Language setup is shared as well:
+            <a href="../environment-setup.html#i18n-languages" style="color: var(--accent); font-weight: 600;">Environment setup → Languages (i18n)</a>.
           </p>
         </section>
 
@@ -363,9 +361,10 @@
           <h2>2) Step-by-step installation</h2>
           <ol>
             <li>Open a terminal.</li>
-            <li>Go to the <code>delivery-app</code> folder (the same level as <code>package.json</code>).</li>
+            <li>Go to the <code>admin-app</code> folder (the same level as <code>package.json</code>).</li>
             <li>Run <code>npm install</code> and wait until it finishes without red errors.</li>
-            <li>Confirm your backend is still running and that you know the API URL you will paste into config.</li>
+            <li>Set <code>API_BASE_URL</code> in <code>src/config/api.js</code>.</li>
+            <li>Confirm the backend is reachable from your test device.</li>
           </ol>
           <p class="sub">
             When this completes, your computer has everything the project needs to start in development mode.
@@ -373,9 +372,9 @@
           <div class="code-block">
             <div class="code-head">
               <span class="code-title">Install dependencies</span>
-              <span class="code-copy">delivery-app</span>
+              <span class="code-copy">admin-app</span>
             </div>
-            <pre><code><span class="tok-cmd">cd</span> <span class="tok-arg">delivery-app</span>
+            <pre><code><span class="tok-cmd">cd</span> <span class="tok-arg">admin-app</span>
 <span class="tok-cmd">npm</span> <span class="tok-cmd">install</span></code></pre>
           </div>
         </section>
@@ -383,8 +382,8 @@
         <section class="section">
           <h2>3) Configuration &amp; personalization</h2>
           <p>
-            The driver app keeps its settings in one file at the root of the project: <code>config.js</code>.
-            (The customer app uses <code>config/index.js</code>—different path, same idea.)
+            The admin app stores API and auth defaults in <code>src/config/api.js</code> and <code>src/config/config.js</code>.
+            App settings (branding/runtime options) are also loaded from backend settings endpoints.
           </p>
 
           <h3 style="margin: 28px 0 12px 0; font-size: 19px;">API address</h3>
@@ -394,55 +393,51 @@
           </p>
           <div class="code-block">
             <div class="code-head">
-              <span class="code-title">config.js (excerpt)</span>
+              <span class="code-title">src/config/api.js + src/config/config.js (excerpt)</span>
             </div>
-            <pre><code><span class="tok-var">API_BASE_URL</span>: <span class="tok-str">'http://YOUR_SERVER_IP:5000/api'</span>,
-<span class="tok-var">GOOGLE_MAPS_API_KEY</span>: <span class="tok-str">'YOUR_GOOGLE_MAPS_API_KEY'</span>,
-APP_NAME: <span class="tok-str">'Good Food Driver'</span>,
-VERSION: <span class="tok-str">'1.1.0'</span>,
-<span class="tok-var">DEMO_MODE</span>: <span class="tok-arg">true</span>,
-DEMO_EMAIL: <span class="tok-str">'driver@demo.com'</span>,
-DEMO_PASSWORD: <span class="tok-str">'driver123'</span>,
-<span class="tok-var">API_TIMEOUT</span>: <span class="tok-arg">10000</span></code></pre>
+            <pre><code><span class="tok-var">API_BASE_URL</span> = <span class="tok-str">'http://YOUR_SERVER_IP:5000/api'</span>
+
+<span class="tok-comment">// role presets used by login quick-fill</span>
+roleCredentials = {
+  admin: { email: <span class="tok-str">'admin@example.com'</span>, password: <span class="tok-str">'admin123'</span> },
+  manager: { email: <span class="tok-str">'manager@example.com'</span>, password: <span class="tok-str">'manager123'</span> }
+}</code></pre>
           </div>
           <p class="sub">
-            Use the same host and port you already use for the customer app. If the port in your backend is different (for example 8080), change the URL accordingly.
+            Default development value is <code>http://localhost:5000/api</code>.
+            If your backend runs elsewhere, update it before login tests.
           </p>
 
           <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Demo mode</h3>
           <p>
-            When <code>DEMO_MODE</code> is <code>true</code>, the login screen can be pre-filled with sample credentials—handy for demos.
-            Before a real release, set it to <code>false</code> and rely on real courier accounts.
+            The login screen provides role buttons (admin/manager/client) to prefill credentials from config.
+            Keep them aligned with users that exist in your backend environment.
           </p>
           <p class="sub">
-            Languages (EN/FR, <code>lang/</code>, <code>i18n.js</code>): see
+            Languages (EN/FR, <code>src/locales/</code>, <code>src/i18n.js</code>): see
             <a href="../environment-setup.html#i18n-languages" style="color: var(--accent); font-weight: 600;">Environment setup → Languages (i18n)</a>.
           </p>
 
           <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Look and feel</h3>
           <p>
-            Colors and shared styles are centralized in <code>global.js</code>. Adjust them there if you want the driver app to match your brand.
+            Global styles are in <code>src/index.css</code> and feature styles in component/page SCSS files.
+            Theme consistency can also be managed from runtime settings APIs.
           </p>
 
           <div class="callout">
-            <strong>Tip:</strong> After editing <code>config.js</code> or theme files, stop and restart <code>npm start</code> so the bundler picks up changes.
+            <strong>Tip:</strong> After editing API or config files, restart <code>npm start</code> to avoid stale environment state.
           </div>
-
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Maps for production Android builds</h3>
-          <p>
-            Console steps and <code>app.json</code> are the same for every Expo app here. Follow
-            <a href="../environment-setup.html#google-maps-expo" style="color: var(--accent); font-weight: 600;">Environment setup → Google Maps (Expo)</a>,
-            then keep <code>GOOGLE_MAPS_API_KEY</code> in <code>config.js</code> in sync if your code reads it from there.
-          </p>
         </section>
 
         <section class="section">
           <h2>4) API connection checklist</h2>
           <p>
-            The driver app contacts your server for sign-in, order lists, profile updates, and settings—just like the customer app, but with driver-specific endpoints.
+            The app uses <code>src/api/apiClient.js</code> and related services for login checks,
+            entity CRUD, settings, languages, currencies, and reporting endpoints.
           </p>
           <p class="sub">
-            For a basic test you only need the correct URL in <code>config.js</code>. Device vs <code>localhost</code> is covered on
+            For a basic test you only need the correct URL in <code>src/config/api.js</code>.
+            API network details are covered on
             <a href="../environment-setup.html#api-reachability" style="color: var(--accent); font-weight: 600;">Environment setup → API reachability</a>.
           </p>
         </section>
@@ -451,20 +446,20 @@ DEMO_PASSWORD: <span class="tok-str">'driver123'</span>,
           <h2>5) Run the project</h2>
           <ol>
             <li>Backend running, <code>API_BASE_URL</code> set, <code>npm install</code> already done.</li>
-            <li>In <code>delivery-app</code>, run <code>npm start</code>.</li>
-            <li>Scan the QR code with Expo Go, or press <code>a</code> / <code>i</code> for Android or iOS simulator.</li>
-            <li>Sign in with a <strong>driver</strong> account; open the side menu and tap through Home, Deliveries, and Profile to confirm navigation works.</li>
+            <li>In <code>admin-app</code>, run <code>npm start</code>.</li>
+            <li>Open <code>http://localhost:3000</code> in your browser if it does not open automatically.</li>
+            <li>Sign in with an <strong>admin</strong> account and validate Dashboard, main entities, Reports, and Settings.</li>
           </ol>
           <div class="code-block">
             <div class="code-head">
               <span class="code-title">Run commands</span>
-              <span class="code-copy">Expo</span>
+              <span class="code-copy">React Scripts</span>
             </div>
             <pre><code><span class="tok-cmd">npm</span> <span class="tok-cmd">start</span>
 
-<span class="tok-comment"># optional shortcuts</span>
-<span class="tok-cmd">npm</span> <span class="tok-cmd">run</span> <span class="tok-arg">android</span>
-<span class="tok-cmd">npm</span> <span class="tok-cmd">run</span> <span class="tok-arg">ios</span></code></pre>
+<span class="tok-comment"># optional checks</span>
+<span class="tok-cmd">npm</span> <span class="tok-cmd">run</span> <span class="tok-arg">lint</span>
+<span class="tok-cmd">npm</span> <span class="tok-cmd">test</span></code></pre>
           </div>
         </section>
       </section>

@@ -44,9 +44,32 @@
         top: 0;
         align-self: start;
         height: 100vh;
+        overflow-y: auto;
         padding: 28px 18px;
         border-right: 1px solid var(--border);
         background: var(--sidebar-bg);
+        scrollbar-width: thin;
+        scrollbar-color: #cbd5e1 transparent;
+      }
+
+      .sidebar::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .sidebar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .sidebar::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 999px;
+        border: 2px solid transparent;
+        background-clip: padding-box;
+      }
+
+      .sidebar::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+        background-clip: padding-box;
       }
 
       .sidebar-brand {
@@ -410,15 +433,20 @@
           <a class="active" href="#overview">Overview</a>
           <a href="./getting-started.html">Getting Started</a>
         </nav>
+        <p class="sidebar-label">Delivery app (driver)</p>
+        <nav class="nav">
+          <a href="./delivery-app/index.html">Overview</a>
+          <a href="./delivery-app/getting-started.html">Getting Started</a>
+        </nav>
         <p class="sidebar-label">Restaurant app</p>
         <nav class="nav">
           <a href="./restaurant-app/index.html">Overview</a>
           <a href="./restaurant-app/getting-started.html">Getting Started</a>
         </nav>
-        <p class="sidebar-label">Delivery app (driver)</p>
+        <p class="sidebar-label">Admin app (web)</p>
         <nav class="nav">
-          <a href="./delivery-app/index.html">Overview</a>
-          <a href="./delivery-app/getting-started.html">Getting Started</a>
+          <a href="./admin-app/index.html">Overview</a>
+          <a href="./admin-app/getting-started.html">Getting Started</a>
         </nav>
       </aside>
 
