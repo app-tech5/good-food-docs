@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Good Food — Delivery (Driver) App Documentation</title>
+    <title>Good Food — Restaurant App Documentation</title>
     <style>
       :root {
         --bg: #ffffff;
@@ -416,25 +416,25 @@
         </nav>
         <p class="sidebar-label">Restaurant app</p>
         <nav class="nav">
-          <a href="../restaurant-app/index.html">Overview</a>
-          <a href="../restaurant-app/getting-started.html">Getting Started</a>
+          <a class="active" href="#overview">Overview</a>
+          <a href="./getting-started.html">Getting Started</a>
         </nav>
         <p class="sidebar-label">Delivery app (driver)</p>
         <nav class="nav">
-          <a class="active" href="#overview">Overview</a>
-          <a href="./getting-started.html">Getting Started</a>
+          <a href="../delivery-app/index.html">Overview</a>
+          <a href="../delivery-app/getting-started.html">Getting Started</a>
         </nav>
       </aside>
 
       <section class="content">
         <header id="overview" class="hero">
-          <h1>Good Food — Delivery (Driver) App</h1>
+          <h1>Good Food — Restaurant App</h1>
           <p class="subtitle">
-            A simple mobile app for your couriers: see new jobs, move orders through each delivery step, and check earnings—without juggling spreadsheets or phone calls.
+            The companion app for restaurant owners and staff: manage incoming orders, edit the menu, track performance, and keep the kitchen in sync with the rest of the Good Food suite.
           </p>
           <p class="intro-line">
-            This overview helps non-technical readers and developers alike understand what the driver app does,
-            which devices it supports, and what must be running on your server before anyone can log in.
+            This overview explains what the restaurant app does, how it fits next to the customer and driver apps,
+            which platforms it supports, and what your backend must expose before staff can sign in.
           </p>
           <div class="meta-strip">
             <span class="meta-pill">Easy to launch</span>
@@ -447,230 +447,148 @@
           <section class="section-block">
             <h2>Overview (Presentation)</h2>
             <p>
-              The <strong>driver app</strong> (shown on the phone as <strong>Good Food Driver</strong>) is for the person who
-              <strong>delivers</strong> the food. The customer app is for ordering; the restaurant app is for the kitchen;
-              this one is for the road—from picking up the bag to marking the order as delivered.
+              The <strong>restaurant app</strong> is the operations side of Good Food. It is used by
+              owners and staff to process incoming orders, maintain menus, and track business metrics.
             </p>
             <p class="section-subtext">
-              Like the rest of Good Food, this app talks to <strong>your server</strong> over the internet. You host the
-              backend and database; the driver signs in, and the app downloads their assignments, profile, and stats from your API.
-            </p>
-            <p class="section-subtext">
-              If you are setting up the suite for the first time, read the customer app overview for the big picture,
-              then come back here for courier-specific details.
+              It connects to your REST API (same backend stack as the other apps), and authenticates
+              with restaurant credentials before exposing orders, menu management, and reporting screens.
             </p>
             <a class="product-link" href="../index.html">Customer app — Overview</a>
-            <div class="compare-note">
-              <p class="compare-title">How login works (simple version)</p>
-              <p style="margin: 0; color: #334155; font-size: 15px; max-width: none;">
-                The courier uses an email and password like any user. Your server checks that this account is allowed to work as a
-                <strong>driver</strong> (a driver profile in the database). If the account is only a customer, the app will show an error—so
-                for testing, always create or promote a user as a driver on the backend first.
-              </p>
-            </div>
+            <a class="product-link" href="../delivery-app/index.html" style="margin-left:8px;">Driver app — Overview</a>
           </section>
 
           <section class="section-block">
-            <h2>Driver App Presentation</h2>
-            <p>
-              The interface is meant for people who are <strong>on the move</strong>, not sitting at a desk. Large touch targets,
-              clear labels, and a side menu make it easy to jump between home, today&apos;s deliveries, money, and settings.
-            </p>
-            <p class="section-subtext">
-              In everyday use, a driver can sign in, see a home dashboard, open the list of deliveries, tap into one order to see
-              details and the route, and update status as they pick up and drop off. They can also review past jobs, earnings,
-              transactions, simple reports, notifications, help/support, profile and vehicle info, and app preferences.
-            </p>
-            <p class="section-subtext">
-              The app can use <strong>maps</strong> and <strong>GPS</strong> when you allow location access—useful for navigation and
-              on-duty features. For real phones and store builds you will configure map keys and permissions (covered step by step in
-              <a href="./getting-started.html">Getting Started</a>).
-            </p>
-          </section>
-
-          <section class="section-block">
-            <h2>Main Function</h2>
+            <h2>Main function</h2>
             <p class="highlight">
-              Keep couriers connected to live orders: they see what to deliver, advance the order through each stage, and track how much they have earned—all from one app.
+              Centralize restaurant workflows in one mobile app: accept and update orders, edit menu items,
+              and monitor performance indicators in real time.
             </p>
             <p class="section-subtext">
-              Behind the scenes, the app remembers who is logged in, refreshes lists of jobs, and can cache some data so screens still feel responsive if the network is slow.
-            </p>
-            <p class="section-subtext">
-              For a technical mental model: one shared &quot;driver context&quot; supplies login state, orders, and statistics to the screens so everything stays in sync after an action.
+              The app uses providers and hooks for auth, orders, menu, stats, and settings. It also includes
+              smart cache helpers to keep screens responsive while data refreshes in the background.
             </p>
           </section>
 
           <section class="section-block">
-            <h2>How screens are organized</h2>
+            <h2>How navigation is organized</h2>
             <p>
-              When the app opens, the driver briefly sees a splash screen, then a <strong>login</strong> screen if they are not signed in.
-              After a successful login, they land in the main area with a <strong>side menu</strong> (drawer) listing Home, Deliveries,
-              Earnings, Transactions, History, Reports, Notifications, Support, Profile, Settings, and more.
+              Startup flow: <code>Splash</code> → <code>Login</code> → main drawer after authentication.
+              The drawer then exposes dashboard, orders, menu, analytics, reviews, reports, notifications,
+              support, profile, and settings.
             </p>
             <p class="section-subtext">
-              Some screens open <strong>on top</strong> of others (for example delivery details or order details) and may not appear as separate items in the side menu—that is normal.
-            </p>
-            <p class="section-subtext">
-              Developers: the flow is implemented with React Navigation (stack for splash/login/main, drawer for the day-to-day hub). Files live under <code>navigation/</code>.
+              Dedicated stacks handle deeper flows such as order details, menu add/edit, reports, reviews,
+              profile, and settings subpages.
             </p>
           </section>
 
           <section class="section-block">
             <h2>Configuration &amp; demo mode</h2>
             <p>
-              Day-to-day settings such as <strong>API address</strong>, <strong>demo login shortcuts</strong>, and <strong>timeouts</strong>
-              are edited in <code>config.js</code> at the root of the <code>delivery-app</code> folder (not inside a <code>config/</code> subfolder).
+              Runtime configuration lives in <code>config.js</code> (API URL, timeout, demo credentials,
+              feature flags, and business defaults).
             </p>
             <p class="section-subtext">
-              With <strong>demo mode</strong> turned on, the login form can be pre-filled for presentations. Turn it off in production and
-              point <code>API_BASE_URL</code> at your live server. The app sends requests through a single <code>api.js</code> module that handles tokens and errors in one place.
+              In demo mode, auth, orders, and menu actions can return mock data to speed up demos
+              without a full backend setup.
             </p>
           </section>
 
           <section class="section-block">
-            <h2>Supported Platforms</h2>
+            <h2>Supported platforms</h2>
             <ul>
-              <li>Android (package name <code>com.goodfood.driver</code>)</li>
-              <li>iOS (same bundle identifier)</li>
+              <li>Android (package <code>com.goodfood.restaurant</code>)</li>
+              <li>iOS (bundle <code>com.goodfood.restaurant</code>)</li>
             </ul>
-            <p class="section-subtext">
-              One shared codebase builds both platforms with Expo and React Native, so drivers get a consistent experience on phones and tablets.
-            </p>
-            <p class="section-subtext">
-              That also means you fix a bug or add a feature once, then ship updates to Android and iOS from the same project.
-            </p>
           </section>
 
           <section class="section-block">
-            <h2>Tech Stack</h2>
+            <h2>Tech stack</h2>
             <div class="stack-wrap">
               <div class="chip">JavaScript</div>
-              <div class="chip">React</div>
               <div class="chip">React Native</div>
               <div class="chip">Expo</div>
               <div class="chip">React Navigation</div>
-              <div class="chip">Redux</div>
+              <div class="chip">i18n (EN/FR)</div>
+              <div class="chip">AsyncStorage</div>
               <div class="chip">REST API</div>
-              <div class="chip">Maps &amp; location</div>
-              <div class="chip">English &amp; French (i18n)</div>
             </div>
             <p class="section-subtext">
-              The driver app is a standard React Native + Expo mobile client. It calls your HTTP API for auth, orders, profile, and settings.
-            </p>
-            <p class="section-subtext">
-              Optional libraries (animations, bottom sheets, etc.) are listed in <code>package.json</code> if you need the full list for audits or upgrades.
-            </p>
-            <p class="section-subtext">
-              Run the backend from the suite (for example <code>my-backend</code>), set <code>API_BASE_URL</code> in <code>config.js</code>,
-              and follow <a href="./getting-started.html">Getting Started</a> to run the app locally.
+              Core API module: <code>api.js</code>. App state is composed via contexts and custom hooks
+              (auth, orders, menu, stats, analytics, settings).
             </p>
           </section>
 
           <section id="project-structure" class="section-block">
             <h2>Project structure</h2>
-            <p class="section-subtext">
-              High-level layout of the <code>delivery-app</code> repository (representative; the repo contains additional screens, hooks, and utilities).
-            </p>
             <div class="project-structure">
               <div class="tree-container">
                 <div class="tree-title">
                   <span class="icon">📁</span>
-                  delivery-app/
+                  restaurant-app/
                 </div>
                 <ul class="tree">
-                  <li>
-                    <div class="node file"><span class="icon">📄</span> App.js</div>
-                  </li>
-                  <li>
-                    <div class="node file"><span class="icon">📄</span> api.js <span style="font-size:10px; color:#94a3b8;">(REST client, auth, orders, driver)</span></div>
-                  </li>
-                  <li>
-                    <div class="node file"><span class="icon">📄</span> config.js <span style="font-size:10px; color:#94a3b8;">(API URL, demo, maps key)</span></div>
-                  </li>
-                  <li>
-                    <div class="node file"><span class="icon">📄</span> global.js <span style="font-size:10px; color:#94a3b8;">(theme, colors)</span></div>
-                  </li>
-                  <li>
-                    <div class="node file"><span class="icon">📄</span> i18n.js</div>
-                  </li>
+                  <li><div class="node file"><span class="icon">📄</span> App.js</div></li>
+                  <li><div class="node file"><span class="icon">📄</span> api.js</div></li>
+                  <li><div class="node file"><span class="icon">📄</span> config.js</div></li>
+                  <li><div class="node file"><span class="icon">📄</span> i18n.js</div></li>
                   <li>
                     <div class="node folder"><span class="icon">📁</span> navigation/</div>
                     <ul>
-                      <li><div class="node file"><span class="icon">📄</span> AppNavigator.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> DrawerNavigator.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> DeliveriesStackNavigator.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> ProfileStackNavigator.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> SettingsStackNavigator.js</div></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> contexts/</div>
-                    <ul>
-                      <li><div class="node file"><span class="icon">📄</span> DriverContext.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> SettingContext.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> AppNavigator.js, DrawerNavigator.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> OrdersStackNavigator.js, MenuStackNavigator.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> ReportsStackNavigator.js, ReviewsStackNavigator.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> ProfileStackNavigator.js, SettingsStackNavigator.js</div></li>
                     </ul>
                   </li>
                   <li>
                     <div class="node folder"><span class="icon">📁</span> screens/</div>
                     <ul>
-                      <li><div class="node file"><span class="icon">📄</span> HomeScreen.js, DeliveriesScreen.js, DeliveryDetailsScreen.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> EarningsScreen.js, TransactionsScreen.js, HistoryScreen.js, ReportsScreen.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> LoginScreen.js, ProfileScreen.js, SettingsScreen.js, …</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> DashboardScreen.js, OrdersScreen.js, OrderDetailsScreen.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> MenuScreen.js, AddEditMenuItemScreen.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> AnalyticsScreen.js, ReportsScreen.js, ReviewsScreen.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> NotificationsScreen.js, SupportScreen.js, SettingsScreen.js</div></li>
                     </ul>
                   </li>
                   <li>
-                    <div class="node folder"><span class="icon">📁</span> components/</div>
+                    <div class="node folder"><span class="icon">📁</span> contexts/</div>
                     <ul>
-                      <li><div class="node file"><span class="icon">📄</span> 50+ UI modules (cards, maps, settings rows, …)</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> RestaurantContext.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> SettingContext.js</div></li>
                     </ul>
                   </li>
                   <li>
                     <div class="node folder"><span class="icon">📁</span> hooks/</div>
                     <ul>
-                      <li><div class="node file"><span class="icon">📄</span> useDriverAuth.js, useDriverOrders.js, useDriverStats.js, …</div></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> utils/</div>
-                    <ul>
-                      <li><div class="node file"><span class="icon">📄</span> cacheUtils.js, locationUtils.js, storageUtils.js, …</div></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> lang/</div>
-                    <ul>
-                      <li><div class="node file"><span class="icon">📄</span> en.json, fr.json</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> useRestaurantAuth.js, useRestaurantOrders.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> useRestaurantMenu.js, useRestaurantStats.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> useAnalytics.js, useSettings.js</div></li>
                     </ul>
                   </li>
                 </ul>
-              </div>
-              <div class="tree-path">
-                The app starts in Expo → <code>App.js</code> → driver/settings providers → main navigator. See <code>README</code> files in the repo for deeper detail.
               </div>
             </div>
           </section>
 
           <section class="section-block">
-            <h2>Current Version</h2>
-            <p><strong>1.1.0</strong></p>
+            <h2>Current version</h2>
+            <p><strong>1.0.0</strong></p>
             <p class="section-subtext">
-              This matches <code>package.json</code> and the Expo app config. The name people see on the home screen is <strong>Good Food Driver</strong>.
-            </p>
-            <p class="section-subtext">
-              Version 1.1.0 aligns with the customer app baseline in this documentation suite — a solid base for internal testing, demos, and custom branding before you publish to the stores.
+              This matches <code>restaurant-app/package.json</code>, <code>restaurant-app/app.json</code>,
+              and <code>restaurant-app/config.js</code>.
             </p>
           </section>
 
           <section class="section-block">
             <h2>What you need to run the app</h2>
             <p>
-              Shared setup (Node.js, Expo, API URLs, Maps) is on
+              Shared setup (Node.js, Expo, API reachability, maps, i18n) is documented on
               <a href="../environment-setup.html" style="color: var(--accent); font-weight: 600;">Environment setup</a>.
             </p>
             <p class="section-subtext">
-              For drivers you also need a running Good Food API and at least one account promoted as a <strong>driver</strong> on the backend.
-              Then open <code>delivery-app</code>, set <code>API_BASE_URL</code> in <code>config.js</code>, and follow
+              For this app specifically: run backend API, use a restaurant account, set
+              <code>API_BASE_URL</code> in <code>config.js</code>, then follow
               <a href="./getting-started.html" style="color: var(--accent); font-weight: 600;">Getting Started</a>.
             </p>
           </section>

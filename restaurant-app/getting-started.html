@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Getting Started — Good Food Driver App</title>
+    <title>Getting Started — Good Food Restaurant App</title>
     <style>
       :root {
         --bg: #ffffff;
@@ -284,13 +284,13 @@
         </nav>
         <p class="sidebar-label">Restaurant app</p>
         <nav class="nav">
-          <a href="../restaurant-app/index.html">Overview</a>
-          <a href="../restaurant-app/getting-started.html">Getting Started</a>
+          <a href="./index.html">Overview</a>
+          <a class="active" href="#getting-started">Getting Started</a>
         </nav>
         <p class="sidebar-label">Delivery app (driver)</p>
         <nav class="nav">
-          <a href="./index.html">Overview</a>
-          <a class="active" href="#getting-started">Getting Started</a>
+          <a href="../delivery-app/index.html">Overview</a>
+          <a href="../delivery-app/getting-started.html">Getting Started</a>
         </nav>
       </aside>
 
@@ -298,28 +298,27 @@
         <header id="getting-started" class="hero">
           <h1>Getting Started</h1>
           <p class="subtitle">
-            Launch the Good Food driver app with the same gentle, step-by-step style as the customer app—even if this is your first mobile project.
+            Launch the Good Food restaurant app quickly and validate the full restaurant flow: login, orders, menu management, and reporting.
           </p>
           <p class="meta">
-            Goal: install tools, connect to your API, and complete one successful login as a driver. You will need a user account that is registered as a courier on the server (not only a customer).
+            Goal: install dependencies, connect to your API, and complete one successful restaurant session.
           </p>
         </header>
 
         <section class="section">
           <h2>1) Prerequisites</h2>
           <p>
-            Before the driver app can run, you need a few free tools on your computer. This section explains each one in plain language.
-            Follow the steps for your operating system; you can always come back if something fails the first time.
+            Before running the app, install Node.js and Expo tooling once for the suite, then make sure your backend API is reachable.
           </p>
 
           <div class="callout">
-            <strong>Important:</strong> Start your Good Food backend (for example the <code>my-backend</code> project) before opening the driver app.
+            <strong>Important:</strong> Start your Good Food backend (for example the <code>my-backend</code> project) before opening the restaurant app.
             The mobile app only shows real data when the server is online and reachable from your phone or emulator.
           </div>
 
           <div class="callout" style="margin-top: 12px;">
-            <strong>Driver account:</strong> The email you use to log in must belong to someone your backend recognizes as a <strong>driver</strong>.
-            If you try a normal customer account, the app may refuse login after the password step. Create or promote a test driver in your database or admin tools first.
+            <strong>Restaurant account:</strong> The email you use to log in must belong to a restaurant user on your backend.
+            If you try a customer-only or driver-only account, access to restaurant screens may fail.
           </div>
 
           <p class="sub">
@@ -335,9 +334,10 @@
           <h2>2) Step-by-step installation</h2>
           <ol>
             <li>Open a terminal.</li>
-            <li>Go to the <code>delivery-app</code> folder (the same level as <code>package.json</code>).</li>
+            <li>Go to the <code>restaurant-app</code> folder (the same level as <code>package.json</code>).</li>
             <li>Run <code>npm install</code> and wait until it finishes without red errors.</li>
-            <li>Confirm your backend is still running and that you know the API URL you will paste into config.</li>
+            <li>Set <code>API_BASE_URL</code> in <code>config.js</code>.</li>
+            <li>Confirm the backend is reachable from your test device.</li>
           </ol>
           <p class="sub">
             When this completes, your computer has everything the project needs to start in development mode.
@@ -345,9 +345,9 @@
           <div class="code-block">
             <div class="code-head">
               <span class="code-title">Install dependencies</span>
-              <span class="code-copy">delivery-app</span>
+              <span class="code-copy">restaurant-app</span>
             </div>
-            <pre><code><span class="tok-cmd">cd</span> <span class="tok-arg">delivery-app</span>
+            <pre><code><span class="tok-cmd">cd</span> <span class="tok-arg">restaurant-app</span>
 <span class="tok-cmd">npm</span> <span class="tok-cmd">install</span></code></pre>
           </div>
         </section>
@@ -355,7 +355,7 @@
         <section class="section">
           <h2>3) Configuration &amp; personalization</h2>
           <p>
-            The driver app keeps its settings in one file at the root of the project: <code>config.js</code>.
+            The restaurant app keeps its settings in one file at the root of the project: <code>config.js</code>.
             (The customer app uses <code>config/index.js</code>—different path, same idea.)
           </p>
 
@@ -369,22 +369,22 @@
               <span class="code-title">config.js (excerpt)</span>
             </div>
             <pre><code><span class="tok-var">API_BASE_URL</span>: <span class="tok-str">'http://YOUR_SERVER_IP:5000/api'</span>,
-<span class="tok-var">GOOGLE_MAPS_API_KEY</span>: <span class="tok-str">'YOUR_GOOGLE_MAPS_API_KEY'</span>,
-APP_NAME: <span class="tok-str">'Good Food Driver'</span>,
-VERSION: <span class="tok-str">'1.1.0'</span>,
+APP_NAME: <span class="tok-str">'Good Food'</span>,
+APP_SUBTITLE: <span class="tok-str">'Restaurant'</span>,
+VERSION: <span class="tok-str">'1.0.0'</span>,
 <span class="tok-var">DEMO_MODE</span>: <span class="tok-arg">true</span>,
-DEMO_EMAIL: <span class="tok-str">'driver@demo.com'</span>,
-DEMO_PASSWORD: <span class="tok-str">'driver123'</span>,
+DEMO_EMAIL: <span class="tok-str">'demo@restaurant.com'</span>,
+DEMO_PASSWORD: <span class="tok-str">'password123'</span>,
 <span class="tok-var">API_TIMEOUT</span>: <span class="tok-arg">10000</span></code></pre>
           </div>
           <p class="sub">
-            Use the same host and port you already use for the customer app. If the port in your backend is different (for example 8080), change the URL accordingly.
+            Default development value is <code>http://localhost:5000/api</code>. On physical devices, replace localhost with your machine LAN IP.
           </p>
 
           <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Demo mode</h3>
           <p>
             When <code>DEMO_MODE</code> is <code>true</code>, the login screen can be pre-filled with sample credentials—handy for demos.
-            Before a real release, set it to <code>false</code> and rely on real courier accounts.
+            Before a real release, set it to <code>false</code> and rely on real restaurant accounts.
           </p>
           <p class="sub">
             Languages (EN/FR, <code>lang/</code>, <code>i18n.js</code>): see
@@ -393,7 +393,7 @@ DEMO_PASSWORD: <span class="tok-str">'driver123'</span>,
 
           <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Look and feel</h3>
           <p>
-            Colors and shared styles are centralized in <code>global.js</code>. Adjust them there if you want the driver app to match your brand.
+            Colors and shared styles are centralized in <code>global.js</code>. Adjust them there if you want the restaurant app to match your brand.
           </p>
 
           <div class="callout">
@@ -402,16 +402,16 @@ DEMO_PASSWORD: <span class="tok-str">'driver123'</span>,
 
           <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Maps for production Android builds</h3>
           <p>
-            Console steps and <code>app.json</code> are the same for every Expo app here. Follow
-            <a href="../environment-setup.html#google-maps-expo" style="color: var(--accent); font-weight: 600;">Environment setup → Google Maps (Expo)</a>,
-            then keep <code>GOOGLE_MAPS_API_KEY</code> in <code>config.js</code> in sync if your code reads it from there.
+            Expo production build steps are shared across the suite. Follow
+            <a href="../environment-setup.html#google-maps-expo" style="color: var(--accent); font-weight: 600;">Environment setup → Google Maps (Expo)</a>
+            if your build requires maps configuration.
           </p>
         </section>
 
         <section class="section">
           <h2>4) API connection checklist</h2>
           <p>
-            The driver app contacts your server for sign-in, order lists, profile updates, and settings—just like the customer app, but with driver-specific endpoints.
+            The app uses <code>api.js</code> for login, profile, restaurant stats, orders, order status updates, menu CRUD, and settings.
           </p>
           <p class="sub">
             For a basic test you only need the correct URL in <code>config.js</code>. Device vs <code>localhost</code> is covered on
@@ -423,9 +423,9 @@ DEMO_PASSWORD: <span class="tok-str">'driver123'</span>,
           <h2>5) Run the project</h2>
           <ol>
             <li>Backend running, <code>API_BASE_URL</code> set, <code>npm install</code> already done.</li>
-            <li>In <code>delivery-app</code>, run <code>npm start</code>.</li>
+            <li>In <code>restaurant-app</code>, run <code>npm start</code>.</li>
             <li>Scan the QR code with Expo Go, or press <code>a</code> / <code>i</code> for Android or iOS simulator.</li>
-            <li>Sign in with a <strong>driver</strong> account; open the side menu and tap through Home, Deliveries, and Profile to confirm navigation works.</li>
+            <li>Sign in with a <strong>restaurant</strong> account and validate Dashboard, Orders, Menu, Reports, and Settings.</li>
           </ol>
           <div class="code-block">
             <div class="code-head">
