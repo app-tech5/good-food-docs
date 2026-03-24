@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Good Food — my-backend (API) Documentation</title>
+    <link rel="stylesheet" href="../site.css" />
+  </head>
+  <body>
+    <script src="../js/sidebar-scroll.js"></script>
+    <main class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <span class="brand-dot"></span>
+          <p class="brand-title">Good Food Docs</p>
+        </div>
+        <p class="sidebar-label">All apps</p>
+        <nav class="nav">
+          <a href="../environment-setup.html">Environment setup</a>
+        </nav>
+        <p class="sidebar-label">Customer app</p>
+        <nav class="nav">
+          <a href="../index.html">Overview</a>
+          <a href="../getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Delivery app (driver)</p>
+        <nav class="nav">
+          <a href="../delivery-app/index.html">Overview</a>
+          <a href="../delivery-app/getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Restaurant app</p>
+        <nav class="nav">
+          <a href="../restaurant-app/index.html">Overview</a>
+          <a href="../restaurant-app/getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Admin app (web)</p>
+        <nav class="nav">
+          <a href="../admin-app/index.html">Overview</a>
+          <a href="../admin-app/getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Backend (API)</p>
+        <nav class="nav">
+          <a class="active" href="#overview">Overview</a>
+          <a href="./getting-started.html">Getting Started</a>
+        </nav>
+      </aside>
+
+      <section class="content">
+        <header id="overview" class="hero">
+          <h1>Good Food — my-backend</h1>
+          <p class="subtitle">
+            The Node.js API and database layer every Good Food client talks to: auth, catalog, orders, drivers, settings, uploads, and more.
+          </p>
+          <p class="intro-line">
+            This overview is for non-technical readers (buyers, PMs) and engineers alike: what the backend does, how it connects to mobile and web apps,
+            and why it must run before you test any front-end.
+          </p>
+          <div class="meta-strip">
+            <span class="meta-pill">Express.js + MongoDB</span>
+            <span class="meta-pill">REST under /api</span>
+            <span class="meta-pill">Socket.io ready</span>
+          </div>
+        </header>
+
+        <section class="overview">
+          <section class="section-block">
+            <h2>Overview (Presentation)</h2>
+            <p>
+              <strong>my-backend</strong> is the reference Good Food <strong>server</strong> for the suite. The customer, restaurant, driver, and admin apps
+              are thin clients: they send HTTP requests (and may use real-time channels) while this service stores users, menus, orders, and configuration in
+              <strong>MongoDB</strong>.
+            </p>
+            <p class="section-subtext">
+              You host it yourself (laptop, VPS, cloud). Mobile apps point to something like <code>http://YOUR_IP:5000/api</code>; the admin dashboard uses the same base URL.
+              No third-party Good Food cloud is required.
+            </p>
+            <div class="compare-note">
+              <p class="compare-title">Start the API before the apps</p>
+              <p style="margin: 0; color: #334155; font-size: 15px; max-width: none;">
+                If the backend is stopped, every client shows errors, empty lists, or failed login—even when the front-end install is perfect.
+                For local work, run <code>npm run dev</code> (or <code>npm start</code>) in <code>my-backend</code> first, then launch Expo or the admin site.
+              </p>
+            </div>
+            <a class="product-link" href="../index.html">Customer app — Overview</a>
+            <a class="product-link" href="../admin-app/index.html" style="margin-left: 8px;">Admin app — Overview</a>
+          </section>
+
+          <section class="section-block">
+            <h2>What the API provides</h2>
+            <p>
+              In plain terms: <strong>accounts and roles</strong> (customer, restaurant staff, driver, admin), <strong>catalog</strong> (restaurants, categories, products, menus),
+              <strong>cart and checkout flows</strong>, <strong>orders</strong> and related updates, <strong>drivers</strong>, <strong>reviews</strong>, <strong>settings and languages</strong>,
+              <strong>file uploads</strong> for images, and <strong>generic CRUD</strong> routes used heavily by the admin dashboard.
+            </p>
+            <p class="section-subtext">
+              Authentication uses JWT; protected routes sit under <code>/api</code> after the auth middleware. Cookies and CORS are configured for browser clients (admin).
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Main Function</h2>
+            <p class="highlight">
+              Be the single source of truth for data and permissions: every app reads and writes through the same REST surface and database.
+            </p>
+            <p class="section-subtext">
+              The process is standard for a food platform: sign in → receive a token → call endpoints with that identity → server validates role and returns or updates documents in MongoDB.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Supported Platforms</h2>
+            <ul>
+              <li>Node.js (LTS recommended)</li>
+              <li>MongoDB (local or Atlas)</li>
+            </ul>
+            <p class="section-subtext">
+              Default HTTP port is <strong>5000</strong> when <code>PORT</code> is unset. Match that (or your chosen port) in every client’s API base URL.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Tech Stack</h2>
+            <div class="stack-wrap">
+              <div class="chip">Node.js</div>
+              <div class="chip">Express.js</div>
+              <div class="chip">MongoDB</div>
+              <div class="chip">Mongoose</div>
+              <div class="chip">JWT</div>
+              <div class="chip">Socket.io</div>
+              <div class="chip">Multer</div>
+              <div class="chip">i18n</div>
+              <div class="chip">migrate-mongo</div>
+            </div>
+            <p class="section-subtext">
+              Migrations initialise and evolve collections; Vitest and in-memory Mongo support automated tests. See the repository README for the full feature list and deployment notes.
+            </p>
+          </section>
+
+          <section id="project-structure" class="section-block">
+            <h2>Project Structure</h2>
+            <p class="section-subtext">
+              Well-organized Express service following standard conventions. Key directories are highlighted below.
+            </p>
+
+            <div class="project-structure">
+              <div class="tree-container">
+                <div class="tree-title">
+                  <span class="icon">📁</span>
+                  my-backend/
+                </div>
+                <ul class="tree">
+                  <li>
+                    <div class="node file"><span class="icon">📄</span> package.json <span style="font-size:10px; color:#94a3b8;">(scripts: start, dev, migrate, test:db)</span></div>
+                  </li>
+                  <li>
+                    <div class="node file"><span class="icon">📄</span> migrate-mongo-config.js <span style="font-size:10px; color:#94a3b8;">(migrate-mongo)</span></div>
+                  </li>
+                  <li>
+                    <div class="node file"><span class="icon">📄</span> postman_collection.json <span style="font-size:10px; color:#94a3b8;">(API collection)</span></div>
+                  </li>
+                  <li>
+                    <div class="node folder"><span class="icon">📁</span> migrations/ <span style="font-size:10px; color:#94a3b8;">(9 migration scripts)</span></div>
+                    <ul>
+                      <li><div class="node file"><span class="icon">📄</span> 01-create-currency-schema.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> 02-create-language-schema.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> 03-create-settings-schema.js …</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> 09-create-demo-user.js</div></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="node folder"><span class="icon">📁</span> scripts/ <span style="font-size:10px; color:#94a3b8;">(2 utility scripts)</span></div>
+                    <ul>
+                      <li><div class="node file"><span class="icon">📄</span> test-db-connection.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> cleanup.js</div></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="node folder"><span class="icon">📁</span> __tests__/ <span style="font-size:10px; color:#94a3b8;">(Vitest)</span></div>
+                  </li>
+                  <li>
+                    <div class="node folder"><span class="icon">📁</span> src/</div>
+                    <ul>
+                      <li><div class="node file"><span class="icon">📄</span> server.js <span style="font-size:10px; color:#94a3b8;">(entry point)</span></div></li>
+                      <li>
+                        <div class="node folder"><span class="icon">📁</span> config/ <span style="font-size:10px; color:#94a3b8;">(2 files)</span></div>
+                        <ul>
+                          <li><div class="node file"><span class="icon">📄</span> db.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> i18n.js</div></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <div class="node folder"><span class="icon">📁</span> routes/ <span style="font-size:10px; color:#94a3b8;">(16 route modules)</span></div>
+                        <ul>
+                          <li><div class="node file"><span class="icon">📄</span> authRoutes.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> userRoutes.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> restaurantRoutes.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> orderRoutes.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> cartRoutes.js</div></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <div class="node folder"><span class="icon">📁</span> models/ <span style="font-size:10px; color:#94a3b8;">(30+ Mongoose schemas)</span></div>
+                        <ul>
+                          <li><div class="node file"><span class="icon">📄</span> User.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> Restaurant.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> Order.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> Product.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> Driver.js …</div></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <div class="node folder"><span class="icon">📁</span> controllers/ <span style="font-size:10px; color:#94a3b8;">(9 controllers)</span></div>
+                        <ul>
+                          <li><div class="node file"><span class="icon">📄</span> baseController.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> genericController.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> cartController.js …</div></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <div class="node folder"><span class="icon">📁</span> middleware/ <span style="font-size:10px; color:#94a3b8;">(3 middleware files)</span></div>
+                        <ul>
+                          <li><div class="node file"><span class="icon">📄</span> authMiddleware.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> roleMiddleware.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> responseHandler.js</div></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <div class="node folder"><span class="icon">📁</span> utils/ <span style="font-size:10px; color:#94a3b8;">(9 helper modules)</span></div>
+                        <ul>
+                          <li><div class="node file"><span class="icon">📄</span> loadModels.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> populateFields.js …</div></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <div class="node folder"><span class="icon">📁</span> locales/ <span style="font-size:10px; color:#94a3b8;">(i18n EN/FR)</span></div>
+                        <ul>
+                          <li><div class="node file"><span class="icon">📄</span> en.json</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> fr.json</div></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <div class="node folder"><span class="icon">📁</span> entity/ <span style="font-size:10px; color:#94a3b8;">(entity configs)</span></div>
+                        <ul>
+                          <li><div class="node file"><span class="icon">📄</span> User.js</div></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="tree-path">
+                Full structure available in README.md • 90+ files • Clean separation of routes, models, and controllers
+              </div>
+            </div>
+          </section>
+
+          <section class="section-block">
+            <h2>Current Version</h2>
+            <p><strong>1.0.0</strong></p>
+            <p class="section-subtext">
+              Version from <code>my-backend/package.json</code>; align your deployment and changelog with your own release process.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>What you need next</h2>
+            <p>
+              Install Node.js and MongoDB, configure <code>.env</code>, run migrations, then start the server—step by step on
+              <a href="./getting-started.html" style="color: var(--accent); font-weight: 600;">Getting Started</a>.
+            </p>
+            <p class="section-subtext">
+              Cross-cutting setup (Node install paths, CORS ideas, reachability from phones) is also on
+              <a href="../environment-setup.html" style="color: var(--accent); font-weight: 600;">Environment setup</a>.
+            </p>
+          </section>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

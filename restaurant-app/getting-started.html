@@ -38,55 +38,60 @@
           <a href="../admin-app/index.html">Overview</a>
           <a href="../admin-app/getting-started.html">Getting Started</a>
         </nav>
+        <p class="sidebar-label">Backend (API)</p>
+        <nav class="nav">
+          <a href="../my-backend/index.html">Overview</a>
+          <a href="../my-backend/getting-started.html">Getting Started</a>
+        </nav>
       </aside>
 
       <section class="content">
         <header id="getting-started" class="hero">
           <h1>Getting Started</h1>
           <p class="subtitle">
-            Launch the Good Food restaurant app quickly and validate the full restaurant flow: login, orders, menu management, and reporting.
+            Launch the Good Food restaurant app with the same calm, step-by-step style as the customer app—no assumed prior knowledge.
           </p>
           <p class="meta">
-            Goal: install dependencies, connect to your API, and complete one successful restaurant session.
+            Goal: install everything once, point the app at your API, sign in as a restaurant user, and complete a real order flow.
           </p>
         </header>
 
         <section class="section">
           <h2>1) Prerequisites</h2>
           <p>
-            Before running the app, install Node.js and Expo tooling once for the suite, then make sure your backend API is reachable.
+            You will need a computer with Node.js, the Expo toolchain, and (for device testing) Android Studio or Xcode as described in the shared environment guide.
+            If any term is new to you, start with the linked sections—they are written for first-time setup.
           </p>
 
           <div class="callout">
-            <strong>Important:</strong> Start your Good Food backend (for example the <code>my-backend</code> project) before opening the restaurant app.
-            The mobile app only shows real data when the server is online and reachable from your phone or emulator.
+            <strong>Important:</strong> Start your Good Food backend (for example the <code>my-backend</code> project) <em>before</em> opening the restaurant app.
+            The mobile client only shows live data when the server answers on the URL you configure.
           </div>
 
           <div class="callout" style="margin-top: 12px;">
-            <strong>Restaurant account:</strong> The email you use to log in must belong to a restaurant user on your backend.
-            If you try a customer-only or driver-only account, access to restaurant screens may fail.
+            <strong>Restaurant account:</strong> The email and password must belong to a <strong>restaurant</strong> user in your database.
+            A customer-only or driver-only login may open the app but will not behave correctly on restaurant screens.
           </div>
 
           <p class="sub">
-            Install <strong>Node.js LTS</strong>, Expo tooling, and Android Studio / Xcode using the shared guide:
+            Install <strong>Node.js LTS</strong> and Expo / native tooling once for the suite:
             <a href="../environment-setup.html#nodejs" style="color: var(--accent); font-weight: 600;">Environment setup → Node.js</a>
             and
             <a href="../environment-setup.html#expo-tooling" style="color: var(--accent); font-weight: 600;">Expo and native tooling</a>.
-            When the app asks for <strong>location</strong> access, allow it if you want maps and GPS-based features.
+            Allow location when prompted if you rely on map or GPS-based features.
           </p>
         </section>
 
         <section class="section">
-          <h2>2) Step-by-step installation</h2>
+          <h2>2) Step-by-Step Installation</h2>
           <ol>
             <li>Open a terminal.</li>
-            <li>Go to the <code>restaurant-app</code> folder (the same level as <code>package.json</code>).</li>
-            <li>Run <code>npm install</code> and wait until it finishes without red errors.</li>
-            <li>Set <code>API_BASE_URL</code> in <code>config.js</code>.</li>
-            <li>Confirm the backend is reachable from your test device.</li>
+            <li>Go into the folder named <code>restaurant-app</code> (the one that contains <code>package.json</code>).</li>
+            <li>Run <code>npm install</code> and wait until it finishes without errors.</li>
+            <li>Continue to the configuration section below before your first <code>npm start</code>.</li>
           </ol>
           <p class="sub">
-            When this completes, your computer has everything the project needs to start in development mode.
+            When installation succeeds, your machine has downloaded the libraries the project declares—nothing is “magic”, it is standard Node.js workflow.
           </p>
           <div class="code-block">
             <div class="code-head">
@@ -99,20 +104,21 @@
         </section>
 
         <section class="section">
-          <h2>3) Configuration &amp; personalization</h2>
+          <h2>3) Configuration &amp; Personalization</h2>
           <p>
-            The restaurant app keeps its settings in one file at the root of the project: <code>config.js</code>.
-            (The customer app uses <code>config/index.js</code>—different path, same idea.)
+            Most settings live in <strong>one file at the root of the project</strong>. Think of it as the contract between the app and your server:
+            where to call the API, whether demo credentials are allowed, timeouts, and several product toggles.
+            (The customer app splits some of this into a <code>config</code> folder—same idea, different layout.)
           </p>
 
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">API address</h3>
+          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">API configuration</h3>
           <p>
-            The line that matters most is <code>API_BASE_URL</code>. It must match the address where your backend listens,
-            usually ending with <code>/api</code> exactly as your server expects.
+            The critical value is the <strong>base URL</strong> of your API—the address your phone or emulator must reach, usually ending with <code>/api</code>
+            exactly as your backend expects. On a real phone, <code>localhost</code> refers to the phone itself, not your laptop; use your computer’s LAN IP instead.
           </p>
           <div class="code-block">
             <div class="code-head">
-              <span class="code-title">config.js (excerpt)</span>
+              <span class="code-title">Example values (root config file)</span>
             </div>
             <pre><code><span class="tok-var">API_BASE_URL</span>: <span class="tok-str">'http://YOUR_SERVER_IP:5000/api'</span>,
 APP_NAME: <span class="tok-str">'Good Food'</span>,
@@ -124,54 +130,56 @@ DEMO_PASSWORD: <span class="tok-str">'password123'</span>,
 <span class="tok-var">API_TIMEOUT</span>: <span class="tok-arg">10000</span></code></pre>
           </div>
           <p class="sub">
-            Default development value is <code>http://localhost:5000/api</code>. On physical devices, replace localhost with your machine LAN IP.
+            During local development many teams start from something like <code>http://localhost:5000/api</code> on an emulator; switch to your network IP before testing on hardware.
+            More detail:
+            <a href="../environment-setup.html#api-reachability" style="color: var(--accent); font-weight: 600;">Environment setup → API reachability</a>.
           </p>
 
           <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Demo mode</h3>
           <p>
-            When <code>DEMO_MODE</code> is <code>true</code>, the login screen can be pre-filled with sample credentials—handy for demos.
-            Before a real release, set it to <code>false</code> and rely on real restaurant accounts.
+            When demo mode is on, the login screen can offer sample credentials—ideal for showroom demos. Before production, turn it off and rely on real accounts only.
           </p>
-          <p class="sub">
-            Languages (EN/FR, <code>lang/</code>, <code>i18n.js</code>): see
+
+          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Languages (English / French)</h3>
+          <p>
+            Adding or adjusting languages is documented once for every mobile app:
             <a href="../environment-setup.html#i18n-languages" style="color: var(--accent); font-weight: 600;">Environment setup → Languages (i18n)</a>.
           </p>
 
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Look and feel</h3>
+          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Visual customization</h3>
           <p>
-            Colors and shared styles are centralized in <code>global.js</code>. Adjust them there if you want the restaurant app to match your brand.
+            Brand colours and shared visual tokens are grouped in the project’s global theme file so designers can iterate without hunting through every screen.
           </p>
 
           <div class="callout">
-            <strong>Tip:</strong> After editing <code>config.js</code> or theme files, stop and restart <code>npm start</code> so the bundler picks up changes.
+            <strong>Tip:</strong> After you change configuration or theme files, stop the dev server and run <code>npm start</code> again so nothing is cached incorrectly.
           </div>
 
           <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Maps for production Android builds</h3>
           <p>
-            Expo production build steps are shared across the suite. Follow
-            <a href="../environment-setup.html#google-maps-expo" style="color: var(--accent); font-weight: 600;">Environment setup → Google Maps (Expo)</a>
-            if your build requires maps configuration.
+            Building a store-ready binary with maps follows the same Expo notes as the other apps:
+            <a href="../environment-setup.html#google-maps-expo" style="color: var(--accent); font-weight: 600;">Environment setup → Google Maps (Expo)</a>.
           </p>
         </section>
 
         <section class="section">
-          <h2>4) API connection checklist</h2>
+          <h2>4) API Connection</h2>
           <p>
-            The app uses <code>api.js</code> for login, profile, restaurant stats, orders, order status updates, menu CRUD, and settings.
+            Once the app is running, every meaningful action—sign-in, loading today’s orders, updating preparation status, editing dishes—goes through your REST API.
+            You do not configure each call by hand: the project already knows the endpoints; your job is to keep <strong>one correct base URL</strong> and a healthy backend.
           </p>
           <p class="sub">
-            For a basic test you only need the correct URL in <code>config.js</code>. Device vs <code>localhost</code> is covered on
-            <a href="../environment-setup.html#api-reachability" style="color: var(--accent); font-weight: 600;">Environment setup → API reachability</a>.
+            If login fails, check three things in order: server running, URL reachable from the device, and a restaurant user that exists in the database.
           </p>
         </section>
 
         <section class="section">
-          <h2>5) Run the project</h2>
+          <h2>5) Run the Project</h2>
           <ol>
-            <li>Backend running, <code>API_BASE_URL</code> set, <code>npm install</code> already done.</li>
-            <li>In <code>restaurant-app</code>, run <code>npm start</code>.</li>
-            <li>Scan the QR code with Expo Go, or press <code>a</code> / <code>i</code> for Android or iOS simulator.</li>
-            <li>Sign in with a <strong>restaurant</strong> account and validate Dashboard, Orders, Menu, Reports, and Settings.</li>
+            <li>Backend running; base URL set; <code>npm install</code> completed.</li>
+            <li>From <code>restaurant-app</code>, run <code>npm start</code>.</li>
+            <li>Open the QR code in Expo Go, or press <code>a</code> / <code>i</code> for Android or iOS simulator.</li>
+            <li>Sign in with a restaurant account and walk through Dashboard → Orders → Menu → a report or settings screen.</li>
           </ol>
           <div class="code-block">
             <div class="code-head">

@@ -38,22 +38,27 @@
           <a class="active" href="#overview">Overview</a>
           <a href="./getting-started.html">Getting Started</a>
         </nav>
+        <p class="sidebar-label">Backend (API)</p>
+        <nav class="nav">
+          <a href="../my-backend/index.html">Overview</a>
+          <a href="../my-backend/getting-started.html">Getting Started</a>
+        </nav>
       </aside>
 
       <section class="content">
         <header id="overview" class="hero">
           <h1>Good Food — Admin App</h1>
           <p class="subtitle">
-            The central back-office web dashboard for the Good Food suite: manage users, restaurants, drivers, orders, finance, settings, and reports from one place.
+            The web control room for your Good Food platform: oversee users, restaurants, drivers, orders, and settings from a browser—without opening a code editor.
           </p>
           <p class="intro-line">
-            This overview explains how the admin panel is structured in code, how dynamic routes and entities work,
-            and which backend capabilities are required for production operations.
+            This overview is for non-technical stakeholders and developers alike. You will see what the dashboard is for, who uses it,
+            and how it stays in sync with the same API that powers the mobile apps.
           </p>
           <div class="meta-strip">
             <span class="meta-pill">Easy to launch</span>
-            <span class="meta-pill">Web dashboard ready</span>
-            <span class="meta-pill">Connects to your Good Food API</span>
+            <span class="meta-pill">Web dashboard</span>
+            <span class="meta-pill">Self-hosted REST API</span>
           </div>
         </header>
 
@@ -61,65 +66,69 @@
           <section class="section-block">
             <h2>Overview (Presentation)</h2>
             <p>
-              The <strong>admin app</strong> is the control center of Good Food. It is a React web application
-              used by admins/managers to manage core resources and global settings across customer, restaurant,
-              and driver products.
+              The Good Food <strong>admin app</strong> is the back-office product in the suite. Mobile apps serve customers, restaurants, and drivers;
+              the admin experience is where <strong>platform operators</strong> create and maintain the data those apps rely on.
             </p>
             <p class="section-subtext">
-              It connects to the same REST API as mobile apps (<code>/api</code>) and authenticates
-              via cookie/session checks (for example <code>/users/me</code>) before loading private routes.
+              It is a React web application that runs in modern browsers. After a secure sign-in, staff can browse structured lists,
+              open detail pages, create or edit records, and consult reporting views—similar to other SaaS consoles you may already know.
             </p>
+            <p class="section-subtext">
+              All sensitive operations are enforced by your backend: the browser only shows what the API allows for the signed-in role.
+            </p>
+            <div class="compare-note">
+              <p class="compare-title">One API, many surfaces</p>
+              <p style="margin: 0; color: #334155; font-size: 15px; max-width: none;">
+                Customers, restaurants, drivers, and admins all talk to the same Good Food REST API.
+                Changing a restaurant record here can change what the customer app displays; cancelling an order may notify the driver app—the admin panel is the holistic view.
+              </p>
+            </div>
             <a class="product-link" href="../index.html">Customer app — Overview</a>
-            <a class="product-link" href="../restaurant-app/index.html" style="margin-left:8px;">Restaurant app — Overview</a>
-            <a class="product-link" href="../delivery-app/index.html" style="margin-left:8px;">Driver app — Overview</a>
+            <a class="product-link" href="../restaurant-app/index.html" style="margin-left: 8px;">Restaurant app — Overview</a>
+            <a class="product-link" href="../delivery-app/index.html" style="margin-left: 8px;">Driver app — Overview</a>
           </section>
 
           <section class="section-block">
-            <h2>Main function</h2>
+            <h2>Admin App Presentation</h2>
+            <p>
+              The layout is intentionally <strong>desktop-first</strong>: wide tables, filters, and multi-column dashboards that would feel cramped on a phone.
+              Many screens still adapt when you resize the window or use a tablet in landscape.
+            </p>
+            <p class="section-subtext">
+              Day-to-day work often looks like: search for an entity (a restaurant, an order, a user), open it, adjust fields, save, and move on.
+              Repetitive list/detail/new patterns are shared across modules so training one area helps with the others.
+            </p>
+            <p class="section-subtext">
+              For internal testing, the login experience may offer quick ways to fill sample roles—treat those as <strong>development aids</strong>, not production shortcuts.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Main Function</h2>
             <p class="highlight">
-              Centralize administration tasks: CRUD on business entities, financial monitoring,
-              settings management, and operational reporting in one web interface.
+              Give trusted staff a single web hub to configure the platform, monitor operations, and support users—always backed by server-side permissions.
             </p>
             <p class="section-subtext">
-              The app generates most routes from the entities registry and uses reusable list/form pages
-              to avoid duplicating CRUD screens for each resource.
+              Conceptually, you start on an authentication screen, then land on a home or dashboard view, then use a sidebar (or equivalent navigation) to jump between major domains.
+            </p>
+            <p class="section-subtext">
+              Under the hood, many routes are generated from a central catalogue of “business entities” so adding a new resource does not always mean hand-crafting three new pages.
             </p>
           </section>
 
           <section class="section-block">
-            <h2>How navigation is organized</h2>
-            <p>
-              Entry point is <code>src/App.js</code> with React Router. <code>PrivateRoute</code> guards access:
-              authenticated users see <code>Home</code>, unauthenticated users are redirected to <code>Login</code>.
-            </p>
-            <p class="section-subtext">
-              Sidebar items are built dynamically from <code>src/data/entities.js</code>.
-              Routes are generated by <code>src/routes/generateRoutes.js</code> for list/detail/new pages.
-            </p>
-          </section>
-
-          <section class="section-block">
-            <h2>Configuration &amp; demo mode</h2>
-            <p>
-              Core admin settings are split between <code>src/config/api.js</code> (API base URL),
-              <code>src/config/config.js</code> (defaults/credentials), and app-level settings endpoints.
-            </p>
-            <p class="section-subtext">
-              The login screen includes quick role presets (admin/manager/client) for testing,
-              while production auth relies on backend credentials and secured cookies.
-            </p>
-          </section>
-
-          <section class="section-block">
-            <h2>Supported platforms</h2>
+            <h2>Supported Platforms</h2>
             <ul>
-              <li>Web browser (desktop-first admin dashboard)</li>
-              <li>Responsive web layout for tablet use</li>
+              <li>Modern web browsers on desktop (primary experience)</li>
+              <li>Tablet or laptop browsers (responsive layout)</li>
             </ul>
+            <p class="section-subtext">
+              There is no separate native store app: you deploy the built static assets to the host of your choice and users visit a URL.
+            </p>
           </section>
 
           <section class="section-block">
-            <h2>Tech stack</h2>
+            <h2>Tech Stack</h2>
             <div class="stack-wrap">
               <div class="chip">JavaScript</div>
               <div class="chip">React</div>
@@ -128,17 +137,24 @@
               <div class="chip">Ant Design</div>
               <div class="chip">Axios</div>
               <div class="chip">i18n (EN/FR)</div>
-              <div class="chip">Charting / reports</div>
               <div class="chip">REST API</div>
             </div>
             <p class="section-subtext">
-              Main architecture uses contexts (<code>Auth</code>, <code>Settings</code>, <code>Restaurant</code>,
-              <code>Loading</code>) and entity-driven CRUD pages.
+              This is a typical Create React App–style project: reusable UI kit components, client-side routing, and HTTP calls to your API layer.
+              Charts and report widgets appear on dashboards where the product needs visual KPIs.
+            </p>
+            <p class="section-subtext">
+              Configuration begins with telling the bundle where your API lives; see
+              <a href="./getting-started.html" style="color: var(--accent); font-weight: 600;">Getting Started</a> for the exact steps, explained in the same friendly tone as the customer guide.
             </p>
           </section>
 
           <section id="project-structure" class="section-block">
-            <h2>Project structure</h2>
+            <h2>Project Structure</h2>
+            <p class="section-subtext">
+              Well-organized React web codebase following standard conventions. Key directories and files are highlighted below.
+            </p>
+
             <div class="project-structure">
               <div class="tree-container">
                 <div class="tree-title">
@@ -146,50 +162,129 @@
                   admin-app/
                 </div>
                 <ul class="tree">
-                  <li><div class="node file"><span class="icon">📄</span> package.json (React Scripts)</div></li>
-                  <li><div class="node file"><span class="icon">📄</span> src/App.js</div></li>
-                  <li><div class="node file"><span class="icon">📄</span> src/index.js</div></li>
                   <li>
-                    <div class="node folder"><span class="icon">📁</span> src/pages/ <span style="font-size:10px; color:#94a3b8;">(45+ files)</span></div>
-                    <ul>
-                      <li><div class="node file"><span class="icon">📄</span> home/Home.js, list/List.js, login/Login.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> new/New.js, new/FormInput.js, settings/Settings.js</div></li>
-                    </ul>
+                    <div class="node file"><span class="icon">📄</span> package.json <span style="font-size:10px; color:#94a3b8;">(React Scripts)</span></div>
                   </li>
                   <li>
-                    <div class="node folder"><span class="icon">📁</span> src/components/ <span style="font-size:10px; color:#94a3b8;">(30+ files)</span></div>
+                    <div class="node folder"><span class="icon">📁</span> src/</div>
                     <ul>
-                      <li><div class="node file"><span class="icon">📄</span> sidebar/Sidebar.js, navbar/Navbar.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> datatable/Datatable.jsx, reportDashboard/ReportDashboard.js</div></li>
+                      <li>
+                        <div class="node file"><span class="icon">📄</span> index.js <span style="font-size:10px; color:#94a3b8;">(entry)</span></div>
+                      </li>
+                      <li>
+                        <div class="node file"><span class="icon">📄</span> App.js <span style="font-size:10px; color:#94a3b8;">(router shell)</span></div>
+                      </li>
+                      <li>
+                        <div class="node file"><span class="icon">📄</span> i18n.js <span style="font-size:10px; color:#94a3b8;">(localization)</span></div>
+                      </li>
+                      <li>
+                        <div class="node folder"><span class="icon">📁</span> pages/ <span style="font-size:10px; color:#94a3b8;">(45+ screens &amp; forms)</span></div>
+                        <ul>
+                          <li><div class="node file"><span class="icon">📄</span> home/Home.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> list/List.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> single/Single.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> login/Login.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> settings/Settings.js</div></li>
+                          <li><div class="node folder"><span class="icon">📁</span> new/ <span style="font-size:10px; color:#94a3b8;">(dynamic forms &amp; inputs)</span></div>
+                            <ul>
+                              <li><div class="node file"><span class="icon">📄</span> New.js</div></li>
+                              <li><div class="node file"><span class="icon">📄</span> FormInput.js</div></li>
+                              <li><div class="node file"><span class="icon">📄</span> GeneralSettings.js</div></li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <div class="node folder"><span class="icon">📁</span> components/ <span style="font-size:10px; color:#94a3b8;">(30+ reusable UI)</span></div>
+                        <ul>
+                          <li><div class="node file"><span class="icon">📄</span> sidebar/Sidebar.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> navbar/Navbar.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> privateRoute/PrivateRoute.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> datatable/Datatable.jsx</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> reportDashboard/ReportDashboard.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> widget/Widget.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> chart/Chart.js</div></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <div class="node folder"><span class="icon">📁</span> api/ <span style="font-size:10px; color:#94a3b8;">(HTTP layer)</span></div>
+                        <ul>
+                          <li><div class="node file"><span class="icon">📄</span> apiClient.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> apiService.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> fetchDataByKey.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> settingsApi.js</div></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <div class="node folder"><span class="icon">📁</span> config/ <span style="font-size:10px; color:#94a3b8;">(API URL &amp; entity UI)</span></div>
+                        <ul>
+                          <li><div class="node file"><span class="icon">📄</span> api.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> config.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> entityConfigs.js</div></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <div class="node folder"><span class="icon">📁</span> context/ <span style="font-size:10px; color:#94a3b8;">(6 providers)</span></div>
+                        <ul>
+                          <li><div class="node file"><span class="icon">📄</span> Auth.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> SettingsContext.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> RestaurantContext.js</div></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <div class="node folder"><span class="icon">📁</span> routes/</div>
+                        <ul>
+                          <li><div class="node file"><span class="icon">📄</span> generateRoutes.js</div></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <div class="node folder"><span class="icon">📁</span> data/</div>
+                        <ul>
+                          <li><div class="node file"><span class="icon">📄</span> entities.js</div></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <div class="node folder"><span class="icon">📁</span> locales/ <span style="font-size:10px; color:#94a3b8;">(i18n EN/FR)</span></div>
+                        <ul>
+                          <li><div class="node file"><span class="icon">📄</span> en.json</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> fr.json</div></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <div class="node folder"><span class="icon">📁</span> constants/ <span style="font-size:10px; color:#94a3b8;">(fields, routes, endpoints…)</span></div>
+                        <ul>
+                          <li><div class="node file"><span class="icon">📄</span> endpoints.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> routes.js</div></li>
+                          <li><div class="node file"><span class="icon">📄</span> apiResources.js</div></li>
+                        </ul>
+                      </li>
                     </ul>
                   </li>
-                  <li><div class="node folder"><span class="icon">📁</span> src/context/ <span style="font-size:10px; color:#94a3b8;">(6 files)</span></div></li>
-                  <li><div class="node folder"><span class="icon">📁</span> src/api/ <span style="font-size:10px; color:#94a3b8;">(6 files)</span></div></li>
-                  <li><div class="node folder"><span class="icon">📁</span> src/routes/ + src/data/ <span style="font-size:10px; color:#94a3b8;">(3 files)</span></div></li>
-                  <li><div class="node folder"><span class="icon">📁</span> src/locales/ <span style="font-size:10px; color:#94a3b8;">(EN/FR translations)</span></div></li>
                 </ul>
+              </div>
+              <div class="tree-path">
+                Full structure available in README.md • 100+ files • Clean separation of concerns
               </div>
             </div>
           </section>
 
           <section class="section-block">
-            <h2>Current version</h2>
+            <h2>Current Version</h2>
             <p><strong>0.1.0</strong></p>
             <p class="section-subtext">
-              This matches <code>admin-app/package.json</code>.
+              Early baseline in the suite’s package metadata; advance the version when you ship your own releases.
             </p>
           </section>
 
           <section class="section-block">
             <h2>What you need to run the app</h2>
             <p>
-              Shared setup (Node.js, API reachability, i18n) is documented on
+              Node.js installation and API reachability for web apps are covered on
               <a href="../environment-setup.html" style="color: var(--accent); font-weight: 600;">Environment setup</a>.
             </p>
             <p class="section-subtext">
-              For this app specifically: run backend API, set <code>src/config/api.js</code>,
-              use admin credentials, then follow
-              <a href="./getting-started.html" style="color: var(--accent); font-weight: 600;">Getting Started</a>.
+              For this dashboard: clone <code>admin-app</code>, install dependencies, set your API base URL as described in
+              <a href="./getting-started.html" style="color: var(--accent); font-weight: 600;">Getting Started</a>, sign in with an admin-capable account, and open the local dev URL in your browser.
             </p>
           </section>
         </section>

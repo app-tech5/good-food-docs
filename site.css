@@ -43,6 +43,10 @@ body {
   border-right: 1px solid var(--border);
   background: var(--sidebar-bg);
   scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.sidebar:hover {
   scrollbar-color: #cbd5e1 transparent;
 }
 
@@ -55,13 +59,18 @@ body {
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: transparent;
   border-radius: 999px;
   border: 2px solid transparent;
   background-clip: padding-box;
 }
 
-.sidebar::-webkit-scrollbar-thumb:hover {
+.sidebar:hover::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  background-clip: padding-box;
+}
+
+.sidebar:hover::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
   background-clip: padding-box;
 }
@@ -181,6 +190,18 @@ h3 {
   margin: 20px 0 8px;
   font-size: 18px;
   color: #0f172a;
+}
+
+h3.subheading {
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.section > h3.subheading:first-of-type {
+  margin-top: 1rem;
 }
 
 p {
@@ -446,20 +467,57 @@ li + li {
 }
 
 .code-block {
-  margin-top: 14px;
-  border: 1px solid #1e293b;
-  border-radius: 12px;
+  margin-top: 16px;
+  border: 1px solid rgba(30, 41, 59, 0.95);
+  border-radius: 14px;
   overflow: hidden;
-  background: #0b1220;
+  background: linear-gradient(165deg, #0f1729 0%, #0b1220 55%, #0a0f18 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.05) inset,
+    0 14px 36px -14px rgba(0, 0, 0, 0.55);
 }
 
 .code-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 9px 12px;
-  background: #111a2b;
-  border-bottom: 1px solid #22314b;
+  gap: 12px;
+  padding: 10px 14px;
+  background: linear-gradient(180deg, #182236 0%, #121b2e 100%);
+  border-bottom: 1px solid rgba(34, 49, 75, 0.85);
+}
+
+.code-head-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.code-dots {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.code-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.28) inset;
+}
+
+.code-dot-red {
+  background: #ff5f57;
+}
+
+.code-dot-yellow {
+  background: #febc2e;
+}
+
+.code-dot-green {
+  background: #28c840;
 }
 
 .code-title {
@@ -468,11 +526,28 @@ li + li {
   font-weight: 600;
   letter-spacing: 0.03em;
   text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .code-copy {
+  flex-shrink: 0;
   color: #94a3b8;
-  font-size: 12px;
+  font-size: 11px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  padding: 4px 9px;
+  border-radius: 7px;
+  background: rgba(148, 163, 184, 0.12);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+/* Short label before a MongoDB alternative (linear layout, no grid) */
+.mongo-step {
+  margin: 1.35rem 0 0.35rem;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
 }
 
 pre {

@@ -38,22 +38,27 @@
           <a href="../admin-app/index.html">Overview</a>
           <a href="../admin-app/getting-started.html">Getting Started</a>
         </nav>
+        <p class="sidebar-label">Backend (API)</p>
+        <nav class="nav">
+          <a href="../my-backend/index.html">Overview</a>
+          <a href="../my-backend/getting-started.html">Getting Started</a>
+        </nav>
       </aside>
 
       <section class="content">
         <header id="overview" class="hero">
           <h1>Good Food — Restaurant App</h1>
           <p class="subtitle">
-            The companion app for restaurant owners and staff: manage incoming orders, edit the menu, track performance, and keep the kitchen in sync with the rest of the Good Food suite.
+            The mobile workspace for restaurant teams: see new orders, update the menu, and understand how the service is performing—without digging through code.
           </p>
           <p class="intro-line">
-            This overview explains what the restaurant app does, how it fits next to the customer and driver apps,
-            which platforms it supports, and what your backend must expose before staff can sign in.
+            This overview is written for non-technical readers (owners, managers, buyers) as well as developers.
+            You will understand what the app is for, how it behaves for staff, and how it connects to the same backend as the customer and driver apps.
           </p>
           <div class="meta-strip">
             <span class="meta-pill">Easy to launch</span>
             <span class="meta-pill">Android &amp; iOS ready</span>
-            <span class="meta-pill">Connects to your Good Food API</span>
+            <span class="meta-pill">Self-hosted REST API</span>
           </div>
         </header>
 
@@ -61,81 +66,99 @@
           <section class="section-block">
             <h2>Overview (Presentation)</h2>
             <p>
-              The <strong>restaurant app</strong> is the operations side of Good Food. It is used by
-              owners and staff to process incoming orders, maintain menus, and track business metrics.
+              The Good Food <strong>restaurant app</strong> is the operations companion in the suite. While the
+              <strong>customer app</strong> is where people place orders, the restaurant app is where your team
+              <strong>receives</strong> those orders, prepares them, and keeps the <strong>menu</strong> accurate.
             </p>
             <p class="section-subtext">
-              It connects to your REST API (same backend stack as the other apps), and authenticates
-              with restaurant credentials before exposing orders, menu management, and reporting screens.
+              Like the rest of the stack, it talks to <strong>your</strong> Good Food REST API and database.
+              You host the backend; the app only displays and updates what the server authorizes for a signed-in restaurant account.
             </p>
+            <p class="section-subtext">
+              Nothing in this product locks you into a proprietary cloud: API URL, branding, and behaviour are yours to configure.
+            </p>
+            <div class="compare-note">
+              <p class="compare-title">Same backend as customer and driver</p>
+              <p style="margin: 0; color: #334155; font-size: 15px; max-width: none;">
+                Orders created on the customer app appear here when your API routes them to the right restaurant.
+                Status changes you make here are what customers and drivers see next—one coherent pipeline, three tailored apps.
+              </p>
+            </div>
             <a class="product-link" href="../index.html">Customer app — Overview</a>
-            <a class="product-link" href="../delivery-app/index.html" style="margin-left:8px;">Driver app — Overview</a>
+            <a class="product-link" href="../delivery-app/index.html" style="margin-left: 8px;">Driver app — Overview</a>
           </section>
 
           <section class="section-block">
-            <h2>Main function</h2>
+            <h2>Restaurant App Presentation</h2>
+            <p>
+              The interface is meant for <strong>busy teams</strong>: large touch targets, clear statuses, and flows that match
+              real service (new order → preparing → ready → handed off). You do not need to be a developer to use it day to day.
+            </p>
+            <p class="section-subtext">
+              Typical tasks: review the live order list, mark steps as done, adjust items or availability on the menu, glance at
+              sales or activity, read feedback, and change preferences (notifications, language, and similar options).
+            </p>
+            <p class="section-subtext">
+              A <strong>demo mode</strong> is available for presentations: it can preload sample login details so stakeholders
+              can explore without touching production data. Turn it off before going live.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Main Function</h2>
             <p class="highlight">
-              Centralize restaurant workflows in one mobile app: accept and update orders, edit menu items,
-              and monitor performance indicators in real time.
+              Give restaurant staff one reliable mobile hub: stay on top of incoming orders, keep the menu truthful, and see
+              whether service is running smoothly—all synced through your API.
             </p>
             <p class="section-subtext">
-              The app uses providers and hooks for auth, orders, menu, stats, and settings. It also includes
-              smart cache helpers to keep screens responsive while data refreshes in the background.
+              After sign in, users land in a guided structure (dashboard, orders, menu, analytics, reports, and more) similar to
+              how other modern ops apps work: a main menu, then detail screens for each task.
+            </p>
+            <p class="section-subtext">
+              The app is designed to stay responsive: data can refresh in the background so lists do not freeze while the kitchen is in a rush.
             </p>
           </section>
 
           <section class="section-block">
-            <h2>How navigation is organized</h2>
-            <p>
-              Startup flow: <code>Splash</code> → <code>Login</code> → main drawer after authentication.
-              The drawer then exposes dashboard, orders, menu, analytics, reviews, reports, notifications,
-              support, profile, and settings.
-            </p>
-            <p class="section-subtext">
-              Dedicated stacks handle deeper flows such as order details, menu add/edit, reports, reviews,
-              profile, and settings subpages.
-            </p>
-          </section>
-
-          <section class="section-block">
-            <h2>Configuration &amp; demo mode</h2>
-            <p>
-              Runtime configuration lives in <code>config.js</code> (API URL, timeout, demo credentials,
-              feature flags, and business defaults).
-            </p>
-            <p class="section-subtext">
-              In demo mode, auth, orders, and menu actions can return mock data to speed up demos
-              without a full backend setup.
-            </p>
-          </section>
-
-          <section class="section-block">
-            <h2>Supported platforms</h2>
+            <h2>Supported Platforms</h2>
             <ul>
-              <li>Android (package <code>com.goodfood.restaurant</code>)</li>
-              <li>iOS (bundle <code>com.goodfood.restaurant</code>)</li>
+              <li>Android</li>
+              <li>iOS</li>
             </ul>
+            <p class="section-subtext">
+              One shared React Native / Expo codebase serves both stores, so updates and fixes roll out consistently.
+            </p>
+            <p class="section-subtext">
+              Package identity in the project is aligned under the Good Food restaurant bundle name for both platforms (see app metadata in the repository if you publish to stores).
+            </p>
           </section>
 
           <section class="section-block">
-            <h2>Tech stack</h2>
+            <h2>Tech Stack</h2>
             <div class="stack-wrap">
               <div class="chip">JavaScript</div>
               <div class="chip">React Native</div>
               <div class="chip">Expo</div>
               <div class="chip">React Navigation</div>
               <div class="chip">i18n (EN/FR)</div>
-              <div class="chip">AsyncStorage</div>
               <div class="chip">REST API</div>
             </div>
             <p class="section-subtext">
-              Core API module: <code>api.js</code>. App state is composed via contexts and custom hooks
-              (auth, orders, menu, stats, analytics, settings).
+              Technically, this is a standard React Native + Expo client: screens, reusable UI pieces, and hooks that call your HTTP API.
+              Business rules and persistent data stay on the server; the phone is the control surface.
+            </p>
+            <p class="section-subtext">
+              To point the app at your environment, you set the API base URL and related options in a single configuration file at the
+              <strong>root of the restaurant project</strong> (see <a href="./getting-started.html" style="color: var(--accent); font-weight: 600;">Getting Started</a>).
             </p>
           </section>
 
           <section id="project-structure" class="section-block">
-            <h2>Project structure</h2>
+            <h2>Project Structure</h2>
+            <p class="section-subtext">
+              Well-organized React Native codebase following standard conventions. Key directories and files are highlighted below.
+            </p>
+
             <div class="project-structure">
               <div class="tree-container">
                 <div class="tree-title">
@@ -143,56 +166,114 @@
                   restaurant-app/
                 </div>
                 <ul class="tree">
-                  <li><div class="node file"><span class="icon">📄</span> App.js</div></li>
-                  <li><div class="node file"><span class="icon">📄</span> api.js</div></li>
-                  <li><div class="node file"><span class="icon">📄</span> config.js</div></li>
-                  <li><div class="node file"><span class="icon">📄</span> i18n.js</div></li>
                   <li>
-                    <div class="node folder"><span class="icon">📁</span> navigation/ <span style="font-size:10px; color:#94a3b8;">(9 files)</span></div>
+                    <div class="node file"><span class="icon">📄</span> App.js <span style="font-size:10px; color:#94a3b8;">(entry point)</span></div>
+                  </li>
+                  <li>
+                    <div class="node file"><span class="icon">📄</span> api.js <span style="font-size:10px; color:#94a3b8;">(REST client &amp; endpoints)</span></div>
+                  </li>
+                  <li>
+                    <div class="node file"><span class="icon">📄</span> config.js <span style="font-size:10px; color:#94a3b8;">(API URL, demo, feature flags)</span></div>
+                  </li>
+                  <li>
+                    <div class="node file"><span class="icon">📄</span> i18n.js <span style="font-size:10px; color:#94a3b8;">(localization bootstrap)</span></div>
+                  </li>
+                  <li>
+                    <div class="node file"><span class="icon">📄</span> global.js <span style="font-size:10px; color:#94a3b8;">(theme, shared styles)</span></div>
+                  </li>
+                  <li>
+                    <div class="node folder"><span class="icon">📁</span> navigation/ <span style="font-size:10px; color:#94a3b8;">(drawer &amp; stack navigators)</span></div>
                     <ul>
-                      <li><div class="node file"><span class="icon">📄</span> AppNavigator.js, DrawerNavigator.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> OrdersStackNavigator.js, MenuStackNavigator.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> AppNavigator.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> DrawerNavigator.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> OrdersStackNavigator.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> MenuStackNavigator.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> ReportsStackNavigator.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> ReviewsStackNavigator.js</div></li>
                     </ul>
                   </li>
                   <li>
-                    <div class="node folder"><span class="icon">📁</span> screens/ <span style="font-size:10px; color:#94a3b8;">(19 files)</span></div>
+                    <div class="node folder"><span class="icon">📁</span> screens/ <span style="font-size:10px; color:#94a3b8;">(19+ screens)</span></div>
                     <ul>
-                      <li><div class="node file"><span class="icon">📄</span> DashboardScreen.js, OrdersScreen.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> MenuScreen.js, AnalyticsScreen.js, ReportsScreen.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> SplashScreen.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> LoginScreen.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> DashboardScreen.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> OrdersScreen.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> OrderDetailsScreen.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> MenuScreen.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> AddEditMenuItemScreen.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> AnalyticsScreen.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> ReportsScreen.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> SettingsScreen.js</div></li>
                     </ul>
                   </li>
                   <li>
-                    <div class="node folder"><span class="icon">📁</span> components/ <span style="font-size:10px; color:#94a3b8;">(32+ reusable UI components)</span></div>
+                    <div class="node folder"><span class="icon">📁</span> components/ <span style="font-size:10px; color:#94a3b8;">(30+ reusable UI components)</span></div>
                     <ul>
-                      <li><div class="node file"><span class="icon">📄</span> OrderCard.js, OrderItem.js, OrderFilters.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> AnalyticsGrid.js, ReportCharts.js, ScreenHeader.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> ScreenHeader.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> OrderCard.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> OrderFilters.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> AnalyticsGrid.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> ReportCharts.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> MenuItemCard.js</div></li>
                     </ul>
                   </li>
-                  <li><div class="node folder"><span class="icon">📁</span> hooks/ <span style="font-size:10px; color:#94a3b8;">(15 files)</span></div></li>
-                  <li><div class="node folder"><span class="icon">📁</span> contexts/ <span style="font-size:10px; color:#94a3b8;">(3 files)</span></div></li>
+                  <li>
+                    <div class="node folder"><span class="icon">📁</span> hooks/ <span style="font-size:10px; color:#94a3b8;">(data &amp; UI logic)</span></div>
+                    <ul>
+                      <li><div class="node file"><span class="icon">📄</span> useRestaurantAuth.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> useRestaurantOrders.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> useRestaurantMenu.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> useOrderFilters.js</div></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="node folder"><span class="icon">📁</span> contexts/</div>
+                    <ul>
+                      <li><div class="node file"><span class="icon">📄</span> RestaurantContext.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> SettingContext.js</div></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="node folder"><span class="icon">📁</span> utils/ <span style="font-size:10px; color:#94a3b8;">(cache, currency, orders…)</span></div>
+                    <ul>
+                      <li><div class="node file"><span class="icon">📄</span> cacheUtils.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> currencyUtils.js</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> orderUtils.js</div></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="node folder"><span class="icon">📁</span> lang/ <span style="font-size:10px; color:#94a3b8;">(i18n EN/FR)</span></div>
+                    <ul>
+                      <li><div class="node file"><span class="icon">📄</span> en.json</div></li>
+                      <li><div class="node file"><span class="icon">📄</span> fr.json</div></li>
+                    </ul>
+                  </li>
                 </ul>
+              </div>
+              <div class="tree-path">
+                Full structure available in README.md • 100+ files • Clean separation of concerns
               </div>
             </div>
           </section>
 
           <section class="section-block">
-            <h2>Current version</h2>
+            <h2>Current Version</h2>
             <p><strong>1.0.0</strong></p>
             <p class="section-subtext">
-              This matches <code>restaurant-app/package.json</code>, <code>restaurant-app/app.json</code>,
-              and <code>restaurant-app/config.js</code>.
+              Baseline version shipped with the Good Food suite; bump the version in project metadata when you publish your own releases.
             </p>
           </section>
 
           <section class="section-block">
             <h2>What you need to run the app</h2>
             <p>
-              Shared setup (Node.js, Expo, API reachability, maps, i18n) is documented on
+              Node.js, Expo, simulators, API URLs, maps keys, and languages are explained once for the whole suite on
               <a href="../environment-setup.html" style="color: var(--accent); font-weight: 600;">Environment setup</a>.
             </p>
             <p class="section-subtext">
-              For this app specifically: run backend API, use a restaurant account, set
-              <code>API_BASE_URL</code> in <code>config.js</code>, then follow
+              For this app: clone <code>restaurant-app</code>, install dependencies, connect your API, use a
+              <strong>restaurant</strong> account from your backend, then follow
               <a href="./getting-started.html" style="color: var(--accent); font-weight: 600;">Getting Started</a>.
             </p>
           </section>
