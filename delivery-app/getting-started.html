@@ -147,6 +147,46 @@ DEMO_PASSWORD: <span class="tok-str">'driver123'</span>,
             Colors and shared styles are centralized in <code>global.js</code>. Adjust them there if you want the driver app to match your brand.
           </p>
 
+          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Change app name</h3>
+          <p>
+            In delivery app, rename the Expo label and the runtime labels used in login/settings logic.
+          </p>
+
+          <div class="code-block">
+            <div class="code-head">
+              <span class="code-title">app.json (delivery-app)</span>
+            </div>
+            <pre><code>{
+  "expo": {
+    "name": "<span class="tok-str">Good Food Driver</span>",
+    "slug": "<span class="tok-str">good-food-driver</span>",
+    "ios": {
+      "bundleIdentifier": "<span class="tok-str">com.goodfood.driver</span>"
+    },
+    "android": {
+      "package": "<span class="tok-str">com.goodfood.driver</span>"
+    }
+  }
+}</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-head">
+              <span class="code-title">config.js (visible title in screens)</span>
+            </div>
+            <pre><code>export const config = {
+  <span class="tok-var">APP_NAME</span>: <span class="tok-str">'Good Food Driver'</span>,
+  <span class="tok-var">VERSION</span>: <span class="tok-str">'1.1.0'</span>
+}</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-head">
+              <span class="code-title">utils/settingsUtils.js (fallback name)</span>
+            </div>
+            <pre><code>export const <span class="tok-var">DEFAULT_APP_NAME</span> = <span class="tok-str">'Good Food Delivery'</span></code></pre>
+          </div>
+
           <div class="callout">
             <strong>Tip:</strong> After editing <code>config.js</code> or theme files, stop and restart <code>npm start</code> so the bundler picks up changes.
           </div>
