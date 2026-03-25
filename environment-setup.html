@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Environment setup — Good Food Docs</title>
+    <title>Environment & Branding setup — Good Food Docs</title>
     <link rel="stylesheet" href="site.css" />
     <script>
       function switchPlatform(el) {
@@ -61,9 +61,9 @@
 
       <section class="content">
         <header class="hero">
-          <h1 id="top">Environment setup</h1>
+          <h1 id="top">Environment &amp; Branding setup</h1>
           <p class="subtitle">
-            Node.js, Expo CLI (command lines), languages (i18n), API reachability from devices, and Google Maps for production — one place for the whole suite.
+            Node.js, Expo CLI (command lines), languages (i18n), API reachability from devices, Google Maps for production, and branding (name/logo/assets) — one place for the whole suite.
           </p>
           <p class="back-links">
             Then continue with
@@ -189,6 +189,30 @@
 
           <h3>6) Backend</h3>
           <p>Keep a running <strong>Good Food REST API</strong> (for example <code>my-backend</code>) reachable from your computer and from any phone you use for testing — see <a href="#api-reachability">API reachability</a>.</p>
+        </section>
+
+        <section class="section" id="branding-assets">
+          <h2>Branding (name/logo/assets)</h2>
+          <p>
+            Update only the logo image file in <code>assets/images</code> and keep the same file name.
+            Do not change paths or configuration when you only want a new logo.
+          </p>
+
+          <h3>What to do</h3>
+          <ol>
+            <li>Go to the app logo file in <code>assets/images</code>.</li>
+            <li>Replace the image with your own logo.</li>
+            <li>Keep exactly the same filename.</li>
+            <li>Restart the app.</li>
+          </ol>
+
+          <p>
+            <img
+              src="./assets/images/add_logo.png"
+              alt="Replace logo image while keeping same filename"
+              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
+            />
+          </p>
         </section>
 
         <section class="section" id="i18n-languages">
