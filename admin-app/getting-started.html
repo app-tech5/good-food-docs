@@ -143,6 +143,45 @@ roleCredentials = {
             For brand tweaks, cooperate with your designer rather than editing random components without a plan.
           </p>
 
+          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Change app name</h3>
+          <p>
+            For the admin web app, update the browser title and PWA labels. Unlike Expo apps, this project is a React web app, so naming is controlled by files in <code>public/</code>.
+          </p>
+
+          <div class="code-block">
+            <div class="code-head">
+              <span class="code-title">public/index.html (tab title)</span>
+            </div>
+            <pre><code>&lt;head&gt;
+  &lt;meta name=<span class="tok-str">"Good Foods"</span> content=<span class="tok-str">"Good Food Admin Panel"</span> /&gt;
+  &lt;title&gt;<span class="tok-str">Good Foods</span>&lt;/title&gt;
+&lt;/head&gt;</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-head">
+              <span class="code-title">public/manifest.json (PWA name)</span>
+            </div>
+            <pre><code>{
+  <span class="tok-var">"short_name"</span>: <span class="tok-str">"Good Food"</span>,
+  <span class="tok-var">"name"</span>: <span class="tok-str">"Good Foods Admin Panel"</span>
+}</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-head">
+              <span class="code-title">package.json (project metadata)</span>
+            </div>
+            <pre><code>{
+  <span class="tok-var">"name"</span>: <span class="tok-str">"uber-dashboard"</span>,
+  <span class="tok-var">"version"</span>: <span class="tok-str">"0.1.0"</span>
+}</code></pre>
+          </div>
+
+          <p class="sub">
+            After updating these files, restart <code>npm start</code>. For installed PWA updates, clear site data/reinstall if the old name is cached by the browser.
+          </p>
+
           <div class="callout">
             <strong>Tip:</strong> After changing API defaults, restart <code>npm start</code> so every module reads the fresh values.
           </div>
