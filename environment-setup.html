@@ -208,6 +208,29 @@
             <li>Import and register the locale in the app&apos;s i18n entry file (<code>lang/i18n.js</code> or <code>i18n.js</code>) the same way English and French are registered.</li>
           </ol>
           <p class="sub">Restart the dev server after editing translations (<code>npm start</code> or <code>npx expo start</code>).</p>
+
+          <h3 style="margin-top: 28px;">Translation (how to edit)</h3>
+          <p>
+            It&apos;s very easy to customize the experience for specific regions, languages, or cultures. It also provides access to the locale data on the native device.
+          </p>
+
+          <p>
+            <img
+              src="./assets/images/translation-doc.gif"
+              alt="Translation folder and workflow example"
+              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
+            />
+          </p>
+
+          <p>In en.json file, inside of lang folder, you can translate for your specific language</p>
+
+          <p>
+            <img
+              src="./assets/images/vscode-translation-annotation-1.png"
+              alt="VS Code translation annotation example"
+              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
+            />
+          </p>
         </section>
 
         <section class="section" id="api-reachability">
@@ -219,6 +242,111 @@
             <strong>Physical device:</strong> If the backend runs on your laptop at <code>192.168.1.20:5000</code>, use that LAN IP in the URL — not <code>localhost</code>, because on the phone &quot;localhost&quot; means the phone itself, not your computer.
           </div>
           <p class="sub">Simulators on the same machine can sometimes use special host aliases (for example Android emulator&apos;s <code>10.0.2.2</code>); use whatever your platform documents for reaching the host from the guest.</p>
+        </section>
+
+        <section class="section" id="firebase-setup">
+          <h2>Create a Firebase Project</h2>
+          <p>
+            Head over to <a href="https://firebase.google.com/" target="_blank" rel="noopener">Firebase.com</a> and create a new account. Once logged in, you&apos;ll be able to create a new project in the <a href="https://console.firebase.google.com/u/0/" target="_blank" rel="noopener">Firebase Console</a>.
+          </p>
+
+          <ul>
+            <li>Create a new account on <a href="https://firebase.google.com/" target="_blank" rel="noopener">Firebase.com</a></li>
+            <li>Create a new project in <a href="https://console.firebase.google.com/" target="_blank" rel="noopener">Firebase Console</a></li>
+            <li>Enable Email &amp; Password auth method in <em>Firebase Console</em> -&gt; <em>Authentication</em> -&gt; <em>Sign-in method</em></li>
+          </ul>
+
+          <p style="margin-top: 16px;">
+            <img
+              src="./assets/images/capture-firebase.png"
+              alt="Firebase project creation screenshot"
+              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
+            />
+          </p>
+
+          <h2 style="margin-top: 26px;">Create a Firebase config file</h2>
+          <h3>Add your firebase configuration into firebase/config file:</h3>
+
+          <p>
+            <img
+              src="./assets/images/firebaseConfig.png"
+              alt="Firebase config file example"
+              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
+            />
+          </p>
+
+          <h3>
+            You can get all this information from <a href="https://console.firebase.google.com/" target="_blank" rel="noopener">Firebase Console</a> -&gt; Project Settings
+          </h3>
+
+          <p style="margin-top: 16px;">
+            <img
+              src="./assets/images/findFirebaseConfig.png"
+              alt="Finding Firebase config in Project Settings screenshot"
+              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
+            />
+          </p>
+        </section>
+
+        <section class="section" id="google-places-api">
+          <h2>Get Google Places API key</h2>
+          <p>In order to implement autocomplete functionality, we need to get an API for Google Places API.</p>
+
+          <h3>Go to Google Cloud Platform</h3>
+          <p>
+            Visit <a href="https://console.cloud.google.com/google/maps-apis/" target="_blank" rel="noopener ugc nofollow">Google Cloud Platform console</a> to get an API key to use &ldquo;Google Maps Javascript API&rdquo;.
+          </p>
+
+          <h3>Create a project and enable the API</h3>
+          <p>
+            First, create a new project on the console and navigate to &ldquo;<strong>APIs and Services</strong>&rdquo; on the left drawer navigation. Then, click on &ldquo;<strong>ENABLE APIs AND SERVICES</strong>&rdquo; on the dashboard.
+          </p>
+
+          <p style="margin-top: 16px;">
+            <img
+              src="./assets/images/capture-console.png"
+              alt="Enable APIs and Services screenshot"
+              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
+            />
+          </p>
+
+          <p>On the next screen, search for &ldquo;<strong>Places API</strong>&rdquo; and enable it.</p>
+
+          <p style="margin-top: 16px;">
+            <img
+              src="./assets/images/capture-console1.png"
+              alt="Places API enabled screenshot"
+              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
+            />
+          </p>
+
+          <h3>Generate an API key</h3>
+          <p>
+            After enabling the API, you need to create a key to actually use the API. navigate to &ldquo;<strong>Credentials</strong>&rdquo; under &ldquo;<strong>APIs &amp; Services</strong>&rdquo;, and click on &ldquo;<strong>CREATE CREDENTIALS</strong>&rdquo; in the upper middle of the screen and choose &ldquo;API key&rdquo;.
+          </p>
+
+          <p style="margin-top: 16px;">
+            <img
+              src="./assets/images/capture-console2.png"
+              alt="Create API key screenshot"
+              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
+            />
+          </p>
+
+          <p>This will generate an API key, so keep it somewhere safe because you need it later to use the API in the app.</p>
+
+          <h3>Create a billing account and link it to the project</h3>
+          <p>
+            In order to get results from the API, your Google Cloud project need to have a billing account linked to your project. You can create a billing account and link it to your project on the &ldquo;<strong>Billing</strong>&rdquo; page.
+          </p>
+
+          <p style="margin-top: 16px;">
+            <img
+              src="./assets/images/google-autocomplete.png"
+              alt="Autocomplete UI example"
+              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
+            />
+          </p>
         </section>
 
         <section class="section" id="google-maps-expo">
