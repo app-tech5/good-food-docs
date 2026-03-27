@@ -106,11 +106,8 @@
 <span class="tok-cmd">npm</span> -v</code></pre>
           </div>
 
-          <h3 class="subheading">MongoDB</h3>
-          <p class="sub">The API needs a database that is actually running. Use <strong>one</strong> of the following—whichever matches how you work.</p>
-
-          <p class="mongo-step">Local install</p>
-          <p>Install <a href="https://www.mongodb.com/docs/manual/installation/" style="color: var(--accent); font-weight: 600;" rel="noopener noreferrer">MongoDB Community</a>, then start <code>mongod</code> (or the Windows service). Default port <strong>27017</strong>.</p>
+          <h3 class="subheading">MongoDB (via Docker)</h3>
+          <p class="sub">This backend uses MongoDB running in Docker.</p>
           <div class="code-block">
             <div class="code-head">
               <div class="code-head-left">
@@ -119,13 +116,14 @@
                   <span class="code-dot code-dot-yellow"></span>
                   <span class="code-dot code-dot-green"></span>
                 </span>
-                <span class="code-title">Local URI</span>
+                <span class="code-title">Install + run MongoDB</span>
               </div>
-              <span class="code-copy">.env</span>
+              <span class="code-copy">docker</span>
             </div>
-            <pre><code><span class="tok-var">MONGO_URI</span>=mongodb://127.0.0.1:27017/good-foods</code></pre>
+            <pre><code><span class="tok-cmd">docker</span> <span class="tok-cmd">pull</span> mongo:7
+<span class="tok-cmd">docker</span> <span class="tok-cmd">run</span> -d <span class="tok-arg">--name</span> <span class="tok-arg">&lt;mongo_container_name&gt;</span> <span class="tok-arg">-p</span> <span class="tok-str">&lt;mongo_host_port&gt;</span>:27017 mongo:7
+<span class="tok-cmd">docker</span> <span class="tok-cmd">ps</span></code></pre>
           </div>
-          <p class="sub">macOS with Homebrew (example only):</p>
           <div class="code-block">
             <div class="code-head">
               <div class="code-head-left">
@@ -134,48 +132,12 @@
                   <span class="code-dot code-dot-yellow"></span>
                   <span class="code-dot code-dot-green"></span>
                 </span>
-                <span class="code-title">Homebrew service</span>
+                <span class="code-title">.env</span>
               </div>
-              <span class="code-copy">macOS</span>
+              <span class="code-copy">required</span>
             </div>
-            <pre><code><span class="tok-cmd">brew</span> <span class="tok-cmd">services</span> <span class="tok-cmd">start</span> <span class="tok-arg">mongodb-community</span></code></pre>
+            <pre><code><span class="tok-var">MONGO_URI</span>=mongodb://127.0.0.1:<span class="tok-arg">&lt;mongo_host_port&gt;</span>/<span class="tok-arg">&lt;mongo_database_name&gt;</span></code></pre>
           </div>
-
-          <p class="mongo-step">Docker</p>
-          <p>Publishes <strong>27017</strong> on localhost. Use the same <code>MONGO_URI</code> as in the local block above.</p>
-          <div class="code-block">
-            <div class="code-head">
-              <div class="code-head-left">
-                <span class="code-dots" aria-hidden="true">
-                  <span class="code-dot code-dot-red"></span>
-                  <span class="code-dot code-dot-yellow"></span>
-                  <span class="code-dot code-dot-green"></span>
-                </span>
-                <span class="code-title">Run MongoDB</span>
-              </div>
-              <span class="code-copy">Docker</span>
-            </div>
-            <pre><code><span class="tok-cmd">docker</span> <span class="tok-cmd">run</span> -d <span class="tok-arg">--name</span> good-food-mongo <span class="tok-arg">-p</span> <span class="tok-str">27017:27017</span> mongo:7</code></pre>
-          </div>
-
-          <p class="mongo-step">MongoDB Atlas (cloud)</p>
-          <p>Create a cluster and database user, allow your IP under Network Access, then put Atlas’s connection string in <code>.env</code> as <code>MONGO_URI</code>.</p>
-          <div class="code-block">
-            <div class="code-head">
-              <div class="code-head-left">
-                <span class="code-dots" aria-hidden="true">
-                  <span class="code-dot code-dot-red"></span>
-                  <span class="code-dot code-dot-yellow"></span>
-                  <span class="code-dot code-dot-green"></span>
-                </span>
-                <span class="code-title">Atlas URI (template)</span>
-              </div>
-              <span class="code-copy">.env</span>
-            </div>
-            <pre><code><span class="tok-var">MONGO_URI</span>=mongodb+srv://<span class="tok-arg">USER</span>:<span class="tok-arg">PASSWORD</span>@<span class="tok-arg">cluster</span>.mongodb.net/good-foods?retryWrites=true<span class="tok-str">&amp;</span>w=majority</code></pre>
-          </div>
-
-          <p class="sub">If Mongo is down, fix it first, then retry <code>npm start</code> and <code>npm run test:db</code> (section 4).</p>
 
           <h3 class="subheading">Ready?</h3>
           <div class="code-block">
@@ -234,8 +196,9 @@
         <section class="section">
           <h2>3) Environment variables</h2>
           <p>
-            The server reads configuration from <code>.env</code> via <code>dotenv</code>. At minimum you need a database URI, a JWT secret, and a port.
-            Adjust <code>CORS_ORIGINS</code> so your admin URL (for example <code>http://localhost:3000</code>) is allowed to send cookies and API calls.
+            The server reads configuration from <code>.env</code> via <code>dotenv</code>. In your backend code,
+            <code>src/config/db.js</code> requires <code>MONGO_URI</code> explicitly, so keep this value valid first.
+            Then set <code>JWT_SECRET</code>, <code>PORT</code>, and <code>CORS_ORIGINS</code> for your client URLs.
           </p>
           <div class="code-block">
             <div class="code-head">
@@ -249,11 +212,11 @@
               </div>
               <span class="code-copy">env</span>
             </div>
-            <pre><code><span class="tok-var">MONGO_URI</span>=mongodb://127.0.0.1:27017/good-foods
-<span class="tok-var">JWT_SECRET</span>=your-super-secure-jwt-secret-key-here
-<span class="tok-var">PORT</span>=5000
+            <pre><code><span class="tok-var">MONGO_URI</span>=mongodb://127.0.0.1:<span class="tok-arg">&lt;mongo_host_port&gt;</span>/<span class="tok-arg">&lt;mongo_database_name&gt;</span>
+<span class="tok-var">JWT_SECRET</span>=<span class="tok-arg">&lt;your_super_secure_jwt_secret&gt;</span>
+<span class="tok-var">PORT</span>=<span class="tok-arg">&lt;api_port_ex_5000&gt;</span>
 <span class="tok-var">NODE_ENV</span>=development
-<span class="tok-var">CORS_ORIGINS</span>=http://localhost:3000,http://localhost:19006</code></pre>
+<span class="tok-var">CORS_ORIGINS</span>=<span class="tok-arg">&lt;admin_origin_1&gt;</span>,<span class="tok-arg">&lt;admin_origin_2&gt;</span></code></pre>
           </div>
           <p class="sub">
             Match <code>PORT</code> and <code>/api</code> to what you put in customer, restaurant, driver, and admin configs (for example <code>http://localhost:5000/api</code>).
@@ -318,7 +281,7 @@
         <section class="section">
           <h2>4) Database &amp; migrations</h2>
           <p>
-            Migrations create collections and seed baseline data (currencies, languages, settings, demo users, etc.).
+            Migrations create collections and seed baseline data (languages, settings, demo users, etc.).
             Run them once on a fresh database before relying on the apps.
           </p>
           <div class="code-block">
