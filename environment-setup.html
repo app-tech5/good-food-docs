@@ -218,40 +218,37 @@
         <section class="section" id="change-app-currency">
           <h2>App currency (change)</h2>
           <p>
-            Change the default currency from the <strong>Admin app</strong>.
-            This is the recommended flow for the whole suite and avoids manual backend edits.
+            Set the platform currency entirely from the <strong>Admin app</strong> — no changes in customer, driver, restaurant, or backend source code.
+            After you add a currency, choose it as the <strong>main</strong> currency in general app settings so every client uses it.
           </p>
 
-          <h3>Admin app workflow</h3>
-          <ol>
-            <li>
-              Ensure the currency exists under <strong>Currencies</strong> (resource <code>currencies</code>) — code, name, symbol, and exchange rate.
-            </li>
-            <li>
-              Open <strong>Settings</strong> → <strong>App Settings</strong> (document <code>app_settings</code>) and select that currency as the default.
-            </li>
-            <li>
-              Save, then restart or refresh mobile apps so they refetch settings (driver and restaurant apps also cache settings — clear cache or sign out/in if you still see the old symbol).
-            </li>
-          </ol>
+          <h3>1) Add a currency</h3>
+          <p>
+            Under <strong>Currencies</strong> (resource <code>currencies</code>), create the currency you need: code, name, symbol, and exchange rate.
+          </p>
           <p>
             <img
               src="./assets/images/add_currency.png"
-              alt="Add and select a currency in the admin app"
+              alt="Add a currency in the admin app"
               style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
             />
           </p>
 
-          <h3>Customer app — static <code>global/constants.js</code> still used in many screens</h3>
+          <h3>2) Set it as the main currency</h3>
           <p>
-            Several customer-app components still import <code>currency</code> from <code>global/constants.js</code> for labels and formatting helpers.
-            After you change the backend default, update that constant (and any <code>EUR</code>/<code>USD</code>-specific UI branches) so on-device display matches server-side prices.
+            Open <strong>Settings</strong> → <strong>App Settings</strong> / general settings and select that currency as the default (main) currency for the platform, then save.
+          </p>
+          <p>
+            <img
+              src="./assets/images/update-currency-in-general-settings.png"
+              alt="Set the main currency in general app settings"
+              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
+            />
           </p>
 
-          <h3>Driver and restaurant apps — code-level defaults</h3>
+          <h3>3) Refresh clients</h3>
           <p>
-            Both apps include a <code>DEFAULT_CURRENCY</code> fallback in <code>utils/currencyUtils.js</code> when settings are missing.
-            Keep that fallback aligned with your real default if you rely on offline or error paths.
+            Restart or refresh mobile apps so they reload settings. Driver and restaurant apps may cache settings — clear cache or sign out and back in if the old symbol still appears.
           </p>
         </section>
 
