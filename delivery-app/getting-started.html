@@ -193,9 +193,23 @@ DEMO_PASSWORD: <span class="tok-str">'driver123'</span>,
             <strong>Tip:</strong> After editing <code>config.js</code> or theme files, stop and restart <code>npm start</code> so the bundler picks up changes.
           </div>
 
-          <p class="sub">
-            Logo/assets strategy is centralized here:
-            <a href="../environment-setup.html#logo-update" style="color: var(--accent); font-weight: 600;">Environment setup → Logo update</a>.
+          <h3 id="logo-update" style="margin: 28px 0 12px 0; font-size: 19px;">Logo update</h3>
+          <p>
+            Update only the logo image file in <code>assets/images</code> and keep the <strong>same file name</strong>.
+            Do not change paths or configuration when you only want a new logo.
+          </p>
+          <ol>
+            <li>Open the app logo file in <code>assets/images</code> inside <code>delivery-app</code>.</li>
+            <li>Replace the image with your own logo.</li>
+            <li>Keep exactly the same filename.</li>
+            <li>Restart the app.</li>
+          </ol>
+          <p>
+            <img
+              src="../assets/images/add_logo.png"
+              alt="Replace logo image while keeping same filename"
+              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
+            />
           </p>
 
           <p class="sub">

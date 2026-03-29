@@ -187,9 +187,23 @@ roleCredentials = {
             <strong>Tip:</strong> After changing API defaults, restart <code>npm start</code> so every module reads the fresh values.
           </div>
 
-          <p class="sub">
-            Logo/assets strategy is centralized here:
-            <a href="../environment-setup.html#logo-update" style="color: var(--accent); font-weight: 600;">Environment setup → Logo update</a>.
+          <h3 id="logo-update" style="margin: 28px 0 12px 0; font-size: 19px;">Logo update</h3>
+          <p>
+            The dashboard logo shown in the admin UI comes from <strong>platform app settings</strong> (stored via the API), not from replacing a file under <code>public/</code> alone.
+            Open <strong>Settings</strong> → <strong>Settings List</strong> (general settings), update the logo field (upload or URL, depending on your form), then save.
+          </p>
+          <ol>
+            <li>Sign in to the admin app.</li>
+            <li>Go to general / settings.</li>
+            <li>Set or upload the logo, then save.</li>
+            <li>Hard-refresh the browser or clear site data if an old image is cached.</li>
+          </ol>
+          <p>
+            <img
+              src="../assets/images/update-logo-in-general-settings.png"
+              alt="Update the admin logo in general app settings"
+              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
+            />
           </p>
 
           <p class="sub">
