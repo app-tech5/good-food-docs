@@ -63,7 +63,7 @@
         <header class="hero">
           <h1 id="top">Environment &amp; Branding setup</h1>
           <p class="subtitle">
-            Node.js, Expo CLI (command lines), languages (i18n), API reachability from devices, Google Maps for production, branding (name/logo/assets), and <a href="#change-app-currency">app currency</a> — one place for the whole suite.
+            Node.js, Expo CLI (command lines), languages (i18n), API reachability from devices, Google Maps for production, <a href="#logo-update">logo update</a>, and <a href="#change-app-currency">app currency</a> — one place for the whole suite.
           </p>
           <p class="back-links">
             Then continue with
@@ -191,25 +191,25 @@
           <p>Keep a running <strong>Good Food REST API</strong> (for example <code>my-backend</code>) reachable from your computer and from any phone you use for testing — see <a href="#api-reachability">API reachability</a>.</p>
         </section>
 
-        <section class="section" id="branding-assets">
-          <h2>Branding (name/logo/assets)</h2>
+        <section class="section" id="logo-update">
+          <h2>Change App Logo</h2>
           <p>
-            Update only the logo image file in <code>assets/images</code> and keep the same file name.
-            Do not change paths or configuration when you only want a new logo.
+            Change the <strong>platform logo</strong> from the <strong>Admin app</strong>: open <strong>Settings</strong> → <strong>Settings List</strong> (general settings), update the logo field, then save.
+            Mobile and web clients load that value from the API.
           </p>
 
           <h3>What to do</h3>
           <ol>
-            <li>Go to the app logo file in <code>assets/images</code>.</li>
-            <li>Replace the image with your own logo.</li>
-            <li>Keep exactly the same filename.</li>
-            <li>Restart the app.</li>
+            <li>Open the admin dashboard and go to settings.</li>
+            <li>Set or upload the logo used across the suite.</li>
+            <li>Save the settings.</li>
+            <li>Refresh or restart client apps so they fetch the updated logo.</li>
           </ol>
 
           <p>
             <img
-              src="./assets/images/add_logo.png"
-              alt="Replace logo image while keeping same filename"
+              src="./assets/images/update-logo-in-general-settings.png"
+              alt="Update the platform logo in general app settings"
               style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
             />
           </p>
