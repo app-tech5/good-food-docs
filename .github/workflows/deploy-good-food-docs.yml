@@ -16,11 +16,14 @@ jobs:
 
       - name: Build deploy archive
         run: |
+          ARCHIVE="/tmp/good-food-docs-site.tar.gz"
           tar \
             --exclude=".git" \
             --exclude=".github" \
             --exclude=".DS_Store" \
-            -czf good-food-docs-site.tar.gz .
+            --exclude="good-food-docs-site.tar.gz" \
+            -czf "$ARCHIVE" .
+          mv "$ARCHIVE" good-food-docs-site.tar.gz
           ls -lh good-food-docs-site.tar.gz
 
       - name: Upload archive to VPS
@@ -64,4 +67,6 @@ jobs:
         run: |
           echo "Site deployed to ${DEPLOY_DOCS_DIR:-/var/www/html/docs}"
           echo "Docs URL (new): https://good-foods.digitaldienste.fr/docs/"
-          echo "Download URL (new): https://good-foods.digitaldienste.fr/docs/downloads/index.html"
+          echo "Download hub: https://good-foods.digitaldienste.fr/docs/downloads/"
+          echo "Customer APK page: https://good-foods.digitaldienste.fr/docs/downloads/customer/"
+          echo "Driver APK page: https://good-foods.digitaldienste.fr/docs/downloads/driver/"
