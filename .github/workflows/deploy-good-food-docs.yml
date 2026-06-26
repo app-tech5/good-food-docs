@@ -1,0 +1,67 @@
+name: Deploy good-food-docs site
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  deploy-site:
+    runs-on: ubuntu-latest
+    env:
+      DEPLOY_DOCS_DIR: ${{ vars.VPS_DOCS_DIR }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build deploy archive
+        run: |
+          tar \
+            --exclude=".git" \
+            --exclude=".github" \
+            --exclude=".DS_Store" \
+            -czf good-food-docs-site.tar.gz .
+          ls -lh good-food-docs-site.tar.gz
+
+      - name: Upload archive to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: "good-food-docs-site.tar.gz"
+          target: "/tmp/"
+          overwrite: true
+
+      - name: Deploy archive on VPS
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          envs: DEPLOY_DOCS_DIR
+          script: |
+            set -eu
+            if [ -z "${DEPLOY_DOCS_DIR:-}" ]; then
+              DEPLOY_DOCS_DIR="/var/www/html/docs"
+            fi
+            case "$DEPLOY_DOCS_DIR" in
+              /var/www/html/*) ;;
+              *)
+                echo "Unsafe DEPLOY_DOCS_DIR: $DEPLOY_DOCS_DIR"
+                exit 1
+                ;;
+            esac
+            TMP_DIR=$(mktemp -d)
+            tar -xzf /tmp/good-food-docs-site.tar.gz -C "$TMP_DIR"
+            rm -rf "$DEPLOY_DOCS_DIR"
+            mkdir -p "$DEPLOY_DOCS_DIR"
+            cp -a "$TMP_DIR"/. "$DEPLOY_DOCS_DIR"/
+            rm -rf "$TMP_DIR" /tmp/good-food-docs-site.tar.gz
+            chmod -R 755 "$DEPLOY_DOCS_DIR"
+
+      - name: Deployment URLs
+        run: |
+          echo "Site deployed to ${DEPLOY_DOCS_DIR:-/var/www/html/docs}"
+          echo "Docs URL (new): https://good-foods.digitaldienste.fr/docs/"
+          echo "Download URL (new): https://good-foods.digitaldienste.fr/docs/downloads/index.html"

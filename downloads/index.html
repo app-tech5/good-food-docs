@@ -3,58 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Good Food — Android Download</title>
+    <title>Good Food — Android Downloads</title>
     <link rel="stylesheet" href="../site.css" />
-    <script src="../shared/download-config.js"></script>
-    <script src="../js/download-page.js"></script>
   </head>
   <body class="download-body">
-    <main class="download-card">
+    <main class="download-card download-hub">
       <header class="download-hero">
         <div class="sidebar-brand">
           <span class="brand-dot"></span>
-          <p class="brand-title" data-app-name>Good Foods</p>
+          <p class="brand-title">Good Food</p>
         </div>
         <span class="download-pill">Android APK</span>
       </header>
 
-      <section class="download-content">
-        <div class="download-main">
-          <h1 data-page-title>Install Good Foods on Android</h1>
-          <p class="subtitle" data-page-subtitle>
-            Download the latest APK and install it on your Android device.
-          </p>
+      <section class="download-hub-content">
+        <h1>Android app downloads</h1>
+        <p class="subtitle">
+          Choose the app you want to install. Each page includes a direct download link and a QR code.
+        </p>
 
-          <div class="download-actions">
-            <a class="download-btn primary" data-apk-link-primary href="#">
-              <span data-cta-primary>Download APK</span>
-            </a>
-            <a class="download-btn secondary" data-apk-link-secondary href="#">
-              <span data-cta-secondary>Open Direct Link</span>
-            </a>
-          </div>
+        <div class="download-hub-grid">
+          <a class="download-app-card" href="customer/">
+            <span class="download-app-badge">Customer</span>
+            <h2>Good Foods</h2>
+            <p>Order food, track deliveries, and manage your account.</p>
+            <span class="download-app-file">GoodFoods.apk</span>
+          </a>
 
-          <p class="download-meta">
-            File:
-            <strong data-apk-file-name>GoodFoods.apk</strong>
-            <span class="download-meta-sep">•</span>
-            Path:
-            <code data-apk-path>/downloads/GoodFoods.apk</code>
-          </p>
-
-          <ul class="download-tips" data-tips-list>
-            <li>Allow installation from unknown sources if Android prompts you.</li>
-          </ul>
+          <a class="download-app-card" href="driver/">
+            <span class="download-app-badge">Driver</span>
+            <h2>Good Food Driver</h2>
+            <p>Accept deliveries, update status, and view earnings.</p>
+            <span class="download-app-file">GoodFoodDriver.apk</span>
+          </a>
         </div>
-
-        <aside class="download-qr-card">
-          <img
-            data-qr-image
-            alt="QR code for APK download"
-            src=""
-          />
-          <p class="download-qr-label" data-qr-label>Scan to download the APK</p>
-        </aside>
       </section>
     </main>
   </body>
