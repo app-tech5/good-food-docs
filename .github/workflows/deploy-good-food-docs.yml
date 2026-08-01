@@ -70,3 +70,4 @@ jobs:
           echo "Download hub: https://good-foods.digitaldienste.fr/docs/downloads/"
           echo "Customer APK page: https://good-foods.digitaldienste.fr/docs/downloads/customer/"
           echo "Driver APK page: https://good-foods.digitaldienste.fr/docs/downloads/driver/"
+          echo "Restaurant APK page: https://good-foods.digitaldienste.fr/docs/downloads/restaurant/"

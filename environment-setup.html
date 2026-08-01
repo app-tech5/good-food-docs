@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Environment & Branding setup — Good Food Docs</title>
+    <title>Environment & Branding setup — Good Food Pro Docs</title>
     <link rel="stylesheet" href="site.css" />
     <script>
       function switchPlatform(el) {
@@ -26,11 +26,12 @@
       <aside class="sidebar">
         <div class="sidebar-brand">
           <span class="brand-dot"></span>
-          <p class="brand-title">Good Food Docs</p>
+          <p class="brand-title">Good Food Pro Docs</p>
         </div>
         <p class="sidebar-label">All apps</p>
         <nav class="nav">
           <a class="active" href="./environment-setup.html">Environment setup</a>
+          <a href="./downloads/index.html">Android downloads</a>
         </nav>
         <p class="sidebar-label">Customer app</p>
         <nav class="nav">
@@ -282,16 +283,25 @@
         </section>
 
         <section class="section" id="firebase-setup">
-          <h2>Create a Firebase Project</h2>
+          <h2>Firebase Cloud Messaging (push notifications)</h2>
           <p>
-            Head over to <a href="https://firebase.google.com/" target="_blank" rel="noopener">Firebase.com</a> and create a new account. Once logged in, you&apos;ll be able to create a new project in the <a href="https://console.firebase.google.com/u/0/" target="_blank" rel="noopener">Firebase Console</a>.
+            In <strong>Good Food Pro</strong>, users, restaurants, orders, and auth live on your
+            <strong>Node.js + MongoDB API</strong> (JWT) — not in Firebase as a database.
+            Firebase is used for <strong>push notifications (FCM)</strong> on the mobile apps.
           </p>
 
           <ul>
-            <li>Create a new account on <a href="https://firebase.google.com/" target="_blank" rel="noopener">Firebase.com</a></li>
-            <li>Create a new project in <a href="https://console.firebase.google.com/" target="_blank" rel="noopener">Firebase Console</a></li>
-            <li>Enable Email &amp; Password auth method in <em>Firebase Console</em> -&gt; <em>Authentication</em> -&gt; <em>Sign-in method</em></li>
+            <li>Create a project on <a href="https://console.firebase.google.com/" target="_blank" rel="noopener">Firebase Console</a></li>
+            <li>Add Android / iOS apps for Customer, Driver, and Restaurant as needed</li>
+            <li>Download <code>google-services.json</code> (Android) and/or the iOS GoogleService plist</li>
+            <li>Enable <strong>Cloud Messaging</strong> — you do <em>not</em> need Firebase Authentication or Firestore for the Pro stack</li>
+            <li>Put the FCM / Firebase config into each mobile app following that app&apos;s Getting Started notes</li>
           </ul>
+
+          <p class="sub" style="margin-top: 12px;">
+            Auth and data: configure <code>API_BASE_URL</code> against <code>my-backend</code>.
+            Push: wire FCM so order events from the API can notify devices.
+          </p>
 
           <p style="margin-top: 16px;">
             <img
@@ -301,20 +311,11 @@
             />
           </p>
 
-          <h2 style="margin-top: 26px;">Create a Firebase config file</h2>
-          <h3>Add your firebase configuration into firebase/config file:</h3>
-
+          <h3 style="margin-top: 26px;">Where to find project credentials</h3>
           <p>
-            <img
-              src="./assets/images/firebaseConfig.png"
-              alt="Firebase config file example"
-              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
-            />
+            Open <a href="https://console.firebase.google.com/" target="_blank" rel="noopener">Firebase Console</a>
+            → Project Settings for app IDs, Cloud Messaging keys, and downloadable config files.
           </p>
-
-          <h3>
-            You can get all this information from <a href="https://console.firebase.google.com/" target="_blank" rel="noopener">Firebase Console</a> -&gt; Project Settings
-          </h3>
 
           <p style="margin-top: 16px;">
             <img
