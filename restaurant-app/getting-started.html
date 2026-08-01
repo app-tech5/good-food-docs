@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Getting Started — Good Food Restaurant App</title>
+    <title>Getting Started — Good Food Pro Restaurant App</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
     <script src="../js/sidebar-scroll.js"></script>
     <main class="layout">
       <aside class="sidebar">
-        <div class="sidebar-brand">
-          <span class="brand-dot"></span>
-          <p class="brand-title">Good Food Pro Docs</p>
-        </div>
+        <a class="brand-link" href="../index.html" aria-label="Good Food Pro Docs home">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-title">Good Food Pro Docs</span>
+        </a>
         <p class="sidebar-label">All apps</p>
         <nav class="nav">
           <a href="../environment-setup.html">Environment setup</a>
@@ -76,9 +76,9 @@
 
           <p class="sub">
             Install <strong>Node.js LTS</strong> and Expo / native tooling once for the suite:
-            <a href="../environment-setup.html#nodejs" style="color: var(--accent); font-weight: 600;">Environment setup → Node.js</a>
+            <a href="../environment-setup.html#nodejs">Environment setup → Node.js</a>
             and
-            <a href="../environment-setup.html#expo-tooling" style="color: var(--accent); font-weight: 600;">Expo and native tooling</a>.
+            <a href="../environment-setup.html#expo-tooling">Expo and native tooling</a>.
             Allow location when prompted if you rely on map or GPS-based features.
           </p>
         </section>
@@ -133,7 +133,7 @@ DEMO_PASSWORD: <span class="tok-str">'password123'</span>,
           <p class="sub">
             During local development many teams start from something like <code>http://localhost:5000/api</code> on an emulator; switch to your network IP before testing on hardware.
             More detail:
-            <a href="../environment-setup.html#api-reachability" style="color: var(--accent); font-weight: 600;">Environment setup → API reachability</a>.
+            <a href="../environment-setup.html#api-reachability">Environment setup → API reachability</a>.
           </p>
 
           <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Demo mode</h3>
@@ -144,7 +144,7 @@ DEMO_PASSWORD: <span class="tok-str">'password123'</span>,
           <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Languages (English / French)</h3>
           <p>
             Adding or adjusting languages is documented once for every mobile app:
-            <a href="../environment-setup.html#i18n-languages" style="color: var(--accent); font-weight: 600;">Environment setup → Languages (i18n)</a>.
+            <a href="../environment-setup.html#i18n-languages">Environment setup → Languages (i18n)</a>.
           </p>
 
           <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Visual customization</h3>
@@ -220,13 +220,13 @@ DEMO_PASSWORD: <span class="tok-str">'password123'</span>,
 
           <p class="sub">
             Default currency for the whole platform (admin + mobile) is documented here:
-            <a href="../environment-setup.html#change-app-currency" style="color: var(--accent); font-weight: 600;">Environment setup → App currency (change)</a>.
+            <a href="../environment-setup.html#change-app-currency">Environment setup → App currency (change)</a>.
           </p>
 
           <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Maps for production Android builds</h3>
           <p>
             Building a store-ready binary with maps follows the same Expo notes as the other apps:
-            <a href="../environment-setup.html#google-maps-expo" style="color: var(--accent); font-weight: 600;">Environment setup → Google Maps (Expo)</a>.
+            <a href="../environment-setup.html#google-maps-expo">Environment setup → Google Maps (Expo)</a>.
           </p>
         </section>
 
@@ -261,6 +261,7 @@ DEMO_PASSWORD: <span class="tok-str">'password123'</span>,
 <span class="tok-cmd">npm</span> <span class="tok-cmd">run</span> <span class="tok-arg">ios</span></code></pre>
           </div>
         </section>
+        <p class="docs-footer"><a href="#getting-started">↑ Back to top</a></p>
       </section>
     </main>
   </body>

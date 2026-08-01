@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Getting Started — Good Food Customer App</title>
+    <title>Getting Started — Good Food Pro Customer App</title>
     <link rel="stylesheet" href="site.css" />
   </head>
   <body>
     <script src="js/sidebar-scroll.js"></script>
     <main class="layout">
       <aside class="sidebar">
-        <div class="sidebar-brand">
-          <span class="brand-dot"></span>
-          <p class="brand-title">Good Food Pro Docs</p>
-        </div>
+        <a class="brand-link" href="./index.html" aria-label="Good Food Pro Docs home">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-title">Good Food Pro Docs</span>
+        </a>
         <p class="sidebar-label">All apps</p>
         <nav class="nav">
           <a href="./environment-setup.html">Environment setup</a>
@@ -63,12 +63,12 @@
 
           <div class="callout">
             <strong>Important:</strong> Start your backend before launching this app so login and API calls succeed. Use the
-            <a href="./my-backend/getting-started.html" style="color: var(--accent); font-weight: 600;">my-backend — Getting Started</a> guide to install MongoDB, run migrations, and start the API.
+            <a href="./my-backend/getting-started.html">my-backend — Getting Started</a> guide to install MongoDB, run migrations, and start the API.
           </div>
 
           <p class="sub">
             Install <strong>Node.js LTS</strong> and the usual Expo / Android / iOS tooling once for the whole suite — the full walkthrough (macOS, Windows, Linux, verify commands) lives on
-            <a href="./environment-setup.html#nodejs" style="color: var(--accent); font-weight: 600;">Environment setup → Node.js</a>.
+            <a href="./environment-setup.html#nodejs">Environment setup → Node.js</a>.
           </p>
         </section>
 
@@ -95,10 +95,10 @@
         </section>
 
         <section class="section">
-          <h2>3) Configuration &amp; Personnalisation</h2>
+          <h2>3) Configuration &amp; Personalization</h2>
           <p>
             The customer app is highly configurable: branding, demo mode, and visuals. Languages (EN/FR and adding locales) are documented once for every app on
-            <a href="./environment-setup.html#i18n-languages" style="color: var(--accent); font-weight: 600;">Environment setup → Languages (i18n)</a>.
+            <a href="./environment-setup.html#i18n-languages">Environment setup → Languages (i18n)</a>.
           </p>
 
           <h3 style="margin: 28px 0 12px 0; font-size: 19px;">API Configuration</h3>
@@ -205,13 +205,13 @@ DEMO_PASSWORD: <span class="tok-str">'demo123'</span></code></pre>
 
           <p class="sub">
             Default currency for the whole platform (admin + mobile) is documented here:
-            <a href="./environment-setup.html#change-app-currency" style="color: var(--accent); font-weight: 600;">Environment setup → App currency (change)</a>.
+            <a href="./environment-setup.html#change-app-currency">Environment setup → App currency (change)</a>.
           </p>
 
           <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Maps Configuration for Production APK</h3>
           <p>
             Maps keys and <code>app.json</code> steps are shared by every Expo app in this suite. See
-            <a href="./environment-setup.html#google-maps-expo" style="color: var(--accent); font-weight: 600;">Environment setup → Google Maps (Expo)</a>.
+            <a href="./environment-setup.html#google-maps-expo">Environment setup → Google Maps (Expo)</a>.
           </p>
         </section>
 
@@ -223,7 +223,7 @@ DEMO_PASSWORD: <span class="tok-str">'demo123'</span></code></pre>
           </p>
           <p class="sub">
             Keep <code>API_BASE_URL</code> stable and reachable from the simulator or phone. Why <code>localhost</code> often fails on a real device is explained on
-            <a href="./environment-setup.html#api-reachability" style="color: var(--accent); font-weight: 600;">Environment setup → API reachability</a>.
+            <a href="./environment-setup.html#api-reachability">Environment setup → API reachability</a>.
           </p>
         </section>
 
@@ -247,6 +247,7 @@ DEMO_PASSWORD: <span class="tok-str">'demo123'</span></code></pre>
 <span class="tok-cmd">npm</span> <span class="tok-cmd">run</span> <span class="tok-arg">web</span></code></pre>
           </div>
         </section>
+        <p class="docs-footer"><a href="#getting-started">↑ Back to top</a></p>
       </section>
     </main>
   </body>

@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Getting Started — Good Food my-backend</title>
+    <title>Getting Started — Good Food Pro my-backend</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
     <script src="../js/sidebar-scroll.js"></script>
     <main class="layout">
       <aside class="sidebar">
-        <div class="sidebar-brand">
-          <span class="brand-dot"></span>
-          <p class="brand-title">Good Food Pro Docs</p>
-        </div>
+        <a class="brand-link" href="../index.html" aria-label="Good Food Pro Docs home">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-title">Good Food Pro Docs</span>
+        </a>
         <p class="sidebar-label">All apps</p>
         <nav class="nav">
           <a href="../environment-setup.html">Environment setup</a>
@@ -61,7 +61,7 @@
           <h2>1) Prerequisites</h2>
           <p>
             You need a terminal, <strong>Node.js LTS</strong>, and a reachable <strong>MongoDB</strong>. The commands below are copy-paste friendly; full OS-specific Node install steps are on
-            <a href="../environment-setup.html#nodejs" style="color: var(--accent); font-weight: 600;">Environment setup → Node.js</a>.
+            <a href="../environment-setup.html#nodejs">Environment setup → Node.js</a>.
           </p>
 
           <h3 class="subheading">What this stack does</h3>
@@ -165,7 +165,7 @@
 
           <p class="sub">
             Phones and emulators: <code>localhost</code> is not your laptop—see
-            <a href="../environment-setup.html#api-reachability" style="color: var(--accent); font-weight: 600;">API reachability</a>.
+            <a href="../environment-setup.html#api-reachability">API reachability</a>.
           </p>
         </section>
 
@@ -338,10 +338,11 @@
           <p>
             Use the bundled <strong>Postman collection</strong> (<code>postman_collection.json</code>) or your client apps to hit auth and a simple resource route.
             When the API responds correctly, proceed to
-            <a href="../getting-started.html" style="color: var(--accent); font-weight: 600;">Customer Getting Started</a>
+            <a href="../getting-started.html">Customer Getting Started</a>
             or any other app guide—always with the backend still running.
           </p>
         </section>
+        <p class="docs-footer"><a href="#getting-started">↑ Back to top</a></p>
       </section>
     </main>
   </body>

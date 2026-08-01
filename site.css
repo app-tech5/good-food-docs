@@ -82,11 +82,42 @@ body {
   margin-bottom: 18px;
 }
 
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 10px;
+  padding: 6px 8px;
+  margin-left: -8px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.brand-link:hover {
+  background: #eef2f7;
+}
+
+.brand-link:hover .brand-title {
+  color: #0f172a;
+}
+
+.brand-link:focus-visible {
+  outline: 2px solid #94a3b8;
+  outline-offset: 2px;
+}
+
+.download-hero .brand-link {
+  margin-bottom: 0;
+}
+
 .brand-dot {
   width: 10px;
   height: 10px;
   border-radius: 999px;
   background: var(--accent);
+  flex-shrink: 0;
 }
 
 .brand-title {
@@ -94,6 +125,7 @@ body {
   font-size: 14px;
   font-weight: 700;
   color: #0f172a;
+  line-height: 1.2;
 }
 
 .sidebar-label {
@@ -135,10 +167,31 @@ body {
   background: var(--soft);
 }
 
+.nav a:focus-visible {
+  outline: 2px solid #94a3b8;
+  outline-offset: 2px;
+}
+
 .nav a.active {
   border-color: #b8c6d8;
   background: #eef3f7;
   color: #0f172a;
+}
+
+.content a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.content a:hover {
+  text-decoration: underline;
+}
+
+.content a:focus-visible {
+  outline: 2px solid #94a3b8;
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 .content {
@@ -637,6 +690,24 @@ code {
   text-decoration: underline;
 }
 
+.docs-footer {
+  margin-top: 36px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.docs-footer a {
+  color: var(--muted);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.docs-footer a:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+
 @media (max-width: 920px) {
   .layout {
     grid-template-columns: 1fr;
@@ -743,6 +814,12 @@ code {
   background: #111111;
 }
 
+.download-btn.primary:focus-visible,
+.download-btn.secondary:focus-visible {
+  outline: 2px solid #94a3b8;
+  outline-offset: 2px;
+}
+
 .download-btn.secondary {
   background: #ffffff;
   color: var(--text);
@@ -794,16 +871,27 @@ code {
 .download-back {
   margin: 0 0 12px;
   font-size: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 0;
 }
 
 .download-back a {
   color: var(--muted);
   text-decoration: none;
+  font-weight: 600;
 }
 
 .download-back a:hover {
   color: var(--text);
   text-decoration: underline;
+}
+
+.download-back a:focus-visible {
+  outline: 2px solid #94a3b8;
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 .download-hub-content {
@@ -819,7 +907,7 @@ code {
 
 .download-hub-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   margin-top: 22px;
 }
@@ -832,12 +920,18 @@ code {
   border-radius: 14px;
   padding: 20px;
   background: #ffffff;
-  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
 }
 
 .download-app-card:hover {
   border-color: #cbd5e1;
   box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  transform: translateY(-1px);
+}
+
+.download-app-card:focus-visible {
+  outline: 2px solid #94a3b8;
+  outline-offset: 2px;
 }
 
 .download-app-badge {
@@ -884,5 +978,11 @@ code {
 
   .download-hub-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 980px) and (min-width: 821px) {
+  .download-hub-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

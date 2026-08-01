@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Good Food — Customer App Documentation</title>
+    <title>Good Food Pro — Customer App Documentation</title>
     <link rel="stylesheet" href="site.css" />
   </head>
   <body>
     <script src="js/sidebar-scroll.js"></script>
     <main class="layout">
       <aside class="sidebar">
-        <div class="sidebar-brand">
-          <span class="brand-dot"></span>
-          <p class="brand-title">Good Food Pro Docs</p>
-        </div>
+        <a class="brand-link" href="./index.html" aria-label="Good Food Pro Docs home">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-title">Good Food Pro Docs</span>
+        </a>
         <p class="sidebar-label">All apps</p>
         <nav class="nav">
           <a href="./environment-setup.html">Environment setup</a>
@@ -47,7 +47,7 @@
       </aside>
 
       <section class="content">
-        <header id="overview" class="hero">
+        <header id="top" class="hero">
           <h1>Good Food Pro — Customer App</h1>
           <p class="subtitle">
             Build a modern food-ordering experience your customers enjoy from day one.
@@ -257,15 +257,16 @@
             <h2>What you need to run the app</h2>
             <p>
               Node.js, Expo, simulators, API URLs, and Maps keys are documented once for the whole suite on
-              <a href="./environment-setup.html" style="color: var(--accent); font-weight: 600;">Environment setup</a>.
+              <a href="./environment-setup.html">Environment setup</a>.
             </p>
             <p class="section-subtext">
               For this customer app specifically: clone <code>customer-app</code>, install dependencies, set <code>API_BASE_URL</code> in <code>config/index.js</code>,
-              start the API from <code>my-backend</code> (see <a href="./my-backend/getting-started.html" style="color: var(--accent); font-weight: 600;">Backend — Getting Started</a>),
-              then follow <a href="./getting-started.html" style="color: var(--accent); font-weight: 600;">Getting Started</a>.
+              start the API from <code>my-backend</code> (see <a href="./my-backend/getting-started.html">Backend — Getting Started</a>),
+              then follow <a href="./getting-started.html">Getting Started</a>.
             </p>
           </section>
         </section>
+        <p class="docs-footer"><a href="#top">↑ Back to top</a></p>
       </section>
     </main>
   </body>

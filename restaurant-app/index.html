@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Good Food — Restaurant App Documentation</title>
+    <title>Good Food Pro — Restaurant App Documentation</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
     <script src="../js/sidebar-scroll.js"></script>
     <main class="layout">
       <aside class="sidebar">
-        <div class="sidebar-brand">
-          <span class="brand-dot"></span>
-          <p class="brand-title">Good Food Pro Docs</p>
-        </div>
+        <a class="brand-link" href="../index.html" aria-label="Good Food Pro Docs home">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-title">Good Food Pro Docs</span>
+        </a>
         <p class="sidebar-label">All apps</p>
         <nav class="nav">
           <a href="../environment-setup.html">Environment setup</a>
@@ -47,7 +47,7 @@
       </aside>
 
       <section class="content">
-        <header id="overview" class="hero">
+        <header id="top" class="hero">
           <h1>Good Food — Restaurant App</h1>
           <p class="subtitle">
             The mobile workspace for restaurant teams: see new orders, update the menu, and understand how the service is performing—without digging through code.
@@ -152,7 +152,7 @@
             </p>
             <p class="section-subtext">
               To point the app at your environment, you set the API base URL and related options in a single configuration file at the
-              <strong>root of the restaurant project</strong> (see <a href="./getting-started.html" style="color: var(--accent); font-weight: 600;">Getting Started</a>).
+              <strong>root of the restaurant project</strong> (see <a href="./getting-started.html">Getting Started</a>).
             </p>
           </section>
 
@@ -272,15 +272,16 @@
             <h2>What you need to run the app</h2>
             <p>
               Node.js, Expo, simulators, API URLs, maps keys, and languages are explained once for the whole suite on
-              <a href="../environment-setup.html" style="color: var(--accent); font-weight: 600;">Environment setup</a>.
+              <a href="../environment-setup.html">Environment setup</a>.
             </p>
             <p class="section-subtext">
               For this app: clone <code>restaurant-app</code>, install dependencies, connect your API, use a
               <strong>restaurant</strong> account from your backend, then follow
-              <a href="./getting-started.html" style="color: var(--accent); font-weight: 600;">Getting Started</a>.
+              <a href="./getting-started.html">Getting Started</a>.
             </p>
           </section>
         </section>
+        <p class="docs-footer"><a href="#top">↑ Back to top</a></p>
       </section>
     </main>
   </body>

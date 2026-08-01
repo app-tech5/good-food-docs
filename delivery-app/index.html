@@ -3,22 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Good Food — Delivery (Driver) App Documentation</title>
+    <title>Good Food Pro — Delivery (Driver) App Documentation</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
     <script src="../js/sidebar-scroll.js"></script>
     <main class="layout">
       <aside class="sidebar">
-        <div class="sidebar-brand">
-          <span class="brand-dot"></span>
-          <p class="brand-title">Good Food Pro Docs</p>
-        </div>
+        <a class="brand-link" href="../index.html" aria-label="Good Food Pro Docs home">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-title">Good Food Pro Docs</span>
+        </a>
         <p class="sidebar-label">All apps</p>
         <nav class="nav">
           <a href="../environment-setup.html">Environment setup</a>
-          <a href="../downloads/driver/">Android download (driver APK)</a>
-          <a href="../downloads/index.html">Android downloads</a>
+<a href="../downloads/index.html">Android downloads</a>
         </nav>
         <p class="sidebar-label">Customer app</p>
         <nav class="nav">
@@ -48,7 +47,7 @@
       </aside>
 
       <section class="content">
-        <header id="overview" class="hero">
+        <header id="top" class="hero">
           <h1>Good Food — Delivery (Driver) App</h1>
           <p class="subtitle">
             A simple mobile app for your couriers: see new jobs, move orders through each delivery step, and check earnings—without juggling spreadsheets or phone calls.
@@ -264,15 +263,16 @@
             <h2>What you need to run the app</h2>
             <p>
               Shared setup (Node.js, Expo, API URLs, Maps) is on
-              <a href="../environment-setup.html" style="color: var(--accent); font-weight: 600;">Environment setup</a>.
+              <a href="../environment-setup.html">Environment setup</a>.
             </p>
             <p class="section-subtext">
               For drivers you also need a running Good Food API and at least one account promoted as a <strong>driver</strong> on the backend.
               Then open <code>delivery-app</code>, set <code>API_BASE_URL</code> in <code>config.js</code>, and follow
-              <a href="./getting-started.html" style="color: var(--accent); font-weight: 600;">Getting Started</a>.
+              <a href="./getting-started.html">Getting Started</a>.
             </p>
           </section>
         </section>
+        <p class="docs-footer"><a href="#top">↑ Back to top</a></p>
       </section>
     </main>
   </body>

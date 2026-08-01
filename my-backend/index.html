@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Good Food — my-backend (API) Documentation</title>
+    <title>Good Food Pro — my-backend (API) Documentation</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
     <script src="../js/sidebar-scroll.js"></script>
     <main class="layout">
       <aside class="sidebar">
-        <div class="sidebar-brand">
-          <span class="brand-dot"></span>
-          <p class="brand-title">Good Food Pro Docs</p>
-        </div>
+        <a class="brand-link" href="../index.html" aria-label="Good Food Pro Docs home">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-title">Good Food Pro Docs</span>
+        </a>
         <p class="sidebar-label">All apps</p>
         <nav class="nav">
           <a href="../environment-setup.html">Environment setup</a>
@@ -47,7 +47,7 @@
       </aside>
 
       <section class="content">
-        <header id="overview" class="hero">
+        <header id="top" class="hero">
           <h1>Good Food — my-backend</h1>
           <p class="subtitle">
             The Node.js API and database layer every Good Food client talks to: auth, catalog, orders, drivers, settings, uploads, and more.
@@ -266,14 +266,15 @@
             <h2>What you need next</h2>
             <p>
               Install Node.js and MongoDB, configure <code>.env</code>, run migrations, then start the server—step by step on
-              <a href="./getting-started.html" style="color: var(--accent); font-weight: 600;">Getting Started</a>.
+              <a href="./getting-started.html">Getting Started</a>.
             </p>
             <p class="section-subtext">
               Cross-cutting setup (Node install paths, CORS ideas, reachability from phones) is also on
-              <a href="../environment-setup.html" style="color: var(--accent); font-weight: 600;">Environment setup</a>.
+              <a href="../environment-setup.html">Environment setup</a>.
             </p>
           </section>
         </section>
+        <p class="docs-footer"><a href="#top">↑ Back to top</a></p>
       </section>
     </main>
   </body>

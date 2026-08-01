@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Good Food — Admin App Documentation</title>
+    <title>Good Food Pro — Admin App Documentation</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
     <script src="../js/sidebar-scroll.js"></script>
     <main class="layout">
       <aside class="sidebar">
-        <div class="sidebar-brand">
-          <span class="brand-dot"></span>
-          <p class="brand-title">Good Food Pro Docs</p>
-        </div>
+        <a class="brand-link" href="../index.html" aria-label="Good Food Pro Docs home">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-title">Good Food Pro Docs</span>
+        </a>
         <p class="sidebar-label">All apps</p>
         <nav class="nav">
           <a href="../environment-setup.html">Environment setup</a>
@@ -47,7 +47,7 @@
       </aside>
 
       <section class="content">
-        <header id="overview" class="hero">
+        <header id="top" class="hero">
           <h1>Good Food — Admin App</h1>
           <p class="subtitle">
             The web control room for your Good Food platform: oversee users, restaurants, drivers, orders, and settings from a browser—without opening a code editor.
@@ -147,7 +147,7 @@
             </p>
             <p class="section-subtext">
               Configuration begins with telling the bundle where your API lives; see
-              <a href="./getting-started.html" style="color: var(--accent); font-weight: 600;">Getting Started</a> for the exact steps, explained in the same friendly tone as the customer guide.
+              <a href="./getting-started.html">Getting Started</a> for the exact steps, explained in the same friendly tone as the customer guide.
             </p>
           </section>
 
@@ -282,14 +282,15 @@
             <h2>What you need to run the app</h2>
             <p>
               Node.js installation and API reachability for web apps are covered on
-              <a href="../environment-setup.html" style="color: var(--accent); font-weight: 600;">Environment setup</a>.
+              <a href="../environment-setup.html">Environment setup</a>.
             </p>
             <p class="section-subtext">
               For this dashboard: clone <code>admin-app</code>, install dependencies, set your API base URL as described in
-              <a href="./getting-started.html" style="color: var(--accent); font-weight: 600;">Getting Started</a>, sign in with an admin-capable account, and open the local dev URL in your browser.
+              <a href="./getting-started.html">Getting Started</a>, sign in with an admin-capable account, and open the local dev URL in your browser.
             </p>
           </section>
         </section>
+        <p class="docs-footer"><a href="#top">↑ Back to top</a></p>
       </section>
     </main>
   </body>

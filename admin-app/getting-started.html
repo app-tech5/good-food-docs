@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Getting Started — Good Food Admin App</title>
+    <title>Getting Started — Good Food Pro Admin App</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
     <script src="../js/sidebar-scroll.js"></script>
     <main class="layout">
       <aside class="sidebar">
-        <div class="sidebar-brand">
-          <span class="brand-dot"></span>
-          <p class="brand-title">Good Food Pro Docs</p>
-        </div>
+        <a class="brand-link" href="../index.html" aria-label="Good Food Pro Docs home">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-title">Good Food Pro Docs</span>
+        </a>
         <p class="sidebar-label">All apps</p>
         <nav class="nav">
           <a href="../environment-setup.html">Environment setup</a>
@@ -76,9 +76,9 @@
 
           <p class="sub">
             Install <strong>Node.js LTS</strong>:
-            <a href="../environment-setup.html#nodejs" style="color: var(--accent); font-weight: 600;">Environment setup → Node.js</a>.
+            <a href="../environment-setup.html#nodejs">Environment setup → Node.js</a>.
             Languages (EN/FR) for all apps:
-            <a href="../environment-setup.html#i18n-languages" style="color: var(--accent); font-weight: 600;">Environment setup → Languages (i18n)</a>.
+            <a href="../environment-setup.html#i18n-languages">Environment setup → Languages (i18n)</a>.
           </p>
         </section>
 
@@ -130,7 +130,7 @@ roleCredentials = {
           <p class="sub">
             Replace sample emails and passwords with users that actually exist in <em>your</em> database.
             Troubleshooting reachability:
-            <a href="../environment-setup.html#api-reachability" style="color: var(--accent); font-weight: 600;">Environment setup → API reachability</a>.
+            <a href="../environment-setup.html#api-reachability">Environment setup → API reachability</a>.
           </p>
 
           <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Interface language</h3>
@@ -209,7 +209,7 @@ roleCredentials = {
 
           <p class="sub">
             Default currency for the whole platform (admin + mobile) is documented here:
-            <a href="../environment-setup.html#change-app-currency" style="color: var(--accent); font-weight: 600;">Environment setup → App currency (change)</a>.
+            <a href="../environment-setup.html#change-app-currency">Environment setup → App currency (change)</a>.
           </p>
         </section>
 
@@ -244,6 +244,7 @@ roleCredentials = {
 <span class="tok-cmd">npm</span> <span class="tok-cmd">test</span></code></pre>
           </div>
         </section>
+        <p class="docs-footer"><a href="#getting-started">↑ Back to top</a></p>
       </section>
     </main>
   </body>

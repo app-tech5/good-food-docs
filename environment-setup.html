@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Environment & Branding setup — Good Food Pro Docs</title>
+    <title>Environment &amp; Branding — Good Food Pro Docs</title>
     <link rel="stylesheet" href="site.css" />
     <script>
       function switchPlatform(el) {
@@ -24,10 +24,10 @@
   <body>
     <main class="layout">
       <aside class="sidebar">
-        <div class="sidebar-brand">
-          <span class="brand-dot"></span>
-          <p class="brand-title">Good Food Pro Docs</p>
-        </div>
+        <a class="brand-link" href="./index.html" aria-label="Good Food Pro Docs home">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-title">Good Food Pro Docs</span>
+        </a>
         <p class="sidebar-label">All apps</p>
         <nav class="nav">
           <a class="active" href="./environment-setup.html">Environment setup</a>
@@ -416,6 +416,7 @@
             If your project also reads a key from <code>config/index.js</code> (customer) or <code>config.js</code> (driver), keep that value in sync. Rebuild with <code>eas build</code> or your usual Expo workflow after changing keys.
           </p>
         </section>
+        <p class="docs-footer"><a href="#top">↑ Back to top</a></p>
       </section>
     </main>
   </body>
