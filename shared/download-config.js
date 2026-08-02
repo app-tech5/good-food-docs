@@ -1,9 +1,9 @@
 window.GOOD_FOOD_DOWNLOAD_CONFIG = {
-  appName: "Good Foods",
+  appName: "Good Food Pro Customer",
   apkFileName: "GoodFoods.apk",
   baseUrl: "https://good-foods.digitaldienste.fr",
   downloadsPath: "/downloads",
-  pageTitle: "Install Good Foods on Android",
+  pageTitle: "Install Good Food Pro Customer on Android",
   pageSubtitle:
     "Download the latest APK and install it on your Android device. You can also scan the QR code to open the same download link directly on your phone.",
   ctaPrimaryLabel: "Download APK",

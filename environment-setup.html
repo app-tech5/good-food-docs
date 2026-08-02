@@ -133,7 +133,9 @@
         <section class="section" id="expo-tooling">
           <h2>Expo — installation and commands</h2>
           <p>
-            Good Food mobile apps use <strong>React Native</strong> with <strong>Expo</strong>. The Expo packages are installed <em>with the project</em> when you run <code>npm install</code> in <code>customer-app</code> or <code>delivery-app</code>.
+            Good Food Pro mobile apps use <strong>React Native</strong> with <strong>Expo</strong> (~54) and a custom native stack.
+            Install dependencies with <code>npm install</code> in <code>customer-app</code>, <code>delivery-app</code>, or <code>restaurant-app</code>.
+            Node.js <strong>20+</strong> is required.
           </p>
 
           <h3>1) Use Expo from the project (recommended)</h3>
@@ -150,8 +152,13 @@
           <p class="sub">
             The same thing is usually wired as <code>npm start</code> in <code>package.json</code>, so you can run <code>npm start</code> instead of <code>npx expo start</code> if you prefer.
           </p>
+          <div class="callout">
+            <strong>Expo Go is not supported</strong> for Good Food Pro mobile apps.
+            They need a <strong>development build</strong> (<code>expo-dev-client</code> / native project under <code>android/</code> and <code>ios/</code>).
+            First install: <code>npm run android</code> or <code>npm run ios</code>. Later sessions: <code>npm start</code>, then open the installed app.
+          </div>
           <p class="sub">
-            In the terminal UI, press <code>a</code> for Android emulator, <code>i</code> for iOS simulator (macOS + Xcode), or scan the QR code with <strong>Expo Go</strong> on your phone.
+            After the development build is installed, you can press <code>a</code> / <code>i</code> in the Expo terminal if it resolves your installed client — otherwise open the app icon on the device/emulator.
           </p>
 
           <h3>2) Optional — global Expo CLI</h3>
@@ -178,8 +185,13 @@
           </div>
           <p class="sub">Official reference: <a href="https://docs.expo.dev/get-started/installation/">Expo — installation</a> and <a href="https://docs.expo.dev/build/setup/">EAS Build</a>.</p>
 
-          <h3>4) Expo Go on a physical device</h3>
-          <p>Install the <strong>Expo Go</strong> app from the Apple App Store or Google Play. When <code>npx expo start</code> is running, scan the QR code from the terminal or browser to open the project.</p>
+          <h3>4) Development build on a physical device</h3>
+          <p>
+            Connect the phone with USB debugging (Android) or a signed iOS development device, then run
+            <code>npm run android</code> / <code>npm run ios</code> once from the app folder.
+            Point <code>EXPO_PUBLIC_API_URL</code> at your computer’s LAN IP (not <code>localhost</code> on a physical phone).
+            For Metro over USB you can also use <code>adb reverse tcp:8081 tcp:8081</code>.
+          </p>
 
           <h3>5) Android Studio and Xcode</h3>
           <ul>
@@ -382,7 +394,8 @@
         <section class="section" id="google-maps-expo">
           <h2>Google Maps (Expo, production Android)</h2>
           <p>
-            During development with <code>npm start</code>, maps often work without extra setup. For a real APK/AAB, Google usually expects a Maps API key in your Expo Android config. The steps are the same for the customer and driver apps.
+            Some map experiences may use Google Maps SDKs on customer builds. The <strong>driver app</strong> uses <strong>MapLibre</strong> by default and does <strong>not</strong> require a Google Maps API key in <code>config.js</code>.
+            When a Google key is needed for a production APK/AAB, place it in your Expo Android config as below.
           </p>
 
           <div class="code-block">

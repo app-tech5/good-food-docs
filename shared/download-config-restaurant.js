@@ -1,9 +1,9 @@
 window.GOOD_FOOD_DOWNLOAD_CONFIG = {
-  appName: "Good Food Restaurant",
+  appName: "Good Food Pro Restaurant",
   apkFileName: "GoodFoodRestaurant.apk",
   baseUrl: "https://good-foods.digitaldienste.fr",
   downloadsPath: "/downloads",
-  pageTitle: "Install Good Food Restaurant on Android",
+  pageTitle: "Install Good Food Pro Restaurant on Android",
   pageSubtitle:
     "Download the latest restaurant app APK and install it on your Android device. You can also scan the QR code to open the same download link directly on your phone.",
   ctaPrimaryLabel: "Download APK",
