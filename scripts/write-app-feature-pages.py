@@ -674,9 +674,18 @@ def main():
                     ],
                 },
                 {
+                    "h2": "Taxes",
+                    "paras": [
+                        "Local tax rules (VAT, GST, sales tax, and similar) belong in the Taxes catalogue so carts and reports collect the right amounts for your jurisdiction. Configure rates before go-live and verify on a test checkout that tax lines match finance expectations.",
+                    ],
+                    "shots": [
+                        ("wide", f"{A}/features/admin-taxes.jpg", "Taxes", "Admin tax settings"),
+                    ],
+                },
+                {
                     "h2": "Marketplace app settings",
                     "paras": [
-                        "App Settings hold cross-cutting marketplace behaviour: default language, timezone, cash-on-delivery, delivery fee defaults, maximum delivery distance, and related flags. Commission baselines and other monetization hooks often live here as well — review this screen when you enter a new city.",
+                        "App Settings hold cross-cutting marketplace behaviour: default language, timezone, cash-on-delivery, delivery fee defaults, maximum delivery distance, and related flags. Commission baselines and channel hooks (WhatsApp / USSD / web ordering when enabled) often live here too — review this screen when you enter a new city.",
                     ],
                     "blocks": [
                         {
@@ -684,13 +693,312 @@ def main():
                             "steps": [
                                 "Open <strong>Settings → App Settings</strong> and View the active app record.",
                                 "Set timezone, default language, delivery fee / distance, and COD according to local rules.",
-                                "Align currency and gateways with that same market.",
+                                "Align currency, taxes, and gateways with that same market.",
+                                "Enable only the order channels you will actually operate.",
                                 "Run one full order in that configuration before inviting real restaurants.",
                             ],
                         },
                     ],
                     "shots": [
                         ("wide", f"{A}/features/app-settings.jpg", "App settings", "Marketplace app settings"),
+                    ],
+                },
+            ],
+            "../site.css",
+            "../js/sidebar-scroll.js",
+            "../",
+        ),
+        encoding="utf-8",
+    )
+
+    # --- Pages covering CodeCanyon / Pro feature gaps ---
+
+    ROOT.joinpath("ordering.html").write_text(
+        page(
+            "Ordering & discovery — Customer app",
+            "Ordering & discovery",
+            "How customers find restaurants, build a cart, apply offers, and place an order — the core marketplace journey.",
+            ["Home", "Search", "Cart", "Checkout", "Offers"],
+            [
+                {
+                    "h2": "Find food in a multi-restaurant marketplace",
+                    "paras": [
+                        "The customer app is a multi-store marketplace: one install, many restaurants. Home mixes delivery / pickup, search, categories, banners, and featured places. Nearby map views help when the customer wants “what’s close”, and restaurant pages carry hours, fees, ratings, offers, and the menu.",
+                    ],
+                    "blocks": [
+                        {
+                            "h3": "Discovery path",
+                            "steps": [
+                                "Open the app and choose <strong>Delivery</strong> or <strong>Pickup</strong> when both are available.",
+                                "Browse the homepage (categories, offers, restaurants) or open <strong>Search</strong> for a keyword.",
+                                "Optionally use the map / nearby view to pick a place geographically.",
+                                "Open a restaurant: check status, ETA / fee cues, offers, then browse the menu and add items (with variants when priced).",
+                            ],
+                        },
+                    ],
+                    "shots": [
+                        ("phone", f"{A}/features/ordering-home.jpg", "Home", "Homepage — delivery/pickup, categories, offers"),
+                        ("phone", f"{A}/features/ordering-search.jpg", "Search", "Search restaurants and dishes"),
+                        ("phone", f"{A}/features/ordering-menu.jpg", "Menu", "Restaurant menu and add to cart"),
+                    ],
+                },
+                {
+                    "h2": "Cart, offers, and checkout",
+                    "paras": [
+                        "The cart stays synced with the backend. Customers can manage items, apply a promo / coupon when you run campaigns, choose delivery or pickup, pick an address, and pay with an enabled method (card, cash on delivery, wallet, and other gateways you activate).",
+                        "Offers and coupons are how you grow volume: percentage or fixed discounts, free delivery, and similar campaign types configured in admin. The customer sees them on home / restaurant surfaces and can enter a code at checkout when the campaign allows.",
+                    ],
+                    "blocks": [
+                        {
+                            "h3": "Place an order",
+                            "steps": [
+                                "Review the cart (quantities, extras, totals).",
+                                "Apply a coupon or claim a listed offer when available.",
+                                "Confirm fulfillment (delivery vs pickup), address, and payment method.",
+                                "Place the order, then follow it in order history / <a href=\"./order-tracking.html\">tracking</a>.",
+                            ],
+                        },
+                        {
+                            "h3": "Where offers are configured",
+                            "paras": [
+                                'Coupons and promotions are managed in the admin app — see <a href="./admin-app/promotions.html">Promotions &amp; coupons</a>. Payment methods and wallet top-ups: <a href="./wallet.html">Wallet &amp; payments</a> and <a href="./admin-app/monetization.html">Monetization</a>.',
+                            ],
+                        },
+                    ],
+                    "shots": [
+                        ("phone", f"{A}/features/ordering-cart.jpg", "Cart", "Cart before checkout"),
+                        ("phone", f"{A}/features/ordering-checkout.jpg", "Checkout", "Summary, payment, place order"),
+                        ("phone", f"{A}/features/ordering-offers.jpg", "Offers", "Offers / vouchers surface"),
+                    ],
+                },
+                {
+                    "h2": "Order history",
+                    "paras": [
+                        "After checkout, orders appear in the order list with status and detail. From there customers reopen tracking, contact the restaurant when needed, and later leave reviews when your flow enables them.",
+                    ],
+                    "shots": [
+                        ("phone", f"{A}/features/ordering-history.jpg", "Orders", "Order history list"),
+                    ],
+                },
+            ],
+            "./site.css",
+            "./js/sidebar-scroll.js",
+            "./",
+        ),
+        encoding="utf-8",
+    )
+
+    (ROOT / "delivery-app/earnings.html").write_text(
+        page(
+            "Earnings & payouts — Driver app",
+            "Earnings & payouts",
+            "How drivers see today’s money, delivery history, transactions, and where payouts are sent.",
+            ["Earnings", "Transactions", "Payouts"],
+            [
+                {
+                    "h2": "Know what a shift paid",
+                    "paras": [
+                        "Couriers need a clear money picture: what they earned today, what sits in history, and how cash reaches their bank. The driver app exposes earnings summaries, transaction history, and payout method setup (including Connect-style onboarding when you enable it).",
+                        "Job handling, batching, and proof of delivery stay on the logistics screens; this page is the money side of the same role.",
+                    ],
+                    "blocks": [
+                        {
+                            "h3": "Driver checklist",
+                            "steps": [
+                                "Complete deliveries for the shift (see <a href=\"./logistics.html\">Logistics &amp; POD</a>).",
+                                "Open <strong>Earnings</strong> to review today’s totals and periods your build shows.",
+                                "Open transactions when you need a line-by-line trail.",
+                                "Add or update <strong>Payout methods</strong> so admin / Connect can settle the driver.",
+                            ],
+                        },
+                    ],
+                    "shots": [
+                        ("phone", f"{A}/features/driver-earnings.jpg", "Earnings", "Driver earnings overview"),
+                        ("phone", f"{A}/features/driver-transactions.jpg", "Transactions", "Driver transaction history"),
+                        ("phone", f"{A}/features/driver-payouts.jpg", "Payouts", "Payout methods"),
+                    ],
+                },
+            ],
+            "../site.css",
+            "../js/sidebar-scroll.js",
+            "../",
+        ),
+        encoding="utf-8",
+    )
+
+    (ROOT / "restaurant-app/operations.html").write_text(
+        page(
+            "Orders & menu — Restaurant app",
+            "Orders & menu",
+            "Day-to-day partner ops: accept or reject orders, manage the menu, set hours, and read analytics — before or beside the Kitchen Display.",
+            ["Orders", "Menu", "Hours", "Analytics"],
+            [
+                {
+                    "h2": "Live orders: accept and reject",
+                    "paras": [
+                        "Incoming orders land in the restaurant orders list in real time. Operators accept or reject, then move the meal through prepare / ready so the driver (or pickup customer) can collect it. New-order alerts can deep-link back to the order so nobody misses a ticket during rush.",
+                        'For a paperless board on the pass, use the <a href="./kitchen-display.html">Kitchen Display (KDS)</a> — it shares the same order pipeline.',
+                    ],
+                    "blocks": [
+                        {
+                            "h3": "Service loop",
+                            "steps": [
+                                "Keep the restaurant <strong>open</strong> when you can fulfill orders.",
+                                "Watch the orders list; accept what you can cook, reject with a clear reason when you cannot.",
+                                "Advance status as food progresses; mark ready for courier or pickup.",
+                                "Use order history when you need past tickets or disputes.",
+                            ],
+                        },
+                    ],
+                    "shots": [
+                        ("phone", f"{A}/features/resto-ops-orders.jpg", "Orders", "Live restaurant orders"),
+                    ],
+                },
+                {
+                    "h2": "Menu, hours, and analytics",
+                    "paras": [
+                        "Partners manage categories, dishes, prices, photos, variants, and availability from the restaurant app — without waiting on admin for every price tweak. Opening hours and delivery / pickup controls (radius, prep time) define when and how far you sell.",
+                        "Dashboard KPIs and analytics (periods, bestsellers, peaks) help owners see what is working. Reviews appear for reputation; reply flows depend on your build.",
+                    ],
+                    "blocks": [
+                        {
+                            "h3": "Keep the catalog honest",
+                            "steps": [
+                                "Open <strong>Menu</strong>: add or edit categories and items, set prices and photos, toggle availability when an item is 86’d.",
+                                "Edit <strong>Opening hours</strong> and delivery settings so the customer app shows accurate open/closed and radius.",
+                                "Check analytics after a few service days to spot bestsellers and quiet slots.",
+                            ],
+                        },
+                    ],
+                    "shots": [
+                        ("phone", f"{A}/features/resto-ops-menu.jpg", "Menu", "Restaurant menu management"),
+                        ("phone", f"{A}/features/resto-ops-menu-edit.jpg", "Edit item", "Add / edit a menu item"),
+                        ("phone", f"{A}/features/resto-ops-hours.jpg", "Hours", "Opening hours"),
+                        ("phone", f"{A}/features/resto-ops-analytics.jpg", "Analytics", "Restaurant analytics"),
+                    ],
+                },
+            ],
+            "../site.css",
+            "../js/sidebar-scroll.js",
+            "../",
+        ),
+        encoding="utf-8",
+    )
+
+    (ROOT / "admin-app/operations.html").write_text(
+        page(
+            "Operations — Admin app",
+            "Operations",
+            "The day-to-day control room: orders, restaurants, customers, drivers, and the food catalog that powers every mobile app.",
+            ["Orders", "Partners", "Catalog", "Users"],
+            [
+                {
+                    "h2": "Orders and partners",
+                    "paras": [
+                        "Admin is the marketplace command center. The orders list shows payment state, customer, restaurant, driver, totals, and fulfillment status — with View into full detail (line items, delivery, timeline). From here support can investigate without asking three apps for screenshots.",
+                        "Restaurant and driver management cover onboarding and ongoing control: activate or close restaurants, approve drivers before they go online, and keep profiles consistent with what mobile apps display.",
+                    ],
+                    "blocks": [
+                        {
+                            "h3": "Operator habits",
+                            "steps": [
+                                "Start on the dashboard KPIs when you open admin.",
+                                "Use <strong>Orders</strong> for live incidents (failed payment, stuck status, missing driver).",
+                                "Use <strong>Restaurants</strong> / <strong>Drivers</strong> / <strong>Users</strong> to approve, edit, or suspend accounts.",
+                                "Open a row’s View when you need the full record.",
+                            ],
+                        },
+                    ],
+                    "shots": [
+                        ("wide", f"{A}/features/admin-ops-orders.jpg", "Orders", "Admin orders list"),
+                        ("wide", f"{A}/features/admin-ops-restaurants.jpg", "Restaurants", "Restaurant management"),
+                        ("wide", f"{A}/features/admin-ops-drivers.jpg", "Drivers", "Driver management"),
+                        ("wide", f"{A}/features/admin-ops-users.jpg", "Users", "Customer users"),
+                    ],
+                },
+                {
+                    "h2": "Menus and catalog",
+                    "paras": [
+                        "Categories, menus, products, and variants can be curated centrally when partners need help — or when you seed a new city. What you publish here is what customers browse and what restaurants edit on mobile when you allow dual management.",
+                    ],
+                    "shots": [
+                        ("wide", f"{A}/features/admin-ops-menus.jpg", "Menus", "Admin menus / catalog"),
+                    ],
+                },
+            ],
+            "../site.css",
+            "../js/sidebar-scroll.js",
+            "../",
+        ),
+        encoding="utf-8",
+    )
+
+    (ROOT / "admin-app/promotions.html").write_text(
+        page(
+            "Promotions & coupons — Admin app",
+            "Promotions & coupons",
+            "How operators run growth campaigns: promotion types, scoping, and coupon codes customers redeem at checkout.",
+            ["Promotions", "Coupons", "Campaigns"],
+            [
+                {
+                    "h2": "Grow volume with real campaigns",
+                    "paras": [
+                        "The promotion engine supports the campaign styles buyers expect from a modern marketplace: percentage or fixed discounts, free delivery, Buy X Get Y / combos, flash sales, happy hours, and similar types your build exposes. Scope a campaign to the whole platform or to a restaurant, category, or item — and target audiences such as all, new, existing, or VIP customers when those flags exist.",
+                        "Coupon codes add constrained redemptions: minimum order, max uses, per-user limits, first-order-only, and expiry. Customers enter codes in the cart / checkout path documented under <a href=\"../ordering.html\">Ordering &amp; discovery</a>.",
+                    ],
+                    "blocks": [
+                        {
+                            "h3": "Launch a campaign safely",
+                            "steps": [
+                                "Open <strong>Promotions</strong> and create or edit a campaign (type, discount, schedule, scope).",
+                                "Open <strong>Coupons</strong> when you need a redeemable code with usage limits.",
+                                "Activate only what you can afford on margin; test with a demo customer order.",
+                                "Confirm the offer appears on customer home / restaurant surfaces and that checkout applies the code.",
+                            ],
+                        },
+                    ],
+                    "shots": [
+                        ("wide", f"{A}/features/admin-promotions.jpg", "Promotions", "Admin promotions list"),
+                        ("wide", f"{A}/features/admin-coupons.jpg", "Coupons", "Admin coupon codes"),
+                    ],
+                },
+            ],
+            "../site.css",
+            "../js/sidebar-scroll.js",
+            "../",
+        ),
+        encoding="utf-8",
+    )
+
+    (ROOT / "admin-app/reports.html").write_text(
+        page(
+            "Reports & analytics — Admin app",
+            "Reports & analytics",
+            "Sales, restaurant, and driver reports so you can prove performance — not guess from a single dashboard card.",
+            ["Sales", "Restaurants", "Drivers", "Ledger"],
+            [
+                {
+                    "h2": "Prove what the marketplace earned",
+                    "paras": [
+                        "Reports turn operational noise into decisions: sales with AOV, delivery fees, taxes collected, and category breakdowns; restaurant and driver performance for partner conversations; and the money ledger (transactions) when you need fee-level transparency on payments, payouts, refunds, tips, and wallet movements.",
+                        "Use earnings under <a href=\"./monetization.html\">Monetization</a> for commission splits; use reports when you need period analytics and partner scorecards.",
+                    ],
+                    "blocks": [
+                        {
+                            "h3": "Weekly operator rhythm",
+                            "steps": [
+                                "Open <strong>Sales reports</strong> for the period you care about.",
+                                "Check restaurant and driver reports for outliers (late deliveries, weak acceptance, top performers).",
+                                "Spot-check <strong>Transactions</strong> when a payout or refund is disputed.",
+                                "Export or screenshot what your finance process needs (depending on your deployment tools).",
+                            ],
+                        },
+                    ],
+                    "shots": [
+                        ("wide", f"{A}/features/admin-sales-reports.jpg", "Sales reports", "Sales reporting"),
+                        ("wide", f"{A}/features/admin-resto-reports.jpg", "Restaurant reports", "Restaurant performance"),
+                        ("wide", f"{A}/features/admin-driver-reports.jpg", "Driver reports", "Driver performance"),
+                        ("wide", f"{A}/features/admin-transactions.jpg", "Transactions", "Money ledger / transactions"),
                     ],
                 },
             ],

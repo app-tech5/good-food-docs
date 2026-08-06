@@ -30,12 +30,12 @@ def build_sidebar(html_path: Path) -> str:
         out.append("        </nav>")
         return out
 
-    # Active flags
     is_env = rel == "environment-setup.html"
     is_dl = rel.startswith("downloads/")
 
     is_cust_ov = rel == "index.html"
     is_cust_gs = rel == "getting-started.html"
+    is_cust_ord = rel == "ordering.html"
     is_cust_wallet = rel == "wallet.html"
     is_cust_sub = rel == "subscriptions.html"
     is_cust_ai = rel == "intelligence.html"
@@ -44,19 +44,24 @@ def build_sidebar(html_path: Path) -> str:
     is_drv_ov = rel == "delivery-app/index.html"
     is_drv_gs = rel == "delivery-app/getting-started.html"
     is_drv_log = rel == "delivery-app/logistics.html"
+    is_drv_earn = rel == "delivery-app/earnings.html"
     is_drv_sub = rel == "delivery-app/subscriptions.html"
 
     is_res_ov = rel == "restaurant-app/index.html"
     is_res_gs = rel == "restaurant-app/getting-started.html"
+    is_res_ops = rel == "restaurant-app/operations.html"
     is_res_kds = rel == "restaurant-app/kitchen-display.html"
     is_res_sub = rel == "restaurant-app/subscriptions.html"
     is_res_spon = rel == "restaurant-app/sponsored.html"
 
     is_adm_ov = rel == "admin-app/index.html"
     is_adm_gs = rel == "admin-app/getting-started.html"
+    is_adm_ops = rel == "admin-app/operations.html"
     is_adm_mon = rel == "admin-app/monetization.html"
+    is_adm_promo = rel == "admin-app/promotions.html"
     is_adm_mkt = rel == "admin-app/market.html"
     is_adm_spon = rel == "admin-app/sponsored.html"
+    is_adm_rep = rel == "admin-app/reports.html"
 
     is_be_ov = rel == "my-backend/index.html"
     is_be_gs = rel == "my-backend/getting-started.html"
@@ -84,6 +89,7 @@ def build_sidebar(html_path: Path) -> str:
             [
                 (cust_ov, "Overview", is_cust_ov),
                 (f"{prefix}getting-started.html", "Getting Started", is_cust_gs),
+                (f"{prefix}ordering.html", "Ordering & discovery", is_cust_ord),
                 (f"{prefix}wallet.html", "Wallet & payments", is_cust_wallet),
                 (f"{prefix}subscriptions.html", "Subscriptions", is_cust_sub),
                 (f"{prefix}intelligence.html", "AI intelligence", is_cust_ai),
@@ -96,6 +102,7 @@ def build_sidebar(html_path: Path) -> str:
                 (drv_ov, "Overview", is_drv_ov),
                 (f"{prefix}delivery-app/getting-started.html", "Getting Started", is_drv_gs),
                 (f"{prefix}delivery-app/logistics.html", "Logistics & POD", is_drv_log),
+                (f"{prefix}delivery-app/earnings.html", "Earnings & payouts", is_drv_earn),
                 (f"{prefix}delivery-app/subscriptions.html", "Subscriptions", is_drv_sub),
             ],
         ),
@@ -104,6 +111,7 @@ def build_sidebar(html_path: Path) -> str:
             [
                 (res_ov, "Overview", is_res_ov),
                 (f"{prefix}restaurant-app/getting-started.html", "Getting Started", is_res_gs),
+                (f"{prefix}restaurant-app/operations.html", "Orders & menu", is_res_ops),
                 (f"{prefix}restaurant-app/kitchen-display.html", "Kitchen Display (KDS)", is_res_kds),
                 (f"{prefix}restaurant-app/subscriptions.html", "Subscriptions", is_res_sub),
                 (f"{prefix}restaurant-app/sponsored.html", "Sponsored listings", is_res_spon),
@@ -114,9 +122,12 @@ def build_sidebar(html_path: Path) -> str:
             [
                 (adm_ov, "Overview", is_adm_ov),
                 (f"{prefix}admin-app/getting-started.html", "Getting Started", is_adm_gs),
+                (f"{prefix}admin-app/operations.html", "Operations", is_adm_ops),
                 (f"{prefix}admin-app/monetization.html", "Monetization", is_adm_mon),
+                (f"{prefix}admin-app/promotions.html", "Promotions & coupons", is_adm_promo),
                 (f"{prefix}admin-app/market.html", "Market & languages", is_adm_mkt),
                 (f"{prefix}admin-app/sponsored.html", "Sponsored listings", is_adm_spon),
+                (f"{prefix}admin-app/reports.html", "Reports & analytics", is_adm_rep),
             ],
         ),
         *section(
@@ -127,38 +138,39 @@ def build_sidebar(html_path: Path) -> str:
             ],
         ),
     ]
-    return "\n".join(lines) + "\n"
+    return "\n".join(lines)
 
 
 SIDEBAR_RE = re.compile(
-    r'(<aside class="sidebar"[^>]*>)(.*?)(</aside>)',
+    r'<aside class="sidebar" data-docs-sidebar>.*?</aside>',
     re.DOTALL,
 )
 
 
-def patch_file(html_path: Path) -> bool:
-    text = html_path.read_text(encoding="utf-8")
-    sidebar = build_sidebar(html_path)
-    m = SIDEBAR_RE.search(text)
-    if not m:
-        print("NO SIDEBAR", html_path)
+def inject(path: Path) -> bool:
+    text = path.read_text(encoding="utf-8")
+    if 'data-docs-sidebar' not in text:
+        print("NO SIDEBAR", path)
         return False
-    new = text[: m.start(2)] + "\n" + sidebar + "      " + text[m.end(2) :]
-    new = new.replace('<aside class="sidebar">', '<aside class="sidebar" data-docs-sidebar>', 1)
-    if new != text:
-        html_path.write_text(new, encoding="utf-8")
+    new_aside = f'<aside class="sidebar" data-docs-sidebar>\n{build_sidebar(path)}\n      </aside>'
+    updated, n = SIDEBAR_RE.subn(new_aside, text, count=1)
+    if n != 1:
+        print("REPLACE FAIL", path, n)
+        return False
+    if updated != text:
+        path.write_text(updated, encoding="utf-8")
+        print("updated", path.relative_to(ROOT))
         return True
     return False
 
 
-def main() -> None:
+def main():
     changed = 0
     for path in sorted(ROOT.rglob("*.html")):
-        if "features/" in path.as_posix():
-            continue  # old folder removed / redirects only
-        if patch_file(path):
+        if "node_modules" in path.parts:
+            continue
+        if inject(path):
             changed += 1
-            print("updated", path.relative_to(ROOT))
     print(f"done, changed={changed}")
 
 

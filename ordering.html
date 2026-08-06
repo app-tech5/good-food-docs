@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ordering &amp; discovery — Customer app</title>
+    <link rel="stylesheet" href="./site.css" />
+  </head>
+  <body>
+    <script src="./js/sidebar-scroll.js"></script>
+    <main class="layout">
+      <aside class="sidebar" data-docs-sidebar>
+        <a class="brand-link" href="./index.html" aria-label="Good Food Pro Docs home">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-title">Good Food Pro Docs</span>
+        </a>
+        <p class="sidebar-label">All apps</p>
+        <nav class="nav">
+          <a href="./environment-setup.html">Environment setup</a>
+          <a href="./downloads/index.html">Android downloads</a>
+        </nav>
+        <p class="sidebar-label">Customer app</p>
+        <nav class="nav">
+          <a href="./index.html">Overview</a>
+          <a href="./getting-started.html">Getting Started</a>
+          <a class="active" href="./ordering.html">Ordering & discovery</a>
+          <a href="./wallet.html">Wallet & payments</a>
+          <a href="./subscriptions.html">Subscriptions</a>
+          <a href="./intelligence.html">AI intelligence</a>
+          <a href="./order-tracking.html">Order tracking</a>
+        </nav>
+        <p class="sidebar-label">Delivery app (driver)</p>
+        <nav class="nav">
+          <a href="./delivery-app/index.html">Overview</a>
+          <a href="./delivery-app/getting-started.html">Getting Started</a>
+          <a href="./delivery-app/logistics.html">Logistics & POD</a>
+          <a href="./delivery-app/earnings.html">Earnings & payouts</a>
+          <a href="./delivery-app/subscriptions.html">Subscriptions</a>
+        </nav>
+        <p class="sidebar-label">Restaurant app</p>
+        <nav class="nav">
+          <a href="./restaurant-app/index.html">Overview</a>
+          <a href="./restaurant-app/getting-started.html">Getting Started</a>
+          <a href="./restaurant-app/operations.html">Orders & menu</a>
+          <a href="./restaurant-app/kitchen-display.html">Kitchen Display (KDS)</a>
+          <a href="./restaurant-app/subscriptions.html">Subscriptions</a>
+          <a href="./restaurant-app/sponsored.html">Sponsored listings</a>
+        </nav>
+        <p class="sidebar-label">Admin app (web)</p>
+        <nav class="nav">
+          <a href="./admin-app/index.html">Overview</a>
+          <a href="./admin-app/getting-started.html">Getting Started</a>
+          <a href="./admin-app/operations.html">Operations</a>
+          <a href="./admin-app/monetization.html">Monetization</a>
+          <a href="./admin-app/promotions.html">Promotions & coupons</a>
+          <a href="./admin-app/market.html">Market & languages</a>
+          <a href="./admin-app/sponsored.html">Sponsored listings</a>
+          <a href="./admin-app/reports.html">Reports & analytics</a>
+        </nav>
+        <p class="sidebar-label">Backend (API)</p>
+        <nav class="nav">
+          <a href="./my-backend/index.html">Overview</a>
+          <a href="./my-backend/getting-started.html">Getting Started</a>
+        </nav>
+      </aside>
+      <section class="content">
+        <header id="top" class="hero">
+          <h1>Ordering &amp; discovery</h1>
+          <p class="subtitle">
+            How customers find restaurants, build a cart, apply offers, and place an order — the core marketplace journey.
+          </p>
+          <div class="meta-strip">
+            <span class="meta-pill">Home</span>
+            <span class="meta-pill">Search</span>
+            <span class="meta-pill">Cart</span>
+            <span class="meta-pill">Checkout</span>
+            <span class="meta-pill">Offers</span>
+          </div>
+        </header>
+
+        <section class="overview">
+          <section class="section-block">
+            <h2>Find food in a multi-restaurant marketplace</h2>
+            <p>
+              The customer app is a multi-store marketplace: one install, many restaurants. Home mixes delivery / pickup, search, categories, banners, and featured places. Nearby map views help when the customer wants “what’s close”, and restaurant pages carry hours, fees, ratings, offers, and the menu.
+            </p>
+            <h3>Discovery path</h3>
+            <ol class="doc-steps">
+              <li>Open the app and choose <strong>Delivery</strong> or <strong>Pickup</strong> when both are available.</li>
+              <li>Browse the homepage (categories, offers, restaurants) or open <strong>Search</strong> for a keyword.</li>
+              <li>Optionally use the map / nearby view to pick a place geographically.</li>
+              <li>Open a restaurant: check status, ETA / fee cues, offers, then browse the menu and add items (with variants when priced).</li>
+            </ol>
+            <div class="shot-grid phones">
+              <div class="shot phone">
+                <img src="./assets/images/features/ordering-home.jpg" alt="Home" />
+                <p>Homepage — delivery/pickup, categories, offers</p>
+              </div>
+              <div class="shot phone">
+                <img src="./assets/images/features/ordering-search.jpg" alt="Search" />
+                <p>Search restaurants and dishes</p>
+              </div>
+              <div class="shot phone">
+                <img src="./assets/images/features/ordering-menu.jpg" alt="Menu" />
+                <p>Restaurant menu and add to cart</p>
+              </div>
+            </div>
+          </section>
+          <section class="section-block">
+            <h2>Cart, offers, and checkout</h2>
+            <p>
+              The cart stays synced with the backend. Customers can manage items, apply a promo / coupon when you run campaigns, choose delivery or pickup, pick an address, and pay with an enabled method (card, cash on delivery, wallet, and other gateways you activate).
+            </p>
+            <p class="section-subtext">
+              Offers and coupons are how you grow volume: percentage or fixed discounts, free delivery, and similar campaign types configured in admin. The customer sees them on home / restaurant surfaces and can enter a code at checkout when the campaign allows.
+            </p>
+            <h3>Place an order</h3>
+            <ol class="doc-steps">
+              <li>Review the cart (quantities, extras, totals).</li>
+              <li>Apply a coupon or claim a listed offer when available.</li>
+              <li>Confirm fulfillment (delivery vs pickup), address, and payment method.</li>
+              <li>Place the order, then follow it in order history / <a href="./order-tracking.html">tracking</a>.</li>
+            </ol>
+            <h3>Where offers are configured</h3>
+            <p class="section-subtext">
+              Coupons and promotions are managed in the admin app — see <a href="./admin-app/promotions.html">Promotions &amp; coupons</a>. Payment methods and wallet top-ups: <a href="./wallet.html">Wallet &amp; payments</a> and <a href="./admin-app/monetization.html">Monetization</a>.
+            </p>
+            <div class="shot-grid phones">
+              <div class="shot phone">
+                <img src="./assets/images/features/ordering-cart.jpg" alt="Cart" />
+                <p>Cart before checkout</p>
+              </div>
+              <div class="shot phone">
+                <img src="./assets/images/features/ordering-checkout.jpg" alt="Checkout" />
+                <p>Summary, payment, place order</p>
+              </div>
+              <div class="shot phone">
+                <img src="./assets/images/features/ordering-offers.jpg" alt="Offers" />
+                <p>Offers / vouchers surface</p>
+              </div>
+            </div>
+          </section>
+          <section class="section-block">
+            <h2>Order history</h2>
+            <p>
+              After checkout, orders appear in the order list with status and detail. From there customers reopen tracking, contact the restaurant when needed, and later leave reviews when your flow enables them.
+            </p>
+            <div class="shot-grid phones">
+              <div class="shot phone">
+                <img src="./assets/images/features/ordering-history.jpg" alt="Orders" />
+                <p>Order history list</p>
+              </div>
+            </div>
+          </section>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Subscriptions — Driver app</title>
+    <title>Reports &amp; analytics — Admin app</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
@@ -35,7 +35,7 @@
           <a href="../delivery-app/getting-started.html">Getting Started</a>
           <a href="../delivery-app/logistics.html">Logistics & POD</a>
           <a href="../delivery-app/earnings.html">Earnings & payouts</a>
-          <a class="active" href="../delivery-app/subscriptions.html">Subscriptions</a>
+          <a href="../delivery-app/subscriptions.html">Subscriptions</a>
         </nav>
         <p class="sidebar-label">Restaurant app</p>
         <nav class="nav">
@@ -55,7 +55,7 @@
           <a href="../admin-app/promotions.html">Promotions & coupons</a>
           <a href="../admin-app/market.html">Market & languages</a>
           <a href="../admin-app/sponsored.html">Sponsored listings</a>
-          <a href="../admin-app/reports.html">Reports & analytics</a>
+          <a class="active" href="../admin-app/reports.html">Reports & analytics</a>
         </nav>
         <p class="sidebar-label">Backend (API)</p>
         <nav class="nav">
@@ -65,38 +65,50 @@
       </aside>
       <section class="content">
         <header id="top" class="hero">
-          <h1>Subscriptions</h1>
+          <h1>Reports &amp; analytics</h1>
           <p class="subtitle">
-            How courier membership plans appear in the driver app and how you define those tiers in admin.
+            Sales, restaurant, and driver reports so you can prove performance — not guess from a single dashboard card.
           </p>
           <div class="meta-strip">
-            <span class="meta-pill">Driver plans</span>
-            <span class="meta-pill">Benefits</span>
-            <span class="meta-pill">Subscribe</span>
+            <span class="meta-pill">Sales</span>
+            <span class="meta-pill">Restaurants</span>
+            <span class="meta-pill">Drivers</span>
+            <span class="meta-pill">Ledger</span>
           </div>
         </header>
 
         <section class="overview">
           <section class="section-block">
-            <h2>Plans for couriers</h2>
+            <h2>Prove what the marketplace earned</h2>
             <p>
-              Driver subscriptions are tiers targeted at <strong>driver</strong> accounts. Typical benefits include access perks, support priority, or other marketplace rules you attach to the plan. The driver app lists those plans with price, cycle, and a Subscribe action — the same pattern customers and restaurants see for their own targets.
+              Reports turn operational noise into decisions: sales with AOV, delivery fees, taxes collected, and category breakdowns; restaurant and driver performance for partner conversations; and the money ledger (transactions) when you need fee-level transparency on payments, payouts, refunds, tips, and wallet movements.
             </p>
-            <h3>Driver steps</h3>
-            <ol class="doc-steps">
-              <li>Sign in with a driver account.</li>
-              <li>Open Subscriptions from the driver menu / settings.</li>
-              <li>Choose a plan and complete Subscribe through an enabled payment path.</li>
-              <li>Confirm the plan shows as active and that any access benefits apply on the next shift.</li>
-            </ol>
-            <h3>Operator setup</h3>
             <p class="section-subtext">
-              Create and edit driver tiers in admin → Subscriptions (target = driver). See <a href="../admin-app/monetization.html">Monetization</a> for the full money picture.
+              Use earnings under <a href="./monetization.html">Monetization</a> for commission splits; use reports when you need period analytics and partner scorecards.
             </p>
-            <div class="shot-grid phones">
-              <div class="shot phone">
-                <img src="../assets/images/features/sub-driver.jpg" alt="Driver plans" />
-                <p>Driver subscription plans</p>
+            <h3>Weekly operator rhythm</h3>
+            <ol class="doc-steps">
+              <li>Open <strong>Sales reports</strong> for the period you care about.</li>
+              <li>Check restaurant and driver reports for outliers (late deliveries, weak acceptance, top performers).</li>
+              <li>Spot-check <strong>Transactions</strong> when a payout or refund is disputed.</li>
+              <li>Export or screenshot what your finance process needs (depending on your deployment tools).</li>
+            </ol>
+            <div class="shot-grid">
+              <div class="shot wide">
+                <img src="../assets/images/features/admin-sales-reports.jpg" alt="Sales reports" />
+                <p>Sales reporting</p>
+              </div>
+              <div class="shot wide">
+                <img src="../assets/images/features/admin-resto-reports.jpg" alt="Restaurant reports" />
+                <p>Restaurant performance</p>
+              </div>
+              <div class="shot wide">
+                <img src="../assets/images/features/admin-driver-reports.jpg" alt="Driver reports" />
+                <p>Driver performance</p>
+              </div>
+              <div class="shot wide">
+                <img src="../assets/images/features/admin-transactions.jpg" alt="Transactions" />
+                <p>Money ledger / transactions</p>
               </div>
             </div>
           </section>

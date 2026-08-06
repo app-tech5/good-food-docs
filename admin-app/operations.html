@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Subscriptions — Driver app</title>
+    <title>Operations — Admin app</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
@@ -35,7 +35,7 @@
           <a href="../delivery-app/getting-started.html">Getting Started</a>
           <a href="../delivery-app/logistics.html">Logistics & POD</a>
           <a href="../delivery-app/earnings.html">Earnings & payouts</a>
-          <a class="active" href="../delivery-app/subscriptions.html">Subscriptions</a>
+          <a href="../delivery-app/subscriptions.html">Subscriptions</a>
         </nav>
         <p class="sidebar-label">Restaurant app</p>
         <nav class="nav">
@@ -50,7 +50,7 @@
         <nav class="nav">
           <a href="../admin-app/index.html">Overview</a>
           <a href="../admin-app/getting-started.html">Getting Started</a>
-          <a href="../admin-app/operations.html">Operations</a>
+          <a class="active" href="../admin-app/operations.html">Operations</a>
           <a href="../admin-app/monetization.html">Monetization</a>
           <a href="../admin-app/promotions.html">Promotions & coupons</a>
           <a href="../admin-app/market.html">Market & languages</a>
@@ -65,38 +65,62 @@
       </aside>
       <section class="content">
         <header id="top" class="hero">
-          <h1>Subscriptions</h1>
+          <h1>Operations</h1>
           <p class="subtitle">
-            How courier membership plans appear in the driver app and how you define those tiers in admin.
+            The day-to-day control room: orders, restaurants, customers, drivers, and the food catalog that powers every mobile app.
           </p>
           <div class="meta-strip">
-            <span class="meta-pill">Driver plans</span>
-            <span class="meta-pill">Benefits</span>
-            <span class="meta-pill">Subscribe</span>
+            <span class="meta-pill">Orders</span>
+            <span class="meta-pill">Partners</span>
+            <span class="meta-pill">Catalog</span>
+            <span class="meta-pill">Users</span>
           </div>
         </header>
 
         <section class="overview">
           <section class="section-block">
-            <h2>Plans for couriers</h2>
+            <h2>Orders and partners</h2>
             <p>
-              Driver subscriptions are tiers targeted at <strong>driver</strong> accounts. Typical benefits include access perks, support priority, or other marketplace rules you attach to the plan. The driver app lists those plans with price, cycle, and a Subscribe action — the same pattern customers and restaurants see for their own targets.
+              Admin is the marketplace command center. The orders list shows payment state, customer, restaurant, driver, totals, and fulfillment status — with View into full detail (line items, delivery, timeline). From here support can investigate without asking three apps for screenshots.
             </p>
-            <h3>Driver steps</h3>
-            <ol class="doc-steps">
-              <li>Sign in with a driver account.</li>
-              <li>Open Subscriptions from the driver menu / settings.</li>
-              <li>Choose a plan and complete Subscribe through an enabled payment path.</li>
-              <li>Confirm the plan shows as active and that any access benefits apply on the next shift.</li>
-            </ol>
-            <h3>Operator setup</h3>
             <p class="section-subtext">
-              Create and edit driver tiers in admin → Subscriptions (target = driver). See <a href="../admin-app/monetization.html">Monetization</a> for the full money picture.
+              Restaurant and driver management cover onboarding and ongoing control: activate or close restaurants, approve drivers before they go online, and keep profiles consistent with what mobile apps display.
             </p>
-            <div class="shot-grid phones">
-              <div class="shot phone">
-                <img src="../assets/images/features/sub-driver.jpg" alt="Driver plans" />
-                <p>Driver subscription plans</p>
+            <h3>Operator habits</h3>
+            <ol class="doc-steps">
+              <li>Start on the dashboard KPIs when you open admin.</li>
+              <li>Use <strong>Orders</strong> for live incidents (failed payment, stuck status, missing driver).</li>
+              <li>Use <strong>Restaurants</strong> / <strong>Drivers</strong> / <strong>Users</strong> to approve, edit, or suspend accounts.</li>
+              <li>Open a row’s View when you need the full record.</li>
+            </ol>
+            <div class="shot-grid">
+              <div class="shot wide">
+                <img src="../assets/images/features/admin-ops-orders.jpg" alt="Orders" />
+                <p>Admin orders list</p>
+              </div>
+              <div class="shot wide">
+                <img src="../assets/images/features/admin-ops-restaurants.jpg" alt="Restaurants" />
+                <p>Restaurant management</p>
+              </div>
+              <div class="shot wide">
+                <img src="../assets/images/features/admin-ops-drivers.jpg" alt="Drivers" />
+                <p>Driver management</p>
+              </div>
+              <div class="shot wide">
+                <img src="../assets/images/features/admin-ops-users.jpg" alt="Users" />
+                <p>Customer users</p>
+              </div>
+            </div>
+          </section>
+          <section class="section-block">
+            <h2>Menus and catalog</h2>
+            <p>
+              Categories, menus, products, and variants can be curated centrally when partners need help — or when you seed a new city. What you publish here is what customers browse and what restaurants edit on mobile when you allow dual management.
+            </p>
+            <div class="shot-grid">
+              <div class="shot wide">
+                <img src="../assets/images/features/admin-ops-menus.jpg" alt="Menus" />
+                <p>Admin menus / catalog</p>
               </div>
             </div>
           </section>

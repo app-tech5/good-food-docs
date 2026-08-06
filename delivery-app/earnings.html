@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Subscriptions — Driver app</title>
+    <title>Earnings &amp; payouts — Driver app</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
@@ -34,8 +34,8 @@
           <a href="../delivery-app/index.html">Overview</a>
           <a href="../delivery-app/getting-started.html">Getting Started</a>
           <a href="../delivery-app/logistics.html">Logistics & POD</a>
-          <a href="../delivery-app/earnings.html">Earnings & payouts</a>
-          <a class="active" href="../delivery-app/subscriptions.html">Subscriptions</a>
+          <a class="active" href="../delivery-app/earnings.html">Earnings & payouts</a>
+          <a href="../delivery-app/subscriptions.html">Subscriptions</a>
         </nav>
         <p class="sidebar-label">Restaurant app</p>
         <nav class="nav">
@@ -65,38 +65,45 @@
       </aside>
       <section class="content">
         <header id="top" class="hero">
-          <h1>Subscriptions</h1>
+          <h1>Earnings &amp; payouts</h1>
           <p class="subtitle">
-            How courier membership plans appear in the driver app and how you define those tiers in admin.
+            How drivers see today’s money, delivery history, transactions, and where payouts are sent.
           </p>
           <div class="meta-strip">
-            <span class="meta-pill">Driver plans</span>
-            <span class="meta-pill">Benefits</span>
-            <span class="meta-pill">Subscribe</span>
+            <span class="meta-pill">Earnings</span>
+            <span class="meta-pill">Transactions</span>
+            <span class="meta-pill">Payouts</span>
           </div>
         </header>
 
         <section class="overview">
           <section class="section-block">
-            <h2>Plans for couriers</h2>
+            <h2>Know what a shift paid</h2>
             <p>
-              Driver subscriptions are tiers targeted at <strong>driver</strong> accounts. Typical benefits include access perks, support priority, or other marketplace rules you attach to the plan. The driver app lists those plans with price, cycle, and a Subscribe action — the same pattern customers and restaurants see for their own targets.
+              Couriers need a clear money picture: what they earned today, what sits in history, and how cash reaches their bank. The driver app exposes earnings summaries, transaction history, and payout method setup (including Connect-style onboarding when you enable it).
             </p>
-            <h3>Driver steps</h3>
-            <ol class="doc-steps">
-              <li>Sign in with a driver account.</li>
-              <li>Open Subscriptions from the driver menu / settings.</li>
-              <li>Choose a plan and complete Subscribe through an enabled payment path.</li>
-              <li>Confirm the plan shows as active and that any access benefits apply on the next shift.</li>
-            </ol>
-            <h3>Operator setup</h3>
             <p class="section-subtext">
-              Create and edit driver tiers in admin → Subscriptions (target = driver). See <a href="../admin-app/monetization.html">Monetization</a> for the full money picture.
+              Job handling, batching, and proof of delivery stay on the logistics screens; this page is the money side of the same role.
             </p>
+            <h3>Driver checklist</h3>
+            <ol class="doc-steps">
+              <li>Complete deliveries for the shift (see <a href="./logistics.html">Logistics &amp; POD</a>).</li>
+              <li>Open <strong>Earnings</strong> to review today’s totals and periods your build shows.</li>
+              <li>Open transactions when you need a line-by-line trail.</li>
+              <li>Add or update <strong>Payout methods</strong> so admin / Connect can settle the driver.</li>
+            </ol>
             <div class="shot-grid phones">
               <div class="shot phone">
-                <img src="../assets/images/features/sub-driver.jpg" alt="Driver plans" />
-                <p>Driver subscription plans</p>
+                <img src="../assets/images/features/driver-earnings.jpg" alt="Earnings" />
+                <p>Driver earnings overview</p>
+              </div>
+              <div class="shot phone">
+                <img src="../assets/images/features/driver-transactions.jpg" alt="Transactions" />
+                <p>Driver transaction history</p>
+              </div>
+              <div class="shot phone">
+                <img src="../assets/images/features/driver-payouts.jpg" alt="Payouts" />
+                <p>Payout methods</p>
               </div>
             </div>
           </section>

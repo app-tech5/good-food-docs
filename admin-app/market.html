@@ -23,6 +23,7 @@
         <nav class="nav">
           <a href="../index.html">Overview</a>
           <a href="../getting-started.html">Getting Started</a>
+          <a href="../ordering.html">Ordering & discovery</a>
           <a href="../wallet.html">Wallet & payments</a>
           <a href="../subscriptions.html">Subscriptions</a>
           <a href="../intelligence.html">AI intelligence</a>
@@ -33,12 +34,14 @@
           <a href="../delivery-app/index.html">Overview</a>
           <a href="../delivery-app/getting-started.html">Getting Started</a>
           <a href="../delivery-app/logistics.html">Logistics & POD</a>
+          <a href="../delivery-app/earnings.html">Earnings & payouts</a>
           <a href="../delivery-app/subscriptions.html">Subscriptions</a>
         </nav>
         <p class="sidebar-label">Restaurant app</p>
         <nav class="nav">
           <a href="../restaurant-app/index.html">Overview</a>
           <a href="../restaurant-app/getting-started.html">Getting Started</a>
+          <a href="../restaurant-app/operations.html">Orders & menu</a>
           <a href="../restaurant-app/kitchen-display.html">Kitchen Display (KDS)</a>
           <a href="../restaurant-app/subscriptions.html">Subscriptions</a>
           <a href="../restaurant-app/sponsored.html">Sponsored listings</a>
@@ -47,9 +50,12 @@
         <nav class="nav">
           <a href="../admin-app/index.html">Overview</a>
           <a href="../admin-app/getting-started.html">Getting Started</a>
+          <a href="../admin-app/operations.html">Operations</a>
           <a href="../admin-app/monetization.html">Monetization</a>
+          <a href="../admin-app/promotions.html">Promotions & coupons</a>
           <a class="active" href="../admin-app/market.html">Market & languages</a>
           <a href="../admin-app/sponsored.html">Sponsored listings</a>
+          <a href="../admin-app/reports.html">Reports & analytics</a>
         </nav>
         <p class="sidebar-label">Backend (API)</p>
         <nav class="nav">
@@ -111,15 +117,28 @@
             </div>
           </section>
           <section class="section-block">
+            <h2>Taxes</h2>
+            <p>
+              Local tax rules (VAT, GST, sales tax, and similar) belong in the Taxes catalogue so carts and reports collect the right amounts for your jurisdiction. Configure rates before go-live and verify on a test checkout that tax lines match finance expectations.
+            </p>
+            <div class="shot-grid">
+              <div class="shot wide">
+                <img src="../assets/images/features/admin-taxes.jpg" alt="Taxes" />
+                <p>Admin tax settings</p>
+              </div>
+            </div>
+          </section>
+          <section class="section-block">
             <h2>Marketplace app settings</h2>
             <p>
-              App Settings hold cross-cutting marketplace behaviour: default language, timezone, cash-on-delivery, delivery fee defaults, maximum delivery distance, and related flags. Commission baselines and other monetization hooks often live here as well — review this screen when you enter a new city.
+              App Settings hold cross-cutting marketplace behaviour: default language, timezone, cash-on-delivery, delivery fee defaults, maximum delivery distance, and related flags. Commission baselines and channel hooks (WhatsApp / USSD / web ordering when enabled) often live here too — review this screen when you enter a new city.
             </p>
             <h3>Before launch in a city</h3>
             <ol class="doc-steps">
               <li>Open <strong>Settings → App Settings</strong> and View the active app record.</li>
               <li>Set timezone, default language, delivery fee / distance, and COD according to local rules.</li>
-              <li>Align currency and gateways with that same market.</li>
+              <li>Align currency, taxes, and gateways with that same market.</li>
+              <li>Enable only the order channels you will actually operate.</li>
               <li>Run one full order in that configuration before inviting real restaurants.</li>
             </ol>
             <div class="shot-grid">

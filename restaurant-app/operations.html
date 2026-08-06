@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Subscriptions — Driver app</title>
+    <title>Orders &amp; menu — Restaurant app</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
@@ -35,13 +35,13 @@
           <a href="../delivery-app/getting-started.html">Getting Started</a>
           <a href="../delivery-app/logistics.html">Logistics & POD</a>
           <a href="../delivery-app/earnings.html">Earnings & payouts</a>
-          <a class="active" href="../delivery-app/subscriptions.html">Subscriptions</a>
+          <a href="../delivery-app/subscriptions.html">Subscriptions</a>
         </nav>
         <p class="sidebar-label">Restaurant app</p>
         <nav class="nav">
           <a href="../restaurant-app/index.html">Overview</a>
           <a href="../restaurant-app/getting-started.html">Getting Started</a>
-          <a href="../restaurant-app/operations.html">Orders & menu</a>
+          <a class="active" href="../restaurant-app/operations.html">Orders & menu</a>
           <a href="../restaurant-app/kitchen-display.html">Kitchen Display (KDS)</a>
           <a href="../restaurant-app/subscriptions.html">Subscriptions</a>
           <a href="../restaurant-app/sponsored.html">Sponsored listings</a>
@@ -65,38 +65,71 @@
       </aside>
       <section class="content">
         <header id="top" class="hero">
-          <h1>Subscriptions</h1>
+          <h1>Orders &amp; menu</h1>
           <p class="subtitle">
-            How courier membership plans appear in the driver app and how you define those tiers in admin.
+            Day-to-day partner ops: accept or reject orders, manage the menu, set hours, and read analytics — before or beside the Kitchen Display.
           </p>
           <div class="meta-strip">
-            <span class="meta-pill">Driver plans</span>
-            <span class="meta-pill">Benefits</span>
-            <span class="meta-pill">Subscribe</span>
+            <span class="meta-pill">Orders</span>
+            <span class="meta-pill">Menu</span>
+            <span class="meta-pill">Hours</span>
+            <span class="meta-pill">Analytics</span>
           </div>
         </header>
 
         <section class="overview">
           <section class="section-block">
-            <h2>Plans for couriers</h2>
+            <h2>Live orders: accept and reject</h2>
             <p>
-              Driver subscriptions are tiers targeted at <strong>driver</strong> accounts. Typical benefits include access perks, support priority, or other marketplace rules you attach to the plan. The driver app lists those plans with price, cycle, and a Subscribe action — the same pattern customers and restaurants see for their own targets.
+              Incoming orders land in the restaurant orders list in real time. Operators accept or reject, then move the meal through prepare / ready so the driver (or pickup customer) can collect it. New-order alerts can deep-link back to the order so nobody misses a ticket during rush.
             </p>
-            <h3>Driver steps</h3>
-            <ol class="doc-steps">
-              <li>Sign in with a driver account.</li>
-              <li>Open Subscriptions from the driver menu / settings.</li>
-              <li>Choose a plan and complete Subscribe through an enabled payment path.</li>
-              <li>Confirm the plan shows as active and that any access benefits apply on the next shift.</li>
-            </ol>
-            <h3>Operator setup</h3>
             <p class="section-subtext">
-              Create and edit driver tiers in admin → Subscriptions (target = driver). See <a href="../admin-app/monetization.html">Monetization</a> for the full money picture.
+              For a paperless board on the pass, use the <a href="./kitchen-display.html">Kitchen Display (KDS)</a> — it shares the same order pipeline.
             </p>
+            <h3>Service loop</h3>
+            <ol class="doc-steps">
+              <li>Keep the restaurant <strong>open</strong> when you can fulfill orders.</li>
+              <li>Watch the orders list; accept what you can cook, reject with a clear reason when you cannot.</li>
+              <li>Advance status as food progresses; mark ready for courier or pickup.</li>
+              <li>Use order history when you need past tickets or disputes.</li>
+            </ol>
             <div class="shot-grid phones">
               <div class="shot phone">
-                <img src="../assets/images/features/sub-driver.jpg" alt="Driver plans" />
-                <p>Driver subscription plans</p>
+                <img src="../assets/images/features/resto-ops-orders.jpg" alt="Orders" />
+                <p>Live restaurant orders</p>
+              </div>
+            </div>
+          </section>
+          <section class="section-block">
+            <h2>Menu, hours, and analytics</h2>
+            <p>
+              Partners manage categories, dishes, prices, photos, variants, and availability from the restaurant app — without waiting on admin for every price tweak. Opening hours and delivery / pickup controls (radius, prep time) define when and how far you sell.
+            </p>
+            <p class="section-subtext">
+              Dashboard KPIs and analytics (periods, bestsellers, peaks) help owners see what is working. Reviews appear for reputation; reply flows depend on your build.
+            </p>
+            <h3>Keep the catalog honest</h3>
+            <ol class="doc-steps">
+              <li>Open <strong>Menu</strong>: add or edit categories and items, set prices and photos, toggle availability when an item is 86’d.</li>
+              <li>Edit <strong>Opening hours</strong> and delivery settings so the customer app shows accurate open/closed and radius.</li>
+              <li>Check analytics after a few service days to spot bestsellers and quiet slots.</li>
+            </ol>
+            <div class="shot-grid phones">
+              <div class="shot phone">
+                <img src="../assets/images/features/resto-ops-menu.jpg" alt="Menu" />
+                <p>Restaurant menu management</p>
+              </div>
+              <div class="shot phone">
+                <img src="../assets/images/features/resto-ops-menu-edit.jpg" alt="Edit item" />
+                <p>Add / edit a menu item</p>
+              </div>
+              <div class="shot phone">
+                <img src="../assets/images/features/resto-ops-hours.jpg" alt="Hours" />
+                <p>Opening hours</p>
+              </div>
+              <div class="shot phone">
+                <img src="../assets/images/features/resto-ops-analytics.jpg" alt="Analytics" />
+                <p>Restaurant analytics</p>
               </div>
             </div>
           </section>

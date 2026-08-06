@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Subscriptions — Driver app</title>
+    <title>Promotions &amp; coupons — Admin app</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
@@ -35,7 +35,7 @@
           <a href="../delivery-app/getting-started.html">Getting Started</a>
           <a href="../delivery-app/logistics.html">Logistics & POD</a>
           <a href="../delivery-app/earnings.html">Earnings & payouts</a>
-          <a class="active" href="../delivery-app/subscriptions.html">Subscriptions</a>
+          <a href="../delivery-app/subscriptions.html">Subscriptions</a>
         </nav>
         <p class="sidebar-label">Restaurant app</p>
         <nav class="nav">
@@ -52,7 +52,7 @@
           <a href="../admin-app/getting-started.html">Getting Started</a>
           <a href="../admin-app/operations.html">Operations</a>
           <a href="../admin-app/monetization.html">Monetization</a>
-          <a href="../admin-app/promotions.html">Promotions & coupons</a>
+          <a class="active" href="../admin-app/promotions.html">Promotions & coupons</a>
           <a href="../admin-app/market.html">Market & languages</a>
           <a href="../admin-app/sponsored.html">Sponsored listings</a>
           <a href="../admin-app/reports.html">Reports & analytics</a>
@@ -65,38 +65,41 @@
       </aside>
       <section class="content">
         <header id="top" class="hero">
-          <h1>Subscriptions</h1>
+          <h1>Promotions &amp; coupons</h1>
           <p class="subtitle">
-            How courier membership plans appear in the driver app and how you define those tiers in admin.
+            How operators run growth campaigns: promotion types, scoping, and coupon codes customers redeem at checkout.
           </p>
           <div class="meta-strip">
-            <span class="meta-pill">Driver plans</span>
-            <span class="meta-pill">Benefits</span>
-            <span class="meta-pill">Subscribe</span>
+            <span class="meta-pill">Promotions</span>
+            <span class="meta-pill">Coupons</span>
+            <span class="meta-pill">Campaigns</span>
           </div>
         </header>
 
         <section class="overview">
           <section class="section-block">
-            <h2>Plans for couriers</h2>
+            <h2>Grow volume with real campaigns</h2>
             <p>
-              Driver subscriptions are tiers targeted at <strong>driver</strong> accounts. Typical benefits include access perks, support priority, or other marketplace rules you attach to the plan. The driver app lists those plans with price, cycle, and a Subscribe action — the same pattern customers and restaurants see for their own targets.
+              The promotion engine supports the campaign styles buyers expect from a modern marketplace: percentage or fixed discounts, free delivery, Buy X Get Y / combos, flash sales, happy hours, and similar types your build exposes. Scope a campaign to the whole platform or to a restaurant, category, or item — and target audiences such as all, new, existing, or VIP customers when those flags exist.
             </p>
-            <h3>Driver steps</h3>
-            <ol class="doc-steps">
-              <li>Sign in with a driver account.</li>
-              <li>Open Subscriptions from the driver menu / settings.</li>
-              <li>Choose a plan and complete Subscribe through an enabled payment path.</li>
-              <li>Confirm the plan shows as active and that any access benefits apply on the next shift.</li>
-            </ol>
-            <h3>Operator setup</h3>
             <p class="section-subtext">
-              Create and edit driver tiers in admin → Subscriptions (target = driver). See <a href="../admin-app/monetization.html">Monetization</a> for the full money picture.
+              Coupon codes add constrained redemptions: minimum order, max uses, per-user limits, first-order-only, and expiry. Customers enter codes in the cart / checkout path documented under <a href="../ordering.html">Ordering &amp; discovery</a>.
             </p>
-            <div class="shot-grid phones">
-              <div class="shot phone">
-                <img src="../assets/images/features/sub-driver.jpg" alt="Driver plans" />
-                <p>Driver subscription plans</p>
+            <h3>Launch a campaign safely</h3>
+            <ol class="doc-steps">
+              <li>Open <strong>Promotions</strong> and create or edit a campaign (type, discount, schedule, scope).</li>
+              <li>Open <strong>Coupons</strong> when you need a redeemable code with usage limits.</li>
+              <li>Activate only what you can afford on margin; test with a demo customer order.</li>
+              <li>Confirm the offer appears on customer home / restaurant surfaces and that checkout applies the code.</li>
+            </ol>
+            <div class="shot-grid">
+              <div class="shot wide">
+                <img src="../assets/images/features/admin-promotions.jpg" alt="Promotions" />
+                <p>Admin promotions list</p>
+              </div>
+              <div class="shot wide">
+                <img src="../assets/images/features/admin-coupons.jpg" alt="Coupons" />
+                <p>Admin coupon codes</p>
               </div>
             </div>
           </section>
