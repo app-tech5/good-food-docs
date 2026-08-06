@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Market & languages — Admin app</title>
+    <title>Market &amp; languages — Admin app</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
@@ -59,14 +59,14 @@
       </aside>
       <section class="content">
         <header id="top" class="hero">
-          <h1>Market & languages</h1>
+          <h1>Market &amp; languages</h1>
           <p class="subtitle">
-            Languages, currencies, and marketplace settings so each city feels local.
+            How to make the marketplace feel local: languages (including RTL), currencies, and app-level marketplace settings.
           </p>
           <div class="meta-strip">
             <span class="meta-pill">Languages</span>
             <span class="meta-pill">Currencies</span>
-            <span class="meta-pill">Settings</span>
+            <span class="meta-pill">App settings</span>
           </div>
         </header>
 
@@ -74,25 +74,34 @@
           <section class="section-block">
             <h2>Languages</h2>
             <p>
-              Enable English, French, Spanish, and Arabic (with RTL where needed). Set the default; mobile apps follow the user’s choice in settings.
+              Admin maintains the language catalogue (code, name, default flag). Mobile apps and the admin UI follow the active / default language. Arabic and similar locales can reverse layout (RTL) when the selected language requires it.
             </p>
+            <p class="section-subtext">
+              Customers change language from their settings screen; the admin list is where you decide which languages exist and which one is the marketplace default for new users.
+            </p>
+            <h3>Operator steps</h3>
+            <ol class="doc-steps">
+              <li>Open <strong>Settings → Languages</strong> (or Languages in the sidebar, depending on your build).</li>
+              <li>Ensure the languages you sell in are present; mark one as default.</li>
+              <li>In a customer (or driver / restaurant) app, open Settings and switch language to verify strings and layout.</li>
+            </ol>
             <div class="shot-grid phones">
               <div class="shot phone">
-                <img src="../assets/images/features/lang-picker.jpg" alt="Picker" />
-                <p>Customer language picker</p>
+                <img src="../assets/images/features/lang-picker.jpg" alt="Customer settings" />
+                <p>Language shown in customer settings</p>
               </div>
             </div>
-            <div class="shot-grid" style="margin-top: 12px;">
+            <div class="shot-grid" style="margin-top: 16px;">
               <div class="shot wide">
                 <img src="../assets/images/features/languages.jpg" alt="Languages" />
-                <p>Admin languages</p>
+                <p>Admin language list</p>
               </div>
             </div>
           </section>
           <section class="section-block">
             <h2>Currencies</h2>
             <p>
-              Menus, carts, wallets, and reports follow the currency you configure. Change the default when you expand.
+              Menus, carts, wallets, subscriptions, and reports should speak one money language per market. The Currencies list is where you define codes and defaults; changing the active currency without a plan will confuse prices already shown to users, so treat it as a go-live decision.
             </p>
             <div class="shot-grid">
               <div class="shot wide">
@@ -102,14 +111,21 @@
             </div>
           </section>
           <section class="section-block">
-            <h2>Marketplace settings</h2>
+            <h2>Marketplace app settings</h2>
             <p>
-              App settings hold marketplace behaviour in one place — including hooks that support hybrid channels and regional defaults.
+              App Settings hold cross-cutting marketplace behaviour: default language, timezone, cash-on-delivery, delivery fee defaults, maximum delivery distance, and related flags. Commission baselines and other monetization hooks often live here as well — review this screen when you enter a new city.
             </p>
+            <h3>Before launch in a city</h3>
+            <ol class="doc-steps">
+              <li>Open <strong>Settings → App Settings</strong> and View the active app record.</li>
+              <li>Set timezone, default language, delivery fee / distance, and COD according to local rules.</li>
+              <li>Align currency and gateways with that same market.</li>
+              <li>Run one full order in that configuration before inviting real restaurants.</li>
+            </ol>
             <div class="shot-grid">
               <div class="shot wide">
-                <img src="../assets/images/features/app-settings.jpg" alt="Settings" />
-                <p>App settings</p>
+                <img src="../assets/images/features/app-settings.jpg" alt="App settings" />
+                <p>Marketplace app settings</p>
               </div>
             </div>
           </section>

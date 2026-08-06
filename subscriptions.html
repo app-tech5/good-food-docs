@@ -61,28 +61,39 @@
         <header id="top" class="hero">
           <h1>Subscriptions</h1>
           <p class="subtitle">
-            Member plans for free delivery and offers — recurring value that keeps customers opening the app.
+            How membership plans appear to customers, what benefits they unlock, and how those plans are created in admin.
           </p>
           <div class="meta-strip">
-            <span class="meta-pill">Member plans</span>
-            <span class="meta-pill">Free delivery</span>
-            <span class="meta-pill">Renewals</span>
+            <span class="meta-pill">Plans</span>
+            <span class="meta-pill">Benefits</span>
+            <span class="meta-pill">Subscribe</span>
           </div>
         </header>
 
         <section class="overview">
           <section class="section-block">
-            <h2>Plans customers can subscribe to</h2>
+            <h2>Membership in the customer app</h2>
             <p>
-              Offer monthly (or other) plans with benefits such as free delivery or member-only offers. Customers pick a plan in the app; you create and edit tiers in <a href="./admin-app/monetization.html">admin monetization</a> (target: customer, price, billing cycle, benefits).
+              Customer subscriptions are recurring plans (for example monthly) that unlock benefits such as free delivery, a food discount, member-only deals, or priority support. The customer app shows only plans whose target is <strong>customer</strong>.
             </p>
             <p class="section-subtext">
-              Recurring membership sits next to order revenue — still useful when weekday volume dips.
+              Each plan card lists the name, price and billing cycle, the benefit bullets, and a Subscribe action. After a successful purchase path (via your configured gateways), the membership stays attached to that account until it expires or is cancelled under your rules.
+            </p>
+            <h3>How a customer subscribes</h3>
+            <ol class="doc-steps">
+              <li>Sign in with a customer account.</li>
+              <li>Open the Subscriptions / membership screen from account or settings (label depends on your translations).</li>
+              <li>Compare the listed plans and tap <strong>Subscribe</strong> on the one you want.</li>
+              <li>Complete payment with an enabled gateway. Confirm the plan shows as active afterward.</li>
+            </ol>
+            <h3>Where plans are defined</h3>
+            <p class="section-subtext">
+              You create and edit tiers in the admin app under Subscriptions (name, price, billing cycle, benefits, active flag, target = customer). Details and earnings impact are covered in <a href="./admin-app/monetization.html">admin monetization</a>.
             </p>
             <div class="shot-grid phones">
               <div class="shot phone">
-                <img src="./assets/images/features/sub-customer.jpg" alt="Customer subscription plans" />
-                <p>Customer — choose a membership plan</p>
+                <img src="./assets/images/features/sub-customer.jpg" alt="Customer plans" />
+                <p>Plan cards with benefits and Subscribe</p>
               </div>
             </div>
           </section>

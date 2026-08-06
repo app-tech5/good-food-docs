@@ -61,41 +61,59 @@
         <header id="top" class="hero">
           <h1>Kitchen Display (KDS)</h1>
           <p class="subtitle">
-            Paperless tickets for the line — accept in orders, cook on the board, hand off to the driver.
+            How the paperless kitchen board works: where tickets come from, how staff advance them, and how to run it on a tablet at the pass.
           </p>
           <div class="meta-strip">
             <span class="meta-pill">Tickets</span>
-            <span class="meta-pill">Status flow</span>
-            <span class="meta-pill">Tablet ready</span>
+            <span class="meta-pill">Columns</span>
+            <span class="meta-pill">Orders</span>
           </div>
         </header>
 
         <section class="overview">
           <section class="section-block">
-            <h2>From accept to ready for pickup</h2>
+            <h2>What the Kitchen Display does</h2>
             <p>
-              Once staff accept an order, the Kitchen Display focuses on tickets: what to cook, what is in progress, what is ready. Large controls suit a tablet on the pass. The same order still feeds admin and the driver app.
+              The Kitchen Display is a board inside the restaurant app for cooks and the pass. After an order is accepted, it appears as a ticket with items, timing cues, and actions to move it through prep. The idea is simple: stop hunting paper slips; keep one shared order story with the customer, the driver, and admin.
+            </p>
+            <p class="section-subtext">
+              Columns such as <strong>New</strong>, <strong>Preparing</strong>, and <strong>Ready</strong> group tickets. Staff accept new work, start preparation, then mark food ready for pickup or courier handoff. Age on the ticket helps the line see what is burning.
+            </p>
+            <h3>Happy path on a busy service</h3>
+            <ol class="doc-steps">
+              <li>A customer places a delivery or pickup order.</li>
+              <li>Restaurant staff accept it on the normal <strong>Orders</strong> list (or via your auto-accept rules).</li>
+              <li>Open <strong>Kitchen Display</strong> from the drawer / navigation — preferably on a tablet in landscape.</li>
+              <li>Advance each ticket: accept → prepare → ready.</li>
+              <li>When food is ready, the driver (or the customer for pickup) completes the handoff; admin still sees the same order for support and earnings.</li>
+            </ol>
+            <h3>Tablet tips</h3>
+            <p class="section-subtext">
+              Mount the device at eye level on the pass, keep brightness high, and disable auto-lock during service. Prefer a stable Wi‑Fi path to your API — a flaky network looks like “KDS is broken”.
+            </p>
+            <p class="section-subtext">
+              Demo databases can include kitchen-oriented sample tickets so you can train staff or screenshot the board before the first real rush.
             </p>
             <div class="shot-grid phones">
               <div class="shot phone">
-                <img src="../assets/images/features/kds.jpg" alt="KDS" />
-                <p>Kitchen Display tickets</p>
+                <img src="../assets/images/features/kds.jpg" alt="Kitchen Display" />
+                <p>Tickets across New / Preparing / Ready</p>
               </div>
             </div>
           </section>
           <section class="section-block">
-            <h2>Tied to live orders</h2>
+            <h2>Tied to the live orders list</h2>
             <p>
-              Orders land in the restaurant list first; then the kitchen board keeps the line moving without hunting paper slips.
+              Orders still land in the restaurant orders UI first. The Kitchen Display is the kitchen-oriented view of that same pipeline — not a second database. If a ticket is missing, refresh the board and confirm the order exists and was accepted for this restaurant account.
             </p>
             <div class="shot-grid phones">
               <div class="shot phone">
                 <img src="../assets/images/features/resto-orders.jpg" alt="Orders" />
-                <p>Live orders</p>
+                <p>Live restaurant orders</p>
               </div>
               <div class="shot phone">
                 <img src="../assets/images/features/resto-drawer.jpg" alt="Drawer" />
-                <p>Open KDS from the menu</p>
+                <p>Open Kitchen Display from the menu</p>
               </div>
             </div>
           </section>

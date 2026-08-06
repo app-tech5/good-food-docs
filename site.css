@@ -268,6 +268,35 @@ p {
   margin-top: 12px;
 }
 
+.section-block h3 {
+  margin: 22px 0 8px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #0f172a;
+}
+
+.section-block .doc-steps {
+  margin: 10px 0 4px;
+  padding-left: 1.25rem;
+  max-width: 70ch;
+  color: #334155;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.section-block .doc-steps li {
+  margin: 0 0 8px;
+}
+
+.section-block .doc-steps li::marker {
+  color: #64748b;
+}
+
+.section-block .shot-grid {
+  margin-top: 18px;
+}
+
 .product-link {
   display: inline-flex;
   align-items: center;

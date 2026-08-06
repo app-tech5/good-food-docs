@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wallet & payments — Customer app</title>
+    <title>Wallet &amp; payments — Customer app</title>
     <link rel="stylesheet" href="./site.css" />
   </head>
   <body>
@@ -59,12 +59,12 @@
       </aside>
       <section class="content">
         <header id="top" class="hero">
-          <h1>Wallet & payments</h1>
+          <h1>Wallet &amp; payments</h1>
           <p class="subtitle">
-            A balance customers like to keep topped up — plus cards on file and smoother refunds when you enable them.
+            How the in-app balance works for customers, how they top up, and what you configure so checkout and refunds stay coherent.
           </p>
           <div class="meta-strip">
-            <span class="meta-pill">Wallet</span>
+            <span class="meta-pill">Balance</span>
             <span class="meta-pill">Top up</span>
             <span class="meta-pill">Payment methods</span>
           </div>
@@ -72,21 +72,32 @@
 
         <section class="overview">
           <section class="section-block">
-            <h2>A wallet that brings people back</h2>
+            <h2>What the wallet is for</h2>
             <p>
-              A wallet turns one-off checkout into a relationship. Customers see their balance, add money when they need to, and keep a card under payment methods. Cashback-style rewards and smoother refunds (when you enable them) make the balance feel useful — not like a dead prepaid card.
+              The wallet is a prepaid balance inside the customer app. Instead of entering a card on every order, the customer can pay from money already on the account. That shortens checkout, reduces failed payments at the door of the kitchen, and gives you a place to land refunds or promotions as credit.
             </p>
             <p class="section-subtext">
-              From the customer app, the flow is simple: open Wallet, check the balance, tap Add Money, pay. Operators configure related flags and gateways from the <a href="./admin-app/monetization.html">admin monetization</a> screens.
+              On the Wallet screen the customer sees the current balance, actions to add or send money (depending on what you enable), and the list of saved payment methods (card brands, Google Pay, PayPal, cash, and similar).
+            </p>
+            <h3>How a customer uses it</h3>
+            <ol class="doc-steps">
+              <li>Open the drawer or account area and choose <strong>Wallet</strong>.</li>
+              <li>Check the balance. Use the refresh control if the amount looks stale after a payment.</li>
+              <li>Tap <strong>Add Money</strong>, choose an amount (or a quick chip such as $10 / $20 / $50), select a payment method, then confirm <strong>Add to balance</strong>.</li>
+              <li>At checkout, choose the wallet as the payment method when the balance covers the order (or the part your rules allow).</li>
+            </ol>
+            <h3>What you configure as operator</h3>
+            <p class="section-subtext">
+              Payment gateways and marketplace payment behaviour are managed in the admin app — see <a href="./admin-app/monetization.html">Monetization</a>. Enable the gateways you actually use in each market before expecting top-ups to succeed in production.
             </p>
             <div class="shot-grid phones">
               <div class="shot phone">
                 <img src="./assets/images/features/wallet.jpg" alt="Customer wallet" />
-                <p>Wallet — balance and payment methods</p>
+                <p>Balance and saved payment methods</p>
               </div>
               <div class="shot phone">
                 <img src="./assets/images/features/wallet-topup.jpg" alt="Add money" />
-                <p>Top up the balance</p>
+                <p>Choose amount and pay into the wallet</p>
               </div>
             </div>
           </section>

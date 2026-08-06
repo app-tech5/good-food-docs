@@ -61,12 +61,11 @@
         <header id="top" class="hero">
           <h1>Monetization</h1>
           <p class="subtitle">
-            Commissions, subscription tiers, earnings splits, and payment gateways — the money control room.
+            How operators set the platform cut, subscription tiers, earnings views, and payment gateways that power wallets and checkout.
           </p>
           <div class="meta-strip">
-            <span class="meta-pill">Commissions</span>
-            <span class="meta-pill">Subscriptions</span>
             <span class="meta-pill">Earnings</span>
+            <span class="meta-pill">Subscriptions</span>
             <span class="meta-pill">Gateways</span>
           </div>
         </header>
@@ -75,36 +74,69 @@
           <section class="section-block">
             <h2>Commissions and earnings</h2>
             <p>
-              Set the platform cut, tune per restaurant when needed, and reward stronger subscription plans with a lower rate. Earnings views show platform vs restaurant splits ready for payouts.
+              Every completed order splits value between the marketplace and the restaurant (and related parties under your rules). The baseline platform commission is configured in marketplace / app settings; restaurant subscription benefits can soften that cut when an active plan says so.
             </p>
+            <p class="section-subtext">
+              The Earnings area in admin is where you review periods and totals — what the platform kept versus what restaurants earned — before you run payouts or investigations.
+            </p>
+            <h3>Operator checklist</h3>
+            <ol class="doc-steps">
+              <li>Set or review the default commission rate in App Settings.</li>
+              <li>Place a test order end-to-end (customer → restaurant accept → complete).</li>
+              <li>Open <strong>Earnings</strong> and confirm the platform vs restaurant split matches your rate and any active restaurant plan benefits.</li>
+              <li>Use View on a row when you need the detail behind a period.</li>
+            </ol>
             <div class="shot-grid">
               <div class="shot wide">
                 <img src="../assets/images/features/earnings.jpg" alt="Earnings" />
-                <p>Earnings — platform vs restaurant</p>
+                <p>Earnings list — periods and totals</p>
               </div>
             </div>
           </section>
           <section class="section-block">
             <h2>Subscription tiers for every role</h2>
             <p>
-              Create plans for customers, drivers, and restaurants: price, billing cycle, benefits. Each mobile app shows the matching subscribe screen.
+              Subscriptions in admin are the source of truth for plans sold in the three mobile apps. Each plan has a <strong>target</strong>: customer, driver, or restaurant — plus price, billing cycle, active flag, and benefit text / flags.
             </p>
+            <p class="section-subtext">
+              Seeded demos usually include sample tiers so lists are not empty after migrations. Edit those to match your pricing story before go-live.
+            </p>
+            <h3>Create or edit a plan</h3>
+            <ol class="doc-steps">
+              <li>Open <strong>Subscriptions</strong> in the admin sidebar.</li>
+              <li>Review existing rows (name, target, price, cycle, active).</li>
+              <li>Add New or View to edit: set target audience, price, billing cycle, and benefits.</li>
+              <li>Save, then open the matching mobile app and confirm the plan appears on that role’s subscription screen.</li>
+            </ol>
             <div class="shot-grid">
               <div class="shot wide">
-                <img src="../assets/images/features/admin-subscriptions.jpg" alt="Admin subscriptions" />
-                <p>Admin — manage subscription tiers</p>
+                <img src="../assets/images/features/admin-subscriptions.jpg" alt="Subscriptions" />
+                <p>Admin subscription tiers</p>
               </div>
             </div>
+            <p class="section-subtext">
+              Customer, driver, and restaurant subscribe UIs: <a href="../subscriptions.html">customer</a>, <a href="../delivery-app/subscriptions.html">driver</a>, <a href="../restaurant-app/subscriptions.html">restaurant</a>.
+            </p>
           </section>
           <section class="section-block">
             <h2>Payment gateways</h2>
             <p>
-              Configure cards and regional PSPs so checkout and wallet top-ups match each market. Customer-facing wallet screens are documented under the <a href="../wallet.html">customer app</a>.
+              Gateways tell the platform which PSPs and local methods are available (cards, wallets, cash on delivery, regional providers, and the internal wallet). Each row typically shows fees, name, and whether it is active.
             </p>
+            <p class="section-subtext">
+              Turn on only what you have credentials and compliance for. Checkout and wallet top-ups will fail in production if the customer’s method points at a disabled or misconfigured gateway.
+            </p>
+            <h3>Configure for a market</h3>
+            <ol class="doc-steps">
+              <li>Open <strong>Gateways</strong> in admin.</li>
+              <li>Enable the methods you support; disable the rest.</li>
+              <li>Enter provider credentials / fees as your form requires (View on a row).</li>
+              <li>Verify a test checkout and a wallet top-up from the <a href="../wallet.html">customer wallet</a> docs path.</li>
+            </ol>
             <div class="shot-grid">
               <div class="shot wide">
                 <img src="../assets/images/features/gateways.jpg" alt="Gateways" />
-                <p>Payment gateways</p>
+                <p>Active payment gateways and fees</p>
               </div>
             </div>
           </section>

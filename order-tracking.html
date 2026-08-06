@@ -61,32 +61,43 @@
         <header id="top" class="hero">
           <h1>Order tracking</h1>
           <p class="subtitle">
-            From pending to delivered — customers follow the order without calling support.
+            How customers follow an order from acceptance to delivery, and how that ties to the map and the driver app.
           </p>
           <div class="meta-strip">
-            <span class="meta-pill">Live status</span>
+            <span class="meta-pill">Status steps</span>
             <span class="meta-pill">ETA</span>
-            <span class="meta-pill">Map context</span>
+            <span class="meta-pill">Map</span>
           </div>
         </header>
 
         <section class="overview">
           <section class="section-block">
-            <h2>Follow the order to the door</h2>
+            <h2>Follow the order without calling support</h2>
             <p>
-              After checkout, customers watch status move from pending to preparing, out for delivery, and delivered — with ETA when available. That transparency cuts support tickets and creates the wow moment that makes someone order again.
+              After checkout, the customer opens Track Order (from order history or the post-order flow). The screen shows the order id, timestamp, and a vertical status timeline: pending → preparing → out for delivery → delivered. Active steps are highlighted; later steps stay muted until they happen.
             </p>
             <p class="section-subtext">
-              Nearby map views help before and during the order. Driver-side logistics and proof of delivery live in the <a href="./delivery-app/logistics.html">delivery app docs</a>.
+              Restaurant contact details appear on the same screen so the customer can call if something is wrong with the meal itself — while delivery progress stays visible without opening a separate chat.
+            </p>
+            <h3>Typical customer path</h3>
+            <ol class="doc-steps">
+              <li>Place an order and wait for the restaurant to accept it.</li>
+              <li>Open <strong>Order history</strong>, select the order, then <strong>Track order</strong> (or the equivalent deep link after payment).</li>
+              <li>Watch the timeline advance as kitchen and driver statuses change on the shared order record.</li>
+              <li>When the driver is en route, ETA copy updates when your logistics / intelligence data provides it.</li>
+            </ol>
+            <h3>Map before and during the order</h3>
+            <p class="section-subtext">
+              The nearby map helps customers discover restaurants around them. Live courier movement on the customer map depends on your deployment; driver-side job handling and proof of delivery are documented under <a href="./delivery-app/logistics.html">Logistics &amp; POD</a>.
             </p>
             <div class="shot-grid phones">
               <div class="shot phone">
                 <img src="./assets/images/features/tracking.jpg" alt="Track order" />
-                <p>Track order — status steps</p>
+                <p>Status timeline for a live order</p>
               </div>
               <div class="shot phone">
                 <img src="./assets/images/features/map-nearby.jpg" alt="Map nearby" />
-                <p>Map — nearby places</p>
+                <p>Map of nearby restaurants</p>
               </div>
             </div>
           </section>

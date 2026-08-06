@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Logistics & POD — Driver app</title>
+    <title>Logistics &amp; POD — Driver app</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
@@ -59,59 +59,78 @@
       </aside>
       <section class="content">
         <header id="top" class="hero">
-          <h1>Logistics & proof of delivery</h1>
+          <h1>Logistics &amp; proof of delivery</h1>
           <p class="subtitle">
-            Batching, live jobs, and proof at the door — the last mile in the driver app.
+            How drivers work a shift: today’s jobs, an active delivery, customer details, and proof at the door.
           </p>
           <div class="meta-strip">
-            <span class="meta-pill">Batching</span>
-            <span class="meta-pill">Active delivery</span>
-            <span class="meta-pill">Photo + signature</span>
+            <span class="meta-pill">Deliveries</span>
+            <span class="meta-pill">Active job</span>
+            <span class="meta-pill">Proof of delivery</span>
           </div>
         </header>
 
         <section class="overview">
           <section class="section-block">
-            <h2>Fewer empty miles</h2>
+            <h2>Today’s deliveries and assignment radius</h2>
             <p>
-              At lunch peak, one bag across town burns time. Batching and a clear deliveries list help couriers stack nearby drops. Assignment radius is configured with delivery settings on the restaurant / admin side.
+              The driver app centres on a clear list of jobs for the shift — pending, on the way, and completed. Batching nearby drops reduces empty miles at lunch peak: one courier can stack orders in the same neighbourhood instead of zigzagging across the city.
             </p>
+            <p class="section-subtext">
+              How far a restaurant (or the marketplace) is willing to send couriers is controlled with delivery settings such as radius and preparation time. Those settings live with the restaurant / marketplace configuration; drivers experience the result as which jobs appear and how far they run.
+            </p>
+            <h3>Driver checklist for the list</h3>
+            <ol class="doc-steps">
+              <li>Go online / available so new assignments can reach you.</li>
+              <li>Open <strong>Deliveries</strong> (or Home’s active list) and scan statuses.</li>
+              <li>Accept or start the next job according to your marketplace rules.</li>
+            </ol>
             <div class="shot-grid phones">
               <div class="shot phone">
                 <img src="../assets/images/features/driver-deliveries.jpg" alt="Deliveries" />
-                <p>Today’s deliveries</p>
+                <p>Today’s delivery list</p>
               </div>
               <div class="shot phone">
-                <img src="../assets/images/features/delivery-settings.jpg" alt="Settings" />
-                <p>Delivery settings / radius</p>
+                <img src="../assets/images/features/delivery-settings.jpg" alt="Delivery settings" />
+                <p>Radius and prep time (restaurant side)</p>
               </div>
             </div>
           </section>
           <section class="section-block">
             <h2>On the road</h2>
             <p>
-              Drivers open an active job, see customer details, and navigate. Customers follow progress in the <a href="../order-tracking.html">customer order tracking</a> screens.
+              An active delivery screen keeps the current order, status, and primary actions in one place. From details, the driver sees customer information needed for the drop-off and can open navigation toward the address.
+            </p>
+            <p class="section-subtext">
+              Customers follow the same order on <a href="../order-tracking.html">order tracking</a> — there is one order record, not a separate “driver copy”.
             </p>
             <div class="shot-grid phones">
               <div class="shot phone">
-                <img src="../assets/images/features/driver-active.jpg" alt="Active" />
-                <p>Active delivery</p>
+                <img src="../assets/images/features/driver-active.jpg" alt="Active delivery" />
+                <p>Current job while on delivery</p>
               </div>
               <div class="shot phone">
-                <img src="../assets/images/features/driver-details.jpg" alt="Details" />
-                <p>Delivery details</p>
+                <img src="../assets/images/features/driver-details.jpg" alt="Delivery details" />
+                <p>Customer and order details</p>
               </div>
             </div>
           </section>
           <section class="section-block">
-            <h2>Proof of delivery</h2>
+            <h2>Proof of delivery at the door</h2>
             <p>
-              At the door, capture a photo and customer signature. Cash-on-delivery and high-value meals suddenly have evidence when “I never got it” used to win.
+              When the driver marks the order delivered, a proof-of-delivery flow can require a photo and a signature — especially useful for contactless drop-off and cash-on-delivery disputes. The modal explains contactless rules (for example staying within a short distance of the address) and offers Clear on the signature pad before Complete delivery.
             </p>
+            <h3>Complete with evidence</h3>
+            <ol class="doc-steps">
+              <li>Arrive at the drop-off and open <strong>Mark as Delivered</strong> (or the equivalent action).</li>
+              <li>If contactless is on, capture the required photo.</li>
+              <li>Collect a signature on the pad (or clear and retry).</li>
+              <li>Confirm <strong>Complete delivery</strong>. The order status becomes delivered for customer, restaurant, and admin.</li>
+            </ol>
             <div class="shot-grid phones">
               <div class="shot phone">
-                <img src="../assets/images/features/driver-pod.jpg" alt="POD" />
-                <p>Photo + signature</p>
+                <img src="../assets/images/features/driver-pod.jpg" alt="Proof of delivery" />
+                <p>Photo + signature before complete</p>
               </div>
             </div>
           </section>
