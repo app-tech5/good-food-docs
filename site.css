@@ -659,14 +659,21 @@ pre code {
 }
 
 .shot.phone img {
-  height: 380px;
-  object-fit: cover;
+  height: auto;
+  max-height: 420px;
+  width: 100%;
+  object-fit: contain;
   object-position: top center;
+  background: #f8fafc;
 }
 
 .shot.wide img {
-  height: 200px;
-  object-position: center top;
+  height: auto;
+  max-height: 280px;
+  width: 100%;
+  object-fit: contain;
+  object-position: top center;
+  background: #f8fafc;
 }
 
 .shot p {
