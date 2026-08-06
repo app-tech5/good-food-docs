@@ -654,14 +654,18 @@ pre code {
   background: #f1f5f9;
 }
 
+.shot.phone {
+  max-width: 220px;
+}
+
 .shot.phone img {
-  height: 320px;
+  height: 380px;
   object-fit: cover;
   object-position: top center;
 }
 
 .shot.wide img {
-  height: 220px;
+  height: 200px;
   object-position: center top;
 }
 
@@ -674,8 +678,14 @@ pre code {
   border-top: 1px solid var(--border);
 }
 
+/* Keep media inside the content column — never blow out the layout */
+.content img {
+  max-width: 100%;
+}
+
 .doc-figure {
   margin: 18px 0 8px;
+  max-width: min(680px, 100%);
   border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
@@ -684,10 +694,21 @@ pre code {
 
 .doc-figure img {
   width: 100%;
-  max-height: 420px;
+  max-height: 320px;
   object-fit: cover;
   object-position: top center;
   display: block;
+}
+
+.doc-figure.phone {
+  max-width: 240px;
+}
+
+.doc-figure.phone img {
+  max-height: none;
+  height: auto;
+  object-fit: contain;
+  background: #f8fafc;
 }
 
 .doc-figure figcaption {
