@@ -656,14 +656,15 @@ pre code {
 }
 
 .shot.phone {
-  max-width: 280px;
+  max-width: 320px;
 }
 
 .shot.phone img {
   width: 100%;
   height: auto;
-  max-height: 580px;
+  max-height: none;
   object-fit: contain;
+  object-position: top center;
   background: #f8fafc;
 }
 
@@ -674,7 +675,7 @@ pre code {
 .shot.wide img {
   width: 100%;
   height: auto;
-  max-height: 480px;
+  max-height: none;
   object-fit: contain;
   object-position: top center;
   background: #f8fafc;
@@ -707,7 +708,7 @@ pre code {
 .doc-figure img {
   width: 100%;
   height: auto;
-  max-height: 520px;
+  max-height: none;
   object-fit: contain;
   object-position: top center;
   display: block;
@@ -715,13 +716,14 @@ pre code {
 }
 
 .doc-figure.phone {
-  max-width: 300px;
+  max-width: 320px;
 }
 
 .doc-figure.phone img {
-  max-height: 580px;
+  max-height: none;
   height: auto;
   object-fit: contain;
+  object-position: top center;
 }
 
 .doc-figure figcaption {
