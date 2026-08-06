@@ -53,61 +53,50 @@
           <a href="../my-backend/getting-started.html">Getting Started</a>
         </nav>
       </aside>
-
       <section class="content">
         <header id="top" class="hero">
           <h1>Logistics &amp; proof of delivery</h1>
           <p class="subtitle">
-            Batch nearby jobs, live map tracking, and multimedia proof of delivery for the last mile.
+            Smarter routes for drivers, live tracking for customers, and proof when it matters.
           </p>
           <div class="meta-strip">
             <span class="meta-pill">Batching</span>
             <span class="meta-pill">Live map</span>
-            <span class="meta-pill">POD + signature</span>
+            <span class="meta-pill">Photo + signature</span>
           </div>
         </header>
 
         <section class="overview">
           <section class="section-block">
-            <h2>Order batching</h2>
+            <h2>Batch nearby jobs</h2>
             <p>
-              Drivers can pick up compatible nearby jobs. Backend logistics helpers
-              (<code>findBatchCandidates</code> (and related limit / radius rules from delivery settings)
-              live in <code>logisticsService</code>, exposed under <code>/api/logistics</code>.
+              Couriers can take compatible deliveries that sit close together — fewer empty miles, more completed orders per shift.
+              Your marketplace stays efficient even when demand spikes at lunch and dinner.
             </p>
           </section>
 
           <section class="section-block">
-            <h2>Live map tracking</h2>
+            <h2>Follow the driver live</h2>
             <p>
-              Customer and driver apps share live location and map UX so buyers follow the courier in real time and drivers navigate cleanly to drop-off —
-              a full last-mile tracking experience for your marketplace.
+              Customers watch their order move on the map. Drivers navigate to the door with confidence.
+              That transparency cuts support tickets and builds the “wow” moment that makes people order again.
             </p>
           </section>
 
           <section class="section-block">
-            <h2>Proof of delivery (POD)</h2>
+            <h2>Proof of delivery</h2>
             <p>
-              The delivery app supports multimedia confirmation at drop-off:
-            </p>
-            <ul>
-              <li><code>ProofOfDeliveryModal</code> — capture / attach delivery proof</li>
-              <li><code>SignaturePad</code> — customer signature</li>
-              <li>Wired through delivery action hooks (<code>useDeliveryActions</code> / driver order hooks)</li>
-            </ul>
-            <p class="section-subtext">
-              This closes the loop for disputed deliveries and COD / high-value drops.
+              At the door, drivers can capture a photo and a customer signature.
+              Perfect for cash-on-delivery, high-value meals, and any dispute where “I never got it” used to be hard to answer.
             </p>
           </section>
 
           <section class="section-block">
-            <h2>Where to look</h2>
-            <ul>
-              <li><code>my-backend/src/services/logisticsService.js</code></li>
-              <li><code>my-backend/src/routes/logisticsRoutes.js</code> → <code>/api/logistics</code></li>
-              <li><code>delivery-app/components/ProofOfDeliveryModal.js</code></li>
-              <li><code>delivery-app/components/SignaturePad.js</code></li>
-            </ul>
+            <h2>Last mile that sells the product</h2>
+            <p>
+              Serious buyers compare clones on logistics depth. Batching, live tracking, and multimedia proof show that Good Food Pro
+              is ready for real city operations — not a demo that stops at “order placed.”
+            </p>
           </section>
         </section>
       </section>

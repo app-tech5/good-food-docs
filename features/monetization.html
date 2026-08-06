@@ -53,119 +53,86 @@
           <a href="../my-backend/getting-started.html">Getting Started</a>
         </nav>
       </aside>
-
       <section class="content">
         <header id="top" class="hero">
           <h1>Monetization</h1>
           <p class="subtitle">
-            How the platform earns: commissions, subscriptions, sponsored listings, wallets, and multi-PSP checkout.
+            Turn every order into revenue — and keep earning between deliveries with plans, ads, and wallet.
           </p>
           <div class="meta-strip">
             <span class="meta-pill">Commissions</span>
             <span class="meta-pill">Subscriptions</span>
             <span class="meta-pill">Sponsored ads</span>
-            <span class="meta-pill">Wallet &amp; gateways</span>
+            <span class="meta-pill">Wallet &amp; payments</span>
           </div>
         </header>
 
         <section class="overview">
           <section class="section-block">
-            <h2>Overview</h2>
+            <h2>Your marketplace, your money</h2>
             <p>
-              Good Food Pro is built as a <strong>marketplace you operate</strong> — with multiple revenue levers in one stack:
-              commission splits, SaaS subscription benefits, paid placement (sponsored listings),
-              and wallet / multi-gateway payment flows for customers, restaurants, and drivers.
-            </p>
-          </section>
-
-          <section class="section-block">
-            <h2>Commissions</h2>
-            <p>
-              Platform commission is computed per restaurant (or from a global default in app settings).
-              Active <strong>restaurant subscriptions</strong> can <em>reduce</em> or <em>waive</em> that rate
-              (<code>commissionService.getEffectiveCommissionRate</code>).
+              Good Food Pro is built for operators who want more than a simple delivery fee.
+              You take a platform cut on orders, sell membership plans, let restaurants buy premium placement,
+              and offer wallet balances customers love to top up.
             </p>
             <p class="section-subtext">
-              Order totals are split into platform vs restaurant shares with <code>splitOrderAmounts</code>.
-              Admin earnings screens reflect those splits for ops and payouts.
+              Everything is managed from the admin console and the apps your partners already use —
+              so monetization feels like part of the product, not a bolt-on spreadsheet.
             </p>
           </section>
 
           <section class="section-block">
-            <h2>Subscriptions (SaaS tiers)</h2>
+            <h2>Commissions on every order</h2>
             <p>
-              Plans live in the <code>subscriptions</code> collection and target one of:
-              <strong>customer</strong>, <strong>driver</strong>, or <strong>restaurant</strong>.
-              Each plan has price, currency, billing cycle, benefit text, and machine-readable
-              <code>benefitFlags</code> (free delivery, discounts, reduced commission, priority support, etc.).
+              Set a default commission for your city, or tune it per restaurant.
+              When a partner pays for a stronger subscription, you can reward them with a lower cut —
+              a clean incentive that grows both sides of the marketplace.
             </p>
-            <ul>
-              <li><strong>API:</strong> <code>/api/subscriptions</code></li>
-              <li><strong>Apps:</strong> Subscriptions screens in Customer, Driver, and Restaurant apps</li>
-              <li><strong>Admin:</strong> manage plans / user subscriptions as entities</li>
-              <li><strong>Demo seeds:</strong> migrations <code>37</code>, <code>42</code> (driver tiers), <code>43</code> (customer tiers)</li>
-            </ul>
+            <p class="section-subtext">
+              Earnings views in admin show the split clearly: what the platform keeps, what the restaurant earns, ready for payouts.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Subscriptions that renew</h2>
+            <p>
+              Offer monthly (or other) plans to <strong>customers</strong> (free delivery, member offers),
+              <strong>drivers</strong> (access and support tiers), and <strong>restaurants</strong> (better rates, visibility).
+              Recurring revenue sits next to commission income — the combination buyers look for in a serious food platform.
+            </p>
           </section>
 
           <section class="section-block">
             <h2>Sponsored listings</h2>
             <p>
-              Restaurants can buy paid placement (search / home-style placements) with bid, budget, schedule, and tracking
-              (impressions / clicks). Active listings are served to the customer app; restaurants manage their own campaigns
-              in <strong>Sponsored Listings</strong>.
+              Restaurants compete for attention on home and search with paid campaigns:
+              set a headline, schedule, budget, and watch impressions and clicks.
+              Your customer app stays beautiful; partners pay for the spotlight.
             </p>
-            <ul>
-              <li><strong>API:</strong> <code>/api/sponsored</code> (<code>active</code>, <code>mine</code>, activate, track)</li>
-              <li><strong>Model / service:</strong> <code>SponsoredListing</code>, <code>sponsoredListingService</code></li>
-              <li><strong>Demo seed:</strong> migration <code>39-saas-sponsored-seed.js</code></li>
-            </ul>
           </section>
 
           <section class="section-block">
-            <h2>Wallet ledger</h2>
+            <h2>Wallet &amp; modern payments</h2>
             <p>
-              Customer wallet supports balance, cashback, and instant-refund style flows (flags in app settings from
-              market-adaptability migration). Ledger logic lives in <code>walletLedgerService</code>; the customer app
-              exposes wallet / add-money screens.
+              Customers can keep a balance, enjoy cashback-style rewards, and get smoother refunds.
+              Checkout supports major cards via Stripe Connect–style marketplace payouts and regional payment providers
+              so you can launch in more countries with the payment habits locals already trust.
             </p>
           </section>
 
           <section class="section-block">
-            <h2>Payment gateways</h2>
+            <h2>Why this converts</h2>
             <p>
-              Beyond Stripe Connect for marketplace payouts, the API exposes a multi-provider gateway surface:
+              Buyers evaluating food-delivery clones often ask: “How do I make money after launch?”
+              Good Food Pro answers with a full toolbox — commissions, subscriptions, ads, wallet, and gateways —
+              included in the same five-product suite you host and brand.
             </p>
-            <ul>
-              <li><strong>API:</strong> <code>/api/gateways</code> — list providers, initialize a payment</li>
-              <li><strong>Service:</strong> <code>paymentGatewayService</code> (regional PSPs such as Paystack, Flutterwave, Razorpay — plus Stripe)</li>
-              <li>Admin can manage gateway / earnings configuration used in demos and production setups</li>
-            </ul>
-            <p class="section-subtext">
-              Related demo fill: migration <code>40-monetization-demo-fill.js</code>.
-            </p>
-          </section>
-
-          <section class="section-block">
-            <h2>Where to look in the code</h2>
-            <div class="project-structure">
-              <pre style="margin:0;white-space:pre-wrap;font-size:13px;line-height:1.5;">
-my-backend/
-  src/services/commissionService.js
-  src/services/subscriptionService.js
-  src/services/sponsoredListingService.js
-  src/services/walletLedgerService.js
-  src/services/paymentGatewayService.js
-  src/routes/subscriptionRoutes.js
-  src/routes/sponsoredListingRoutes.js
-  src/routes/paymentGatewayRoutes.js
-  migrations/37–43 (plans + monetization demos)
-restaurant-app/screens/SponsoredListingsScreen.js
-restaurant-app/screens/SubscriptionsScreen.js
-              </pre>
-            </div>
           </section>
         </section>
       </section>
     </main>
+    <script>
+      /* sidebar filled by inject script on build; keep structure if already injected */
+    </script>
   </body>
 </html>

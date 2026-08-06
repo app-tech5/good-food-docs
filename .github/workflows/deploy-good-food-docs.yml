@@ -22,6 +22,8 @@ jobs:
             --exclude=".github" \
             --exclude=".DS_Store" \
             --exclude="good-food-docs-site.tar.gz" \
+            --exclude="source-docs" \
+            --exclude="scripts" \
             -czf "$ARCHIVE" .
           mv "$ARCHIVE" good-food-docs-site.tar.gz
           ls -lh good-food-docs-site.tar.gz

@@ -102,17 +102,16 @@
               <strong>file uploads</strong> for images, and <strong>generic CRUD</strong> routes used heavily by the admin dashboard.
             </p>
             <p class="section-subtext">
-              Pro monetization and ops surfaces on the same API include:
-              <code>/api/subscriptions</code>, <code>/api/sponsored</code>, <code>/api/gateways</code>,
-              <code>/api/channels</code>, <code>/api/intelligence</code>, and <code>/api/logistics</code>
-              (plus Stripe Connect / wallet helpers). See
+              Beyond catalog and orders, the same API powers monetization (subscriptions, sponsored placement, wallets, gateways),
+              market options (languages, channels), kitchen ops, live logistics, and smart recommendations —
+              so every app in the suite shares one brain. Explore
               <a href="../features/monetization.html">Monetization</a>,
               <a href="../features/market-adaptability.html">Market adaptability</a>,
               <a href="../features/intelligence.html">AI intelligence</a>, and
               <a href="../features/logistics.html">Logistics &amp; POD</a>.
             </p>
             <p class="section-subtext">
-              Authentication uses JWT; protected routes sit under <code>/api</code> after the auth middleware. Cookies and CORS are configured for browser clients (admin).
+              Sign-in is secure; each role only sees what it is allowed to manage. The admin dashboard and mobile apps all talk to this one service.
             </p>
           </section>
 
