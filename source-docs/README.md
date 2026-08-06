@@ -9,7 +9,7 @@ This folder is the **technical HOW-TO pack** that ships with the source ZIP. It 
 | Audience | Shoppers & evaluators browsing the product page | Buyers who already have the ZIP |
 | Tone | Feature stories, screenshots, marketing clarity | Step-by-step launch & configuration |
 | Depth | What the platform can do | How to boot Mongo, migrate, point env vars, smoke-test an order |
-| Format | Public site (`getting-started.html`, `features/*.html`) | Markdown you can read offline next to the repos |
+| Format | Public site (pages under each app: customer / delivery / restaurant / admin / backend) | Markdown you can read offline next to the repos |
 
 The online docs stay buyer-friendly on purpose. **These guides go one level deeper**: npm scripts, `.env` keys, admin entity names, useful API paths (for example `/api/subscriptions`), and migration commands. They still avoid dumping internal source-file inventories — you configure and *use* the product, not map every service file.
 
