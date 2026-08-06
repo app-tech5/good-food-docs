@@ -626,20 +626,20 @@ pre code {
 .tok-var { color: #fca5a5; }
 
 .shot-grid {
-  margin-top: 18px;
+  margin-top: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
 }
 
 .shot-grid.phones {
-  grid-template-columns: repeat(auto-fit, minmax(160px, 220px));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 280px));
   justify-content: start;
 }
 
 .shot {
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
   background: #fff;
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
@@ -647,30 +647,34 @@ pre code {
 
 .shot img {
   width: 100%;
-  height: 160px;
-  object-fit: cover;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
   object-position: top center;
   display: block;
   background: #f1f5f9;
 }
 
 .shot.phone {
-  max-width: 220px;
+  max-width: 280px;
 }
 
 .shot.phone img {
-  height: auto;
-  max-height: 420px;
   width: 100%;
+  height: auto;
+  max-height: 580px;
   object-fit: contain;
-  object-position: top center;
   background: #f8fafc;
 }
 
+.shot.wide {
+  max-width: 100%;
+}
+
 .shot.wide img {
-  height: auto;
-  max-height: 280px;
   width: 100%;
+  height: auto;
+  max-height: 480px;
   object-fit: contain;
   object-position: top center;
   background: #f8fafc;
@@ -688,34 +692,36 @@ pre code {
 /* Keep media inside the content column — never blow out the layout */
 .content img {
   max-width: 100%;
+  height: auto;
 }
 
 .doc-figure {
   margin: 18px 0 8px;
-  max-width: min(680px, 100%);
+  max-width: min(860px, 100%);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
   background: #fff;
 }
 
 .doc-figure img {
   width: 100%;
-  max-height: 320px;
-  object-fit: cover;
+  height: auto;
+  max-height: 520px;
+  object-fit: contain;
   object-position: top center;
   display: block;
+  background: #f8fafc;
 }
 
 .doc-figure.phone {
-  max-width: 240px;
+  max-width: 300px;
 }
 
 .doc-figure.phone img {
-  max-height: none;
+  max-height: 580px;
   height: auto;
   object-fit: contain;
-  background: #f8fafc;
 }
 
 .doc-figure figcaption {
