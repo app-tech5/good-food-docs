@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Good Food Pro — Delivery (Driver) App Documentation</title>
+    <title>Driver app — Docs</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
@@ -56,69 +56,62 @@
 
       <section class="content">
         <header id="top" class="hero">
-          <h1>Good Food — Delivery (Driver) App</h1>
+          <h1>Driver app</h1>
           <p class="subtitle">
-            A simple mobile app for your couriers: see new jobs, move orders through each delivery step, and check earnings—without juggling spreadsheets or phone calls.
+            Built for couriers on the road: see new jobs, stack nearby drops, update every mile of the delivery,
+            prove the handoff, and check earnings — without spreadsheets or endless phone calls.
           </p>
           <p class="intro-line">
-            This overview helps non-technical readers and developers alike understand what the driver app does,
-            which devices it supports, and what must be running on your server before anyone can log in.
+            For buyers and ops leads who need to know what drivers experience, and for teams wiring the same API
+            the rest of the suite already uses.
           </p>
           <div class="meta-strip">
             <span class="meta-pill">Easy to launch</span>
-            <span class="meta-pill">Android &amp; iOS ready</span>
-            <span class="meta-pill">Connects to your Good Food API</span>
+            <span class="meta-pill">Android &amp; iOS</span>
+            <span class="meta-pill">Your API</span>
           </div>
         </header>
 
         <section class="overview">
           <section class="section-block">
-            <h2>Overview (Presentation)</h2>
+            <h2>The last mile, in one pocket</h2>
             <p>
-              The <strong>driver app</strong> (shown on the phone as <strong>Good Food Pro Driver</strong>) is for the person who
-              <strong>delivers</strong> the food. The customer app is for ordering; the restaurant app is for the kitchen;
-              this one is for the road—from picking up the bag to marking the order as delivered.
+              Customers order. Kitchens cook. <strong>Drivers deliver.</strong> This app is that third act:
+              accept a job, navigate to the restaurant, carry the bag, mark each status, and finish with confidence at the door.
+              It talks to <strong>your</strong> hosted API — assignments, profile, and stats download after login.
             </p>
             <p class="section-subtext">
-              Like the rest of Good Food, this app talks to <strong>your server</strong> over the internet. You host the
-              backend and database; the driver signs in, and the app downloads their assignments, profile, and stats from your API.
-            </p>
-            <p class="section-subtext">
-              If you are setting up the suite for the first time, read the customer app overview for the big picture,
-              then come back here for courier-specific details.
-            </p>
-            <p class="section-subtext">
-              Last-mile Pro features include job <strong>batching</strong>, live map tracking, and
+              Last-mile depth includes job <strong>batching</strong>, live map tracking, and
               <a href="../features/logistics.html">proof of delivery (photo + signature)</a>.
-              Drivers can also subscribe to SaaS tiers — see <a href="../features/monetization.html">Monetization</a>.
+              Couriers can also join membership tiers — see <a href="../features/monetization.html">Monetization</a>.
             </p>
+            <div class="shot-grid phones">
+              <div class="shot phone">
+                <img src="../assets/images/apps/driver-home.jpg" alt="Driver home" />
+                <p>Home — on duty and ready for jobs</p>
+              </div>
+              <div class="shot phone">
+                <img src="../assets/images/apps/driver-earn.jpg" alt="Driver earnings" />
+                <p>Earnings — what the shift paid</p>
+              </div>
+            </div>
             <a class="product-link" href="../index.html">Customer app — Overview</a>
             <div class="compare-note">
-              <p class="compare-title">How login works (simple version)</p>
+              <p class="compare-title">Login needs a driver account</p>
               <p style="margin: 0; color: #334155; font-size: 15px; max-width: none;">
-                The courier uses an email and password like any user. Your server checks that this account is allowed to work as a
-                <strong>driver</strong> (a driver profile in the database). If the account is only a customer, the app will show an error—so
-                for testing, always create or promote a user as a driver on the backend first.
+                Email and password work like any user, but the server must recognize a <strong>driver</strong> profile.
+                A pure customer account will be rejected — create or promote a driver user before testing.
               </p>
             </div>
           </section>
 
           <section class="section-block">
-            <h2>Driver App Presentation</h2>
+            <h2>Designed for thumbs, not desks</h2>
             <p>
-              The interface is meant for people who are <strong>on the move</strong>, not sitting at a desk. Large touch targets,
-              clear labels, and a side menu make it easy to jump between home, today&apos;s deliveries, money, and settings.
-            </p>
-            <p class="section-subtext">
-              In everyday use, a driver can sign in, see a home dashboard, open the list of deliveries, tap into one order to see
-              details and the route, and update status as they pick up and drop off. They can also review past jobs, earnings,
-              transactions, simple reports, notifications, help/support, profile and vehicle info, and app preferences.
-            </p>
-
-            <p class="section-subtext">
-              The app can use <strong>maps</strong> and <strong>GPS</strong> when you allow location access—useful for navigation and
-              on-duty features. For real phones and store builds you will configure map keys and permissions (covered step by step in
-              <a href="./getting-started.html">Getting Started</a>).
+              Large targets, clear labels, and a side menu for home, deliveries, money, history, reports, support, profile, vehicle, and settings.
+              Drivers open a delivery for details and route, advance pickup and drop-off, and keep moving.
+              Maps and GPS power navigation when you grant location — keys and permissions are covered in
+              <a href="./getting-started.html">Getting Started</a>.
             </p>
           </section>
 

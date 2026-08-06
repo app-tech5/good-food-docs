@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Good Food Pro — Restaurant App Documentation</title>
+    <title>Restaurant app — Docs</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
@@ -56,9 +56,9 @@
 
       <section class="content">
         <header id="top" class="hero">
-          <h1>Good Food Pro — Restaurant App</h1>
+          <h1>Restaurant app</h1>
           <p class="subtitle">
-            The mobile workspace for restaurant teams: see new orders, update the menu, and understand how the service is performing—without digging through code.
+            The mobile workspace for restaurant teams: handle incoming orders, keep menu availability accurate, and stay aligned during service without jumping between tools.
           </p>
           <p class="intro-line">
             This overview is written for non-technical readers (owners, managers, buyers) as well as developers.
@@ -75,12 +75,12 @@
           <section class="section-block">
             <h2>Overview (Presentation)</h2>
             <p>
-              The Good Food <strong>restaurant app</strong> is the operations companion in the suite. While the
+              The <strong>restaurant app</strong> is the operations companion in the suite. While the
               <strong>customer app</strong> is where people place orders, the restaurant app is where your team
               <strong>receives</strong> those orders, prepares them, and keeps the <strong>menu</strong> accurate.
             </p>
             <p class="section-subtext">
-              Like the rest of the stack, it talks to <strong>your</strong> Good Food REST API and database.
+              Like the rest of the stack, it talks to <strong>your</strong> REST API and database.
               You host the backend; the app only displays and updates what the server authorizes for a signed-in restaurant account.
             </p>
             <p class="section-subtext">
@@ -92,6 +92,20 @@
               <a href="../features/monetization.html">Subscriptions</a> for SaaS tiers,
               and <a href="../features/monetization.html">Sponsored Listings</a> so partners can buy paid placement in the customer app.
             </p>
+            <div class="shot-grid phones">
+              <div class="shot phone">
+                <img src="../assets/images/apps/restaurant-dash.jpg" alt="Restaurant app dashboard and live operations view" />
+                <p>Dashboard — live operations at a glance</p>
+              </div>
+              <div class="shot phone">
+                <img src="../assets/images/apps/restaurant-sub.jpg" alt="Restaurant subscription settings and plan controls" />
+                <p>Subscriptions — plans partners can buy</p>
+              </div>
+              <div class="shot phone">
+                <img src="../assets/images/features/kds.jpg" alt="Kitchen Display board for prep workflow" />
+                <p>Kitchen Display — tickets for the line</p>
+              </div>
+            </div>
             <div class="compare-note">
               <p class="compare-title">Same backend as customer and driver</p>
               <p style="margin: 0; color: #334155; font-size: 15px; max-width: none;">
@@ -146,7 +160,7 @@
               One shared React Native / Expo codebase serves both stores, so updates and fixes roll out consistently.
             </p>
             <p class="section-subtext">
-              Package identity in the project is aligned under the Good Food restaurant bundle name for both platforms (see app metadata in the repository if you publish to stores).
+              Package identity in the project is aligned under the restaurant bundle name for both platforms (see app metadata in the repository if you publish to stores).
             </p>
           </section>
 
@@ -278,7 +292,7 @@
             <h2>Current Version</h2>
             <p><strong>1.0.0</strong></p>
             <p class="section-subtext">
-              Baseline version shipped with the Good Food suite; bump the version in project metadata when you publish your own releases.
+              Baseline version shipped with the suite; bump the version in project metadata when you publish your own releases.
             </p>
           </section>
 

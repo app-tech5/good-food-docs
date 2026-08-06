@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Good Food Pro — my-backend (API) Documentation</title>
+    <title>Backend API — Docs</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
@@ -56,9 +56,9 @@
 
       <section class="content">
         <header id="top" class="hero">
-          <h1>Good Food — my-backend</h1>
+          <h1>Backend API</h1>
           <p class="subtitle">
-            The Node.js API and database layer every Good Food client talks to: auth, catalog, orders, drivers, settings, uploads, and more.
+            The Node.js API and database layer every client talks to: auth, catalog, orders, drivers, settings, uploads, and more.
           </p>
           <p class="intro-line">
             This overview is for non-technical readers (buyers, PMs) and engineers alike: what the backend does, how it connects to mobile and web apps,
@@ -75,7 +75,7 @@
           <section class="section-block">
             <h2>Overview (Presentation)</h2>
             <p>
-              <strong>my-backend</strong> is the reference Good Food <strong>server</strong> for the suite — the single source of truth that powers
+              <strong>my-backend</strong> is the reference <strong>server</strong> for the suite — the single source of truth that powers
               customer, restaurant, driver, and admin apps over REST (and real-time channels) with users, menus, orders, and configuration in
               <strong>MongoDB</strong>.
             </p>
@@ -83,6 +83,14 @@
               You host it yourself (laptop, VPS, or cloud) and own the full stack. Mobile apps and the admin dashboard point to the same base URL
               (for example <code>http://YOUR_IP:5000/api</code>).
             </p>
+            <p class="section-subtext">
+              In practice, this API is where business rules live: who can see what, how order state changes propagate, how payouts are tracked, and how localized settings are delivered to each app.
+              Front-ends stay focused on user experience because the backend carries the operational logic.
+            </p>
+            <figure class="doc-figure">
+              <img src="../assets/images/apps/admin-dash.jpg" alt="Admin dashboard as one of the clients consuming the backend API" />
+              <figcaption>One of the clients that consumes this API — the admin control room.</figcaption>
+            </figure>
             <div class="compare-note">
               <p class="compare-title">Start the API before the apps</p>
               <p style="margin: 0; color: #334155; font-size: 15px; max-width: none;">

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Good Food Pro — Customer App Documentation</title>
+    <title>Customer app — Docs</title>
     <link rel="stylesheet" href="site.css" />
   </head>
   <body>
@@ -56,84 +56,85 @@
 
       <section class="content">
         <header id="top" class="hero">
-          <h1>Good Food Pro — Customer App</h1>
+          <h1>Customer app</h1>
           <p class="subtitle">
-            Build a modern food-ordering experience your customers enjoy from day one.
-            Part of the <strong>Good Food Pro</strong> suite (Customer, Driver, Restaurant, Admin + MongoDB API).
+            The mobile storefront of your food marketplace — from “I’m hungry” to a tracked delivery,
+            with wallet, memberships, and smart suggestions that make the next order feel inevitable.
           </p>
           <p class="intro-line">
-            This overview helps non-technical buyers and technical teams clearly understand
-            what the customer app does, which platforms it supports, and what is needed to run it.
+            This overview is for buyers and teams who want to feel the product before they open a terminal:
+            what customers do, what the screens look like, and how this app sits next to driver, restaurant, admin, and your API.
           </p>
           <div class="meta-strip">
             <span class="meta-pill">Easy to launch</span>
-            <span class="meta-pill">Android & iOS ready</span>
-            <span class="meta-pill">Self-hosted REST API</span>
+            <span class="meta-pill">Android &amp; iOS</span>
+            <span class="meta-pill">Self-hosted API</span>
           </div>
         </header>
 
         <section class="overview">
           <section class="section-block">
-            <h2>Overview (Presentation)</h2>
+            <h2>A storefront people actually enjoy</h2>
             <p>
-              The Good Food Pro <strong>customer app</strong> is the mobile storefront of your food delivery business.
-              It turns restaurant browsing and ordering into a clear, smooth, and user-friendly journey.
+              The <strong>customer app</strong> is where your brand meets the street. People browse nearby restaurants,
+              open rich menus, fill a cart, pay, and follow the courier on the map — without needing a tutorial.
+              Everything important lives on <strong>your</strong> server: accounts, menus, orders, and payments talk to the shared REST API you host.
             </p>
             <p class="section-subtext">
-              This codebase is the updated <strong>Good Food Pro</strong> stack: mobile clients talk to your own
-              <strong>REST API</strong> and database. You host the backend (for example Express.js + MongoDB)
-              and point the apps at your API base URL.
+              It is one piece of a five-product suite (customer, driver, restaurant, admin, and MongoDB-backed API).
+              Point the app at your API base URL and the same data powers every role.
             </p>
-            <p class="section-subtext">
-              As the buyer-facing app in the suite, it is designed to take users from &quot;I am hungry&quot; to
-              &quot;Order confirmed&quot; with minimal friction, while order and account data stay on your server.
-            </p>
-
+            <div class="shot-grid phones">
+              <div class="shot phone">
+                <img src="./assets/images/apps/customer-home.jpg" alt="Customer home feed" />
+                <p>Home — discover places nearby</p>
+              </div>
+              <div class="shot phone">
+                <img src="./assets/images/apps/customer-restaurant.jpg" alt="Restaurant detail" />
+                <p>Restaurant — menus, offers, reviews</p>
+              </div>
+              <div class="shot phone">
+                <img src="./assets/images/apps/customer-cart.jpg" alt="Cart" />
+                <p>Cart — clear and ready to checkout</p>
+              </div>
+              <div class="shot phone">
+                <img src="./assets/images/apps/customer-checkout.jpg" alt="Checkout" />
+                <p>Checkout — pay and confirm</p>
+              </div>
+            </div>
             <div class="compare-note">
-              <p class="compare-title">Backend architecture</p>
+              <p class="compare-title">Your API, your data</p>
               <p style="margin: 0; color: #334155; font-size: 15px; max-width: none;">
-                Data and auth go through your <strong>Good Food REST API</strong>.
-                You run the API and MongoDB (or your chosen hosting), configure <code>API_BASE_URL</code> in the app,
-                and scale or customize the backend like any Node.js service.
+                Auth and business data go through the suite’s REST API and MongoDB. You run them (laptop, VPS, or cloud),
+                set the app’s API base URL, and grow the backend like any Node.js service.
               </p>
             </div>
           </section>
 
           <section class="section-block">
-            <h2>Customer App Presentation</h2>
+            <h2>More than a menu browser</h2>
             <p>
-              This app is made for everyday users, not only advanced users. The interface is simple,
-              visual, and action-oriented so even first-time customers can order with confidence.
+              Everyday ordering is the core: sign in, find food, customize items, checkout, track. Around that journey sit the features
+              operators need to compete — addresses and languages (EN/FR/ES/AR), wallet and cards, membership plans,
+              sponsored restaurant placement on the feed, smart recommendations / ETA / surge cues, and live tracking.
             </p>
             <p class="section-subtext">
-              Customers can sign in, discover nearby restaurants, explore menu items, add products
-              to the cart, complete checkout, and follow order progress in a smooth, guided flow.
-            </p>
-            <p class="section-subtext">
-              Beyond ordering, the app includes practical account features such as address management,
-              language preferences (EN/FR/ES/AR), wallet and payment options, subscriptions,
-              sponsored restaurant placements, AI-assisted recommendations / ETA / surge signals,
-              and live order tracking. See
+              Dive deeper in
               <a href="./features/monetization.html">Monetization</a>,
-              <a href="./features/intelligence.html">AI intelligence</a>, and
-              <a href="./features/market-adaptability.html">Market adaptability</a>.
+              <a href="./features/intelligence.html">AI intelligence</a>,
+              <a href="./features/market-adaptability.html">Market adaptability</a>, and
+              <a href="./features/logistics.html">Logistics &amp; POD</a>.
             </p>
           </section>
 
           <section class="section-block">
-            <h2>Main Function</h2>
+            <h2>What customers come to do</h2>
             <p class="highlight">
-              The core mission is simple: let users place food orders from mobile, from item discovery
-              to final confirmation, then keep them informed through order tracking.
+              Place food orders from a phone — from discovery to confirmation — then stay informed until the bag arrives.
             </p>
             <p class="section-subtext">
-              In real usage, customers can search restaurants, filter by preferences, review menu details,
-              customize quantities, and checkout in a few steps.
-            </p>
-
-            <p class="section-subtext">
-              After checkout, customers can monitor order status updates from preparation to delivery,
-              reducing uncertainty and improving satisfaction.
+              Search and filters shrink a crowded city to “what I want tonight.” Menu detail and quantities stay obvious.
+              After checkout, status updates replace anxious guessing. That calm loop is what turns a first install into a habit.
             </p>
           </section>
 

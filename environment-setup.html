@@ -70,7 +70,7 @@
 
       <section class="content">
         <header class="hero">
-          <h1 id="top">Environment &amp; Branding setup</h1>
+          <h1 id="top">Environment setup</h1>
           <p class="subtitle">
             Node.js, Expo CLI (command lines), languages (i18n), API reachability from devices, Google Maps for production, and <a href="#change-app-currency">app currency</a> — one place for the whole suite.
           </p>
@@ -141,7 +141,7 @@
         <section class="section" id="expo-tooling">
           <h2>Expo — installation and commands</h2>
           <p>
-            Good Food Pro mobile apps use <strong>React Native</strong> with <strong>Expo</strong> (~54) and a custom native stack.
+            The mobile apps use <strong>React Native</strong> with <strong>Expo</strong> (~54) and a custom native stack.
             Install dependencies with <code>npm install</code> in <code>customer-app</code>, <code>delivery-app</code>, or <code>restaurant-app</code>.
             Node.js <strong>20+</strong> is required.
           </p>
@@ -161,7 +161,7 @@
             The same thing is usually wired as <code>npm start</code> in <code>package.json</code>, so you can run <code>npm start</code> instead of <code>npx expo start</code> if you prefer.
           </p>
           <div class="callout">
-            <strong>Expo Go is not supported</strong> for Good Food Pro mobile apps.
+            <strong>Expo Go is not supported</strong> for these mobile apps.
             They need a <strong>development build</strong> (<code>expo-dev-client</code> / native project under <code>android/</code> and <code>ios/</code>).
             First install: <code>npm run android</code> or <code>npm run ios</code>. Later sessions: <code>npm start</code>, then open the installed app.
           </div>
@@ -209,7 +209,7 @@
           <p class="sub">On macOS, <strong>Watchman</strong> can speed up file watching: <code>brew install watchman</code>.</p>
 
           <h3>6) Backend</h3>
-          <p>Keep a running <strong>Good Food REST API</strong> (for example <code>my-backend</code>) reachable from your computer and from any phone you use for testing — see <a href="#api-reachability">API reachability</a>.</p>
+          <p>Keep a running <strong>REST API</strong> (for example <code>my-backend</code>) reachable from your computer and from any phone you use for testing — see <a href="#api-reachability">API reachability</a>.</p>
         </section>
 
         <section class="section" id="change-app-currency">
@@ -252,7 +252,7 @@
         <section class="section" id="i18n-languages">
           <h2>Languages (i18n)</h2>
           <p>
-            Good Food Pro ships UI strings in <strong>English, French, Spanish, and Arabic</strong>
+            The suite ships UI strings in <strong>English, French, Spanish, and Arabic</strong>
             (Arabic is RTL). Mobile apps follow the device locale via <code>expo-localization</code>
             when a matching pack exists; users can also switch language in Settings.
           </p>
