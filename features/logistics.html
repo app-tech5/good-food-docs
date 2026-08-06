@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Logistics &amp; POD — Good Food Pro Docs</title>
+    <link rel="stylesheet" href="../site.css" />
+  </head>
+  <body>
+    <script src="../js/sidebar-scroll.js"></script>
+    <main class="layout">
+      <aside class="sidebar" data-docs-sidebar>
+        <a class="brand-link" href="../index.html" aria-label="Good Food Pro Docs home">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-title">Good Food Pro Docs</span>
+        </a>
+        <p class="sidebar-label">All apps</p>
+        <nav class="nav">
+          <a href="../environment-setup.html">Environment setup</a>
+          <a href="../downloads/index.html">Android downloads</a>
+        </nav>
+        <p class="sidebar-label">Platform features</p>
+        <nav class="nav">
+          <a href="../features/monetization.html">Monetization</a>
+          <a href="../features/market-adaptability.html">Market adaptability</a>
+          <a href="../features/kitchen-display.html">Kitchen Display (KDS)</a>
+          <a class="active" href="../features/logistics.html">Logistics & POD</a>
+          <a href="../features/intelligence.html">AI intelligence</a>
+        </nav>
+        <p class="sidebar-label">Customer app</p>
+        <nav class="nav">
+          <a href="../index.html">Overview</a>
+          <a href="../getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Delivery app (driver)</p>
+        <nav class="nav">
+          <a href="../delivery-app/index.html">Overview</a>
+          <a href="../delivery-app/getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Restaurant app</p>
+        <nav class="nav">
+          <a href="../restaurant-app/index.html">Overview</a>
+          <a href="../restaurant-app/getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Admin app (web)</p>
+        <nav class="nav">
+          <a href="../admin-app/index.html">Overview</a>
+          <a href="../admin-app/getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Backend (API)</p>
+        <nav class="nav">
+          <a href="../my-backend/index.html">Overview</a>
+          <a href="../my-backend/getting-started.html">Getting Started</a>
+        </nav>
+      </aside>
+
+      <section class="content">
+        <header id="top" class="hero">
+          <h1>Logistics &amp; proof of delivery</h1>
+          <p class="subtitle">
+            Batch nearby jobs, live map tracking, and multimedia proof of delivery for the last mile.
+          </p>
+          <div class="meta-strip">
+            <span class="meta-pill">Batching</span>
+            <span class="meta-pill">Live map</span>
+            <span class="meta-pill">POD + signature</span>
+          </div>
+        </header>
+
+        <section class="overview">
+          <section class="section-block">
+            <h2>Order batching</h2>
+            <p>
+              Drivers can pick up compatible nearby jobs. Backend logistics helpers
+              (<code>findBatchCandidates</code> (and related limit / radius rules from delivery settings)
+              live in <code>logisticsService</code>, exposed under <code>/api/logistics</code>.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Live map tracking</h2>
+            <p>
+              Customer and driver apps share live location / map UX so buyers follow the courier and drivers navigate to drop-off.
+              Restaurant and admin surfaces remain order-centric; tracking is a first-class last-mile feature, not a decorative map widget.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Proof of delivery (POD)</h2>
+            <p>
+              The delivery app supports multimedia confirmation at drop-off:
+            </p>
+            <ul>
+              <li><code>ProofOfDeliveryModal</code> — capture / attach delivery proof</li>
+              <li><code>SignaturePad</code> — customer signature</li>
+              <li>Wired through delivery action hooks (<code>useDeliveryActions</code> / driver order hooks)</li>
+            </ul>
+            <p class="section-subtext">
+              This closes the loop for disputed deliveries and COD / high-value drops.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Where to look</h2>
+            <ul>
+              <li><code>my-backend/src/services/logisticsService.js</code></li>
+              <li><code>my-backend/src/routes/logisticsRoutes.js</code> → <code>/api/logistics</code></li>
+              <li><code>delivery-app/components/ProofOfDeliveryModal.js</code></li>
+              <li><code>delivery-app/components/SignaturePad.js</code></li>
+            </ul>
+          </section>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

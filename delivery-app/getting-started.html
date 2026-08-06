@@ -9,7 +9,7 @@
   <body>
     <script src="../js/sidebar-scroll.js"></script>
     <main class="layout">
-      <aside class="sidebar">
+      <aside class="sidebar" data-docs-sidebar>
         <a class="brand-link" href="../index.html" aria-label="Good Food Pro Docs home">
           <span class="brand-dot" aria-hidden="true"></span>
           <span class="brand-title">Good Food Pro Docs</span>
@@ -17,7 +17,15 @@
         <p class="sidebar-label">All apps</p>
         <nav class="nav">
           <a href="../environment-setup.html">Environment setup</a>
-<a href="../downloads/index.html">Android downloads</a>
+          <a href="../downloads/index.html">Android downloads</a>
+        </nav>
+        <p class="sidebar-label">Platform features</p>
+        <nav class="nav">
+          <a href="../features/monetization.html">Monetization</a>
+          <a href="../features/market-adaptability.html">Market adaptability</a>
+          <a href="../features/kitchen-display.html">Kitchen Display (KDS)</a>
+          <a href="../features/logistics.html">Logistics & POD</a>
+          <a href="../features/intelligence.html">AI intelligence</a>
         </nav>
         <p class="sidebar-label">Customer app</p>
         <nav class="nav">
@@ -26,8 +34,8 @@
         </nav>
         <p class="sidebar-label">Delivery app (driver)</p>
         <nav class="nav">
-          <a href="./index.html">Overview</a>
-          <a class="active" href="#getting-started">Getting Started</a>
+          <a href="../delivery-app/index.html">Overview</a>
+          <a class="active" href="../delivery-app/getting-started.html">Getting Started</a>
         </nav>
         <p class="sidebar-label">Restaurant app</p>
         <nav class="nav">
@@ -141,7 +149,7 @@ VERSION: <span class="tok-str">'1.0.0'</span>,
             Before a real release, set it to <code>false</code> and rely on real courier accounts.
           </p>
           <p class="sub">
-            Languages (EN/FR, <code>lang/</code>, <code>i18n.js</code>): see
+            Languages (EN/FR/ES/AR, <code>lang/</code>, <code>i18n.js</code>): see
             <a href="../environment-setup.html#i18n-languages">Environment setup → Languages (i18n)</a>.
           </p>
 

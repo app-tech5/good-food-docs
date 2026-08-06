@@ -9,7 +9,7 @@
   <body>
     <script src="../js/sidebar-scroll.js"></script>
     <main class="layout">
-      <aside class="sidebar">
+      <aside class="sidebar" data-docs-sidebar>
         <a class="brand-link" href="../index.html" aria-label="Good Food Pro Docs home">
           <span class="brand-dot" aria-hidden="true"></span>
           <span class="brand-title">Good Food Pro Docs</span>
@@ -17,7 +17,15 @@
         <p class="sidebar-label">All apps</p>
         <nav class="nav">
           <a href="../environment-setup.html">Environment setup</a>
-<a href="../downloads/index.html">Android downloads</a>
+          <a href="../downloads/index.html">Android downloads</a>
+        </nav>
+        <p class="sidebar-label">Platform features</p>
+        <nav class="nav">
+          <a href="../features/monetization.html">Monetization</a>
+          <a href="../features/market-adaptability.html">Market adaptability</a>
+          <a href="../features/kitchen-display.html">Kitchen Display (KDS)</a>
+          <a href="../features/logistics.html">Logistics & POD</a>
+          <a href="../features/intelligence.html">AI intelligence</a>
         </nav>
         <p class="sidebar-label">Customer app</p>
         <nav class="nav">
@@ -27,7 +35,7 @@
         <p class="sidebar-label">Delivery app (driver)</p>
         <nav class="nav">
           <a class="active" href="#overview">Overview</a>
-          <a href="./getting-started.html">Getting Started</a>
+          <a href="../delivery-app/getting-started.html">Getting Started</a>
         </nav>
         <p class="sidebar-label">Restaurant app</p>
         <nav class="nav">
@@ -78,6 +86,11 @@
             <p class="section-subtext">
               If you are setting up the suite for the first time, read the customer app overview for the big picture,
               then come back here for courier-specific details.
+            </p>
+            <p class="section-subtext">
+              Last-mile Pro features include job <strong>batching</strong>, live map tracking, and
+              <a href="../features/logistics.html">proof of delivery (photo + signature)</a>.
+              Drivers can also subscribe to SaaS tiers — see <a href="../features/monetization.html">Monetization</a>.
             </p>
             <a class="product-link" href="../index.html">Customer app — Overview</a>
             <div class="compare-note">
@@ -174,7 +187,7 @@
               <div class="chip">Redux</div>
               <div class="chip">REST API</div>
               <div class="chip">Maps &amp; location</div>
-              <div class="chip">English &amp; French (i18n)</div>
+              <div class="chip">EN / FR / ES / AR (i18n)</div>
             </div>
             <p class="section-subtext">
               The driver app is a standard React Native + Expo mobile client. It calls your HTTP API for auth, orders, profile, and settings.
@@ -239,7 +252,7 @@
                   <li><div class="node folder"><span class="icon">📁</span> hooks/ <span style="font-size:10px; color:#94a3b8;">(20+ hooks)</span></div></li>
                   <li><div class="node folder"><span class="icon">📁</span> utils/ <span style="font-size:10px; color:#94a3b8;">(16+ helpers)</span></div></li>
                   <li><div class="node folder"><span class="icon">📁</span> contexts/ <span style="font-size:10px; color:#94a3b8;">(2 files)</span></div></li>
-                  <li><div class="node folder"><span class="icon">📁</span> lang/ <span style="font-size:10px; color:#94a3b8;">(i18n EN/FR)</span></div></li>
+                  <li><div class="node folder"><span class="icon">📁</span> lang/ <span style="font-size:10px; color:#94a3b8;">(i18n EN/FR/ES/AR)</span></div></li>
                 </ul>
               </div>
               <div class="tree-path">

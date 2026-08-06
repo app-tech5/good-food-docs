@@ -9,7 +9,7 @@
   <body>
     <script src="js/sidebar-scroll.js"></script>
     <main class="layout">
-      <aside class="sidebar">
+      <aside class="sidebar" data-docs-sidebar>
         <a class="brand-link" href="./index.html" aria-label="Good Food Pro Docs home">
           <span class="brand-dot" aria-hidden="true"></span>
           <span class="brand-title">Good Food Pro Docs</span>
@@ -18,6 +18,14 @@
         <nav class="nav">
           <a href="./environment-setup.html">Environment setup</a>
           <a href="./downloads/index.html">Android downloads</a>
+        </nav>
+        <p class="sidebar-label">Platform features</p>
+        <nav class="nav">
+          <a href="./features/monetization.html">Monetization</a>
+          <a href="./features/market-adaptability.html">Market adaptability</a>
+          <a href="./features/kitchen-display.html">Kitchen Display (KDS)</a>
+          <a href="./features/logistics.html">Logistics & POD</a>
+          <a href="./features/intelligence.html">AI intelligence</a>
         </nav>
         <p class="sidebar-label">Customer app</p>
         <nav class="nav">
@@ -103,8 +111,12 @@
             </p>
             <p class="section-subtext">
               Beyond ordering, the app includes practical account features such as address management,
-              language preferences, payment options, and order tracking visibility to improve
-              retention and trust.
+              language preferences (EN/FR/ES/AR), wallet and payment options, subscriptions,
+              sponsored restaurant placements, AI-assisted recommendations / ETA / surge signals,
+              and live order tracking. See
+              <a href="./features/monetization.html">Monetization</a>,
+              <a href="./features/intelligence.html">AI intelligence</a>, and
+              <a href="./features/market-adaptability.html">Market adaptability</a>.
             </p>
           </section>
 
@@ -221,7 +233,7 @@
                     <div class="node folder"><span class="icon">📁</span> global/ <span style="font-size:10px; color:#94a3b8;">(theme, constants)</span></div>
                   </li>
                   <li>
-                    <div class="node folder"><span class="icon">📁</span> lang/ <span style="font-size:10px; color:#94a3b8;">(i18n EN/FR)</span></div>
+                    <div class="node folder"><span class="icon">📁</span> lang/ <span style="font-size:10px; color:#94a3b8;">(i18n EN/FR/ES/AR)</span></div>
                   </li>
                   <li>
                     <div class="node folder"><span class="icon">📁</span> utils/ <span style="font-size:10px; color:#94a3b8;">(cache, helpers)</span></div>

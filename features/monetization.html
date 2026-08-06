@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monetization — Good Food Pro Docs</title>
+    <link rel="stylesheet" href="../site.css" />
+  </head>
+  <body>
+    <script src="../js/sidebar-scroll.js"></script>
+    <main class="layout">
+      <aside class="sidebar" data-docs-sidebar>
+        <a class="brand-link" href="../index.html" aria-label="Good Food Pro Docs home">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-title">Good Food Pro Docs</span>
+        </a>
+        <p class="sidebar-label">All apps</p>
+        <nav class="nav">
+          <a href="../environment-setup.html">Environment setup</a>
+          <a href="../downloads/index.html">Android downloads</a>
+        </nav>
+        <p class="sidebar-label">Platform features</p>
+        <nav class="nav">
+          <a class="active" href="../features/monetization.html">Monetization</a>
+          <a href="../features/market-adaptability.html">Market adaptability</a>
+          <a href="../features/kitchen-display.html">Kitchen Display (KDS)</a>
+          <a href="../features/logistics.html">Logistics & POD</a>
+          <a href="../features/intelligence.html">AI intelligence</a>
+        </nav>
+        <p class="sidebar-label">Customer app</p>
+        <nav class="nav">
+          <a href="../index.html">Overview</a>
+          <a href="../getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Delivery app (driver)</p>
+        <nav class="nav">
+          <a href="../delivery-app/index.html">Overview</a>
+          <a href="../delivery-app/getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Restaurant app</p>
+        <nav class="nav">
+          <a href="../restaurant-app/index.html">Overview</a>
+          <a href="../restaurant-app/getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Admin app (web)</p>
+        <nav class="nav">
+          <a href="../admin-app/index.html">Overview</a>
+          <a href="../admin-app/getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Backend (API)</p>
+        <nav class="nav">
+          <a href="../my-backend/index.html">Overview</a>
+          <a href="../my-backend/getting-started.html">Getting Started</a>
+        </nav>
+      </aside>
+
+      <section class="content">
+        <header id="top" class="hero">
+          <h1>Monetization</h1>
+          <p class="subtitle">
+            How the platform earns: commissions, subscriptions, sponsored listings, wallets, and multi-PSP checkout.
+          </p>
+          <div class="meta-strip">
+            <span class="meta-pill">Commissions</span>
+            <span class="meta-pill">Subscriptions</span>
+            <span class="meta-pill">Sponsored ads</span>
+            <span class="meta-pill">Wallet &amp; gateways</span>
+          </div>
+        </header>
+
+        <section class="overview">
+          <section class="section-block">
+            <h2>Overview</h2>
+            <p>
+              Good Food Pro is built as a <strong>marketplace you operate</strong>. Revenue is not limited to a single “delivery fee” field:
+              the backend resolves commission splits, optional SaaS subscription benefits, paid placement (sponsored listings),
+              and wallet / payment-gateway flows used by customers, restaurants, and drivers.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Commissions</h2>
+            <p>
+              Platform commission is computed per restaurant (or from a global default in app settings).
+              Active <strong>restaurant subscriptions</strong> can <em>reduce</em> or <em>waive</em> that rate
+              (<code>commissionService.getEffectiveCommissionRate</code>).
+            </p>
+            <p class="section-subtext">
+              Order totals are split into platform vs restaurant shares with <code>splitOrderAmounts</code>.
+              Admin earnings screens reflect those splits for ops and payouts.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Subscriptions (SaaS tiers)</h2>
+            <p>
+              Plans live in the <code>subscriptions</code> collection and target one of:
+              <strong>customer</strong>, <strong>driver</strong>, or <strong>restaurant</strong>.
+              Each plan has price, currency, billing cycle, benefit text, and machine-readable
+              <code>benefitFlags</code> (free delivery, discounts, reduced commission, priority support, etc.).
+            </p>
+            <ul>
+              <li><strong>API:</strong> <code>/api/subscriptions</code></li>
+              <li><strong>Apps:</strong> Subscriptions screens in Customer, Driver, and Restaurant apps</li>
+              <li><strong>Admin:</strong> manage plans / user subscriptions as entities</li>
+              <li><strong>Demo seeds:</strong> migrations <code>37</code>, <code>42</code> (driver tiers), <code>43</code> (customer tiers)</li>
+            </ul>
+          </section>
+
+          <section class="section-block">
+            <h2>Sponsored listings</h2>
+            <p>
+              Restaurants can buy paid placement (search / home-style placements) with bid, budget, schedule, and tracking
+              (impressions / clicks). Active listings are served to the customer app; restaurants manage their own campaigns
+              in <strong>Sponsored Listings</strong>.
+            </p>
+            <ul>
+              <li><strong>API:</strong> <code>/api/sponsored</code> (<code>active</code>, <code>mine</code>, activate, track)</li>
+              <li><strong>Model / service:</strong> <code>SponsoredListing</code>, <code>sponsoredListingService</code></li>
+              <li><strong>Demo seed:</strong> migration <code>39-saas-sponsored-seed.js</code></li>
+            </ul>
+          </section>
+
+          <section class="section-block">
+            <h2>Wallet ledger</h2>
+            <p>
+              Customer wallet supports balance, cashback, and instant-refund style flows (flags in app settings from
+              market-adaptability migration). Ledger logic lives in <code>walletLedgerService</code>; the customer app
+              exposes wallet / add-money screens.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Payment gateways</h2>
+            <p>
+              Beyond Stripe Connect for marketplace payouts, the API exposes a multi-provider gateway surface:
+            </p>
+            <ul>
+              <li><strong>API:</strong> <code>/api/gateways</code> — list providers, initialize a payment</li>
+              <li><strong>Service:</strong> <code>paymentGatewayService</code> (regional PSPs such as Paystack, Flutterwave, Razorpay — plus Stripe)</li>
+              <li>Admin can manage gateway / earnings configuration used in demos and production setups</li>
+            </ul>
+            <p class="section-subtext">
+              Related demo fill: migration <code>40-monetization-demo-fill.js</code>.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Where to look in the code</h2>
+            <div class="project-structure">
+              <pre style="margin:0;white-space:pre-wrap;font-size:13px;line-height:1.5;">
+my-backend/
+  src/services/commissionService.js
+  src/services/subscriptionService.js
+  src/services/sponsoredListingService.js
+  src/services/walletLedgerService.js
+  src/services/paymentGatewayService.js
+  src/routes/subscriptionRoutes.js
+  src/routes/sponsoredListingRoutes.js
+  src/routes/paymentGatewayRoutes.js
+  migrations/37–43 (plans + monetization demos)
+restaurant-app/screens/SponsoredListingsScreen.js
+restaurant-app/screens/SubscriptionsScreen.js
+              </pre>
+            </div>
+          </section>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

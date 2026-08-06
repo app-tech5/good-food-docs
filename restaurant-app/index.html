@@ -9,7 +9,7 @@
   <body>
     <script src="../js/sidebar-scroll.js"></script>
     <main class="layout">
-      <aside class="sidebar">
+      <aside class="sidebar" data-docs-sidebar>
         <a class="brand-link" href="../index.html" aria-label="Good Food Pro Docs home">
           <span class="brand-dot" aria-hidden="true"></span>
           <span class="brand-title">Good Food Pro Docs</span>
@@ -18,6 +18,14 @@
         <nav class="nav">
           <a href="../environment-setup.html">Environment setup</a>
           <a href="../downloads/index.html">Android downloads</a>
+        </nav>
+        <p class="sidebar-label">Platform features</p>
+        <nav class="nav">
+          <a href="../features/monetization.html">Monetization</a>
+          <a href="../features/market-adaptability.html">Market adaptability</a>
+          <a href="../features/kitchen-display.html">Kitchen Display (KDS)</a>
+          <a href="../features/logistics.html">Logistics & POD</a>
+          <a href="../features/intelligence.html">AI intelligence</a>
         </nav>
         <p class="sidebar-label">Customer app</p>
         <nav class="nav">
@@ -32,7 +40,7 @@
         <p class="sidebar-label">Restaurant app</p>
         <nav class="nav">
           <a class="active" href="#overview">Overview</a>
-          <a href="./getting-started.html">Getting Started</a>
+          <a href="../restaurant-app/getting-started.html">Getting Started</a>
         </nav>
         <p class="sidebar-label">Admin app (web)</p>
         <nav class="nav">
@@ -77,6 +85,12 @@
             </p>
             <p class="section-subtext">
               Nothing in this product locks you into a proprietary cloud: API URL, branding, and behaviour are yours to configure.
+            </p>
+            <p class="section-subtext">
+              Beyond classic order intake, the restaurant app includes a
+              <a href="../features/kitchen-display.html">Kitchen Display (KDS)</a>,
+              <a href="../features/monetization.html">Subscriptions</a> for SaaS tiers,
+              and <a href="../features/monetization.html">Sponsored Listings</a> so partners can buy paid placement in the customer app.
             </p>
             <div class="compare-note">
               <p class="compare-title">Same backend as customer and driver</p>
@@ -143,7 +157,7 @@
               <div class="chip">React Native</div>
               <div class="chip">Expo</div>
               <div class="chip">React Navigation</div>
-              <div class="chip">i18n (EN/FR)</div>
+              <div class="chip">i18n (EN/FR/ES/AR)</div>
               <div class="chip">REST API</div>
             </div>
             <p class="section-subtext">
@@ -246,7 +260,7 @@
                     </ul>
                   </li>
                   <li>
-                    <div class="node folder"><span class="icon">📁</span> lang/ <span style="font-size:10px; color:#94a3b8;">(i18n EN/FR)</span></div>
+                    <div class="node folder"><span class="icon">📁</span> lang/ <span style="font-size:10px; color:#94a3b8;">(i18n EN/FR/ES/AR)</span></div>
                     <ul>
                       <li><div class="node file"><span class="icon">📄</span> en.json</div></li>
                       <li><div class="node file"><span class="icon">📄</span> fr.json</div></li>

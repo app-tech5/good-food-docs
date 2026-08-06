@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kitchen Display (KDS) — Good Food Pro Docs</title>
+    <link rel="stylesheet" href="../site.css" />
+  </head>
+  <body>
+    <script src="../js/sidebar-scroll.js"></script>
+    <main class="layout">
+      <aside class="sidebar" data-docs-sidebar>
+        <a class="brand-link" href="../index.html" aria-label="Good Food Pro Docs home">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-title">Good Food Pro Docs</span>
+        </a>
+        <p class="sidebar-label">All apps</p>
+        <nav class="nav">
+          <a href="../environment-setup.html">Environment setup</a>
+          <a href="../downloads/index.html">Android downloads</a>
+        </nav>
+        <p class="sidebar-label">Platform features</p>
+        <nav class="nav">
+          <a href="../features/monetization.html">Monetization</a>
+          <a href="../features/market-adaptability.html">Market adaptability</a>
+          <a class="active" href="../features/kitchen-display.html">Kitchen Display (KDS)</a>
+          <a href="../features/logistics.html">Logistics & POD</a>
+          <a href="../features/intelligence.html">AI intelligence</a>
+        </nav>
+        <p class="sidebar-label">Customer app</p>
+        <nav class="nav">
+          <a href="../index.html">Overview</a>
+          <a href="../getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Delivery app (driver)</p>
+        <nav class="nav">
+          <a href="../delivery-app/index.html">Overview</a>
+          <a href="../delivery-app/getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Restaurant app</p>
+        <nav class="nav">
+          <a href="../restaurant-app/index.html">Overview</a>
+          <a href="../restaurant-app/getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Admin app (web)</p>
+        <nav class="nav">
+          <a href="../admin-app/index.html">Overview</a>
+          <a href="../admin-app/getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Backend (API)</p>
+        <nav class="nav">
+          <a href="../my-backend/index.html">Overview</a>
+          <a href="../my-backend/getting-started.html">Getting Started</a>
+        </nav>
+      </aside>
+
+      <section class="content">
+        <header id="top" class="hero">
+          <h1>Kitchen Display (KDS)</h1>
+          <p class="subtitle">
+            Paperless kitchen board for restaurant staff: tickets from live orders, tuned for prep speed—not just a chatty order list.
+          </p>
+          <div class="meta-strip">
+            <span class="meta-pill">Restaurant app</span>
+            <span class="meta-pill">Live tickets</span>
+            <span class="meta-pill">Demo seeds</span>
+          </div>
+        </header>
+
+        <section class="overview">
+          <section class="section-block">
+            <h2>What it is</h2>
+            <p>
+              The restaurant app includes a <strong>Kitchen Display</strong> screen (<code>KitchenDisplayScreen</code>) wired into the drawer / settings navigation.
+              It focuses on kitchen-ready tickets so cooks can move orders through prep without managing the full owner dashboard.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>How it fits the loop</h2>
+            <p>
+              Customer places order → restaurant accepts → KDS shows the ticket → kitchen progresses status → driver pickup.
+              The same order documents power admin earnings and driver logistics.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Demo data</h2>
+            <p>
+              Migration <code>41-orders-seed-kds-demo-tickets.js</code> seeds kitchen-oriented demo tickets so screenshots and demos are not empty.
+              Run backend migrations after install (see <a href="../my-backend/getting-started.html">Backend — Getting Started</a>).
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Where to look</h2>
+            <ul>
+              <li><code>restaurant-app/screens/KitchenDisplayScreen.js</code></li>
+              <li>Drawer / settings stack registration in restaurant navigation</li>
+              <li><code>my-backend/migrations/41-orders-seed-kds-demo-tickets.js</code></li>
+            </ul>
+          </section>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

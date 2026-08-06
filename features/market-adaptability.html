@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Market adaptability — Good Food Pro Docs</title>
+    <link rel="stylesheet" href="../site.css" />
+  </head>
+  <body>
+    <script src="../js/sidebar-scroll.js"></script>
+    <main class="layout">
+      <aside class="sidebar" data-docs-sidebar>
+        <a class="brand-link" href="../index.html" aria-label="Good Food Pro Docs home">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-title">Good Food Pro Docs</span>
+        </a>
+        <p class="sidebar-label">All apps</p>
+        <nav class="nav">
+          <a href="../environment-setup.html">Environment setup</a>
+          <a href="../downloads/index.html">Android downloads</a>
+        </nav>
+        <p class="sidebar-label">Platform features</p>
+        <nav class="nav">
+          <a href="../features/monetization.html">Monetization</a>
+          <a class="active" href="../features/market-adaptability.html">Market adaptability</a>
+          <a href="../features/kitchen-display.html">Kitchen Display (KDS)</a>
+          <a href="../features/logistics.html">Logistics & POD</a>
+          <a href="../features/intelligence.html">AI intelligence</a>
+        </nav>
+        <p class="sidebar-label">Customer app</p>
+        <nav class="nav">
+          <a href="../index.html">Overview</a>
+          <a href="../getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Delivery app (driver)</p>
+        <nav class="nav">
+          <a href="../delivery-app/index.html">Overview</a>
+          <a href="../delivery-app/getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Restaurant app</p>
+        <nav class="nav">
+          <a href="../restaurant-app/index.html">Overview</a>
+          <a href="../restaurant-app/getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Admin app (web)</p>
+        <nav class="nav">
+          <a href="../admin-app/index.html">Overview</a>
+          <a href="../admin-app/getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Backend (API)</p>
+        <nav class="nav">
+          <a href="../my-backend/index.html">Overview</a>
+          <a href="../my-backend/getting-started.html">Getting Started</a>
+        </nav>
+      </aside>
+
+      <section class="content">
+        <header id="top" class="hero">
+          <h1>Market adaptability</h1>
+          <p class="subtitle">
+            Languages, currencies, hybrid order channels, and regional payment options so you can launch beyond one country.
+          </p>
+          <div class="meta-strip">
+            <span class="meta-pill">EN · FR · ES · AR</span>
+            <span class="meta-pill">Multi-currency</span>
+            <span class="meta-pill">Channels</span>
+            <span class="meta-pill">Regional PSPs</span>
+          </div>
+        </header>
+
+        <section class="overview">
+          <section class="section-block">
+            <h2>Overview</h2>
+            <p>
+              Market adaptability means the same Pro stack can be branded and operated in different regions:
+              UI locales (including RTL Arabic), currency display, optional hybrid channels (for example WhatsApp / USSD style entry points),
+              wallet cashback defaults, and gateway slots for local processors.
+            </p>
+            <p class="section-subtext">
+              Seed / defaults: migration <code>44-market-adaptability.js</code>.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Languages</h2>
+            <p>
+              Backend <code>languages</code> collection includes English, French, Spanish (<code>es</code>), and Arabic (<code>ar</code>, RTL).
+              Mobile apps and admin ship matching locale JSON files; the customer app can switch language locally for demos
+              without forcing a backend write when that is not desired.
+            </p>
+            <ul>
+              <li>Customer / Driver / Restaurant: <code>lang/en.json</code>, <code>fr.json</code>, <code>es.json</code>, <code>ar.json</code></li>
+              <li>Admin: <code>src/locales/</code> (same codes)</li>
+              <li>Backend: <code>src/locales/</code> + i18n config</li>
+            </ul>
+            <p class="section-subtext">
+              See also <a href="../environment-setup.html#i18n-languages">Environment setup — Languages</a>.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Currencies</h2>
+            <p>
+              App currency is configured in settings (documented under
+              <a href="../environment-setup.html#change-app-currency">Change app currency</a>).
+              Admin can manage currency entities for multi-market dashboards.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Hybrid channels</h2>
+            <p>
+              Channel APIs let you expose marketplace entry points beyond the native apps (for example messaging or USSD-oriented flows),
+              while orders still land in the same MongoDB order pipeline.
+            </p>
+            <ul>
+              <li><strong>API:</strong> <code>/api/channels</code> (public + protected routers)</li>
+              <li><strong>Service:</strong> <code>channelService</code></li>
+              <li><strong>Admin:</strong> channel-related fields / entities for ops configuration</li>
+            </ul>
+          </section>
+
+          <section class="section-block">
+            <h2>Regional payments &amp; wallet defaults</h2>
+            <p>
+              Migration 44 turns on wallet cashback / instant-refund flags and prepares gateway slots for regional PSPs
+              (used with <code>/api/gateways</code>). Combine with Stripe Connect where card marketplace payouts are required.
+            </p>
+          </section>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

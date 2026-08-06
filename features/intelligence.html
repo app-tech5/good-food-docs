@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI intelligence — Good Food Pro Docs</title>
+    <link rel="stylesheet" href="../site.css" />
+  </head>
+  <body>
+    <script src="../js/sidebar-scroll.js"></script>
+    <main class="layout">
+      <aside class="sidebar" data-docs-sidebar>
+        <a class="brand-link" href="../index.html" aria-label="Good Food Pro Docs home">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-title">Good Food Pro Docs</span>
+        </a>
+        <p class="sidebar-label">All apps</p>
+        <nav class="nav">
+          <a href="../environment-setup.html">Environment setup</a>
+          <a href="../downloads/index.html">Android downloads</a>
+        </nav>
+        <p class="sidebar-label">Platform features</p>
+        <nav class="nav">
+          <a href="../features/monetization.html">Monetization</a>
+          <a href="../features/market-adaptability.html">Market adaptability</a>
+          <a href="../features/kitchen-display.html">Kitchen Display (KDS)</a>
+          <a href="../features/logistics.html">Logistics & POD</a>
+          <a class="active" href="../features/intelligence.html">AI intelligence</a>
+        </nav>
+        <p class="sidebar-label">Customer app</p>
+        <nav class="nav">
+          <a href="../index.html">Overview</a>
+          <a href="../getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Delivery app (driver)</p>
+        <nav class="nav">
+          <a href="../delivery-app/index.html">Overview</a>
+          <a href="../delivery-app/getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Restaurant app</p>
+        <nav class="nav">
+          <a href="../restaurant-app/index.html">Overview</a>
+          <a href="../restaurant-app/getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Admin app (web)</p>
+        <nav class="nav">
+          <a href="../admin-app/index.html">Overview</a>
+          <a href="../admin-app/getting-started.html">Getting Started</a>
+        </nav>
+        <p class="sidebar-label">Backend (API)</p>
+        <nav class="nav">
+          <a href="../my-backend/index.html">Overview</a>
+          <a href="../my-backend/getting-started.html">Getting Started</a>
+        </nav>
+      </aside>
+
+      <section class="content">
+        <header id="top" class="hero">
+          <h1>AI / ops intelligence</h1>
+          <p class="subtitle">
+            Built-in recommendations, smart ETA, and surge pricing — heuristics with live signals (history, kitchen load, traffic, weather).
+          </p>
+          <div class="meta-strip">
+            <span class="meta-pill">Recommendations</span>
+            <span class="meta-pill">Smart ETA</span>
+            <span class="meta-pill">Surge fee</span>
+          </div>
+        </header>
+
+        <section class="overview">
+          <section class="section-block">
+            <h2>Overview</h2>
+            <p>
+              The backend <code>intelligenceService</code> powers personalization and ops signals exposed at
+              <code>/api/intelligence</code>. It is not a third-party “AI SaaS” dependency: logic runs on your server with
+              optional Open-Meteo weather and OSRM routing, plus safe fallbacks when offline.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Recommendations (cross-sell)</h2>
+            <p>
+              Suggest complementary products using order history, time-of-day buckets, and weather tags so carts grow without manual merchandising rules alone.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Smart ETA</h2>
+            <p>
+              ETA combines kitchen load (active / kitchen statuses) with travel estimates (and rush-hour windows) so customers see more realistic arrival times.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Surge delivery fee</h2>
+            <p>
+              When demand spikes relative to online drivers (and optional weather pressure), a surge multiplier can raise the delivery fee.
+              This is controlled server-side so the customer app stays a thin client.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Where to look</h2>
+            <ul>
+              <li><code>my-backend/src/services/intelligenceService.js</code></li>
+              <li><code>my-backend/src/routes/intelligenceRoutes.js</code> → <code>/api/intelligence</code></li>
+              <li><code>my-backend/src/constants/intelligence.js</code></li>
+            </ul>
+          </section>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
