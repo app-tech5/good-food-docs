@@ -58,7 +58,7 @@
         <header id="top" class="hero">
           <h1>AI / ops intelligence</h1>
           <p class="subtitle">
-            Built-in recommendations, smart ETA, and surge pricing — heuristics with live signals (history, kitchen load, traffic, weather).
+            Built-in recommendations, smart ETA, and surge pricing powered by live signals: order history, kitchen load, traffic, and weather.
           </p>
           <div class="meta-strip">
             <span class="meta-pill">Recommendations</span>
@@ -71,31 +71,31 @@
           <section class="section-block">
             <h2>Overview</h2>
             <p>
-              The backend <code>intelligenceService</code> powers personalization and ops signals exposed at
-              <code>/api/intelligence</code>. It is not a third-party “AI SaaS” dependency: logic runs on your server with
-              optional Open-Meteo weather and OSRM routing, plus safe fallbacks when offline.
+              The backend <code>intelligenceService</code> powers personalization and ops signals at
+              <code>/api/intelligence</code> — owned by you, running on your stack, with weather and routing inputs
+              (Open-Meteo / OSRM) when available.
             </p>
           </section>
 
           <section class="section-block">
             <h2>Recommendations (cross-sell)</h2>
             <p>
-              Suggest complementary products using order history, time-of-day buckets, and weather tags so carts grow without manual merchandising rules alone.
+              Surface complementary products from order history, time-of-day, and weather context to grow average order value automatically.
             </p>
           </section>
 
           <section class="section-block">
             <h2>Smart ETA</h2>
             <p>
-              ETA combines kitchen load (active / kitchen statuses) with travel estimates (and rush-hour windows) so customers see more realistic arrival times.
+              ETA blends kitchen load with travel and rush-hour estimates so customers get sharper arrival times and fewer “where is my food?” moments.
             </p>
           </section>
 
           <section class="section-block">
             <h2>Surge delivery fee</h2>
             <p>
-              When demand spikes relative to online drivers (and optional weather pressure), a surge multiplier can raise the delivery fee.
-              This is controlled server-side so the customer app stays a thin client.
+              When demand rises against available drivers (and weather pressure when relevant), surge pricing lifts the delivery fee in real time —
+              configured on the server and reflected instantly in checkout.
             </p>
           </section>
 

@@ -75,13 +75,13 @@
           <section class="section-block">
             <h2>Overview (Presentation)</h2>
             <p>
-              <strong>my-backend</strong> is the reference Good Food <strong>server</strong> for the suite. The customer, restaurant, driver, and admin apps
-              are thin clients: they send HTTP requests (and may use real-time channels) while this service stores users, menus, orders, and configuration in
+              <strong>my-backend</strong> is the reference Good Food <strong>server</strong> for the suite — the single source of truth that powers
+              customer, restaurant, driver, and admin apps over REST (and real-time channels) with users, menus, orders, and configuration in
               <strong>MongoDB</strong>.
             </p>
             <p class="section-subtext">
-              You host it yourself (laptop, VPS, cloud). Mobile apps point to something like <code>http://YOUR_IP:5000/api</code>; the admin dashboard uses the same base URL.
-              No third-party Good Food cloud is required.
+              You host it yourself (laptop, VPS, or cloud) and own the full stack. Mobile apps and the admin dashboard point to the same base URL
+              (for example <code>http://YOUR_IP:5000/api</code>).
             </p>
             <div class="compare-note">
               <p class="compare-title">Start the API before the apps</p>
