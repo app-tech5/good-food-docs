@@ -18,34 +18,20 @@ def esc(s: str) -> str:
     return html.escape(s)
 
 
+def render_shot(shot, img_prefix: str) -> str:
+    """One screenshot under its own text — never packed in a multi-column grid."""
+    kind, src, alt, cap = shot
+    cls = "phone" if kind == "phone" else "wide"
+    return f"""            <figure class="doc-shot {cls}">
+              <img src="{img_prefix}{src}" alt="{html.escape(alt)}" />
+              <figcaption>{html.escape(cap)}</figcaption>
+            </figure>"""
+
+
 def render_shots(shots, img_prefix: str) -> str:
     if not shots:
         return ""
-    phones = [s for s in shots if s[0] == "phone"]
-    wides = [s for s in shots if s[0] == "wide"]
-    parts: list[str] = []
-    if phones:
-        parts.append('            <div class="shot-grid phones">')
-        for _, src, alt, cap in phones:
-            parts.append(
-                f"""              <div class="shot phone">
-                <img src="{img_prefix}{src}" alt="{html.escape(alt)}" />
-                <p>{html.escape(cap)}</p>
-              </div>"""
-            )
-        parts.append("            </div>")
-    if wides:
-        style = ' style="margin-top: 16px;"' if phones else ""
-        parts.append(f'            <div class="shot-grid"{style}>')
-        for _, src, alt, cap in wides:
-            parts.append(
-                f"""              <div class="shot wide">
-                <img src="{img_prefix}{src}" alt="{html.escape(alt)}" />
-                <p>{html.escape(cap)}</p>
-              </div>"""
-            )
-        parts.append("            </div>")
-    return "\n".join(parts)
+    return "\n".join(render_shot(s, img_prefix) for s in shots)
 
 
 def render_section(sec: dict, img_prefix: str) -> str:
@@ -53,14 +39,19 @@ def render_section(sec: dict, img_prefix: str) -> str:
     sec keys:
       h2: str
       paras: list[str]  (optional lead paragraphs)
-      blocks: list[{h3, paras?, steps?}]
-      shots: list after explanation
+      shot / shots: optional figure(s) right after lead paras
+      blocks: list[{h3, paras?, steps?, shot?, shots?}]
       after: list[str] optional closing paras
+    Prefer one shot per block so each capture sits under its own text.
     """
     lines = [f'          <section class="section-block">', f"            <h2>{esc(sec['h2'])}</h2>"]
     for i, p in enumerate(sec.get("paras") or []):
         cls = "" if i == 0 else ' class="section-subtext"'
         lines.append(f"            <p{cls}>\n              {esc(p)}\n            </p>")
+    if sec.get("shot"):
+        lines.append(render_shot(sec["shot"], img_prefix))
+    if sec.get("shots"):
+        lines.append(render_shots(sec["shots"], img_prefix))
     for block in sec.get("blocks") or []:
         if block.get("h3"):
             lines.append(f"            <h3>{esc(block['h3'])}</h3>")
@@ -68,12 +59,14 @@ def render_section(sec: dict, img_prefix: str) -> str:
             lines.append(f'            <p class="section-subtext">\n              {esc(p)}\n            </p>')
         steps = block.get("steps") or []
         if steps:
-            lines.append("            <ol class=\"doc-steps\">")
+            lines.append('            <ol class="doc-steps">')
             for step in steps:
                 lines.append(f"              <li>{esc(step)}</li>")
             lines.append("            </ol>")
-    if sec.get("shots"):
-        lines.append(render_shots(sec["shots"], img_prefix))
+        if block.get("shot"):
+            lines.append(render_shot(block["shot"], img_prefix))
+        if block.get("shots"):
+            lines.append(render_shots(block["shots"], img_prefix))
     for p in sec.get("after") or []:
         lines.append(f'            <p class="section-subtext">\n              {esc(p)}\n            </p>')
     lines.append("          </section>")
@@ -144,28 +137,34 @@ def main():
                     "h2": "What the wallet is for",
                     "paras": [
                         "The wallet is a prepaid balance inside the customer app. Instead of entering a card on every order, the customer can pay from money already on the account. That shortens checkout, reduces failed payments at the door of the kitchen, and gives you a place to land refunds or promotions as credit.",
-                        "On the Wallet screen the customer sees the current balance, actions to add or send money (depending on what you enable), and the list of saved payment methods (card brands, Google Pay, PayPal, cash, and similar).",
                     ],
                     "blocks": [
                         {
-                            "h3": "How a customer uses it",
+                            "h3": "What the customer sees on Wallet",
+                            "paras": [
+                                "The Wallet screen shows the current balance at the top, then actions to add (and optionally send) money, then the list of saved payment methods — card brands, Google Pay, PayPal, cash, and similar options you enable. This is the home base before any top-up or checkout choice.",
+                            ],
+                            "shot": ("phone", f"{A}/features/wallet.jpg", "Customer wallet", "Balance, actions, and saved payment methods"),
+                        },
+                        {
+                            "h3": "How a customer tops up",
+                            "paras": [
+                                "Add Money opens a focused top-up flow: pick an amount (or a quick chip such as $10 / $20 / $50), choose how to pay, then confirm. Once the balance updates, checkout can use the wallet when the amount covers the order (or the share your rules allow).",
+                            ],
                             "steps": [
                                 "Open the drawer or account area and choose <strong>Wallet</strong>.",
                                 "Check the balance. Use the refresh control if the amount looks stale after a payment.",
-                                "Tap <strong>Add Money</strong>, choose an amount (or a quick chip such as $10 / $20 / $50), select a payment method, then confirm <strong>Add to balance</strong>.",
-                                "At checkout, choose the wallet as the payment method when the balance covers the order (or the part your rules allow).",
+                                "Tap <strong>Add Money</strong>, choose an amount, select a payment method, then confirm <strong>Add to balance</strong>.",
+                                "At checkout, choose the wallet as the payment method when the balance is enough.",
                             ],
+                            "shot": ("phone", f"{A}/features/wallet-topup.jpg", "Add money", "Amount chips, payment method, add to balance"),
                         },
                         {
                             "h3": "What you configure as operator",
                             "paras": [
-                                'Payment gateways and marketplace payment behaviour are managed in the admin app — see <a href="./admin-app/monetization.html">Monetization</a>. Enable the gateways you actually use in each market before expecting top-ups to succeed in production.',
+                                'Payment gateways and marketplace payment behaviour are managed in the admin app — see <a href="./admin-app/monetization.html">Monetization</a>. Enable only the gateways you actually use in each market before expecting top-ups to succeed in production.',
                             ],
                         },
-                    ],
-                    "shots": [
-                        ("phone", f"{A}/features/wallet.jpg", "Customer wallet", "Balance and saved payment methods"),
-                        ("phone", f"{A}/features/wallet-topup.jpg", "Add money", "Choose amount and pay into the wallet"),
                     ],
                 },
             ],
@@ -198,6 +197,7 @@ def main():
                                 "Compare the listed plans and tap <strong>Subscribe</strong> on the one you want.",
                                 "Complete payment with an enabled gateway. Confirm the plan shows as active afterward.",
                             ],
+                            "shot": ("phone", f"{A}/features/sub-customer.jpg", "Customer plans", "Plan cards with benefits and Subscribe"),
                         },
                         {
                             "h3": "Where plans are defined",
@@ -205,9 +205,6 @@ def main():
                                 'You create and edit tiers in the admin app under Subscriptions (name, price, billing cycle, benefits, active flag, target = customer). Details and earnings impact are covered in <a href="./admin-app/monetization.html">admin monetization</a>.',
                             ],
                         },
-                    ],
-                    "shots": [
-                        ("phone", f"{A}/features/sub-customer.jpg", "Customer plans", "Plan cards with benefits and Subscribe"),
                     ],
                 },
             ],
@@ -235,32 +232,42 @@ def main():
                         {
                             "h3": "What the customer sees",
                             "paras": [
-                                "A horizontal row of recommended items with title, price, and a short match reason. Tapping a card follows your normal product / add-to-cart path.",
+                                "A horizontal row of recommended items with title, price, and a short match reason. Tapping a card follows your normal product / add-to-cart path — same as browsing the menu, just smarter placement.",
                             ],
+                            "shot": ("phone", f"{A}/features/ai-reco.jpg", "Recommendations", "Recommended for you with reason lines on the restaurant screen"),
                         },
-                    ],
-                    "shots": [
-                        ("phone", f"{A}/features/ai-reco.jpg", "Recommendations", "Recommended for you on the restaurant screen"),
                     ],
                 },
                 {
                     "h2": "Arrival times customers can trust",
                     "paras": [
-                        "Smart ETA estimates how long food will take, using kitchen load and travel time where your backend intelligence stack is enabled. On restaurant cards and detail screens the estimate appears as a clear badge (for example “ETA 26–36 min”) next to fee information.",
+                        "Smart ETA estimates how long food will take, using kitchen load and travel time where your backend intelligence stack is enabled. On the restaurant page the estimate appears as its own chip (for example “ETA 26–36 min”).",
                         "Clearer arrivals reduce “where is my food?” support load and set expectations before the customer commits to checkout.",
                     ],
-                    "shots": [
-                        ("phone", f"{A}/features/ai-eta.jpg", "ETA badge", "ETA shown on the restaurant detail"),
+                    "blocks": [
+                        {
+                            "h3": "The ETA chip",
+                            "paras": [
+                                "Look for the pink/clock ETA chip on restaurant detail. That chip is only about time — open/closed status and the delivery-fee chip are separate cues on the same header.",
+                            ],
+                            "shot": ("phone", f"{A}/features/ai-eta.jpg", "ETA badge", "ETA 26–36 min chip on restaurant detail"),
+                        },
                     ],
                 },
                 {
-                    "h2": "Surge when the city is busy",
+                    "h2": "Delivery fee when the city is busy",
                     "paras": [
-                        "When demand is high and courier capacity is tight, delivery pricing can show a surge multiplier (for example “Surge 1.45x”) beside the ETA. Quiet periods keep standard fees; peaks stay explicit so the customer understands the change before paying.",
-                        "Surge is a marketplace lever: it protects delivery reliability when everyone orders at once, instead of silently missing SLAs.",
+                        "When demand is high and courier capacity is tight, the delivery-fee chip can show a surge multiplier (for example “Surge 1.45x”). Quiet periods keep a standard fee; peaks stay explicit so the customer understands the cost before paying.",
+                        "Fee / surge is a marketplace lever for reliability — separate from the ETA chip, which only answers “how long?”.",
                     ],
-                    "shots": [
-                        ("phone", f"{A}/features/ai-surge.jpg", "Surge badge", "Surge multiplier on restaurant detail"),
+                    "blocks": [
+                        {
+                            "h3": "The fee / surge chip",
+                            "paras": [
+                                "On restaurant detail, read the fee chip for what delivery costs now. Surge replaces the standard fee when your rules say demand is elevated; if you only see “Standard fee”, that hour is quiet.",
+                            ],
+                            "shot": ("phone", f"{A}/features/ai-surge.jpg", "Fee / surge", "Surge (or standard) fee chip on restaurant detail"),
+                        },
                     ],
                 },
             ],
@@ -281,29 +288,29 @@ def main():
                 {
                     "h2": "Follow the order without calling support",
                     "paras": [
-                        "After checkout, the customer opens Track Order (from order history or the post-order flow). The screen shows the order id, timestamp, and a vertical status timeline: pending → preparing → out for delivery → delivered. Active steps are highlighted; later steps stay muted until they happen.",
-                        "Restaurant contact details appear on the same screen so the customer can call if something is wrong with the meal itself — while delivery progress stays visible without opening a separate chat.",
+                        "After checkout, customers should not need to call support to know where their food is. Track Order is the single place that answers: was it accepted, is the kitchen cooking, is a courier on the way, and when will it arrive.",
                     ],
                     "blocks": [
                         {
-                            "h3": "Typical customer path",
+                            "h3": "Status timeline",
+                            "paras": [
+                                "The screen shows the order id, timestamp, and a vertical status timeline: pending → preparing → out for delivery → delivered. Active steps are highlighted; later steps stay muted until they happen. Restaurant contact details sit on the same screen so the customer can call about the meal itself while delivery progress stays visible — without opening a separate chat.",
+                            ],
                             "steps": [
                                 "Place an order and wait for the restaurant to accept it.",
-                                "Open <strong>Order history</strong>, select the order, then <strong>Track order</strong> (or the equivalent deep link after payment).",
+                                "Open <strong>Order history</strong>, select the order, then <strong>Track order</strong> (or the deep link after payment).",
                                 "Watch the timeline advance as kitchen and driver statuses change on the shared order record.",
                                 "When the driver is en route, ETA copy updates when your logistics / intelligence data provides it.",
                             ],
+                            "shot": ("phone", f"{A}/features/tracking.jpg", "Track order", "Order id, status timeline, restaurant contact"),
                         },
                         {
                             "h3": "Delivery map while the courier is en route",
                             "paras": [
-                                'When the order is out for delivery, Track Order can show a <strong>Delivery Map</strong>: destination pin, courier position, route line, and an ETA badge. Driver-side job handling and proof of delivery are documented under <a href="./delivery-app/logistics.html">Logistics &amp; POD</a>.',
+                                'When the order is out for delivery, Track Order can show a <strong>Delivery Map</strong>: destination pin, live courier position, route line, and an ETA badge (for example “ETA ~3 min”). That is the live tracking view — not the nearby-restaurant discovery map. Driver-side job handling and proof of delivery are documented under <a href="./delivery-app/logistics.html">Logistics &amp; POD</a>.',
                             ],
+                            "shot": ("phone", f"{A}/features/tracking-map.jpg", "Delivery map", "Route, courier pin, destination, and ETA badge"),
                         },
-                    ],
-                    "shots": [
-                        ("phone", f"{A}/features/tracking.jpg", "Track order", "Status timeline for a live order"),
-                        ("phone", f"{A}/features/tracking-map.jpg", "Delivery map", "Live courier map with route and ETA"),
                     ],
                 },
             ],
@@ -325,32 +332,49 @@ def main():
                     "h2": "Today’s deliveries and assignment radius",
                     "paras": [
                         "The driver app centres on a clear list of jobs for the shift — pending, on the way, and completed. Batching nearby drops reduces empty miles at lunch peak: one courier can stack orders in the same neighbourhood instead of zigzagging across the city.",
-                        "How far a restaurant (or the marketplace) is willing to send couriers is controlled with delivery settings such as radius and preparation time. Those settings live with the restaurant / marketplace configuration; drivers experience the result as which jobs appear and how far they run.",
                     ],
                     "blocks": [
                         {
-                            "h3": "Driver checklist for the list",
+                            "h3": "Today’s delivery list",
+                            "paras": [
+                                "Deliveries is the shift board. Each row shows enough to decide the next move: restaurant / customer cues, status, and actions to accept or start. Drivers go online first so new assignments can reach them, then work the list in order.",
+                            ],
                             "steps": [
                                 "Go online / available so new assignments can reach you.",
                                 "Open <strong>Deliveries</strong> (or Home’s active list) and scan statuses.",
                                 "Accept or start the next job according to your marketplace rules.",
                             ],
+                            "shot": ("phone", f"{A}/features/driver-deliveries.jpg", "Deliveries", "Today’s jobs: pending, on the way, completed"),
                         },
-                    ],
-                    "shots": [
-                        ("phone", f"{A}/features/driver-deliveries.jpg", "Deliveries", "Today’s delivery list"),
-                        ("phone", f"{A}/features/delivery-settings.jpg", "Delivery settings", "Radius and prep time (restaurant side)"),
+                        {
+                            "h3": "Assignment radius (restaurant side)",
+                            "paras": [
+                                "How far a restaurant (or the marketplace) is willing to send couriers is controlled with delivery settings such as radius and preparation time. Those settings live with the restaurant / marketplace configuration; drivers experience the result as which jobs appear and how far they run — not as a separate “driver radius” screen.",
+                            ],
+                            "shot": ("phone", f"{A}/features/delivery-settings.jpg", "Delivery settings", "Radius and prep time that shape which jobs appear"),
+                        },
                     ],
                 },
                 {
                     "h2": "On the road",
                     "paras": [
-                        "An active delivery screen keeps the current order, status, and primary actions in one place. From details, the driver sees customer information needed for the drop-off and can open navigation toward the address.",
-                        'Customers follow the same order on <a href="../order-tracking.html">order tracking</a> — there is one order record, not a separate “driver copy”.',
+                        'While a job is active, the courier needs the current order, status, and primary actions in one place — and customer details for the drop-off. Customers follow the same order on <a href="../order-tracking.html">order tracking</a>: there is one order record, not a separate “driver copy”.',
                     ],
-                    "shots": [
-                        ("phone", f"{A}/features/driver-active.jpg", "Active delivery", "Current job while on delivery"),
-                        ("phone", f"{A}/features/driver-details.jpg", "Delivery details", "Customer and order details"),
+                    "blocks": [
+                        {
+                            "h3": "Active delivery",
+                            "paras": [
+                                "The active delivery screen keeps the live job front and centre: what to pick up or drop, current status, and the next action (navigate, mark arrived, complete). This is the screen drivers live on between restaurant and door.",
+                            ],
+                            "shot": ("phone", f"{A}/features/driver-active.jpg", "Active delivery", "Current job controls while on delivery"),
+                        },
+                        {
+                            "h3": "Customer and order details",
+                            "paras": [
+                                "Details expose the customer information needed at the door (name, phone, address notes) plus order line context. From here the driver can open navigation toward the address without leaving the job context.",
+                            ],
+                            "shot": ("phone", f"{A}/features/driver-details.jpg", "Delivery details", "Customer, address, and order context"),
+                        },
                     ],
                 },
                 {
@@ -461,11 +485,23 @@ def main():
                 {
                     "h2": "Tied to the live orders list",
                     "paras": [
-                        "Orders still land in the restaurant orders UI first. The Kitchen Display is the kitchen-oriented view of that same pipeline — not a second database. If a ticket is missing, refresh the board and confirm the order exists and was accepted for this restaurant account.",
+                        "Orders still land in the restaurant orders UI first. The Kitchen Display is the kitchen-oriented view of that same pipeline — not a second database. If a ticket is missing on the board, refresh and confirm the order exists and was accepted for this restaurant account.",
                     ],
-                    "shots": [
-                        ("phone", f"{A}/features/resto-orders.jpg", "Orders", "Live restaurant orders"),
-                        ("phone", f"{A}/features/resto-drawer.jpg", "Drawer", "Open Kitchen Display from the menu"),
+                    "blocks": [
+                        {
+                            "h3": "Live restaurant orders",
+                            "paras": [
+                                "Accept and reject happen here. New-order alerts can deep-link back to the order so nobody misses a ticket during rush. Advance status as food progresses; the KDS board mirrors that same pipeline for the pass.",
+                            ],
+                            "shot": ("phone", f"{A}/features/resto-orders.jpg", "Orders", "Accept / reject and advance live restaurant orders"),
+                        },
+                        {
+                            "h3": "Open Kitchen Display from the menu",
+                            "paras": [
+                                "Staff open <strong>Kitchen Display</strong> from the drawer / navigation — preferably on a tablet in landscape at the pass. Keep brightness high and disable auto-lock during service; a flaky network looks like “KDS is broken”.",
+                            ],
+                            "shot": ("phone", f"{A}/features/resto-drawer.jpg", "Drawer", "Navigation entry to Kitchen Display"),
+                        },
                     ],
                 },
             ],
@@ -646,22 +682,28 @@ def main():
                 {
                     "h2": "Languages",
                     "paras": [
-                        "Admin maintains the language catalogue (code, name, default flag). Mobile apps and the admin UI follow the active / default language. Arabic and similar locales can reverse layout (RTL) when the selected language requires it.",
-                        "Customers change language from their settings screen; the admin list is where you decide which languages exist and which one is the marketplace default for new users.",
+                        "Admin maintains the language catalogue (code, name, default flag). Mobile apps and the admin UI follow the active / default language. Arabic and similar locales can reverse layout (RTL) when the selected language requires it — so the marketplace feels local, not translated as an afterthought.",
                     ],
                     "blocks": [
                         {
-                            "h3": "Operator steps",
-                            "steps": [
-                                "Open <strong>Settings → Languages</strong> (or Languages in the sidebar, depending on your build).",
-                                "Ensure the languages you sell in are present; mark one as default.",
-                                "In a customer (or driver / restaurant) app, open Settings and switch language to verify strings and layout.",
+                            "h3": "Admin language list",
+                            "paras": [
+                                "This is where you decide which languages exist and which one is the marketplace default for new users. Open Settings → Languages (or Languages in the sidebar), ensure every market you sell in is present, and mark one default.",
                             ],
+                            "steps": [
+                                "Open <strong>Settings → Languages</strong> (or Languages in the sidebar).",
+                                "Add or enable the languages you sell in; mark one as default.",
+                                "Save, then verify a mobile app picks up the default for a fresh session.",
+                            ],
+                            "shot": ("wide", f"{A}/features/languages.jpg", "Languages", "Admin language catalogue with default flag"),
                         },
-                    ],
-                    "shots": [
-                        ("wide", f"{A}/features/languages.jpg", "Languages", "Admin language list"),
-                        ("phone", f"{A}/features/lang-picker.jpg", "Customer settings", "Language shown in customer settings"),
+                        {
+                            "h3": "Customer language picker",
+                            "paras": [
+                                "Customers change language from their settings screen. Switch language in a customer (or driver / restaurant) app to verify strings and layout — including RTL when you enable Arabic or similar locales.",
+                            ],
+                            "shot": ("phone", f"{A}/features/lang-picker.jpg", "Customer settings", "Language selection in customer settings"),
+                        },
                     ],
                 },
                 {
@@ -717,67 +759,145 @@ def main():
         page(
             "Ordering & discovery — Customer app",
             "Ordering & discovery",
-            "How customers find restaurants, build a cart, apply offers, and place an order — the core marketplace journey.",
-            ["Home", "Search", "Cart", "Checkout", "Offers"],
+            "How customers find restaurants, open a place, browse the menu, add items, apply offers, and check out — one screen, one idea.",
+            ["Home", "Map", "Restaurant", "Menu", "Cart", "Checkout"],
             [
                 {
                     "h2": "Find food in a multi-restaurant marketplace",
                     "paras": [
-                        "The customer app is a multi-store marketplace: one install, many restaurants. Home mixes delivery / pickup, search, categories, banners, and featured places. Nearby map views help when the customer wants “what’s close”, and restaurant pages carry hours, fees, ratings, offers, and the menu.",
+                        "The customer app is a multi-store marketplace: one install, many restaurants. Each screen below is a distinct step — the capture next to it shows only that step, not the whole journey at once.",
                     ],
                     "blocks": [
                         {
-                            "h3": "Discovery path",
-                            "steps": [
-                                "Open the app and choose <strong>Delivery</strong> or <strong>Pickup</strong> when both are available.",
-                                "Browse the homepage (categories, offers, restaurants) or open <strong>Search</strong> for a keyword.",
-                                "Optionally use the map / nearby view to pick a place geographically.",
-                                "Open a restaurant: check status, ETA / fee cues, offers, then browse the menu and add items (with variants when priced).",
+                            "h3": "Homepage — delivery / pickup, categories, banners",
+                            "paras": [
+                                "Home starts with the Delivery / Pickup toggle, a search field, a horizontal category row, and a promo carousel (for example “15% off” with Browse Offers). Below that, Special Offers lists restaurant cards with rating, distance / prep cues, and offer badges. This screen is discovery — not the restaurant header, not the menu.",
                             ],
+                            "steps": [
+                                "Open the app and choose <strong>Delivery</strong> or <strong>Pickup</strong>.",
+                                "Browse categories or the promo carousel, or jump into Special Offers cards.",
+                                "Tap a restaurant card when you are ready to open that place.",
+                            ],
+                            "shot": ("phone", f"{A}/features/ordering-home.jpg", "Home", "Delivery/Pickup, categories, promo carousel, Special Offers cards"),
                         },
-                    ],
-                    "shots": [
-                        ("phone", f"{A}/features/ordering-home.jpg", "Home", "Homepage — delivery/pickup, categories, offers"),
-                        ("phone", f"{A}/features/ordering-search.jpg", "Search", "Search restaurants and dishes"),
-                        ("phone", f"{A}/features/ordering-menu.jpg", "Menu", "Restaurant menu and add to cart"),
+                        {
+                            "h3": "Search",
+                            "paras": [
+                                "Search is for intent: type a restaurant or dish keyword and open a matching result. It is a separate tab / entry from scrolling home.",
+                            ],
+                            "steps": [
+                                "Open <strong>Search</strong> from the tab bar or the home search field.",
+                                "Type a keyword and pick a restaurant or dish result.",
+                            ],
+                            "shot": ("phone", f"{A}/features/ordering-search.jpg", "Search", "Keyword search results"),
+                        },
+                        {
+                            "h3": "Nearby map",
+                            "paras": [
+                                "The nearby map is the geographic discovery view: restaurant pins on the city map and a swipeable restaurant card at the bottom. Use it when the customer wants “what’s close”, not when they already opened a restaurant menu.",
+                            ],
+                            "shot": ("phone", f"{A}/features/map-nearby.jpg", "Nearby map", "Map pins with swipeable restaurant card"),
+                        },
+                        {
+                            "h3": "Open / closed status",
+                            "paras": [
+                                "On the restaurant page, the status line tells customers whether they can order now — for example a green “Open until 11:00 PM” or a closed state with the next opening time. This is only the open/closed cue (plus the usual name / rating / address header), not the ETA or fee chips.",
+                            ],
+                            "shot": ("phone", f"{A}/features/ordering-restaurant-open.jpg", "Open / closed", "Open until … (or closed) on the restaurant page"),
+                        },
+                        {
+                            "h3": "Smart ETA",
+                            "paras": [
+                                "The ETA chip (for example “ETA 26–36 min”) estimates how long food will take before the customer commits. It is its own cue on the restaurant header — separate from open/closed and from the fee chip. More on how ETA is computed: <a href=\"./intelligence.html\">AI intelligence</a>.",
+                            ],
+                            "shot": ("phone", f"{A}/features/ordering-restaurant-eta.jpg", "ETA", "ETA chip on the restaurant page"),
+                        },
+                        {
+                            "h3": "Delivery fee (standard or surge)",
+                            "paras": [
+                                "The fee chip sits beside the ETA and shows what delivery costs right now — “Standard fee” in quiet periods, or a surge multiplier when demand is high. Fee / surge is a separate marketplace lever from ETA timing. Details: <a href=\"./intelligence.html\">AI intelligence</a>.",
+                            ],
+                            "shot": ("phone", f"{A}/features/ordering-restaurant-fee.jpg", "Delivery fee", "Fee / surge chip on the restaurant page"),
+                        },
+                        {
+                            "h3": "Offers and reviews on the restaurant",
+                            "paras": [
+                                "Scrolling the restaurant page reaches Available Offers (discount / free-delivery cards with validity) and Recent Reviews. This is not the global Offers tab — it is the offers block attached to that restaurant.",
+                            ],
+                            "shot": ("phone", f"{A}/features/ordering-restaurant-offers.jpg", "Restaurant offers", "Available Offers cards and Recent Reviews"),
+                        },
+                        {
+                            "h3": "Menu — categories and items",
+                            "paras": [
+                                "The menu lists categories (Italian, Mediterranean, …) with dish name, short description, price, and a + control. This capture is the catalog itself — not status chips, not offers, not the cart banner.",
+                            ],
+                            "steps": [
+                                "Scroll categories until you find the dish.",
+                                "Tap + on an item (or open the item if your flow uses a detail sheet).",
+                            ],
+                            "shot": ("phone", f"{A}/features/ordering-menu.jpg", "Menu", "Category sections with priced items and +"),
+                        },
+                        {
+                            "h3": "Add to cart — quantities and View Cart",
+                            "paras": [
+                                "After an item is added, the menu shows quantity steppers (− / +) on that line and a floating <strong>View Cart</strong> bar (item count + total). The tab-bar cart badge increments too. That is the add-to-cart moment — separate from reviewing the full cart screen.",
+                            ],
+                            "shot": ("phone", f"{A}/features/ordering-add-to-cart.jpg", "Add to cart", "Quantity steppers and View Cart bar on the menu"),
+                        },
                     ],
                 },
                 {
-                    "h2": "Cart, offers, and checkout",
+                    "h2": "Cart, offers tab, and checkout",
                     "paras": [
-                        "The cart stays synced with the backend. Customers can manage items, apply a promo / coupon when you run campaigns, choose delivery or pickup, pick an address, and pay with an enabled method (card, cash on delivery, wallet, and other gateways you activate).",
-                        "Offers and coupons are how you grow volume: percentage or fixed discounts, free delivery, and similar campaign types configured in admin. The customer sees them on home / restaurant surfaces and can enter a code at checkout when the campaign allows.",
+                        "Once items are in the cart, conversion is three distinct screens: the cart list, the dedicated Offers surface, and checkout.",
                     ],
                     "blocks": [
                         {
-                            "h3": "Place an order",
-                            "steps": [
-                                "Review the cart (quantities, extras, totals).",
-                                "Apply a coupon or claim a listed offer when available.",
-                                "Confirm fulfillment (delivery vs pickup), address, and payment method.",
-                                "Place the order, then follow it in order history / <a href=\"./order-tracking.html\">tracking</a>.",
+                            "h3": "Cart — line items and totals",
+                            "paras": [
+                                "The cart screen lists what the customer will pay for: quantities, extras, and a running total. Change amounts or remove lines here before opening checkout.",
                             ],
+                            "steps": [
+                                "Open the cart from the tab bar or the View Cart bar.",
+                                "Review quantities, extras, and totals.",
+                                "Continue to checkout when the basket looks right.",
+                            ],
+                            "shot": ("phone", f"{A}/features/ordering-cart.jpg", "Cart", "Line items, quantities, and totals"),
                         },
                         {
-                            "h3": "Where offers are configured",
+                            "h3": "Offers tab — vouchers to claim",
                             "paras": [
-                                'Coupons and promotions are managed in the admin app — see <a href="./admin-app/promotions.html">Promotions &amp; coupons</a>. Payment methods and wallet top-ups: <a href="./wallet.html">Wallet &amp; payments</a> and <a href="./admin-app/monetization.html">Monetization</a>.',
+                                "The Offers surface is where customers browse claimable vouchers / campaigns (separate from the small offers block on a restaurant page). Coupon codes and campaign rules are configured in admin — see <a href=\"./admin-app/promotions.html\">Promotions &amp; coupons</a>.",
                             ],
+                            "shot": ("phone", f"{A}/features/ordering-offers.jpg", "Offers", "Offers / vouchers list to claim"),
                         },
-                    ],
-                    "shots": [
-                        ("phone", f"{A}/features/ordering-cart.jpg", "Cart", "Cart before checkout"),
-                        ("phone", f"{A}/features/ordering-checkout.jpg", "Checkout", "Summary, payment, place order"),
-                        ("phone", f"{A}/features/ordering-offers.jpg", "Offers", "Offers / vouchers surface"),
+                        {
+                            "h3": "Checkout — address, payment, place order",
+                            "paras": [
+                                "Checkout confirms fulfillment (delivery vs pickup), the address, and the payment method (card, cash on delivery, wallet, or other gateways you activate). After place order, follow progress in order history / <a href=\"./order-tracking.html\">tracking</a>.",
+                            ],
+                            "steps": [
+                                "Confirm delivery or pickup, address, and payment method.",
+                                "Place the order.",
+                                "Open order history / tracking to follow status.",
+                            ],
+                            "shot": ("phone", f"{A}/features/ordering-checkout.jpg", "Checkout", "Summary, payment method, place order"),
+                        },
                     ],
                 },
                 {
                     "h2": "Order history",
                     "paras": [
-                        "After checkout, orders appear in the order list with status and detail. From there customers reopen tracking, contact the restaurant when needed, and later leave reviews when your flow enables them.",
+                        "After checkout, every order lands in the order list with status and a way into detail. From here customers reopen tracking, contact the restaurant when needed, and later leave reviews when your flow enables them.",
                     ],
-                    "shots": [
-                        ("phone", f"{A}/features/ordering-history.jpg", "Orders", "Order history list"),
+                    "blocks": [
+                        {
+                            "h3": "What the list shows",
+                            "paras": [
+                                "Each row summarizes restaurant, amount, and fulfillment status so the customer can reopen Track Order or dig into line items.",
+                            ],
+                            "shot": ("phone", f"{A}/features/ordering-history.jpg", "Orders", "Order history list with status"),
+                        },
                     ],
                 },
             ],
@@ -798,24 +918,39 @@ def main():
                 {
                     "h2": "Know what a shift paid",
                     "paras": [
-                        "Couriers need a clear money picture: what they earned today, what sits in history, and how cash reaches their bank. The driver app exposes earnings summaries, transaction history, and payout method setup (including Connect-style onboarding when you enable it).",
-                        "Job handling, batching, and proof of delivery stay on the logistics screens; this page is the money side of the same role.",
+                        "Couriers need a clear money picture: what they earned today, what sits in history, and how cash reaches their bank. Job handling, batching, and proof of delivery stay on the logistics screens; this page is the money side of the same role.",
                     ],
                     "blocks": [
                         {
-                            "h3": "Driver checklist",
-                            "steps": [
-                                "Complete deliveries for the shift (see <a href=\"./logistics.html\">Logistics &amp; POD</a>).",
-                                "Open <strong>Earnings</strong> to review today’s totals and periods your build shows.",
-                                "Open transactions when you need a line-by-line trail.",
-                                "Add or update <strong>Payout methods</strong> so admin / Connect can settle the driver.",
+                            "h3": "Earnings overview",
+                            "paras": [
+                                "Earnings summarizes the shift and periods your build shows — totals the driver can trust after completing deliveries. Open it at the end of a block of jobs to confirm the marketplace recorded the work.",
                             ],
+                            "steps": [
+                                'Complete deliveries for the shift (see <a href="./logistics.html">Logistics &amp; POD</a>).',
+                                "Open <strong>Earnings</strong> to review today’s totals and available periods.",
+                            ],
+                            "shot": ("phone", f"{A}/features/driver-earnings.jpg", "Earnings", "Driver earnings overview for the shift"),
                         },
-                    ],
-                    "shots": [
-                        ("phone", f"{A}/features/driver-earnings.jpg", "Earnings", "Driver earnings overview"),
-                        ("phone", f"{A}/features/driver-transactions.jpg", "Transactions", "Driver transaction history"),
-                        ("phone", f"{A}/features/driver-payouts.jpg", "Payouts", "Payout methods"),
+                        {
+                            "h3": "Transaction history",
+                            "paras": [
+                                "Transactions are the line-by-line trail: delivery fees, adjustments, and related movements. Use this when a total looks wrong or when support asks for proof of a specific job payout.",
+                            ],
+                            "shot": ("phone", f"{A}/features/driver-transactions.jpg", "Transactions", "Line-by-line driver transaction history"),
+                        },
+                        {
+                            "h3": "Payout methods",
+                            "paras": [
+                                "Payout methods tell the platform where to settle the driver (including Connect-style onboarding when you enable it). Drivers should add or update methods before expecting bank transfers — incomplete payout setup is a common “where is my money?” ticket.",
+                            ],
+                            "steps": [
+                                "Open <strong>Payout methods</strong> from the driver money area.",
+                                "Add or update the settlement method your marketplace supports.",
+                                "Confirm status shows ready before the next payout cycle.",
+                            ],
+                            "shot": ("phone", f"{A}/features/driver-payouts.jpg", "Payouts", "Where the driver receives settlements"),
+                        },
                     ],
                 },
             ],
@@ -857,24 +992,42 @@ def main():
                 {
                     "h2": "Menu, hours, and analytics",
                     "paras": [
-                        "Partners manage categories, dishes, prices, photos, variants, and availability from the restaurant app — without waiting on admin for every price tweak. Opening hours and delivery / pickup controls (radius, prep time) define when and how far you sell.",
-                        "Dashboard KPIs and analytics (periods, bestsellers, peaks) help owners see what is working. Reviews appear for reputation; reply flows depend on your build.",
+                        "Partners manage categories, dishes, prices, photos, variants, and availability from the restaurant app — without waiting on admin for every price tweak. Opening hours and delivery / pickup controls define when and how far you sell. Analytics help owners see what is working after a few service days.",
                     ],
                     "blocks": [
                         {
-                            "h3": "Keep the catalog honest",
-                            "steps": [
-                                "Open <strong>Menu</strong>: add or edit categories and items, set prices and photos, toggle availability when an item is 86’d.",
-                                "Edit <strong>Opening hours</strong> and delivery settings so the customer app shows accurate open/closed and radius.",
-                                "Check analytics after a few service days to spot bestsellers and quiet slots.",
+                            "h3": "Menu management",
+                            "paras": [
+                                "The menu screen is the catalog home: categories and items customers will browse. From here partners add dishes, reorder sections, and keep the sellable list honest for the next rush.",
                             ],
+                            "steps": [
+                                "Open <strong>Menu</strong> from the restaurant drawer.",
+                                "Add or edit categories and items; set prices and photos.",
+                                "Toggle availability when an item is 86’d so customers cannot order it.",
+                            ],
+                            "shot": ("phone", f"{A}/features/resto-ops-menu.jpg", "Menu", "Categories and dishes the restaurant sells"),
                         },
-                    ],
-                    "shots": [
-                        ("phone", f"{A}/features/resto-ops-menu.jpg", "Menu", "Restaurant menu management"),
-                        ("phone", f"{A}/features/resto-ops-menu-edit.jpg", "Edit item", "Add / edit a menu item"),
-                        ("phone", f"{A}/features/resto-ops-hours.jpg", "Hours", "Opening hours"),
-                        ("phone", f"{A}/features/resto-ops-analytics.jpg", "Analytics", "Restaurant analytics"),
+                        {
+                            "h3": "Add or edit an item",
+                            "paras": [
+                                "Item forms cover name, price, photo, variants, and availability. Getting this right once prevents “price wrong on the app” tickets and keeps kitchen tickets aligned with what the customer paid for.",
+                            ],
+                            "shot": ("phone", f"{A}/features/resto-ops-menu-edit.jpg", "Edit item", "Item form: price, photo, variants, availability"),
+                        },
+                        {
+                            "h3": "Opening hours",
+                            "paras": [
+                                "Opening hours and delivery settings (radius, prep time) tell the customer app when the restaurant is open and how far it delivers. Out-of-date hours create orders you cannot fulfill — fix them before service, not after the first rejection.",
+                            ],
+                            "shot": ("phone", f"{A}/features/resto-ops-hours.jpg", "Hours", "Opening hours that drive open/closed in the customer app"),
+                        },
+                        {
+                            "h3": "Analytics",
+                            "paras": [
+                                "Dashboard KPIs and analytics (periods, bestsellers, peaks) help owners see what sells and when. Use them after a few real service days — empty charts on day one are normal; quiet slots and bestsellers appear once orders accumulate.",
+                            ],
+                            "shot": ("phone", f"{A}/features/resto-ops-analytics.jpg", "Analytics", "Periods, bestsellers, and service peaks"),
+                        },
                     ],
                 },
             ],
@@ -895,25 +1048,42 @@ def main():
                 {
                     "h2": "Orders and partners",
                     "paras": [
-                        "Admin is the marketplace command center. The orders list shows payment state, customer, restaurant, driver, totals, and fulfillment status — with View into full detail (line items, delivery, timeline). From here support can investigate without asking three apps for screenshots.",
-                        "Restaurant and driver management cover onboarding and ongoing control: activate or close restaurants, approve drivers before they go online, and keep profiles consistent with what mobile apps display.",
+                        "Admin is the marketplace command center. Support should investigate from one place without asking three mobile apps for screenshots. Start from dashboard KPIs, then drill into orders and partner accounts.",
                     ],
                     "blocks": [
                         {
-                            "h3": "Operator habits",
-                            "steps": [
-                                "Start on the dashboard KPIs when you open admin.",
-                                "Use <strong>Orders</strong> for live incidents (failed payment, stuck status, missing driver).",
-                                "Use <strong>Restaurants</strong> / <strong>Drivers</strong> / <strong>Users</strong> to approve, edit, or suspend accounts.",
-                                "Open a row’s View when you need the full record.",
+                            "h3": "Orders",
+                            "paras": [
+                                "The orders list shows payment state, customer, restaurant, driver, totals, and fulfillment status. View opens full detail (line items, delivery, timeline) for failed payments, stuck statuses, or missing drivers.",
                             ],
+                            "steps": [
+                                "Open <strong>Orders</strong> when a live incident starts.",
+                                "Filter or find the order by customer / restaurant / id.",
+                                "Use View for the full record before changing status or contacting partners.",
+                            ],
+                            "shot": ("wide", f"{A}/features/admin-ops-orders.jpg", "Orders", "Admin orders list with payment and fulfillment state"),
                         },
-                    ],
-                    "shots": [
-                        ("wide", f"{A}/features/admin-ops-orders.jpg", "Orders", "Admin orders list"),
-                        ("wide", f"{A}/features/admin-ops-restaurants.jpg", "Restaurants", "Restaurant management"),
-                        ("wide", f"{A}/features/admin-ops-drivers.jpg", "Drivers", "Driver management"),
-                        ("wide", f"{A}/features/admin-ops-users.jpg", "Users", "Customer users"),
+                        {
+                            "h3": "Restaurants",
+                            "paras": [
+                                "Restaurant management covers onboarding and ongoing control: activate or close partners, keep profiles consistent with what the customer app displays, and intervene when a location should not stay live.",
+                            ],
+                            "shot": ("wide", f"{A}/features/admin-ops-restaurants.jpg", "Restaurants", "Approve, edit, activate, or close restaurant partners"),
+                        },
+                        {
+                            "h3": "Drivers",
+                            "paras": [
+                                "Approve drivers before they go online, keep identity and vehicle details coherent, and suspend when needed. Couriers that skip approval create support noise and marketplace risk.",
+                            ],
+                            "shot": ("wide", f"{A}/features/admin-ops-drivers.jpg", "Drivers", "Driver onboarding and ongoing control"),
+                        },
+                        {
+                            "h3": "Users (customers)",
+                            "paras": [
+                                "Customer users are where you investigate accounts, edit profiles, or suspend abuse. Pair this with the orders list when a dispute needs both the person and their tickets.",
+                            ],
+                            "shot": ("wide", f"{A}/features/admin-ops-users.jpg", "Users", "Customer accounts for support and moderation"),
+                        },
                     ],
                 },
                 {
@@ -943,23 +1113,33 @@ def main():
                 {
                     "h2": "Grow volume with real campaigns",
                     "paras": [
-                        "The promotion engine supports the campaign styles buyers expect from a modern marketplace: percentage or fixed discounts, free delivery, Buy X Get Y / combos, flash sales, happy hours, and similar types your build exposes. Scope a campaign to the whole platform or to a restaurant, category, or item — and target audiences such as all, new, existing, or VIP customers when those flags exist.",
-                        "Coupon codes add constrained redemptions: minimum order, max uses, per-user limits, first-order-only, and expiry. Customers enter codes in the cart / checkout path documented under <a href=\"../ordering.html\">Ordering &amp; discovery</a>.",
+                        "The promotion engine supports the campaign styles buyers expect: percentage or fixed discounts, free delivery, Buy X Get Y / combos, flash sales, happy hours, and similar types your build exposes. Scope a campaign to the whole platform or to a restaurant, category, or item — and target audiences such as all, new, existing, or VIP when those flags exist.",
                     ],
                     "blocks": [
                         {
-                            "h3": "Launch a campaign safely",
-                            "steps": [
-                                "Open <strong>Promotions</strong> and create or edit a campaign (type, discount, schedule, scope).",
-                                "Open <strong>Coupons</strong> when you need a redeemable code with usage limits.",
-                                "Activate only what you can afford on margin; test with a demo customer order.",
-                                "Confirm the offer appears on customer home / restaurant surfaces and that checkout applies the code.",
+                            "h3": "Promotions",
+                            "paras": [
+                                "Promotions are the campaign objects: type, discount, schedule, and scope. Create or edit here, activate only what you can afford on margin, then verify the offer appears on customer home / restaurant surfaces before you announce it.",
                             ],
+                            "steps": [
+                                "Open <strong>Promotions</strong> and create or edit a campaign.",
+                                "Set type, discount, schedule, and scope (platform / restaurant / category / item).",
+                                "Activate, then place a demo customer order to prove the discount applies.",
+                            ],
+                            "shot": ("wide", f"{A}/features/admin-promotions.jpg", "Promotions", "Campaign list: type, schedule, scope, status"),
                         },
-                    ],
-                    "shots": [
-                        ("wide", f"{A}/features/admin-promotions.jpg", "Promotions", "Admin promotions list"),
-                        ("wide", f"{A}/features/admin-coupons.jpg", "Coupons", "Admin coupon codes"),
+                        {
+                            "h3": "Coupons",
+                            "paras": [
+                                "Coupon codes add constrained redemptions: minimum order, max uses, per-user limits, first-order-only, and expiry. Customers enter codes in cart / checkout — documented under Ordering &amp; discovery. Use coupons when you want a shareable code instead of (or on top of) an automatic promotion.",
+                            ],
+                            "steps": [
+                                "Open <strong>Coupons</strong> and create a code with usage limits.",
+                                "Confirm checkout accepts the code on a test order.",
+                                "Retire or expire codes that are no longer funded.",
+                            ],
+                            "shot": ("wide", f"{A}/features/admin-coupons.jpg", "Coupons", "Redeemable codes with limits and expiry"),
+                        },
                     ],
                 },
             ],
@@ -980,25 +1160,37 @@ def main():
                 {
                     "h2": "Prove what the marketplace earned",
                     "paras": [
-                        "Reports turn operational noise into decisions: sales with AOV, delivery fees, taxes collected, and category breakdowns; restaurant and driver performance for partner conversations; and the money ledger (transactions) when you need fee-level transparency on payments, payouts, refunds, tips, and wallet movements.",
-                        "Use earnings under <a href=\"./monetization.html\">Monetization</a> for commission splits; use reports when you need period analytics and partner scorecards.",
+                        "Reports turn operational noise into decisions. Use earnings under Monetization for commission splits; use reports when you need period analytics and partner scorecards — sales, restaurant performance, driver performance, and the money ledger.",
                     ],
                     "blocks": [
                         {
-                            "h3": "Weekly operator rhythm",
-                            "steps": [
-                                "Open <strong>Sales reports</strong> for the period you care about.",
-                                "Check restaurant and driver reports for outliers (late deliveries, weak acceptance, top performers).",
-                                "Spot-check <strong>Transactions</strong> when a payout or refund is disputed.",
-                                "Export or screenshot what your finance process needs (depending on your deployment tools).",
+                            "h3": "Sales reports",
+                            "paras": [
+                                "Sales reports cover the period you care about: volume, AOV, delivery fees, taxes collected, and category breakdowns. Start the week here before partner conversations.",
                             ],
+                            "shot": ("wide", f"{A}/features/admin-sales-reports.jpg", "Sales reports", "Period sales with fees, taxes, and breakdowns"),
                         },
-                    ],
-                    "shots": [
-                        ("wide", f"{A}/features/admin-sales-reports.jpg", "Sales reports", "Sales reporting"),
-                        ("wide", f"{A}/features/admin-resto-reports.jpg", "Restaurant reports", "Restaurant performance"),
-                        ("wide", f"{A}/features/admin-driver-reports.jpg", "Driver reports", "Driver performance"),
-                        ("wide", f"{A}/features/admin-transactions.jpg", "Transactions", "Money ledger / transactions"),
+                        {
+                            "h3": "Restaurant reports",
+                            "paras": [
+                                "Restaurant reports surface partner performance for coaching and commercial talks — who is growing, who is rejecting too much, who needs help with menu or hours.",
+                            ],
+                            "shot": ("wide", f"{A}/features/admin-resto-reports.jpg", "Restaurant reports", "Partner performance scorecards"),
+                        },
+                        {
+                            "h3": "Driver reports",
+                            "paras": [
+                                "Driver reports highlight late deliveries, coverage gaps, and top couriers. Use them to staff peaks and to investigate complaints with facts instead of anecdotes.",
+                            ],
+                            "shot": ("wide", f"{A}/features/admin-driver-reports.jpg", "Driver reports", "Courier performance and reliability"),
+                        },
+                        {
+                            "h3": "Transactions ledger",
+                            "paras": [
+                                "The transactions ledger is fee-level transparency: payments, payouts, refunds, tips, and wallet movements. Spot-check it when a payout or refund is disputed — before you invent a spreadsheet.",
+                            ],
+                            "shot": ("wide", f"{A}/features/admin-transactions.jpg", "Transactions", "Money ledger for payments, payouts, refunds"),
+                        },
                     ],
                 },
             ],

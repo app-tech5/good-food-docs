@@ -82,30 +82,32 @@
             <p>
               The wallet is a prepaid balance inside the customer app. Instead of entering a card on every order, the customer can pay from money already on the account. That shortens checkout, reduces failed payments at the door of the kitchen, and gives you a place to land refunds or promotions as credit.
             </p>
+            <h3>What the customer sees on Wallet</h3>
             <p class="section-subtext">
-              On the Wallet screen the customer sees the current balance, actions to add or send money (depending on what you enable), and the list of saved payment methods (card brands, Google Pay, PayPal, cash, and similar).
+              The Wallet screen shows the current balance at the top, then actions to add (and optionally send) money, then the list of saved payment methods — card brands, Google Pay, PayPal, cash, and similar options you enable. This is the home base before any top-up or checkout choice.
             </p>
-            <h3>How a customer uses it</h3>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/wallet.jpg" alt="Customer wallet" />
+              <figcaption>Balance, actions, and saved payment methods</figcaption>
+            </figure>
+            <h3>How a customer tops up</h3>
+            <p class="section-subtext">
+              Add Money opens a focused top-up flow: pick an amount (or a quick chip such as $10 / $20 / $50), choose how to pay, then confirm. Once the balance updates, checkout can use the wallet when the amount covers the order (or the share your rules allow).
+            </p>
             <ol class="doc-steps">
               <li>Open the drawer or account area and choose <strong>Wallet</strong>.</li>
               <li>Check the balance. Use the refresh control if the amount looks stale after a payment.</li>
-              <li>Tap <strong>Add Money</strong>, choose an amount (or a quick chip such as $10 / $20 / $50), select a payment method, then confirm <strong>Add to balance</strong>.</li>
-              <li>At checkout, choose the wallet as the payment method when the balance covers the order (or the part your rules allow).</li>
+              <li>Tap <strong>Add Money</strong>, choose an amount, select a payment method, then confirm <strong>Add to balance</strong>.</li>
+              <li>At checkout, choose the wallet as the payment method when the balance is enough.</li>
             </ol>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/wallet-topup.jpg" alt="Add money" />
+              <figcaption>Amount chips, payment method, add to balance</figcaption>
+            </figure>
             <h3>What you configure as operator</h3>
             <p class="section-subtext">
-              Payment gateways and marketplace payment behaviour are managed in the admin app — see <a href="./admin-app/monetization.html">Monetization</a>. Enable the gateways you actually use in each market before expecting top-ups to succeed in production.
+              Payment gateways and marketplace payment behaviour are managed in the admin app — see <a href="./admin-app/monetization.html">Monetization</a>. Enable only the gateways you actually use in each market before expecting top-ups to succeed in production.
             </p>
-            <div class="shot-grid phones">
-              <div class="shot phone">
-                <img src="./assets/images/features/wallet.jpg" alt="Customer wallet" />
-                <p>Balance and saved payment methods</p>
-              </div>
-              <div class="shot phone">
-                <img src="./assets/images/features/wallet-topup.jpg" alt="Add money" />
-                <p>Choose amount and pay into the wallet</p>
-              </div>
-            </div>
           </section>
         </section>
       </section>

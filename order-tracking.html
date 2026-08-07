@@ -80,32 +80,30 @@
           <section class="section-block">
             <h2>Follow the order without calling support</h2>
             <p>
-              After checkout, the customer opens Track Order (from order history or the post-order flow). The screen shows the order id, timestamp, and a vertical status timeline: pending → preparing → out for delivery → delivered. Active steps are highlighted; later steps stay muted until they happen.
+              After checkout, customers should not need to call support to know where their food is. Track Order is the single place that answers: was it accepted, is the kitchen cooking, is a courier on the way, and when will it arrive.
             </p>
+            <h3>Status timeline</h3>
             <p class="section-subtext">
-              Restaurant contact details appear on the same screen so the customer can call if something is wrong with the meal itself — while delivery progress stays visible without opening a separate chat.
+              The screen shows the order id, timestamp, and a vertical status timeline: pending → preparing → out for delivery → delivered. Active steps are highlighted; later steps stay muted until they happen. Restaurant contact details sit on the same screen so the customer can call about the meal itself while delivery progress stays visible — without opening a separate chat.
             </p>
-            <h3>Typical customer path</h3>
             <ol class="doc-steps">
               <li>Place an order and wait for the restaurant to accept it.</li>
-              <li>Open <strong>Order history</strong>, select the order, then <strong>Track order</strong> (or the equivalent deep link after payment).</li>
+              <li>Open <strong>Order history</strong>, select the order, then <strong>Track order</strong> (or the deep link after payment).</li>
               <li>Watch the timeline advance as kitchen and driver statuses change on the shared order record.</li>
               <li>When the driver is en route, ETA copy updates when your logistics / intelligence data provides it.</li>
             </ol>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/tracking.jpg" alt="Track order" />
+              <figcaption>Order id, status timeline, restaurant contact</figcaption>
+            </figure>
             <h3>Delivery map while the courier is en route</h3>
             <p class="section-subtext">
-              When the order is out for delivery, Track Order can show a <strong>Delivery Map</strong>: destination pin, courier position, route line, and an ETA badge. Driver-side job handling and proof of delivery are documented under <a href="./delivery-app/logistics.html">Logistics &amp; POD</a>.
+              When the order is out for delivery, Track Order can show a <strong>Delivery Map</strong>: destination pin, live courier position, route line, and an ETA badge (for example “ETA ~3 min”). That is the live tracking view — not the nearby-restaurant discovery map. Driver-side job handling and proof of delivery are documented under <a href="./delivery-app/logistics.html">Logistics &amp; POD</a>.
             </p>
-            <div class="shot-grid phones">
-              <div class="shot phone">
-                <img src="./assets/images/features/tracking.jpg" alt="Track order" />
-                <p>Status timeline for a live order</p>
-              </div>
-              <div class="shot phone">
-                <img src="./assets/images/features/tracking-map.jpg" alt="Delivery map" />
-                <p>Live courier map with route and ETA</p>
-              </div>
-            </div>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/tracking-map.jpg" alt="Delivery map" />
+              <figcaption>Route, courier pin, destination, and ETA badge</figcaption>
+            </figure>
           </section>
         </section>
       </section>

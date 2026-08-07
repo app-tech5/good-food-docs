@@ -67,14 +67,15 @@
         <header id="top" class="hero">
           <h1>Ordering &amp; discovery</h1>
           <p class="subtitle">
-            How customers find restaurants, build a cart, apply offers, and place an order — the core marketplace journey.
+            How customers find restaurants, open a place, browse the menu, add items, apply offers, and check out — one screen, one idea.
           </p>
           <div class="meta-strip">
             <span class="meta-pill">Home</span>
-            <span class="meta-pill">Search</span>
+            <span class="meta-pill">Map</span>
+            <span class="meta-pill">Restaurant</span>
+            <span class="meta-pill">Menu</span>
             <span class="meta-pill">Cart</span>
             <span class="meta-pill">Checkout</span>
-            <span class="meta-pill">Offers</span>
           </div>
         </header>
 
@@ -82,75 +83,147 @@
           <section class="section-block">
             <h2>Find food in a multi-restaurant marketplace</h2>
             <p>
-              The customer app is a multi-store marketplace: one install, many restaurants. Home mixes delivery / pickup, search, categories, banners, and featured places. Nearby map views help when the customer wants “what’s close”, and restaurant pages carry hours, fees, ratings, offers, and the menu.
+              The customer app is a multi-store marketplace: one install, many restaurants. Each screen below is a distinct step — the capture next to it shows only that step, not the whole journey at once.
             </p>
-            <h3>Discovery path</h3>
+            <h3>Homepage — delivery / pickup, categories, banners</h3>
+            <p class="section-subtext">
+              Home starts with the Delivery / Pickup toggle, a search field, a horizontal category row, and a promo carousel (for example “15% off” with Browse Offers). Below that, Special Offers lists restaurant cards with rating, distance / prep cues, and offer badges. This screen is discovery — not the restaurant header, not the menu.
+            </p>
             <ol class="doc-steps">
-              <li>Open the app and choose <strong>Delivery</strong> or <strong>Pickup</strong> when both are available.</li>
-              <li>Browse the homepage (categories, offers, restaurants) or open <strong>Search</strong> for a keyword.</li>
-              <li>Optionally use the map / nearby view to pick a place geographically.</li>
-              <li>Open a restaurant: check status, ETA / fee cues, offers, then browse the menu and add items (with variants when priced).</li>
+              <li>Open the app and choose <strong>Delivery</strong> or <strong>Pickup</strong>.</li>
+              <li>Browse categories or the promo carousel, or jump into Special Offers cards.</li>
+              <li>Tap a restaurant card when you are ready to open that place.</li>
             </ol>
-            <div class="shot-grid phones">
-              <div class="shot phone">
-                <img src="./assets/images/features/ordering-home.jpg" alt="Home" />
-                <p>Homepage — delivery/pickup, categories, offers</p>
-              </div>
-              <div class="shot phone">
-                <img src="./assets/images/features/ordering-search.jpg" alt="Search" />
-                <p>Search restaurants and dishes</p>
-              </div>
-              <div class="shot phone">
-                <img src="./assets/images/features/ordering-menu.jpg" alt="Menu" />
-                <p>Restaurant menu and add to cart</p>
-              </div>
-            </div>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/ordering-home.jpg" alt="Home" />
+              <figcaption>Delivery/Pickup, categories, promo carousel, Special Offers cards</figcaption>
+            </figure>
+            <h3>Search</h3>
+            <p class="section-subtext">
+              Search is for intent: type a restaurant or dish keyword and open a matching result. It is a separate tab / entry from scrolling home.
+            </p>
+            <ol class="doc-steps">
+              <li>Open <strong>Search</strong> from the tab bar or the home search field.</li>
+              <li>Type a keyword and pick a restaurant or dish result.</li>
+            </ol>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/ordering-search.jpg" alt="Search" />
+              <figcaption>Keyword search results</figcaption>
+            </figure>
+            <h3>Nearby map</h3>
+            <p class="section-subtext">
+              The nearby map is the geographic discovery view: restaurant pins on the city map and a swipeable restaurant card at the bottom. Use it when the customer wants “what’s close”, not when they already opened a restaurant menu.
+            </p>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/map-nearby.jpg" alt="Nearby map" />
+              <figcaption>Map pins with swipeable restaurant card</figcaption>
+            </figure>
+            <h3>Open / closed status</h3>
+            <p class="section-subtext">
+              On the restaurant page, the status line tells customers whether they can order now — for example a green “Open until 11:00 PM” or a closed state with the next opening time. This is only the open/closed cue (plus the usual name / rating / address header), not the ETA or fee chips.
+            </p>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/ordering-restaurant-open.jpg" alt="Open / closed" />
+              <figcaption>Open until … (or closed) on the restaurant page</figcaption>
+            </figure>
+            <h3>Smart ETA</h3>
+            <p class="section-subtext">
+              The ETA chip (for example “ETA 26–36 min”) estimates how long food will take before the customer commits. It is its own cue on the restaurant header — separate from open/closed and from the fee chip. More on how ETA is computed: <a href="./intelligence.html">AI intelligence</a>.
+            </p>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/ordering-restaurant-eta.jpg" alt="ETA" />
+              <figcaption>ETA chip on the restaurant page</figcaption>
+            </figure>
+            <h3>Delivery fee (standard or surge)</h3>
+            <p class="section-subtext">
+              The fee chip sits beside the ETA and shows what delivery costs right now — “Standard fee” in quiet periods, or a surge multiplier when demand is high. Fee / surge is a separate marketplace lever from ETA timing. Details: <a href="./intelligence.html">AI intelligence</a>.
+            </p>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/ordering-restaurant-fee.jpg" alt="Delivery fee" />
+              <figcaption>Fee / surge chip on the restaurant page</figcaption>
+            </figure>
+            <h3>Offers and reviews on the restaurant</h3>
+            <p class="section-subtext">
+              Scrolling the restaurant page reaches Available Offers (discount / free-delivery cards with validity) and Recent Reviews. This is not the global Offers tab — it is the offers block attached to that restaurant.
+            </p>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/ordering-restaurant-offers.jpg" alt="Restaurant offers" />
+              <figcaption>Available Offers cards and Recent Reviews</figcaption>
+            </figure>
+            <h3>Menu — categories and items</h3>
+            <p class="section-subtext">
+              The menu lists categories (Italian, Mediterranean, …) with dish name, short description, price, and a + control. This capture is the catalog itself — not status chips, not offers, not the cart banner.
+            </p>
+            <ol class="doc-steps">
+              <li>Scroll categories until you find the dish.</li>
+              <li>Tap + on an item (or open the item if your flow uses a detail sheet).</li>
+            </ol>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/ordering-menu.jpg" alt="Menu" />
+              <figcaption>Category sections with priced items and +</figcaption>
+            </figure>
+            <h3>Add to cart — quantities and View Cart</h3>
+            <p class="section-subtext">
+              After an item is added, the menu shows quantity steppers (− / +) on that line and a floating <strong>View Cart</strong> bar (item count + total). The tab-bar cart badge increments too. That is the add-to-cart moment — separate from reviewing the full cart screen.
+            </p>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/ordering-add-to-cart.jpg" alt="Add to cart" />
+              <figcaption>Quantity steppers and View Cart bar on the menu</figcaption>
+            </figure>
           </section>
           <section class="section-block">
-            <h2>Cart, offers, and checkout</h2>
+            <h2>Cart, offers tab, and checkout</h2>
             <p>
-              The cart stays synced with the backend. Customers can manage items, apply a promo / coupon when you run campaigns, choose delivery or pickup, pick an address, and pay with an enabled method (card, cash on delivery, wallet, and other gateways you activate).
+              Once items are in the cart, conversion is three distinct screens: the cart list, the dedicated Offers surface, and checkout.
             </p>
+            <h3>Cart — line items and totals</h3>
             <p class="section-subtext">
-              Offers and coupons are how you grow volume: percentage or fixed discounts, free delivery, and similar campaign types configured in admin. The customer sees them on home / restaurant surfaces and can enter a code at checkout when the campaign allows.
+              The cart screen lists what the customer will pay for: quantities, extras, and a running total. Change amounts or remove lines here before opening checkout.
             </p>
-            <h3>Place an order</h3>
             <ol class="doc-steps">
-              <li>Review the cart (quantities, extras, totals).</li>
-              <li>Apply a coupon or claim a listed offer when available.</li>
-              <li>Confirm fulfillment (delivery vs pickup), address, and payment method.</li>
-              <li>Place the order, then follow it in order history / <a href="./order-tracking.html">tracking</a>.</li>
+              <li>Open the cart from the tab bar or the View Cart bar.</li>
+              <li>Review quantities, extras, and totals.</li>
+              <li>Continue to checkout when the basket looks right.</li>
             </ol>
-            <h3>Where offers are configured</h3>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/ordering-cart.jpg" alt="Cart" />
+              <figcaption>Line items, quantities, and totals</figcaption>
+            </figure>
+            <h3>Offers tab — vouchers to claim</h3>
             <p class="section-subtext">
-              Coupons and promotions are managed in the admin app — see <a href="./admin-app/promotions.html">Promotions &amp; coupons</a>. Payment methods and wallet top-ups: <a href="./wallet.html">Wallet &amp; payments</a> and <a href="./admin-app/monetization.html">Monetization</a>.
+              The Offers surface is where customers browse claimable vouchers / campaigns (separate from the small offers block on a restaurant page). Coupon codes and campaign rules are configured in admin — see <a href="./admin-app/promotions.html">Promotions &amp; coupons</a>.
             </p>
-            <div class="shot-grid phones">
-              <div class="shot phone">
-                <img src="./assets/images/features/ordering-cart.jpg" alt="Cart" />
-                <p>Cart before checkout</p>
-              </div>
-              <div class="shot phone">
-                <img src="./assets/images/features/ordering-checkout.jpg" alt="Checkout" />
-                <p>Summary, payment, place order</p>
-              </div>
-              <div class="shot phone">
-                <img src="./assets/images/features/ordering-offers.jpg" alt="Offers" />
-                <p>Offers / vouchers surface</p>
-              </div>
-            </div>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/ordering-offers.jpg" alt="Offers" />
+              <figcaption>Offers / vouchers list to claim</figcaption>
+            </figure>
+            <h3>Checkout — address, payment, place order</h3>
+            <p class="section-subtext">
+              Checkout confirms fulfillment (delivery vs pickup), the address, and the payment method (card, cash on delivery, wallet, or other gateways you activate). After place order, follow progress in order history / <a href="./order-tracking.html">tracking</a>.
+            </p>
+            <ol class="doc-steps">
+              <li>Confirm delivery or pickup, address, and payment method.</li>
+              <li>Place the order.</li>
+              <li>Open order history / tracking to follow status.</li>
+            </ol>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/ordering-checkout.jpg" alt="Checkout" />
+              <figcaption>Summary, payment method, place order</figcaption>
+            </figure>
           </section>
           <section class="section-block">
             <h2>Order history</h2>
             <p>
-              After checkout, orders appear in the order list with status and detail. From there customers reopen tracking, contact the restaurant when needed, and later leave reviews when your flow enables them.
+              After checkout, every order lands in the order list with status and a way into detail. From here customers reopen tracking, contact the restaurant when needed, and later leave reviews when your flow enables them.
             </p>
-            <div class="shot-grid phones">
-              <div class="shot phone">
-                <img src="./assets/images/features/ordering-history.jpg" alt="Orders" />
-                <p>Order history list</p>
-              </div>
-            </div>
+            <h3>What the list shows</h3>
+            <p class="section-subtext">
+              Each row summarizes restaurant, amount, and fulfillment status so the customer can reopen Track Order or dig into line items.
+            </p>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/ordering-history.jpg" alt="Orders" />
+              <figcaption>Order history list with status</figcaption>
+            </figure>
           </section>
         </section>
       </section>

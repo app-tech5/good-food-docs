@@ -297,6 +297,52 @@ p {
   margin-top: 18px;
 }
 
+.section-block .doc-shot {
+  margin: 16px 0 28px;
+}
+
+.section-block h3 + .doc-shot,
+.section-block .doc-steps + .doc-shot,
+.section-block .section-subtext + .doc-shot {
+  margin-top: 14px;
+}
+
+.doc-shot {
+  margin: 16px 0 28px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.doc-shot.phone {
+  max-width: 320px;
+}
+
+.doc-shot.wide {
+  max-width: 100%;
+}
+
+.doc-shot img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  object-position: top center;
+  background: #f8fafc;
+}
+
+.doc-shot figcaption {
+  margin: 0;
+  padding: 10px 12px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.45;
+  border-top: 1px solid var(--border);
+}
+
 .product-link {
   display: inline-flex;
   align-items: center;
