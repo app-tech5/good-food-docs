@@ -157,29 +157,58 @@
         <header id="top" class="hero">
           <h1>Hours &amp; delivery zone</h1>
           <p class="subtitle">
-            Opening hours and delivery settings that drive open/closed and how far the restaurant sells.
+            Opening hours decide when the kitchen can take orders. The delivery zone decides which addresses get delivery, how long prep takes, and whether pickup is offered.
           </p>
           <div class="meta-strip">
             <span class="meta-pill">Hours</span>
-            <span class="meta-pill">Radius</span>
+            <span class="meta-pill">Delivery zone</span>
             <span class="meta-pill">Prep time</span>
           </div>
         </header>
 
         <section class="overview">
           <section class="section-block">
-            <h2>When and how far you sell</h2>
+            <h2>Hours</h2>
             <p>
-              Opening hours and delivery settings (radius, prep time) tell the customer app when the restaurant is open and how far it delivers. Out-of-date hours create orders you cannot fulfill.
+              Opening hours are the weekly window when the restaurant can take orders. Outside that window — or when the partner flips a manual closed override — the customer app shows the restaurant as closed, so shoppers do not place tickets the kitchen will never cook.
             </p>
-            <h3>Opening hours</h3>
             <p class="section-subtext">
-              Fix hours before service, not after the first rejection. Customers see the result as open/closed on the restaurant page.
+              A restaurant that still looks open after the pass has shut down burns trust in a single evening. Set hours before service starts, not after the first rejection, so the open/closed cue on the restaurant page stays honest.
             </p>
+            <ol class="doc-steps">
+              <li>Open <strong>Opening Hours</strong> from restaurant settings.</li>
+              <li>Set open and close times for each day you serve.</li>
+              <li>Save, then check the customer restaurant page still shows open or closed as you expect.</li>
+            </ol>
             <figure class="doc-shot phone">
               <img src="../assets/images/features/resto-ops-hours.jpg" alt="Hours" />
-              <figcaption>Opening hours that drive open/closed in the customer app</figcaption>
+              <figcaption>Weekly opening hours in the restaurant app</figcaption>
             </figure>
+          </section>
+          <section class="section-block">
+            <h2>Delivery zone</h2>
+            <p>
+              The delivery zone answers what hours cannot: do you offer delivery and/or pickup, how many kilometres you will travel, and how many minutes the kitchen needs before a courier should arrive.
+            </p>
+            <p class="section-subtext">
+              The <strong>delivery radius</strong> is the hard ceiling on distance. Addresses outside it cannot complete delivery to this restaurant — that protects the kitchen from impossible jobs and keeps driver routes realistic. <strong>Preparation time</strong> feeds the ETA customers see; if you under-report it, the app promises a window the pass cannot hit.
+            </p>
+            <p class="section-subtext">
+              Fee rules may be owned by the platform (the screen says so when only admin can change them). Radius and prep time stay with the restaurant so partners can tighten coverage on a busy night without waiting on support.
+            </p>
+            <ol class="doc-steps">
+              <li>Open <strong>Delivery Settings</strong> from restaurant settings.</li>
+              <li>Confirm delivery and pickup match what you actually offer.</li>
+              <li>Set delivery radius (km) and preparation time (minutes) to what the kitchen and drivers can sustain.</li>
+              <li>Shrink the radius for a test address just outside it — delivery checkout for that restaurant should no longer be offered.</li>
+            </ol>
+            <figure class="doc-shot phone">
+              <img src="../assets/images/features/resto-ops-delivery.jpg" alt="Delivery zone" />
+              <figcaption>Radius, prep time, delivery and pickup toggles</figcaption>
+            </figure>
+            <p class="section-subtext">
+              Customers feel the result on the <a href="../restaurant-page.html">restaurant page</a> (open/closed, fee, ETA) and at <a href="../checkout.html">checkout</a>.
+            </p>
           </section>
         </section>
       </section>

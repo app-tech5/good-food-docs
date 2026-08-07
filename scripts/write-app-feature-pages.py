@@ -128,6 +128,34 @@ def ensure_admin_sponsored():
         subprocess.run(["sips", "-Z", "1400", str(dest)], check=False, capture_output=True)
 
 
+def ensure_ordering_payment_methods():
+    dest = ROOT / "assets/images/features/ordering-payment-methods.jpg"
+    src = SS / "customer/16-add-payment-method.png"
+    if dest.exists() and dest.stat().st_size > 2000:
+        return
+    if src.exists():
+        subprocess.run(
+            ["sips", "-s", "format", "jpeg", "-s", "formatOptions", "70", str(src), "--out", str(dest)],
+            check=False,
+            capture_output=True,
+        )
+        subprocess.run(["sips", "-Z", "1400", str(dest)], check=False, capture_output=True)
+
+
+def ensure_ordering_confirm_order():
+    dest = ROOT / "assets/images/features/ordering-confirm-order.jpg"
+    src = SS / "customer/08b-confirm-order.png"
+    if dest.exists() and dest.stat().st_size > 2000:
+        return
+    if src.exists():
+        subprocess.run(
+            ["sips", "-s", "format", "jpeg", "-s", "formatOptions", "70", str(src), "--out", str(dest)],
+            check=False,
+            capture_output=True,
+        )
+        subprocess.run(["sips", "-Z", "1400", str(dest)], check=False, capture_output=True)
+
+
 # Appended as main() body for write-app-feature-pages.py — do not run alone.
 def redirect_page(title: str, dest_href: str, dest_label: str, css_href: str) -> str:
     return f"""<!doctype html>
@@ -157,6 +185,8 @@ def redirect_page(title: str, dest_href: str, dest_label: str, css_href: str) ->
 
 def main():
     ensure_admin_sponsored()
+    ensure_ordering_payment_methods()
+    ensure_ordering_confirm_order()
     C = "./site.css"
     CJ = "./js/sidebar-scroll.js"
     CP = "./"
@@ -336,6 +366,7 @@ def main():
                 "h2": "Convert the cart",
                 "paras": [
                     "After the cart looks right, customers either claim a voucher on the Offers surface or go straight to checkout.",
+                    'Checkout confirms fulfillment (delivery vs pickup), the address, and the payment method (card, cash on delivery, wallet, or other gateways you activate). After place order, follow progress in <a href="./order-history.html">order history</a> / <a href="./order-tracking.html">live tracking</a>.',
                 ],
                 "blocks": [
                     {
@@ -346,23 +377,21 @@ def main():
                         "shot": ("phone", f"{A}/features/ordering-offers.jpg", "Offers", "Offers / vouchers list to claim"),
                     },
                     {
-                        "h3": "Checkout — address, payment, place order",
-                        "paras": [
-                            'Checkout confirms fulfillment (delivery vs pickup), the address, and the payment method (card, cash on delivery, wallet, or other gateways you activate). After place order, follow progress in <a href="./order-history.html">order history</a> / <a href="./order-tracking.html">live tracking</a>.',
-                        ],
+                        "h3": "Address",
+                        "shot": ("phone", f"{A}/features/ordering-confirm-order.jpg", "Confirm address", "Delivery address on confirm order"),
+                    },
+                    {
+                        "h3": "Payment method",
+                        "shot": ("phone", f"{A}/features/ordering-payment-methods.jpg", "Payment methods", "Wallet, Google Pay, card, PayPal, cash"),
+                    },
+                    {
+                        "h3": "Place order",
                         "steps": [
                             "Confirm delivery or pickup, address, and payment method.",
                             "Place the order.",
                             "Open order history / tracking to follow status.",
                         ],
                         "shot": ("phone", f"{A}/features/ordering-checkout.jpg", "Checkout", "Summary, payment method, place order"),
-                    },
-                    {
-                        "h3": "Address autocomplete",
-                        "paras": [
-                            "Delivery addresses can use Google Places suggestions. Enable Places in Google Cloud, create an API key with billing attached, and wire it into the customer build so checkout suggestions return.",
-                        ],
-                        "shot": ("wide", f"{A}/capture-console1.png", "Places API", "Enable Places API in Google Cloud"),
                     },
                 ],
             },
@@ -906,22 +935,46 @@ def main():
         "restaurant-app/hours.html",
         "Hours & delivery zone — Restaurant app",
         "Hours & delivery zone",
-        "Opening hours and delivery settings that drive open/closed and how far the restaurant sells.",
-        ["Hours", "Radius", "Prep time"],
+        "Opening hours decide when the kitchen can take orders. The delivery zone decides which addresses get delivery, how long prep takes, and whether pickup is offered.",
+        ["Hours", "Delivery zone", "Prep time"],
         [
             {
-                "h2": "When and how far you sell",
+                "h2": "Hours",
                 "paras": [
-                    "Opening hours and delivery settings (radius, prep time) tell the customer app when the restaurant is open and how far it delivers. Out-of-date hours create orders you cannot fulfill.",
+                    "Opening hours are the weekly window when the restaurant can take orders. Outside that window — or when the partner flips a manual closed override — the customer app shows the restaurant as closed, so shoppers do not place tickets the kitchen will never cook.",
+                    "A restaurant that still looks open after the pass has shut down burns trust in a single evening. Set hours before service starts, not after the first rejection, so the open/closed cue on the restaurant page stays honest.",
                 ],
                 "blocks": [
                     {
-                        "h3": "Opening hours",
-                        "paras": [
-                            "Fix hours before service, not after the first rejection. Customers see the result as open/closed on the restaurant page.",
+                        "steps": [
+                            "Open <strong>Opening Hours</strong> from restaurant settings.",
+                            "Set open and close times for each day you serve.",
+                            "Save, then check the customer restaurant page still shows open or closed as you expect.",
                         ],
-                        "shot": ("phone", f"{A}/features/resto-ops-hours.jpg", "Hours", "Opening hours that drive open/closed in the customer app"),
+                        "shot": ("phone", f"{A}/features/resto-ops-hours.jpg", "Hours", "Weekly opening hours in the restaurant app"),
                     },
+                ],
+            },
+            {
+                "h2": "Delivery zone",
+                "paras": [
+                    "The delivery zone answers what hours cannot: do you offer delivery and/or pickup, how many kilometres you will travel, and how many minutes the kitchen needs before a courier should arrive.",
+                    "The <strong>delivery radius</strong> is the hard ceiling on distance. Addresses outside it cannot complete delivery to this restaurant — that protects the kitchen from impossible jobs and keeps driver routes realistic. <strong>Preparation time</strong> feeds the ETA customers see; if you under-report it, the app promises a window the pass cannot hit.",
+                    "Fee rules may be owned by the platform (the screen says so when only admin can change them). Radius and prep time stay with the restaurant so partners can tighten coverage on a busy night without waiting on support.",
+                ],
+                "blocks": [
+                    {
+                        "steps": [
+                            "Open <strong>Delivery Settings</strong> from restaurant settings.",
+                            "Confirm delivery and pickup match what you actually offer.",
+                            "Set delivery radius (km) and preparation time (minutes) to what the kitchen and drivers can sustain.",
+                            "Shrink the radius for a test address just outside it — delivery checkout for that restaurant should no longer be offered.",
+                        ],
+                        "shot": ("phone", f"{A}/features/resto-ops-delivery.jpg", "Delivery zone", "Radius, prep time, delivery and pickup toggles"),
+                    },
+                ],
+                "after": [
+                    'Customers feel the result on the <a href="../restaurant-page.html">restaurant page</a> (open/closed, fee, ETA) and at <a href="../checkout.html">checkout</a>.',
                 ],
             },
         ],
@@ -980,11 +1033,10 @@ def main():
                         "shot": ("phone", f"{A}/features/kds.jpg", "Kitchen Display", "Tickets across New / Preparing / Ready"),
                     },
                     {
-                        "h3": "Tablet tips",
+                        "h3": "Tablet at the pass",
                         "paras": [
-                            "Mount the device at eye level on the pass, keep brightness high, and disable auto-lock during service. Prefer a stable Wi‑Fi path to your API.",
+                            "The board is meant to stay open on a tablet in landscape during service: mount it at eye level on the pass, keep brightness high, disable auto-lock, and use a stable Wi‑Fi path to your API so tickets refresh without the cook unlocking a phone every minute.",
                         ],
-                        "shot": ("phone", f"{A}/features/resto-drawer.jpg", "Drawer", "Navigation entry to Kitchen Display"),
                     },
                 ],
             },

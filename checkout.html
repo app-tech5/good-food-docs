@@ -171,6 +171,9 @@
             <p>
               After the cart looks right, customers either claim a voucher on the Offers surface or go straight to checkout.
             </p>
+            <p class="section-subtext">
+              Checkout confirms fulfillment (delivery vs pickup), the address, and the payment method (card, cash on delivery, wallet, or other gateways you activate). After place order, follow progress in <a href="./order-history.html">order history</a> / <a href="./order-tracking.html">live tracking</a>.
+            </p>
             <h3>Offers tab — vouchers to claim</h3>
             <p class="section-subtext">
               The Offers surface lists claimable vouchers / campaigns (separate from the small offers block on a restaurant page). Coupon codes and campaign rules are configured in admin — see <a href="./admin-app/promotions.html">Promotions</a> and <a href="./admin-app/coupons.html">Coupons</a>.
@@ -179,10 +182,17 @@
               <img src="./assets/images/features/ordering-offers.jpg" alt="Offers" />
               <figcaption>Offers / vouchers list to claim</figcaption>
             </figure>
-            <h3>Checkout — address, payment, place order</h3>
-            <p class="section-subtext">
-              Checkout confirms fulfillment (delivery vs pickup), the address, and the payment method (card, cash on delivery, wallet, or other gateways you activate). After place order, follow progress in <a href="./order-history.html">order history</a> / <a href="./order-tracking.html">live tracking</a>.
-            </p>
+            <h3>Address</h3>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/ordering-confirm-order.jpg" alt="Confirm address" />
+              <figcaption>Delivery address on confirm order</figcaption>
+            </figure>
+            <h3>Payment method</h3>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/ordering-payment-methods.jpg" alt="Payment methods" />
+              <figcaption>Wallet, Google Pay, card, PayPal, cash</figcaption>
+            </figure>
+            <h3>Place order</h3>
             <ol class="doc-steps">
               <li>Confirm delivery or pickup, address, and payment method.</li>
               <li>Place the order.</li>
@@ -191,14 +201,6 @@
             <figure class="doc-shot phone">
               <img src="./assets/images/features/ordering-checkout.jpg" alt="Checkout" />
               <figcaption>Summary, payment method, place order</figcaption>
-            </figure>
-            <h3>Address autocomplete</h3>
-            <p class="section-subtext">
-              Delivery addresses can use Google Places suggestions. Enable Places in Google Cloud, create an API key with billing attached, and wire it into the customer build so checkout suggestions return.
-            </p>
-            <figure class="doc-shot wide">
-              <img src="./assets/images/capture-console1.png" alt="Places API" />
-              <figcaption>Enable Places API in Google Cloud</figcaption>
             </figure>
           </section>
         </section>
