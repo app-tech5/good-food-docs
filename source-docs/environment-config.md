@@ -168,7 +168,7 @@ Do **not** duplicate those walkthroughs here — configure them where they belon
 | Language catalogue | [admin languages](./admin-app/languages.md) |
 | Customer language picker / RTL / locale files | [customer languages](./customer-app/languages-rtl.md) |
 | Driver / restaurant languages | [delivery languages](./delivery-app/languages.md) · [restaurant languages](./restaurant-app/languages.md) |
-| Push (FCM) per app + API service account | [customer](./customer-app/getting-started.md) · [driver](./delivery-app/getting-started.md) · [restaurant](./restaurant-app/getting-started.md) · [backend](./my-backend/getting-started.md) |
+| Push (FCM) — API service account + mobile config files | [backend getting started](./my-backend/getting-started.md) (and each mobile getting-started Branding / Android notes if present) |
 | Places autocomplete | [checkout](./customer-app/checkout.md) |
 | Driver maps | [delivery getting started](./delivery-app/getting-started.md) |
 | App name / logo / theme | Each app’s getting-started → Branding section |

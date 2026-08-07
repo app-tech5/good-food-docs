@@ -55,13 +55,6 @@ With demo mode on, the login screen can prefill those credentials (they must exi
 | `EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Card checkout against Stripe |
 | `EXPO_PUBLIC_MAPTILER_API_KEY` | Map tiles / map features that expect MapTiler |
 
-## Push notifications (FCM)
-
-1. Create a Firebase project; register this customer Android/iOS app.
-2. Place `google-services.json` / iOS plist in the project per Expo / native layout for this repo.
-3. Ensure the API has `FIREBASE_SERVICE_ACCOUNT_JSON` set ([backend getting started](../my-backend/getting-started.md)).
-4. Place a test order and confirm a device notification.
-
 ## 3. Run Expo
 
 First time on a device/emulator (builds + installs the native client):

@@ -21,16 +21,6 @@
           <button type="button" class="sidebar-close" aria-label="Close navigation" hidden>&times;</button>
         </div>
         <div class="sidebar-body">
-        <details class="nav-group">
-          <summary class="nav-group-summary">
-            <span class="nav-group-title">Suite</span>
-            <span class="nav-count">2</span>
-          </summary>
-          <nav class="nav" aria-label="Suite">
-            <a href="./environment-setup.html"><span class="nav-link-text">Environment setup</span></a>
-            <a href="./downloads/index.html"><span class="nav-link-text">Android downloads</span></a>
-          </nav>
-        </details>
         <details class="nav-group is-current" open>
           <summary class="nav-group-summary">
             <span class="nav-group-title">Customer app</span>
@@ -151,6 +141,16 @@
             <a href="./my-backend/catalog-api.html"><span class="nav-link-text">Catalog & partners</span></a>
           </nav>
         </details>
+        <details class="nav-group">
+          <summary class="nav-group-summary">
+            <span class="nav-group-title">Suite</span>
+            <span class="nav-count">2</span>
+          </summary>
+          <nav class="nav" aria-label="Suite">
+            <a href="./environment-setup.html"><span class="nav-link-text">Environment setup</span></a>
+            <a href="./downloads/index.html"><span class="nav-link-text">Android downloads</span></a>
+          </nav>
+        </details>
         </div>
       </aside>
 
@@ -205,23 +205,6 @@
               Exact <code>npm</code> / <code>.env</code> lines, simulator vs physical phone URLs, and demo credentials:
               see <strong>source-docs/customer-app/getting-started.md</strong> in the pack (also in this repo under <code>source-docs/</code>).
             </p>
-          </section>
-
-          <section class="section-block">
-            <h2>Push notifications</h2>
-            <p>
-              Order status and offers reach the phone via <strong>push</strong>. Accounts and menus still live on your marketplace API —
-              Firebase is only the notification channel. Register this customer app in a Firebase project, drop in the platform config files,
-              and confirm a test order triggers a notification once the API is connected for messaging.
-            </p>
-            <figure class="doc-shot wide">
-              <img src="./assets/images/capture-firebase.png" alt="Firebase project" />
-              <figcaption>Firebase project for customer push</figcaption>
-            </figure>
-            <figure class="doc-shot wide">
-              <img src="./assets/images/findFirebaseConfig.png" alt="Firebase Project Settings" />
-              <figcaption>Download the config files from Project Settings</figcaption>
-            </figure>
           </section>
 
           <section class="section-block">

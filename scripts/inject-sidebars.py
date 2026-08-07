@@ -214,14 +214,6 @@ def build_sidebar(html_path: Path) -> str:
         "        </div>",
         '        <div class="sidebar-body">',
         *section(
-            "Suite",
-            [
-                (f"{prefix}environment-setup.html", "Environment setup", is_env),
-                (f"{prefix}downloads/index.html", "Android downloads", is_dl and rel == "downloads/index.html"),
-            ],
-            force_open=in_suite or not (in_cust or in_drv or in_res or in_adm or in_be),
-        ),
-        *section(
             "Customer app",
             [
                 (cust_ov, "Overview", is_cust_ov),
@@ -328,6 +320,14 @@ def build_sidebar(html_path: Path) -> str:
                 (f"{prefix}my-backend/catalog-api.html", "Catalog & partners", is_be_cat),
             ],
             force_open=in_be,
+        ),
+        *section(
+            "Suite",
+            [
+                (f"{prefix}environment-setup.html", "Environment setup", is_env),
+                (f"{prefix}downloads/index.html", "Android downloads", is_dl and rel == "downloads/index.html"),
+            ],
+            force_open=in_suite,
         ),
         "        </div>",
     ]
