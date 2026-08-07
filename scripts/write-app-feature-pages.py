@@ -1131,14 +1131,21 @@ def main():
                     {
                         "h3": "Orders list",
                         "paras": [
-                            "The orders list shows payment state, customer, restaurant, driver, totals, and fulfillment status. View opens full detail for failed payments, stuck statuses, or missing drivers.",
+                            "The orders list shows payment state, customer, restaurant, driver, totals, and fulfillment status.",
                         ],
                         "steps": [
                             "Open <strong>Orders</strong> when a live incident starts.",
                             "Filter or find the order by customer / restaurant / id.",
-                            "Use View for the full record before changing status or contacting partners.",
+                            "Use <strong>View</strong> for the full record before changing status or contacting partners.",
                         ],
                         "shot": ("wide", f"{A}/features/admin-ops-orders.jpg", "Orders", "Admin orders list with payment and fulfillment state"),
+                    },
+                    {
+                        "h3": "Order details (View)",
+                        "paras": [
+                            "View opens the full order: summary and status, restaurant and customer cards, payment state, delivery address / fee / ETA, and line items with tax. That is the screen support uses before refunding, reassigning, or calling a partner.",
+                        ],
+                        "shot": ("wide", f"{A}/features/admin-orders-view.jpg", "Order details", "View order: summary, parties, payment, items"),
                     },
                 ],
             },
@@ -1162,23 +1169,30 @@ def main():
                     {
                         "h3": "Restaurants",
                         "paras": [
-                            "Onboarding and ongoing control: open a restaurant record to activate it, set hours, address, service modes, categories, tax, and commission — so the customer app stays consistent with what you approve.",
+                            "Add or open a restaurant record to activate it, set address, service modes, categories, tax, and commission — so the customer app stays consistent with what you approve.",
                         ],
-                        "shot": ("wide", f"{A}/features/admin-ops-restaurants-hl.jpg", "Restaurant details", "Restaurant form — Commission Rate (%) highlighted"),
+                        "shot": ("wide", f"{A}/features/admin-restaurants-form.jpg", "Restaurant form", "Add / edit restaurant: address, tax, commission, service modes"),
                     },
                     {
                         "h3": "Drivers",
                         "paras": [
                             "Approve drivers before they go online, keep identity and vehicle details coherent, and suspend when needed.",
                         ],
-                        "shot": ("wide", f"{A}/features/admin-ops-drivers.jpg", "Drivers", "Driver onboarding and ongoing control"),
+                        "shot": ("wide", f"{A}/features/admin-drivers-form.jpg", "Driver form", "Add / edit driver: identity and vehicle details"),
                     },
                     {
                         "h3": "Users (customers)",
                         "paras": [
-                            "Investigate accounts, edit profiles, or suspend abuse. Pair with the orders list when a dispute needs both the person and their tickets.",
+                            "The users list is where you find accounts for support and moderation.",
                         ],
                         "shot": ("wide", f"{A}/features/admin-ops-users.jpg", "Users", "Customer accounts for support and moderation"),
+                    },
+                    {
+                        "h3": "User details (View)",
+                        "paras": [
+                            "View opens the customer profile — name, email, phone, role, and active flag — so you can edit or suspend without guessing from the list alone. Pair with the orders list when a dispute needs both the person and their tickets.",
+                        ],
+                        "shot": ("wide", f"{A}/features/admin-users-view.jpg", "User details", "View user profile fields"),
                     },
                 ],
             },
@@ -1198,8 +1212,28 @@ def main():
                 "paras": [
                     "Categories, menus, products, and variants can be curated centrally when partners need help — or when you seed a new city. What you publish here is what customers browse.",
                 ],
-                "shots": [
-                    ("wide", f"{A}/features/admin-ops-menus.jpg", "Menus", "Admin menus / catalog"),
+                "blocks": [
+                    {
+                        "h3": "Menus list",
+                        "paras": [
+                            "The menus list is the operator view of every restaurant menu attached to the marketplace.",
+                        ],
+                        "shot": ("wide", f"{A}/features/admin-ops-menus.jpg", "Menus", "Admin menus / catalog"),
+                    },
+                    {
+                        "h3": "Add a menu",
+                        "paras": [
+                            "Create a menu record and attach it to the right restaurant / categories so partners and customers see a coherent catalog.",
+                        ],
+                        "shot": ("wide", f"{A}/features/admin-menus-form.jpg", "Menu form", "Add Menus form"),
+                    },
+                    {
+                        "h3": "Add a product",
+                        "paras": [
+                            "Product forms cover name, price, menu link, and availability — the line items customers actually order.",
+                        ],
+                        "shot": ("wide", f"{A}/features/admin-products-form.jpg", "Product form", "Add Products form"),
+                    },
                 ],
             },
         ],
@@ -1269,19 +1303,28 @@ def main():
                 ],
                 "blocks": [
                     {
-                        "h3": "Create or edit a plan",
-                        "steps": [
-                            "Open <strong>Subscriptions</strong> in the admin sidebar.",
-                            "Review existing rows (name, target, price, cycle, active).",
-                            "Add New or View to edit: set target audience, price, billing cycle, and benefits.",
-                            "Save, then open the matching mobile app and confirm the plan appears.",
+                        "h3": "Plan list",
+                        "paras": [
+                            "Open <strong>Subscriptions</strong> to review existing rows (name, target, price, cycle, active) before you edit or add a tier.",
                         ],
                         "shot": ("wide", f"{A}/features/admin-subscriptions.jpg", "Subscriptions", "Admin subscription tiers list"),
                     },
                     {
+                        "h3": "Create or edit a plan",
+                        "paras": [
+                            "The form sets target audience, price, currency, billing cycle, and the benefit flags the apps and commission engine read — free delivery, discount percent, reduced / waived commission, SaaS access, priority support.",
+                        ],
+                        "steps": [
+                            "Open <strong>Subscriptions</strong> → Add New (or View an existing plan).",
+                            "Set target, price, billing cycle, and benefit flags.",
+                            "Save, then open the matching mobile app and confirm the plan appears.",
+                        ],
+                        "shot": ("wide", f"{A}/features/admin-subscriptions-form.jpg", "Subscription form", "Add Subscriptions: target, price, benefit flags"),
+                    },
+                    {
                         "h3": "Restaurant plan benefits that change commission",
                         "paras": [
-                            "On a restaurant-target plan, open <strong>Benefit flags</strong> to set <strong>Reduced commission %</strong> or <strong>Waive commission</strong>. Those flags are what the commission engine reads while the plan is active.",
+                            "On a restaurant-target plan, <strong>Reduced commission %</strong> and <strong>Waive commission</strong> are what the commission engine reads while the plan is active.",
                         ],
                         "shot": ("wide", f"{A}/features/admin-subscriptions-hl-benefits.jpg", "Plan benefits", "Restaurant Pro — Benefit flags highlighted"),
                     },
@@ -1358,7 +1401,7 @@ def main():
                             "Point your Stripe webhook endpoint at your API’s Stripe webhook handler; use the signing secret from that endpoint.",
                             "Place a test card checkout and, if used, a wallet top-up; confirm the order/transaction ledger updates.",
                         ],
-                        "shot": ("wide", f"{A}/features/gateway-stripe-hl.jpg", "Stripe form", "Stripe — Capabilities and Provider credentials highlighted"),
+                        "shot": ("wide", f"{A}/features/gateway-stripe.jpg", "Stripe form", "Stripe form — capabilities and provider credentials"),
                     },
                     {
                         "h3": "What differs from other gateways",
@@ -1395,7 +1438,7 @@ def main():
                             "Keep Active only when those credentials work; switch mode to <strong>Live</strong> with live credentials for production.",
                             "Run a checkout that selects PayPal and complete the approval page; confirm capture and order status on the API.",
                         ],
-                        "shot": ("wide", f"{A}/features/gateway-paypal-hl.jpg", "PayPal form", "PayPal — Capabilities and Provider credentials highlighted"),
+                        "shot": ("wide", f"{A}/features/gateway-paypal.jpg", "PayPal form", "PayPal form — capabilities and provider credentials"),
                     },
                     {
                         "h3": "What differs from other gateways",
@@ -1432,7 +1475,7 @@ def main():
                             "Ensure checkout/wallet passes a currency Flutterwave supports for that country.",
                             "Complete a hosted payment and confirm the redirect/callback updates the order.",
                         ],
-                        "shot": ("wide", f"{A}/features/gateway-flutterwave-hl.jpg", "Flutterwave form", "Flutterwave — Capabilities and credentials highlighted"),
+                        "shot": ("wide", f"{A}/features/gateway-flutterwave.jpg", "Flutterwave form", "Flutterwave form — capabilities and credentials"),
                     },
                     {
                         "h3": "What differs from other gateways",
@@ -1469,7 +1512,7 @@ def main():
                             "Register your callback URL in Paystack and in the app/API config used at initialize time.",
                             "Pay a test checkout; verify the reference settles and the order moves forward.",
                         ],
-                        "shot": ("wide", f"{A}/features/gateway-paystack-hl.jpg", "Paystack form", "Paystack — Capabilities and credentials highlighted"),
+                        "shot": ("wide", f"{A}/features/gateway-paystack.jpg", "Paystack form", "Paystack form — capabilities and credentials"),
                     },
                     {
                         "h3": "What differs from other gateways",
@@ -1506,7 +1549,7 @@ def main():
                             "Enable only the capabilities Orange actually grants your merchant account.",
                             "Run a mobile-money checkout in a supported currency and confirm callback/webhook handling.",
                         ],
-                        "shot": ("wide", f"{A}/features/gateway-orangepay-hl.jpg", "OrangePay form", "OrangePay — Capabilities and credentials highlighted"),
+                        "shot": ("wide", f"{A}/features/gateway-orangepay.jpg", "OrangePay form", "OrangePay form — capabilities and credentials"),
                     },
                     {
                         "h3": "What differs from other gateways",
@@ -1543,7 +1586,7 @@ def main():
                             "Ensure customer checkout uses the Razorpay provider path that consumes `orderId` + `keyId`.",
                             "Complete a test payment in INR (or your configured currency) and verify capture/webhook updates.",
                         ],
-                        "shot": ("wide", f"{A}/features/gateway-razorpay-hl.jpg", "Razorpay form", "Razorpay — Capabilities and credentials highlighted"),
+                        "shot": ("wide", f"{A}/features/gateway-razorpay.jpg", "Razorpay form", "Razorpay form — capabilities and credentials"),
                     },
                     {
                         "h3": "What differs from other gateways",
@@ -1580,7 +1623,7 @@ def main():
                             "Align driver app / POD processes so cash collected is recorded.",
                             "Train support: COD disputes are ops tickets, not PSP chargebacks.",
                         ],
-                        "shot": ("wide", f"{A}/features/gateway-cod-hl.jpg", "COD form", "Cash on Delivery form — key controls highlighted"),
+                        "shot": ("wide", f"{A}/features/gateway-cod.jpg", "COD form", "Cash on Delivery form — key controls"),
                     },
                     {
                         "h3": "What differs from other gateways",
@@ -1617,7 +1660,7 @@ def main():
                             "Ensure at least one external gateway is configured for top-ups.",
                             "Test: top up → pay an order fully or partially with wallet → confirm ledger lines.",
                         ],
-                        "shot": ("wide", f"{A}/features/gateway-wallet-hl.jpg", "Internal Wallet form", "Internal Wallet — capabilities and credentials highlighted"),
+                        "shot": ("wide", f"{A}/features/gateway-wallet.jpg", "Internal Wallet form", "Internal Wallet form — capabilities and credentials"),
                     },
                     {
                         "h3": "What differs from other gateways",
@@ -1654,7 +1697,7 @@ def main():
                             "Expose and verify the webhook endpoint the API uses for payment confirmation.",
                             "Run a small test payment and confirm the order only advances after webhook confirmation.",
                         ],
-                        "shot": ("wide", f"{A}/features/gateway-crypto-hl.jpg", "Crypto form", "Crypto — Capabilities and credentials highlighted"),
+                        "shot": ("wide", f"{A}/features/gateway-crypto.jpg", "Crypto form", "Crypto form — capabilities and credentials"),
                     },
                     {
                         "h3": "What differs from other gateways",
@@ -1682,13 +1725,23 @@ def main():
                 ],
                 "blocks": [
                     {
-                        "h3": "Create a promotion",
-                        "steps": [
-                            "Open <strong>Promotions</strong> and create or edit a campaign.",
-                            "Set type, discount, schedule, and scope.",
-                            "Activate, then place a demo customer order to prove the discount applies.",
+                        "h3": "Campaign list",
+                        "paras": [
+                            "The Promotions list is the operator’s board: every campaign’s type, schedule, scope, and status in one place. From here you open an existing campaign or start a new one.",
                         ],
                         "shot": ("wide", f"{A}/features/admin-promotions.jpg", "Promotions", "Campaign list: type, schedule, scope, status"),
+                    },
+                    {
+                        "h3": "Create a promotion",
+                        "paras": [
+                            "The form is where the campaign becomes real: name, promotion type, discount value, Buy X Get Y quantities when needed, scope (platform / restaurant / category / item), and the start–end window. Fill those fields carefully — a wrong scope or date range is how “the promo never applied” tickets start.",
+                        ],
+                        "steps": [
+                            "Open <strong>Promotions</strong> → Add New.",
+                            "Set type, discount, schedule, and scope.",
+                            "Save / activate, then place a demo customer order to prove the discount applies.",
+                        ],
+                        "shot": ("wide", f"{A}/features/admin-promotions-form.jpg", "Promotion form", "Add Promotions: type, discount, scope, schedule"),
                     },
                 ],
                 "after": [
@@ -1713,13 +1766,24 @@ def main():
                 ],
                 "blocks": [
                     {
+                        "h3": "Coupon list",
+                        "paras": [
+                            "The Coupons list shows every redeemable code with its limits and status.",
+                        ],
+                        "shot": ("wide", f"{A}/features/admin-coupons.jpg", "Coupons", "Redeemable codes with limits and expiry"),
+                    },
+                    {
                         "h3": "Create a coupon",
+                        "paras": [
+                            "The form is where the code becomes enforceable: discount type and value, date window, max uses, per-user limit, restaurant / category scope, and flags such as first-order-only or public.",
+                        ],
                         "steps": [
-                            "Open <strong>Coupons</strong> and create a code with usage limits.",
+                            "Open <strong>Coupons</strong> → Add New.",
+                            "Set code, discount, limits, and schedule.",
                             "Confirm checkout accepts the code on a test order.",
                             "Retire or expire codes that are no longer funded.",
                         ],
-                        "shot": ("wide", f"{A}/features/admin-coupons.jpg", "Coupons", "Redeemable codes with limits and expiry"),
+                        "shot": ("wide", f"{A}/features/admin-coupons-form.jpg", "Coupon form", "Add Coupons: code, discount, limits, schedule"),
                     },
                 ],
                 "after": [
@@ -1745,12 +1809,22 @@ def main():
                 "blocks": [
                     {
                         "h3": "Admin language list",
-                        "steps": [
-                            "Open <strong>Settings → Languages</strong> (or Languages in the sidebar).",
-                            "Add or enable the languages you sell in; mark one as default.",
-                            "Save, then verify a mobile app picks up the default for a fresh session.",
+                        "paras": [
+                            "Open <strong>Settings → Languages</strong> to see which locales are enabled and which one is the marketplace default.",
                         ],
                         "shot": ("wide", f"{A}/features/languages.jpg", "Languages", "Admin language catalogue with default flag"),
+                    },
+                    {
+                        "h3": "Add a language",
+                        "paras": [
+                            "Add a language with its code and name, then decide whether it should be the default for new sessions. After save, verify a mobile app picks up the catalogue on a fresh session.",
+                        ],
+                        "steps": [
+                            "Open <strong>Settings → Languages</strong> → Add New.",
+                            "Set code, name, and default flag as needed.",
+                            "Save, then verify a mobile app lists the language.",
+                        ],
+                        "shot": ("wide", f"{A}/features/admin-languages-form.jpg", "Language form", "Add Languages form"),
                     },
                 ],
                 "after": [
@@ -1802,8 +1876,18 @@ def main():
                 "paras": [
                     "Local tax rules (VAT, GST, sales tax) belong in the Taxes catalogue so carts and reports collect the right amounts. Configure rates before go-live and verify on a test checkout.",
                 ],
-                "shots": [
-                    ("wide", f"{A}/features/admin-taxes.jpg", "Taxes", "Admin tax settings"),
+                "blocks": [
+                    {
+                        "h3": "Tax catalogue",
+                        "shot": ("wide", f"{A}/features/admin-taxes.jpg", "Taxes", "Admin tax settings"),
+                    },
+                    {
+                        "h3": "Add a tax",
+                        "paras": [
+                            "Create each rate with a clear name and percentage so restaurants and checkouts apply the same rule.",
+                        ],
+                        "shot": ("wide", f"{A}/features/admin-taxes-form.jpg", "Tax form", "Add Taxes form"),
+                    },
                 ],
             },
         ],
@@ -1903,31 +1987,34 @@ def main():
         "admin-app/transactions.html",
         "Money ledger — Admin app",
         "Money ledger",
-        "The money ledger: payments, payouts, refunds, tips, and wallet movements.",
+        "Payments, payouts, refunds, and wallet movements in one auditable list.",
         ["Ledger", "Refunds", "Payouts"],
         [
             {
-                "h2": "Transactions ledger",
+                "h2": "Follow the money",
                 "paras": [
-                    "Fee-level transparency for payments, payouts, refunds, tips, and wallet movements. Spot-check it when a payout or refund is disputed — before you invent a spreadsheet.",
+                    "Transactions are the ledger underneath checkout, top-ups, commissions, and refunds. When finance or support asks “where did this payment go?”, start here.",
                 ],
                 "blocks": [
                     {
-                        "h3": "Ledger view",
+                        "h3": "Transactions list",
                         "paras": [
-                            "Open Transactions when finance or support needs proof of a money movement.",
+                            "Open <strong>Transactions</strong> when you need proof of a money movement across the marketplace.",
                         ],
                         "shot": ("wide", f"{A}/features/admin-transactions.jpg", "Transactions", "Money ledger for payments, payouts, refunds"),
+                    },
+                    {
+                        "h3": "Transaction details (View)",
+                        "paras": [
+                            "View opens a single movement: status, amount, related user, payment context, and fee breakdown (platform fee, processor fee, tax, net). Use it before reversing a charge or explaining a payout line.",
+                        ],
+                        "shot": ("wide", f"{A}/features/admin-transactions-view.jpg", "Transaction details", "View transaction: status, user, fees"),
                     },
                 ],
             },
         ],
         D, DJ, DP,
     )
-
-    spon_img = "assets/images/features/admin-sponsored.jpg"
-    if not (ROOT / spon_img).exists():
-        spon_img = "assets/images/features/sponsored.jpg"
 
     w(
         "admin-app/sponsored.html",
@@ -1939,18 +2026,27 @@ def main():
             {
                 "h2": "Keep paid placement under control",
                 "paras": [
-                    "Restaurants create and launch campaigns from the restaurant app. Admin Sponsored listings is the operator view: which campaigns exist, their state, and enough context to intervene.",
+                    "Restaurants create and launch campaigns from the restaurant app. Admin Sponsored listings is the operator view: which campaigns exist, their state, and enough context to intervene — or to create a campaign on a partner’s behalf.",
                 ],
                 "blocks": [
                     {
-                        "h3": "Operator workflow",
-                        "steps": [
-                            "Open <strong>Sponsored listings</strong> in admin.",
-                            "Review active and past campaigns (restaurant, placement, status).",
-                            "Open View when you need campaign detail or to take an admin action.",
-                            'Cross-check the <a href="../restaurant-app/sponsored.html">restaurant sponsored</a> form.',
+                        "h3": "Campaign list",
+                        "paras": [
+                            "Review active and past campaigns (restaurant, placement, status) before you open a record.",
                         ],
-                        "shot": ("wide", spon_img, "Admin sponsored", "Sponsored listings in admin"),
+                        "shot": ("wide", f"{A}/features/admin-sponsored.jpg", "Admin sponsored", "Sponsored listings in admin"),
+                    },
+                    {
+                        "h3": "Create or edit a campaign",
+                        "paras": [
+                            "The admin form mirrors what restaurants fill in-app: restaurant, headline, placement, bid, and status — so operators can fix or seed a campaign without waiting on the partner tablet.",
+                        ],
+                        "steps": [
+                            "Open <strong>Sponsored listings</strong> → Add New (or View).",
+                            "Set restaurant, placement, bid, and status.",
+                            'Cross-check the <a href="../restaurant-app/sponsored.html">restaurant sponsored</a> surface when partners self-serve.',
+                        ],
+                        "shot": ("wide", f"{A}/features/admin-sponsored-form.jpg", "Sponsored form", "Add Sponsored Listings form"),
                     },
                 ],
             },
