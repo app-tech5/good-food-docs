@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu &amp; cart — Customer app</title>
+    <link rel="stylesheet" href="./site.css" />
+  </head>
+  <body>
+    <script src="./js/sidebar-scroll.js"></script>
+    <main class="layout">
+      <aside class="sidebar" data-docs-sidebar>
+        <a class="brand-link" href="./index.html" aria-label="Good Food Pro Docs home">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-title">Good Food Pro Docs</span>
+        </a>
+        <p class="sidebar-label">All apps</p>
+        <nav class="nav">
+          <a href="./environment-setup.html">Environment setup</a>
+          <a href="./downloads/index.html">Android downloads</a>
+        </nav>
+        <p class="sidebar-label">Customer app</p>
+        <nav class="nav">
+          <a href="./index.html">Overview</a>
+          <a href="./getting-started.html">Getting Started</a>
+          <a href="./discovery.html">Discovery</a>
+          <a href="./restaurant-page.html">Restaurant page</a>
+          <a class="active" href="./menu-cart.html">Menu & cart</a>
+          <a href="./checkout.html">Checkout & offers</a>
+          <a href="./order-history.html">Order history</a>
+          <a href="./order-tracking.html">Order tracking</a>
+          <a href="./wallet.html">Wallet & payments</a>
+          <a href="./subscriptions.html">Subscriptions</a>
+          <a href="./recommendations.html">Recommendations</a>
+          <a href="./smart-eta.html">Smart ETA</a>
+          <a href="./delivery-fee.html">Delivery fee</a>
+        </nav>
+        <p class="sidebar-label">Delivery app (driver)</p>
+        <nav class="nav">
+          <a href="./delivery-app/index.html">Overview</a>
+          <a href="./delivery-app/getting-started.html">Getting Started</a>
+          <a href="./delivery-app/deliveries.html">Deliveries</a>
+          <a href="./delivery-app/active-delivery.html">Active delivery</a>
+          <a href="./delivery-app/proof-of-delivery.html">Proof of delivery</a>
+          <a href="./delivery-app/earnings.html">Earnings</a>
+          <a href="./delivery-app/transactions-payouts.html">Transactions & payouts</a>
+          <a href="./delivery-app/subscriptions.html">Subscriptions</a>
+        </nav>
+        <p class="sidebar-label">Restaurant app</p>
+        <nav class="nav">
+          <a href="./restaurant-app/index.html">Overview</a>
+          <a href="./restaurant-app/getting-started.html">Getting Started</a>
+          <a href="./restaurant-app/orders.html">Live orders</a>
+          <a href="./restaurant-app/menu.html">Menu</a>
+          <a href="./restaurant-app/hours.html">Hours & delivery</a>
+          <a href="./restaurant-app/analytics.html">Analytics</a>
+          <a href="./restaurant-app/kitchen-display.html">Kitchen Display (KDS)</a>
+          <a href="./restaurant-app/subscriptions.html">Subscriptions</a>
+          <a href="./restaurant-app/sponsored.html">Sponsored listings</a>
+        </nav>
+        <p class="sidebar-label">Admin app (web)</p>
+        <nav class="nav">
+          <a href="./admin-app/index.html">Overview</a>
+          <a href="./admin-app/getting-started.html">Getting Started</a>
+          <a href="./admin-app/orders.html">Orders</a>
+          <a href="./admin-app/partners.html">Partners</a>
+          <a href="./admin-app/catalog.html">Catalog</a>
+          <a href="./admin-app/earnings.html">Earnings</a>
+          <a href="./admin-app/subscriptions.html">Subscriptions</a>
+          <a href="./admin-app/gateways.html">Payment gateways</a>
+          <a href="./admin-app/promotions.html">Promotions</a>
+          <a href="./admin-app/coupons.html">Coupons</a>
+          <a href="./admin-app/languages.html">Languages</a>
+          <a href="./admin-app/currencies-taxes.html">Currencies & taxes</a>
+          <a href="./admin-app/app-settings.html">App settings</a>
+          <a href="./admin-app/sponsored.html">Sponsored listings</a>
+          <a href="./admin-app/sales-reports.html">Sales reports</a>
+          <a href="./admin-app/partner-reports.html">Partner reports</a>
+          <a href="./admin-app/transactions.html">Transactions</a>
+        </nav>
+        <p class="sidebar-label">Backend (API)</p>
+        <nav class="nav">
+          <a href="./my-backend/index.html">Overview</a>
+          <a href="./my-backend/getting-started.html">Getting Started</a>
+        </nav>
+      </aside>
+      <section class="content">
+        <header id="top" class="hero">
+          <h1>Menu &amp; cart</h1>
+          <p class="subtitle">
+            Browse the catalog, add items with quantities, then review the cart before checkout.
+          </p>
+          <div class="meta-strip">
+            <span class="meta-pill">Menu</span>
+            <span class="meta-pill">Add to cart</span>
+            <span class="meta-pill">Cart</span>
+          </div>
+        </header>
+
+        <section class="overview">
+          <section class="section-block">
+            <h2>Build the basket</h2>
+            <p>
+              Once a restaurant is open, conversion is catalog → add → cart. Each screen below is a distinct moment.
+            </p>
+            <h3>Menu — categories and items</h3>
+            <p class="section-subtext">
+              The menu lists categories with dish name, short description, price, and a + control. This capture is the catalog itself — not status chips or the cart banner.
+            </p>
+            <ol class="doc-steps">
+              <li>Scroll categories until you find the dish.</li>
+              <li>Tap + on an item (or open the item if your flow uses a detail sheet).</li>
+            </ol>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/ordering-menu.jpg" alt="Menu" />
+              <figcaption>Category sections with priced items and +</figcaption>
+            </figure>
+            <h3>Add to cart — quantities and View Cart</h3>
+            <p class="section-subtext">
+              After an item is added, the menu shows quantity steppers (− / +) and a floating <strong>View Cart</strong> bar (item count + total). The tab-bar cart badge increments too.
+            </p>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/ordering-add-to-cart.jpg" alt="Add to cart" />
+              <figcaption>Quantity steppers and View Cart bar on the menu</figcaption>
+            </figure>
+            <h3>Cart — line items and totals</h3>
+            <p class="section-subtext">
+              The cart lists quantities, extras, and a running total. Change amounts or remove lines here before checkout.
+            </p>
+            <ol class="doc-steps">
+              <li>Open the cart from the tab bar or the View Cart bar.</li>
+              <li>Review quantities, extras, and totals.</li>
+              <li>Continue to checkout when the basket looks right.</li>
+            </ol>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/ordering-cart.jpg" alt="Cart" />
+              <figcaption>Line items, quantities, and totals</figcaption>
+            </figure>
+            <p class="section-subtext">
+              Next: <a href="./checkout.html">Checkout &amp; offers</a>. Personalized upsells: <a href="./recommendations.html">Recommendations</a>.
+            </p>
+          </section>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

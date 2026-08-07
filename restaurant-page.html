@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant page — Customer app</title>
+    <link rel="stylesheet" href="./site.css" />
+  </head>
+  <body>
+    <script src="./js/sidebar-scroll.js"></script>
+    <main class="layout">
+      <aside class="sidebar" data-docs-sidebar>
+        <a class="brand-link" href="./index.html" aria-label="Good Food Pro Docs home">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-title">Good Food Pro Docs</span>
+        </a>
+        <p class="sidebar-label">All apps</p>
+        <nav class="nav">
+          <a href="./environment-setup.html">Environment setup</a>
+          <a href="./downloads/index.html">Android downloads</a>
+        </nav>
+        <p class="sidebar-label">Customer app</p>
+        <nav class="nav">
+          <a href="./index.html">Overview</a>
+          <a href="./getting-started.html">Getting Started</a>
+          <a href="./discovery.html">Discovery</a>
+          <a class="active" href="./restaurant-page.html">Restaurant page</a>
+          <a href="./menu-cart.html">Menu & cart</a>
+          <a href="./checkout.html">Checkout & offers</a>
+          <a href="./order-history.html">Order history</a>
+          <a href="./order-tracking.html">Order tracking</a>
+          <a href="./wallet.html">Wallet & payments</a>
+          <a href="./subscriptions.html">Subscriptions</a>
+          <a href="./recommendations.html">Recommendations</a>
+          <a href="./smart-eta.html">Smart ETA</a>
+          <a href="./delivery-fee.html">Delivery fee</a>
+        </nav>
+        <p class="sidebar-label">Delivery app (driver)</p>
+        <nav class="nav">
+          <a href="./delivery-app/index.html">Overview</a>
+          <a href="./delivery-app/getting-started.html">Getting Started</a>
+          <a href="./delivery-app/deliveries.html">Deliveries</a>
+          <a href="./delivery-app/active-delivery.html">Active delivery</a>
+          <a href="./delivery-app/proof-of-delivery.html">Proof of delivery</a>
+          <a href="./delivery-app/earnings.html">Earnings</a>
+          <a href="./delivery-app/transactions-payouts.html">Transactions & payouts</a>
+          <a href="./delivery-app/subscriptions.html">Subscriptions</a>
+        </nav>
+        <p class="sidebar-label">Restaurant app</p>
+        <nav class="nav">
+          <a href="./restaurant-app/index.html">Overview</a>
+          <a href="./restaurant-app/getting-started.html">Getting Started</a>
+          <a href="./restaurant-app/orders.html">Live orders</a>
+          <a href="./restaurant-app/menu.html">Menu</a>
+          <a href="./restaurant-app/hours.html">Hours & delivery</a>
+          <a href="./restaurant-app/analytics.html">Analytics</a>
+          <a href="./restaurant-app/kitchen-display.html">Kitchen Display (KDS)</a>
+          <a href="./restaurant-app/subscriptions.html">Subscriptions</a>
+          <a href="./restaurant-app/sponsored.html">Sponsored listings</a>
+        </nav>
+        <p class="sidebar-label">Admin app (web)</p>
+        <nav class="nav">
+          <a href="./admin-app/index.html">Overview</a>
+          <a href="./admin-app/getting-started.html">Getting Started</a>
+          <a href="./admin-app/orders.html">Orders</a>
+          <a href="./admin-app/partners.html">Partners</a>
+          <a href="./admin-app/catalog.html">Catalog</a>
+          <a href="./admin-app/earnings.html">Earnings</a>
+          <a href="./admin-app/subscriptions.html">Subscriptions</a>
+          <a href="./admin-app/gateways.html">Payment gateways</a>
+          <a href="./admin-app/promotions.html">Promotions</a>
+          <a href="./admin-app/coupons.html">Coupons</a>
+          <a href="./admin-app/languages.html">Languages</a>
+          <a href="./admin-app/currencies-taxes.html">Currencies & taxes</a>
+          <a href="./admin-app/app-settings.html">App settings</a>
+          <a href="./admin-app/sponsored.html">Sponsored listings</a>
+          <a href="./admin-app/sales-reports.html">Sales reports</a>
+          <a href="./admin-app/partner-reports.html">Partner reports</a>
+          <a href="./admin-app/transactions.html">Transactions</a>
+        </nav>
+        <p class="sidebar-label">Backend (API)</p>
+        <nav class="nav">
+          <a href="./my-backend/index.html">Overview</a>
+          <a href="./my-backend/getting-started.html">Getting Started</a>
+        </nav>
+      </aside>
+      <section class="content">
+        <header id="top" class="hero">
+          <h1>Restaurant page</h1>
+          <p class="subtitle">
+            What customers see on a restaurant header: open/closed, ETA, delivery fee, and that restaurant’s offers and reviews.
+          </p>
+          <div class="meta-strip">
+            <span class="meta-pill">Open/closed</span>
+            <span class="meta-pill">ETA</span>
+            <span class="meta-pill">Fee</span>
+            <span class="meta-pill">Offers</span>
+          </div>
+        </header>
+
+        <section class="overview">
+          <section class="section-block">
+            <h2>Decide before browsing the menu</h2>
+            <p>
+              The restaurant page answers “can I order, how long, how much delivery, and what’s on offer?” before the customer digs into the catalog. Each cue below is its own chip or block — not one combined banner.
+            </p>
+            <h3>Open / closed status</h3>
+            <p class="section-subtext">
+              The status line tells customers whether they can order now — for example a green “Open until 11:00 PM” or a closed state with the next opening time. This is only the open/closed cue (plus name / rating / address), not the ETA or fee chips.
+            </p>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/ordering-restaurant-open.jpg" alt="Open / closed" />
+              <figcaption>Open until … (or closed) on the restaurant page</figcaption>
+            </figure>
+            <h3>Smart ETA</h3>
+            <p class="section-subtext">
+              The ETA chip (for example “ETA 26–36 min”) estimates how long food will take. It is separate from open/closed and from the fee chip. More detail: <a href="./smart-eta.html">Smart ETA</a>.
+            </p>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/ordering-restaurant-eta.jpg" alt="ETA" />
+              <figcaption>ETA chip on the restaurant page</figcaption>
+            </figure>
+            <h3>Delivery fee (standard or surge)</h3>
+            <p class="section-subtext">
+              The fee chip shows what delivery costs now — “Standard fee” or a surge multiplier. Separate from ETA. Details: <a href="./delivery-fee.html">Delivery fee</a>.
+            </p>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/ordering-restaurant-fee.jpg" alt="Delivery fee" />
+              <figcaption>Fee / surge chip on the restaurant page</figcaption>
+            </figure>
+            <h3>Offers and reviews on the restaurant</h3>
+            <p class="section-subtext">
+              Scrolling reaches Available Offers (discount / free-delivery cards) and Recent Reviews. This is not the global Offers tab — it is the block attached to that restaurant.
+            </p>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/ordering-restaurant-offers.jpg" alt="Restaurant offers" />
+              <figcaption>Available Offers cards and Recent Reviews</figcaption>
+            </figure>
+            <p class="section-subtext">
+              Continue with <a href="./menu-cart.html">Menu &amp; cart</a>.
+            </p>
+          </section>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Operations — Admin app</title>
+    <meta http-equiv="refresh" content="0; url=./orders.html" />
+    <link rel="canonical" href="./orders.html" />
+    <title>Operations</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
-    <script src="../js/sidebar-scroll.js"></script>
     <main class="layout">
       <aside class="sidebar" data-docs-sidebar>
         <a class="brand-link" href="../index.html" aria-label="Good Food Pro Docs home">
@@ -23,25 +24,37 @@
         <nav class="nav">
           <a href="../index.html">Overview</a>
           <a href="../getting-started.html">Getting Started</a>
-          <a href="../ordering.html">Ordering & discovery</a>
+          <a href="../discovery.html">Discovery</a>
+          <a href="../restaurant-page.html">Restaurant page</a>
+          <a href="../menu-cart.html">Menu & cart</a>
+          <a href="../checkout.html">Checkout & offers</a>
+          <a href="../order-history.html">Order history</a>
+          <a href="../order-tracking.html">Order tracking</a>
           <a href="../wallet.html">Wallet & payments</a>
           <a href="../subscriptions.html">Subscriptions</a>
-          <a href="../intelligence.html">AI intelligence</a>
-          <a href="../order-tracking.html">Order tracking</a>
+          <a href="../recommendations.html">Recommendations</a>
+          <a href="../smart-eta.html">Smart ETA</a>
+          <a href="../delivery-fee.html">Delivery fee</a>
         </nav>
         <p class="sidebar-label">Delivery app (driver)</p>
         <nav class="nav">
           <a href="../delivery-app/index.html">Overview</a>
           <a href="../delivery-app/getting-started.html">Getting Started</a>
-          <a href="../delivery-app/logistics.html">Logistics & POD</a>
-          <a href="../delivery-app/earnings.html">Earnings & payouts</a>
+          <a href="../delivery-app/deliveries.html">Deliveries</a>
+          <a href="../delivery-app/active-delivery.html">Active delivery</a>
+          <a href="../delivery-app/proof-of-delivery.html">Proof of delivery</a>
+          <a href="../delivery-app/earnings.html">Earnings</a>
+          <a href="../delivery-app/transactions-payouts.html">Transactions & payouts</a>
           <a href="../delivery-app/subscriptions.html">Subscriptions</a>
         </nav>
         <p class="sidebar-label">Restaurant app</p>
         <nav class="nav">
           <a href="../restaurant-app/index.html">Overview</a>
           <a href="../restaurant-app/getting-started.html">Getting Started</a>
-          <a href="../restaurant-app/operations.html">Orders & menu</a>
+          <a href="../restaurant-app/orders.html">Live orders</a>
+          <a href="../restaurant-app/menu.html">Menu</a>
+          <a href="../restaurant-app/hours.html">Hours & delivery</a>
+          <a href="../restaurant-app/analytics.html">Analytics</a>
           <a href="../restaurant-app/kitchen-display.html">Kitchen Display (KDS)</a>
           <a href="../restaurant-app/subscriptions.html">Subscriptions</a>
           <a href="../restaurant-app/sponsored.html">Sponsored listings</a>
@@ -50,12 +63,21 @@
         <nav class="nav">
           <a href="../admin-app/index.html">Overview</a>
           <a href="../admin-app/getting-started.html">Getting Started</a>
-          <a class="active" href="../admin-app/operations.html">Operations</a>
-          <a href="../admin-app/monetization.html">Monetization</a>
-          <a href="../admin-app/promotions.html">Promotions & coupons</a>
-          <a href="../admin-app/market.html">Market & languages</a>
+          <a href="../admin-app/orders.html">Orders</a>
+          <a href="../admin-app/partners.html">Partners</a>
+          <a href="../admin-app/catalog.html">Catalog</a>
+          <a href="../admin-app/earnings.html">Earnings</a>
+          <a href="../admin-app/subscriptions.html">Subscriptions</a>
+          <a href="../admin-app/gateways.html">Payment gateways</a>
+          <a href="../admin-app/promotions.html">Promotions</a>
+          <a href="../admin-app/coupons.html">Coupons</a>
+          <a href="../admin-app/languages.html">Languages</a>
+          <a href="../admin-app/currencies-taxes.html">Currencies & taxes</a>
+          <a href="../admin-app/app-settings.html">App settings</a>
           <a href="../admin-app/sponsored.html">Sponsored listings</a>
-          <a href="../admin-app/reports.html">Reports & analytics</a>
+          <a href="../admin-app/sales-reports.html">Sales reports</a>
+          <a href="../admin-app/partner-reports.html">Partner reports</a>
+          <a href="../admin-app/transactions.html">Transactions</a>
         </nav>
         <p class="sidebar-label">Backend (API)</p>
         <nav class="nav">
@@ -64,74 +86,10 @@
         </nav>
       </aside>
       <section class="content">
-        <header id="top" class="hero">
+        <header class="hero">
           <h1>Operations</h1>
-          <p class="subtitle">
-            The day-to-day control room: orders, restaurants, customers, drivers, and the food catalog that powers every mobile app.
-          </p>
-          <div class="meta-strip">
-            <span class="meta-pill">Orders</span>
-            <span class="meta-pill">Partners</span>
-            <span class="meta-pill">Catalog</span>
-            <span class="meta-pill">Users</span>
-          </div>
+          <p class="subtitle">This topic moved. <a href="./orders.html">Orders</a>.</p>
         </header>
-
-        <section class="overview">
-          <section class="section-block">
-            <h2>Orders and partners</h2>
-            <p>
-              Admin is the marketplace command center. Support should investigate from one place without asking three mobile apps for screenshots. Start from dashboard KPIs, then drill into orders and partner accounts.
-            </p>
-            <h3>Orders</h3>
-            <p class="section-subtext">
-              The orders list shows payment state, customer, restaurant, driver, totals, and fulfillment status. View opens full detail (line items, delivery, timeline) for failed payments, stuck statuses, or missing drivers.
-            </p>
-            <ol class="doc-steps">
-              <li>Open <strong>Orders</strong> when a live incident starts.</li>
-              <li>Filter or find the order by customer / restaurant / id.</li>
-              <li>Use View for the full record before changing status or contacting partners.</li>
-            </ol>
-            <figure class="doc-shot wide">
-              <img src="../assets/images/features/admin-ops-orders.jpg" alt="Orders" />
-              <figcaption>Admin orders list with payment and fulfillment state</figcaption>
-            </figure>
-            <h3>Restaurants</h3>
-            <p class="section-subtext">
-              Restaurant management covers onboarding and ongoing control: activate or close partners, keep profiles consistent with what the customer app displays, and intervene when a location should not stay live.
-            </p>
-            <figure class="doc-shot wide">
-              <img src="../assets/images/features/admin-ops-restaurants.jpg" alt="Restaurants" />
-              <figcaption>Approve, edit, activate, or close restaurant partners</figcaption>
-            </figure>
-            <h3>Drivers</h3>
-            <p class="section-subtext">
-              Approve drivers before they go online, keep identity and vehicle details coherent, and suspend when needed. Couriers that skip approval create support noise and marketplace risk.
-            </p>
-            <figure class="doc-shot wide">
-              <img src="../assets/images/features/admin-ops-drivers.jpg" alt="Drivers" />
-              <figcaption>Driver onboarding and ongoing control</figcaption>
-            </figure>
-            <h3>Users (customers)</h3>
-            <p class="section-subtext">
-              Customer users are where you investigate accounts, edit profiles, or suspend abuse. Pair this with the orders list when a dispute needs both the person and their tickets.
-            </p>
-            <figure class="doc-shot wide">
-              <img src="../assets/images/features/admin-ops-users.jpg" alt="Users" />
-              <figcaption>Customer accounts for support and moderation</figcaption>
-            </figure>
-          </section>
-          <section class="section-block">
-            <h2>Menus and catalog</h2>
-            <p>
-              Categories, menus, products, and variants can be curated centrally when partners need help — or when you seed a new city. What you publish here is what customers browse and what restaurants edit on mobile when you allow dual management.
-            </p>
-            <figure class="doc-shot wide">
-              <img src="../assets/images/features/admin-ops-menus.jpg" alt="Menus" />
-              <figcaption>Admin menus / catalog</figcaption>
-            </figure>
-          </section>
-        </section>
       </section>
     </main>
   </body>

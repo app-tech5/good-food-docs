@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Orders &amp; menu — Restaurant app</title>
+    <meta http-equiv="refresh" content="0; url=./orders.html" />
+    <link rel="canonical" href="./orders.html" />
+    <title>Orders &amp; menu</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
-    <script src="../js/sidebar-scroll.js"></script>
     <main class="layout">
       <aside class="sidebar" data-docs-sidebar>
         <a class="brand-link" href="../index.html" aria-label="Good Food Pro Docs home">
@@ -23,25 +24,37 @@
         <nav class="nav">
           <a href="../index.html">Overview</a>
           <a href="../getting-started.html">Getting Started</a>
-          <a href="../ordering.html">Ordering & discovery</a>
+          <a href="../discovery.html">Discovery</a>
+          <a href="../restaurant-page.html">Restaurant page</a>
+          <a href="../menu-cart.html">Menu & cart</a>
+          <a href="../checkout.html">Checkout & offers</a>
+          <a href="../order-history.html">Order history</a>
+          <a href="../order-tracking.html">Order tracking</a>
           <a href="../wallet.html">Wallet & payments</a>
           <a href="../subscriptions.html">Subscriptions</a>
-          <a href="../intelligence.html">AI intelligence</a>
-          <a href="../order-tracking.html">Order tracking</a>
+          <a href="../recommendations.html">Recommendations</a>
+          <a href="../smart-eta.html">Smart ETA</a>
+          <a href="../delivery-fee.html">Delivery fee</a>
         </nav>
         <p class="sidebar-label">Delivery app (driver)</p>
         <nav class="nav">
           <a href="../delivery-app/index.html">Overview</a>
           <a href="../delivery-app/getting-started.html">Getting Started</a>
-          <a href="../delivery-app/logistics.html">Logistics & POD</a>
-          <a href="../delivery-app/earnings.html">Earnings & payouts</a>
+          <a href="../delivery-app/deliveries.html">Deliveries</a>
+          <a href="../delivery-app/active-delivery.html">Active delivery</a>
+          <a href="../delivery-app/proof-of-delivery.html">Proof of delivery</a>
+          <a href="../delivery-app/earnings.html">Earnings</a>
+          <a href="../delivery-app/transactions-payouts.html">Transactions & payouts</a>
           <a href="../delivery-app/subscriptions.html">Subscriptions</a>
         </nav>
         <p class="sidebar-label">Restaurant app</p>
         <nav class="nav">
           <a href="../restaurant-app/index.html">Overview</a>
           <a href="../restaurant-app/getting-started.html">Getting Started</a>
-          <a class="active" href="../restaurant-app/operations.html">Orders & menu</a>
+          <a href="../restaurant-app/orders.html">Live orders</a>
+          <a href="../restaurant-app/menu.html">Menu</a>
+          <a href="../restaurant-app/hours.html">Hours & delivery</a>
+          <a href="../restaurant-app/analytics.html">Analytics</a>
           <a href="../restaurant-app/kitchen-display.html">Kitchen Display (KDS)</a>
           <a href="../restaurant-app/subscriptions.html">Subscriptions</a>
           <a href="../restaurant-app/sponsored.html">Sponsored listings</a>
@@ -50,12 +63,21 @@
         <nav class="nav">
           <a href="../admin-app/index.html">Overview</a>
           <a href="../admin-app/getting-started.html">Getting Started</a>
-          <a href="../admin-app/operations.html">Operations</a>
-          <a href="../admin-app/monetization.html">Monetization</a>
-          <a href="../admin-app/promotions.html">Promotions & coupons</a>
-          <a href="../admin-app/market.html">Market & languages</a>
+          <a href="../admin-app/orders.html">Orders</a>
+          <a href="../admin-app/partners.html">Partners</a>
+          <a href="../admin-app/catalog.html">Catalog</a>
+          <a href="../admin-app/earnings.html">Earnings</a>
+          <a href="../admin-app/subscriptions.html">Subscriptions</a>
+          <a href="../admin-app/gateways.html">Payment gateways</a>
+          <a href="../admin-app/promotions.html">Promotions</a>
+          <a href="../admin-app/coupons.html">Coupons</a>
+          <a href="../admin-app/languages.html">Languages</a>
+          <a href="../admin-app/currencies-taxes.html">Currencies & taxes</a>
+          <a href="../admin-app/app-settings.html">App settings</a>
           <a href="../admin-app/sponsored.html">Sponsored listings</a>
-          <a href="../admin-app/reports.html">Reports & analytics</a>
+          <a href="../admin-app/sales-reports.html">Sales reports</a>
+          <a href="../admin-app/partner-reports.html">Partner reports</a>
+          <a href="../admin-app/transactions.html">Transactions</a>
         </nav>
         <p class="sidebar-label">Backend (API)</p>
         <nav class="nav">
@@ -64,84 +86,10 @@
         </nav>
       </aside>
       <section class="content">
-        <header id="top" class="hero">
+        <header class="hero">
           <h1>Orders &amp; menu</h1>
-          <p class="subtitle">
-            Day-to-day partner ops: accept or reject orders, manage the menu, set hours, and read analytics — before or beside the Kitchen Display.
-          </p>
-          <div class="meta-strip">
-            <span class="meta-pill">Orders</span>
-            <span class="meta-pill">Menu</span>
-            <span class="meta-pill">Hours</span>
-            <span class="meta-pill">Analytics</span>
-          </div>
+          <p class="subtitle">This topic moved. <a href="./orders.html">Live orders</a>.</p>
         </header>
-
-        <section class="overview">
-          <section class="section-block">
-            <h2>Live orders: accept and reject</h2>
-            <p>
-              Incoming orders land in the restaurant orders list in real time. Operators accept or reject, then move the meal through prepare / ready so the driver (or pickup customer) can collect it. New-order alerts can deep-link back to the order so nobody misses a ticket during rush.
-            </p>
-            <p class="section-subtext">
-              For a paperless board on the pass, use the <a href="./kitchen-display.html">Kitchen Display (KDS)</a> — it shares the same order pipeline.
-            </p>
-            <figure class="doc-shot phone">
-              <img src="../assets/images/features/resto-ops-orders.jpg" alt="Orders" />
-              <figcaption>Live restaurant orders</figcaption>
-            </figure>
-            <h3>Service loop</h3>
-            <ol class="doc-steps">
-              <li>Keep the restaurant <strong>open</strong> when you can fulfill orders.</li>
-              <li>Watch the orders list; accept what you can cook, reject with a clear reason when you cannot.</li>
-              <li>Advance status as food progresses; mark ready for courier or pickup.</li>
-              <li>Use order history when you need past tickets or disputes.</li>
-            </ol>
-          </section>
-          <section class="section-block">
-            <h2>Menu, hours, and analytics</h2>
-            <p>
-              Partners manage categories, dishes, prices, photos, variants, and availability from the restaurant app — without waiting on admin for every price tweak. Opening hours and delivery / pickup controls define when and how far you sell. Analytics help owners see what is working after a few service days.
-            </p>
-            <h3>Menu management</h3>
-            <p class="section-subtext">
-              The menu screen is the catalog home: categories and items customers will browse. From here partners add dishes, reorder sections, and keep the sellable list honest for the next rush.
-            </p>
-            <ol class="doc-steps">
-              <li>Open <strong>Menu</strong> from the restaurant drawer.</li>
-              <li>Add or edit categories and items; set prices and photos.</li>
-              <li>Toggle availability when an item is 86’d so customers cannot order it.</li>
-            </ol>
-            <figure class="doc-shot phone">
-              <img src="../assets/images/features/resto-ops-menu.jpg" alt="Menu" />
-              <figcaption>Categories and dishes the restaurant sells</figcaption>
-            </figure>
-            <h3>Add or edit an item</h3>
-            <p class="section-subtext">
-              Item forms cover name, price, photo, variants, and availability. Getting this right once prevents “price wrong on the app” tickets and keeps kitchen tickets aligned with what the customer paid for.
-            </p>
-            <figure class="doc-shot phone">
-              <img src="../assets/images/features/resto-ops-menu-edit.jpg" alt="Edit item" />
-              <figcaption>Item form: price, photo, variants, availability</figcaption>
-            </figure>
-            <h3>Opening hours</h3>
-            <p class="section-subtext">
-              Opening hours and delivery settings (radius, prep time) tell the customer app when the restaurant is open and how far it delivers. Out-of-date hours create orders you cannot fulfill — fix them before service, not after the first rejection.
-            </p>
-            <figure class="doc-shot phone">
-              <img src="../assets/images/features/resto-ops-hours.jpg" alt="Hours" />
-              <figcaption>Opening hours that drive open/closed in the customer app</figcaption>
-            </figure>
-            <h3>Analytics</h3>
-            <p class="section-subtext">
-              Dashboard KPIs and analytics (periods, bestsellers, peaks) help owners see what sells and when. Use them after a few real service days — empty charts on day one are normal; quiet slots and bestsellers appear once orders accumulate.
-            </p>
-            <figure class="doc-shot phone">
-              <img src="../assets/images/features/resto-ops-analytics.jpg" alt="Analytics" />
-              <figcaption>Periods, bestsellers, and service peaks</figcaption>
-            </figure>
-          </section>
-        </section>
       </section>
     </main>
   </body>

@@ -35,33 +35,54 @@ def build_sidebar(html_path: Path) -> str:
 
     is_cust_ov = rel == "index.html"
     is_cust_gs = rel == "getting-started.html"
-    is_cust_ord = rel == "ordering.html"
+    is_cust_disc = rel == "discovery.html"
+    is_cust_resto = rel == "restaurant-page.html"
+    is_cust_menu = rel == "menu-cart.html"
+    is_cust_check = rel == "checkout.html"
+    is_cust_hist = rel == "order-history.html"
+    is_cust_track = rel == "order-tracking.html"
     is_cust_wallet = rel == "wallet.html"
     is_cust_sub = rel == "subscriptions.html"
-    is_cust_ai = rel == "intelligence.html"
-    is_cust_track = rel == "order-tracking.html"
+    is_cust_reco = rel == "recommendations.html"
+    is_cust_eta = rel == "smart-eta.html"
+    is_cust_fee = rel == "delivery-fee.html"
 
     is_drv_ov = rel == "delivery-app/index.html"
     is_drv_gs = rel == "delivery-app/getting-started.html"
-    is_drv_log = rel == "delivery-app/logistics.html"
+    is_drv_del = rel == "delivery-app/deliveries.html"
+    is_drv_act = rel == "delivery-app/active-delivery.html"
+    is_drv_pod = rel == "delivery-app/proof-of-delivery.html"
     is_drv_earn = rel == "delivery-app/earnings.html"
+    is_drv_tx = rel == "delivery-app/transactions-payouts.html"
     is_drv_sub = rel == "delivery-app/subscriptions.html"
 
     is_res_ov = rel == "restaurant-app/index.html"
     is_res_gs = rel == "restaurant-app/getting-started.html"
-    is_res_ops = rel == "restaurant-app/operations.html"
+    is_res_ord = rel == "restaurant-app/orders.html"
+    is_res_menu = rel == "restaurant-app/menu.html"
+    is_res_hrs = rel == "restaurant-app/hours.html"
+    is_res_an = rel == "restaurant-app/analytics.html"
     is_res_kds = rel == "restaurant-app/kitchen-display.html"
     is_res_sub = rel == "restaurant-app/subscriptions.html"
     is_res_spon = rel == "restaurant-app/sponsored.html"
 
     is_adm_ov = rel == "admin-app/index.html"
     is_adm_gs = rel == "admin-app/getting-started.html"
-    is_adm_ops = rel == "admin-app/operations.html"
-    is_adm_mon = rel == "admin-app/monetization.html"
+    is_adm_ord = rel == "admin-app/orders.html"
+    is_adm_part = rel == "admin-app/partners.html"
+    is_adm_cat = rel == "admin-app/catalog.html"
+    is_adm_earn = rel == "admin-app/earnings.html"
+    is_adm_sub = rel == "admin-app/subscriptions.html"
+    is_adm_gw = rel == "admin-app/gateways.html"
     is_adm_promo = rel == "admin-app/promotions.html"
-    is_adm_mkt = rel == "admin-app/market.html"
+    is_adm_coup = rel == "admin-app/coupons.html"
+    is_adm_lang = rel == "admin-app/languages.html"
+    is_adm_cur = rel == "admin-app/currencies-taxes.html"
+    is_adm_app = rel == "admin-app/app-settings.html"
     is_adm_spon = rel == "admin-app/sponsored.html"
-    is_adm_rep = rel == "admin-app/reports.html"
+    is_adm_sales = rel == "admin-app/sales-reports.html"
+    is_adm_prep = rel == "admin-app/partner-reports.html"
+    is_adm_tx = rel == "admin-app/transactions.html"
 
     is_be_ov = rel == "my-backend/index.html"
     is_be_gs = rel == "my-backend/getting-started.html"
@@ -89,11 +110,17 @@ def build_sidebar(html_path: Path) -> str:
             [
                 (cust_ov, "Overview", is_cust_ov),
                 (f"{prefix}getting-started.html", "Getting Started", is_cust_gs),
-                (f"{prefix}ordering.html", "Ordering & discovery", is_cust_ord),
+                (f"{prefix}discovery.html", "Discovery", is_cust_disc),
+                (f"{prefix}restaurant-page.html", "Restaurant page", is_cust_resto),
+                (f"{prefix}menu-cart.html", "Menu & cart", is_cust_menu),
+                (f"{prefix}checkout.html", "Checkout & offers", is_cust_check),
+                (f"{prefix}order-history.html", "Order history", is_cust_hist),
+                (f"{prefix}order-tracking.html", "Order tracking", is_cust_track),
                 (f"{prefix}wallet.html", "Wallet & payments", is_cust_wallet),
                 (f"{prefix}subscriptions.html", "Subscriptions", is_cust_sub),
-                (f"{prefix}intelligence.html", "AI intelligence", is_cust_ai),
-                (f"{prefix}order-tracking.html", "Order tracking", is_cust_track),
+                (f"{prefix}recommendations.html", "Recommendations", is_cust_reco),
+                (f"{prefix}smart-eta.html", "Smart ETA", is_cust_eta),
+                (f"{prefix}delivery-fee.html", "Delivery fee", is_cust_fee),
             ],
         ),
         *section(
@@ -101,8 +128,11 @@ def build_sidebar(html_path: Path) -> str:
             [
                 (drv_ov, "Overview", is_drv_ov),
                 (f"{prefix}delivery-app/getting-started.html", "Getting Started", is_drv_gs),
-                (f"{prefix}delivery-app/logistics.html", "Logistics & POD", is_drv_log),
-                (f"{prefix}delivery-app/earnings.html", "Earnings & payouts", is_drv_earn),
+                (f"{prefix}delivery-app/deliveries.html", "Deliveries", is_drv_del),
+                (f"{prefix}delivery-app/active-delivery.html", "Active delivery", is_drv_act),
+                (f"{prefix}delivery-app/proof-of-delivery.html", "Proof of delivery", is_drv_pod),
+                (f"{prefix}delivery-app/earnings.html", "Earnings", is_drv_earn),
+                (f"{prefix}delivery-app/transactions-payouts.html", "Transactions & payouts", is_drv_tx),
                 (f"{prefix}delivery-app/subscriptions.html", "Subscriptions", is_drv_sub),
             ],
         ),
@@ -111,7 +141,10 @@ def build_sidebar(html_path: Path) -> str:
             [
                 (res_ov, "Overview", is_res_ov),
                 (f"{prefix}restaurant-app/getting-started.html", "Getting Started", is_res_gs),
-                (f"{prefix}restaurant-app/operations.html", "Orders & menu", is_res_ops),
+                (f"{prefix}restaurant-app/orders.html", "Live orders", is_res_ord),
+                (f"{prefix}restaurant-app/menu.html", "Menu", is_res_menu),
+                (f"{prefix}restaurant-app/hours.html", "Hours & delivery", is_res_hrs),
+                (f"{prefix}restaurant-app/analytics.html", "Analytics", is_res_an),
                 (f"{prefix}restaurant-app/kitchen-display.html", "Kitchen Display (KDS)", is_res_kds),
                 (f"{prefix}restaurant-app/subscriptions.html", "Subscriptions", is_res_sub),
                 (f"{prefix}restaurant-app/sponsored.html", "Sponsored listings", is_res_spon),
@@ -122,12 +155,21 @@ def build_sidebar(html_path: Path) -> str:
             [
                 (adm_ov, "Overview", is_adm_ov),
                 (f"{prefix}admin-app/getting-started.html", "Getting Started", is_adm_gs),
-                (f"{prefix}admin-app/operations.html", "Operations", is_adm_ops),
-                (f"{prefix}admin-app/monetization.html", "Monetization", is_adm_mon),
-                (f"{prefix}admin-app/promotions.html", "Promotions & coupons", is_adm_promo),
-                (f"{prefix}admin-app/market.html", "Market & languages", is_adm_mkt),
+                (f"{prefix}admin-app/orders.html", "Orders", is_adm_ord),
+                (f"{prefix}admin-app/partners.html", "Partners", is_adm_part),
+                (f"{prefix}admin-app/catalog.html", "Catalog", is_adm_cat),
+                (f"{prefix}admin-app/earnings.html", "Earnings", is_adm_earn),
+                (f"{prefix}admin-app/subscriptions.html", "Subscriptions", is_adm_sub),
+                (f"{prefix}admin-app/gateways.html", "Payment gateways", is_adm_gw),
+                (f"{prefix}admin-app/promotions.html", "Promotions", is_adm_promo),
+                (f"{prefix}admin-app/coupons.html", "Coupons", is_adm_coup),
+                (f"{prefix}admin-app/languages.html", "Languages", is_adm_lang),
+                (f"{prefix}admin-app/currencies-taxes.html", "Currencies & taxes", is_adm_cur),
+                (f"{prefix}admin-app/app-settings.html", "App settings", is_adm_app),
                 (f"{prefix}admin-app/sponsored.html", "Sponsored listings", is_adm_spon),
-                (f"{prefix}admin-app/reports.html", "Reports & analytics", is_adm_rep),
+                (f"{prefix}admin-app/sales-reports.html", "Sales reports", is_adm_sales),
+                (f"{prefix}admin-app/partner-reports.html", "Partner reports", is_adm_prep),
+                (f"{prefix}admin-app/transactions.html", "Transactions", is_adm_tx),
             ],
         ),
         *section(

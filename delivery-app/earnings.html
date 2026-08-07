@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Earnings &amp; payouts — Driver app</title>
+    <title>Earnings — Driver app</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
@@ -23,25 +23,37 @@
         <nav class="nav">
           <a href="../index.html">Overview</a>
           <a href="../getting-started.html">Getting Started</a>
-          <a href="../ordering.html">Ordering & discovery</a>
+          <a href="../discovery.html">Discovery</a>
+          <a href="../restaurant-page.html">Restaurant page</a>
+          <a href="../menu-cart.html">Menu & cart</a>
+          <a href="../checkout.html">Checkout & offers</a>
+          <a href="../order-history.html">Order history</a>
+          <a href="../order-tracking.html">Order tracking</a>
           <a href="../wallet.html">Wallet & payments</a>
           <a href="../subscriptions.html">Subscriptions</a>
-          <a href="../intelligence.html">AI intelligence</a>
-          <a href="../order-tracking.html">Order tracking</a>
+          <a href="../recommendations.html">Recommendations</a>
+          <a href="../smart-eta.html">Smart ETA</a>
+          <a href="../delivery-fee.html">Delivery fee</a>
         </nav>
         <p class="sidebar-label">Delivery app (driver)</p>
         <nav class="nav">
           <a href="../delivery-app/index.html">Overview</a>
           <a href="../delivery-app/getting-started.html">Getting Started</a>
-          <a href="../delivery-app/logistics.html">Logistics & POD</a>
-          <a class="active" href="../delivery-app/earnings.html">Earnings & payouts</a>
+          <a href="../delivery-app/deliveries.html">Deliveries</a>
+          <a href="../delivery-app/active-delivery.html">Active delivery</a>
+          <a href="../delivery-app/proof-of-delivery.html">Proof of delivery</a>
+          <a class="active" href="../delivery-app/earnings.html">Earnings</a>
+          <a href="../delivery-app/transactions-payouts.html">Transactions & payouts</a>
           <a href="../delivery-app/subscriptions.html">Subscriptions</a>
         </nav>
         <p class="sidebar-label">Restaurant app</p>
         <nav class="nav">
           <a href="../restaurant-app/index.html">Overview</a>
           <a href="../restaurant-app/getting-started.html">Getting Started</a>
-          <a href="../restaurant-app/operations.html">Orders & menu</a>
+          <a href="../restaurant-app/orders.html">Live orders</a>
+          <a href="../restaurant-app/menu.html">Menu</a>
+          <a href="../restaurant-app/hours.html">Hours & delivery</a>
+          <a href="../restaurant-app/analytics.html">Analytics</a>
           <a href="../restaurant-app/kitchen-display.html">Kitchen Display (KDS)</a>
           <a href="../restaurant-app/subscriptions.html">Subscriptions</a>
           <a href="../restaurant-app/sponsored.html">Sponsored listings</a>
@@ -50,12 +62,21 @@
         <nav class="nav">
           <a href="../admin-app/index.html">Overview</a>
           <a href="../admin-app/getting-started.html">Getting Started</a>
-          <a href="../admin-app/operations.html">Operations</a>
-          <a href="../admin-app/monetization.html">Monetization</a>
-          <a href="../admin-app/promotions.html">Promotions & coupons</a>
-          <a href="../admin-app/market.html">Market & languages</a>
+          <a href="../admin-app/orders.html">Orders</a>
+          <a href="../admin-app/partners.html">Partners</a>
+          <a href="../admin-app/catalog.html">Catalog</a>
+          <a href="../admin-app/earnings.html">Earnings</a>
+          <a href="../admin-app/subscriptions.html">Subscriptions</a>
+          <a href="../admin-app/gateways.html">Payment gateways</a>
+          <a href="../admin-app/promotions.html">Promotions</a>
+          <a href="../admin-app/coupons.html">Coupons</a>
+          <a href="../admin-app/languages.html">Languages</a>
+          <a href="../admin-app/currencies-taxes.html">Currencies & taxes</a>
+          <a href="../admin-app/app-settings.html">App settings</a>
           <a href="../admin-app/sponsored.html">Sponsored listings</a>
-          <a href="../admin-app/reports.html">Reports & analytics</a>
+          <a href="../admin-app/sales-reports.html">Sales reports</a>
+          <a href="../admin-app/partner-reports.html">Partner reports</a>
+          <a href="../admin-app/transactions.html">Transactions</a>
         </nav>
         <p class="sidebar-label">Backend (API)</p>
         <nav class="nav">
@@ -65,14 +86,13 @@
       </aside>
       <section class="content">
         <header id="top" class="hero">
-          <h1>Earnings &amp; payouts</h1>
+          <h1>Earnings</h1>
           <p class="subtitle">
-            How drivers see today’s money, delivery history, transactions, and where payouts are sent.
+            How drivers see what a shift paid before digging into transactions or payout methods.
           </p>
           <div class="meta-strip">
-            <span class="meta-pill">Earnings</span>
-            <span class="meta-pill">Transactions</span>
-            <span class="meta-pill">Payouts</span>
+            <span class="meta-pill">Shift totals</span>
+            <span class="meta-pill">Periods</span>
           </div>
         </header>
 
@@ -80,41 +100,23 @@
           <section class="section-block">
             <h2>Know what a shift paid</h2>
             <p>
-              Couriers need a clear money picture: what they earned today, what sits in history, and how cash reaches their bank. Job handling, batching, and proof of delivery stay on the logistics screens; this page is the money side of the same role.
+              Couriers need a clear money picture: what they earned today and across periods. Job handling stays on the delivery screens; this page is the summary totals.
             </p>
             <h3>Earnings overview</h3>
             <p class="section-subtext">
-              Earnings summarizes the shift and periods your build shows — totals the driver can trust after completing deliveries. Open it at the end of a block of jobs to confirm the marketplace recorded the work.
+              Earnings summarizes the shift and periods your build shows — totals the driver can trust after completing deliveries.
             </p>
             <ol class="doc-steps">
-              <li>Complete deliveries for the shift (see <a href="./logistics.html">Logistics &amp; POD</a>).</li>
+              <li>Complete deliveries for the shift (see <a href="./deliveries.html">Deliveries</a>).</li>
               <li>Open <strong>Earnings</strong> to review today’s totals and available periods.</li>
             </ol>
             <figure class="doc-shot phone">
               <img src="../assets/images/features/driver-earnings.jpg" alt="Earnings" />
               <figcaption>Driver earnings overview for the shift</figcaption>
             </figure>
-            <h3>Transaction history</h3>
             <p class="section-subtext">
-              Transactions are the line-by-line trail: delivery fees, adjustments, and related movements. Use this when a total looks wrong or when support asks for proof of a specific job payout.
+              Line items and bank setup: <a href="./transactions-payouts.html">Transactions &amp; payouts</a>.
             </p>
-            <figure class="doc-shot phone">
-              <img src="../assets/images/features/driver-transactions.jpg" alt="Transactions" />
-              <figcaption>Line-by-line driver transaction history</figcaption>
-            </figure>
-            <h3>Payout methods</h3>
-            <p class="section-subtext">
-              Payout methods tell the platform where to settle the driver (including Connect-style onboarding when you enable it). Drivers should add or update methods before expecting bank transfers — incomplete payout setup is a common “where is my money?” ticket.
-            </p>
-            <ol class="doc-steps">
-              <li>Open <strong>Payout methods</strong> from the driver money area.</li>
-              <li>Add or update the settlement method your marketplace supports.</li>
-              <li>Confirm status shows ready before the next payout cycle.</li>
-            </ol>
-            <figure class="doc-shot phone">
-              <img src="../assets/images/features/driver-payouts.jpg" alt="Payouts" />
-              <figcaption>Where the driver receives settlements</figcaption>
-            </figure>
           </section>
         </section>
       </section>

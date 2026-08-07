@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Promotions &amp; coupons — Admin app</title>
+    <title>Promotions — Admin app</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
@@ -23,25 +23,37 @@
         <nav class="nav">
           <a href="../index.html">Overview</a>
           <a href="../getting-started.html">Getting Started</a>
-          <a href="../ordering.html">Ordering & discovery</a>
+          <a href="../discovery.html">Discovery</a>
+          <a href="../restaurant-page.html">Restaurant page</a>
+          <a href="../menu-cart.html">Menu & cart</a>
+          <a href="../checkout.html">Checkout & offers</a>
+          <a href="../order-history.html">Order history</a>
+          <a href="../order-tracking.html">Order tracking</a>
           <a href="../wallet.html">Wallet & payments</a>
           <a href="../subscriptions.html">Subscriptions</a>
-          <a href="../intelligence.html">AI intelligence</a>
-          <a href="../order-tracking.html">Order tracking</a>
+          <a href="../recommendations.html">Recommendations</a>
+          <a href="../smart-eta.html">Smart ETA</a>
+          <a href="../delivery-fee.html">Delivery fee</a>
         </nav>
         <p class="sidebar-label">Delivery app (driver)</p>
         <nav class="nav">
           <a href="../delivery-app/index.html">Overview</a>
           <a href="../delivery-app/getting-started.html">Getting Started</a>
-          <a href="../delivery-app/logistics.html">Logistics & POD</a>
-          <a href="../delivery-app/earnings.html">Earnings & payouts</a>
+          <a href="../delivery-app/deliveries.html">Deliveries</a>
+          <a href="../delivery-app/active-delivery.html">Active delivery</a>
+          <a href="../delivery-app/proof-of-delivery.html">Proof of delivery</a>
+          <a href="../delivery-app/earnings.html">Earnings</a>
+          <a href="../delivery-app/transactions-payouts.html">Transactions & payouts</a>
           <a href="../delivery-app/subscriptions.html">Subscriptions</a>
         </nav>
         <p class="sidebar-label">Restaurant app</p>
         <nav class="nav">
           <a href="../restaurant-app/index.html">Overview</a>
           <a href="../restaurant-app/getting-started.html">Getting Started</a>
-          <a href="../restaurant-app/operations.html">Orders & menu</a>
+          <a href="../restaurant-app/orders.html">Live orders</a>
+          <a href="../restaurant-app/menu.html">Menu</a>
+          <a href="../restaurant-app/hours.html">Hours & delivery</a>
+          <a href="../restaurant-app/analytics.html">Analytics</a>
           <a href="../restaurant-app/kitchen-display.html">Kitchen Display (KDS)</a>
           <a href="../restaurant-app/subscriptions.html">Subscriptions</a>
           <a href="../restaurant-app/sponsored.html">Sponsored listings</a>
@@ -50,12 +62,21 @@
         <nav class="nav">
           <a href="../admin-app/index.html">Overview</a>
           <a href="../admin-app/getting-started.html">Getting Started</a>
-          <a href="../admin-app/operations.html">Operations</a>
-          <a href="../admin-app/monetization.html">Monetization</a>
-          <a class="active" href="../admin-app/promotions.html">Promotions & coupons</a>
-          <a href="../admin-app/market.html">Market & languages</a>
+          <a href="../admin-app/orders.html">Orders</a>
+          <a href="../admin-app/partners.html">Partners</a>
+          <a href="../admin-app/catalog.html">Catalog</a>
+          <a href="../admin-app/earnings.html">Earnings</a>
+          <a href="../admin-app/subscriptions.html">Subscriptions</a>
+          <a href="../admin-app/gateways.html">Payment gateways</a>
+          <a class="active" href="../admin-app/promotions.html">Promotions</a>
+          <a href="../admin-app/coupons.html">Coupons</a>
+          <a href="../admin-app/languages.html">Languages</a>
+          <a href="../admin-app/currencies-taxes.html">Currencies & taxes</a>
+          <a href="../admin-app/app-settings.html">App settings</a>
           <a href="../admin-app/sponsored.html">Sponsored listings</a>
-          <a href="../admin-app/reports.html">Reports & analytics</a>
+          <a href="../admin-app/sales-reports.html">Sales reports</a>
+          <a href="../admin-app/partner-reports.html">Partner reports</a>
+          <a href="../admin-app/transactions.html">Transactions</a>
         </nav>
         <p class="sidebar-label">Backend (API)</p>
         <nav class="nav">
@@ -65,14 +86,14 @@
       </aside>
       <section class="content">
         <header id="top" class="hero">
-          <h1>Promotions &amp; coupons</h1>
+          <h1>Promotions</h1>
           <p class="subtitle">
-            How operators run growth campaigns: promotion types, scoping, and coupon codes customers redeem at checkout.
+            Campaign objects: type, discount, schedule, and scope for marketplace growth.
           </p>
           <div class="meta-strip">
-            <span class="meta-pill">Promotions</span>
-            <span class="meta-pill">Coupons</span>
             <span class="meta-pill">Campaigns</span>
+            <span class="meta-pill">Scope</span>
+            <span class="meta-pill">Schedule</span>
           </div>
         </header>
 
@@ -80,34 +101,21 @@
           <section class="section-block">
             <h2>Grow volume with real campaigns</h2>
             <p>
-              The promotion engine supports the campaign styles buyers expect: percentage or fixed discounts, free delivery, Buy X Get Y / combos, flash sales, happy hours, and similar types your build exposes. Scope a campaign to the whole platform or to a restaurant, category, or item — and target audiences such as all, new, existing, or VIP when those flags exist.
+              The promotion engine supports percentage or fixed discounts, free delivery, Buy X Get Y / combos, flash sales, happy hours, and similar types. Scope a campaign to the platform or to a restaurant, category, or item.
             </p>
-            <h3>Promotions</h3>
-            <p class="section-subtext">
-              Promotions are the campaign objects: type, discount, schedule, and scope. Create or edit here, activate only what you can afford on margin, then verify the offer appears on customer home / restaurant surfaces before you announce it.
-            </p>
+            <h3>Create a promotion</h3>
             <ol class="doc-steps">
               <li>Open <strong>Promotions</strong> and create or edit a campaign.</li>
-              <li>Set type, discount, schedule, and scope (platform / restaurant / category / item).</li>
+              <li>Set type, discount, schedule, and scope.</li>
               <li>Activate, then place a demo customer order to prove the discount applies.</li>
             </ol>
             <figure class="doc-shot wide">
               <img src="../assets/images/features/admin-promotions.jpg" alt="Promotions" />
               <figcaption>Campaign list: type, schedule, scope, status</figcaption>
             </figure>
-            <h3>Coupons</h3>
             <p class="section-subtext">
-              Coupon codes add constrained redemptions: minimum order, max uses, per-user limits, first-order-only, and expiry. Customers enter codes in cart / checkout — documented under Ordering &amp;amp; discovery. Use coupons when you want a shareable code instead of (or on top of) an automatic promotion.
+              Shareable codes: <a href="./coupons.html">Coupons</a>. Customer surface: <a href="../checkout.html">Checkout &amp; offers</a>.
             </p>
-            <ol class="doc-steps">
-              <li>Open <strong>Coupons</strong> and create a code with usage limits.</li>
-              <li>Confirm checkout accepts the code on a test order.</li>
-              <li>Retire or expire codes that are no longer funded.</li>
-            </ol>
-            <figure class="doc-shot wide">
-              <img src="../assets/images/features/admin-coupons.jpg" alt="Coupons" />
-              <figcaption>Redeemable codes with limits and expiry</figcaption>
-            </figure>
           </section>
         </section>
       </section>

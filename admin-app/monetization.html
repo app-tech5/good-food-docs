@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Monetization — Admin app</title>
+    <meta http-equiv="refresh" content="0; url=./earnings.html" />
+    <link rel="canonical" href="./earnings.html" />
+    <title>Monetization</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
-    <script src="../js/sidebar-scroll.js"></script>
     <main class="layout">
       <aside class="sidebar" data-docs-sidebar>
         <a class="brand-link" href="../index.html" aria-label="Good Food Pro Docs home">
@@ -23,25 +24,37 @@
         <nav class="nav">
           <a href="../index.html">Overview</a>
           <a href="../getting-started.html">Getting Started</a>
-          <a href="../ordering.html">Ordering & discovery</a>
+          <a href="../discovery.html">Discovery</a>
+          <a href="../restaurant-page.html">Restaurant page</a>
+          <a href="../menu-cart.html">Menu & cart</a>
+          <a href="../checkout.html">Checkout & offers</a>
+          <a href="../order-history.html">Order history</a>
+          <a href="../order-tracking.html">Order tracking</a>
           <a href="../wallet.html">Wallet & payments</a>
           <a href="../subscriptions.html">Subscriptions</a>
-          <a href="../intelligence.html">AI intelligence</a>
-          <a href="../order-tracking.html">Order tracking</a>
+          <a href="../recommendations.html">Recommendations</a>
+          <a href="../smart-eta.html">Smart ETA</a>
+          <a href="../delivery-fee.html">Delivery fee</a>
         </nav>
         <p class="sidebar-label">Delivery app (driver)</p>
         <nav class="nav">
           <a href="../delivery-app/index.html">Overview</a>
           <a href="../delivery-app/getting-started.html">Getting Started</a>
-          <a href="../delivery-app/logistics.html">Logistics & POD</a>
-          <a href="../delivery-app/earnings.html">Earnings & payouts</a>
+          <a href="../delivery-app/deliveries.html">Deliveries</a>
+          <a href="../delivery-app/active-delivery.html">Active delivery</a>
+          <a href="../delivery-app/proof-of-delivery.html">Proof of delivery</a>
+          <a href="../delivery-app/earnings.html">Earnings</a>
+          <a href="../delivery-app/transactions-payouts.html">Transactions & payouts</a>
           <a href="../delivery-app/subscriptions.html">Subscriptions</a>
         </nav>
         <p class="sidebar-label">Restaurant app</p>
         <nav class="nav">
           <a href="../restaurant-app/index.html">Overview</a>
           <a href="../restaurant-app/getting-started.html">Getting Started</a>
-          <a href="../restaurant-app/operations.html">Orders & menu</a>
+          <a href="../restaurant-app/orders.html">Live orders</a>
+          <a href="../restaurant-app/menu.html">Menu</a>
+          <a href="../restaurant-app/hours.html">Hours & delivery</a>
+          <a href="../restaurant-app/analytics.html">Analytics</a>
           <a href="../restaurant-app/kitchen-display.html">Kitchen Display (KDS)</a>
           <a href="../restaurant-app/subscriptions.html">Subscriptions</a>
           <a href="../restaurant-app/sponsored.html">Sponsored listings</a>
@@ -50,12 +63,21 @@
         <nav class="nav">
           <a href="../admin-app/index.html">Overview</a>
           <a href="../admin-app/getting-started.html">Getting Started</a>
-          <a href="../admin-app/operations.html">Operations</a>
-          <a class="active" href="../admin-app/monetization.html">Monetization</a>
-          <a href="../admin-app/promotions.html">Promotions & coupons</a>
-          <a href="../admin-app/market.html">Market & languages</a>
+          <a href="../admin-app/orders.html">Orders</a>
+          <a href="../admin-app/partners.html">Partners</a>
+          <a href="../admin-app/catalog.html">Catalog</a>
+          <a href="../admin-app/earnings.html">Earnings</a>
+          <a href="../admin-app/subscriptions.html">Subscriptions</a>
+          <a href="../admin-app/gateways.html">Payment gateways</a>
+          <a href="../admin-app/promotions.html">Promotions</a>
+          <a href="../admin-app/coupons.html">Coupons</a>
+          <a href="../admin-app/languages.html">Languages</a>
+          <a href="../admin-app/currencies-taxes.html">Currencies & taxes</a>
+          <a href="../admin-app/app-settings.html">App settings</a>
           <a href="../admin-app/sponsored.html">Sponsored listings</a>
-          <a href="../admin-app/reports.html">Reports & analytics</a>
+          <a href="../admin-app/sales-reports.html">Sales reports</a>
+          <a href="../admin-app/partner-reports.html">Partner reports</a>
+          <a href="../admin-app/transactions.html">Transactions</a>
         </nav>
         <p class="sidebar-label">Backend (API)</p>
         <nav class="nav">
@@ -64,83 +86,10 @@
         </nav>
       </aside>
       <section class="content">
-        <header id="top" class="hero">
+        <header class="hero">
           <h1>Monetization</h1>
-          <p class="subtitle">
-            How operators set the platform cut, subscription tiers, earnings views, and payment gateways that power wallets and checkout.
-          </p>
-          <div class="meta-strip">
-            <span class="meta-pill">Earnings</span>
-            <span class="meta-pill">Subscriptions</span>
-            <span class="meta-pill">Gateways</span>
-          </div>
+          <p class="subtitle">This topic moved. <a href="./earnings.html">Earnings</a>.</p>
         </header>
-
-        <section class="overview">
-          <section class="section-block">
-            <h2>Commissions and earnings</h2>
-            <p>
-              Every completed order splits value between the marketplace and the restaurant (and related parties under your rules). The baseline platform commission is configured in marketplace / app settings; restaurant subscription benefits can soften that cut when an active plan says so.
-            </p>
-            <p class="section-subtext">
-              The Earnings area in admin is where you review periods and totals — what the platform kept versus what restaurants earned — before you run payouts or investigations.
-            </p>
-            <figure class="doc-shot wide">
-              <img src="../assets/images/features/earnings.jpg" alt="Earnings" />
-              <figcaption>Earnings list — periods and totals</figcaption>
-            </figure>
-            <h3>Operator checklist</h3>
-            <ol class="doc-steps">
-              <li>Set or review the default commission rate in App Settings.</li>
-              <li>Place a test order end-to-end (customer → restaurant accept → complete).</li>
-              <li>Open <strong>Earnings</strong> and confirm the platform vs restaurant split matches your rate and any active restaurant plan benefits.</li>
-              <li>Use View on a row when you need the detail behind a period.</li>
-            </ol>
-          </section>
-          <section class="section-block">
-            <h2>Subscription tiers for every role</h2>
-            <p>
-              Subscriptions in admin are the source of truth for plans sold in the three mobile apps. Each plan has a <strong>target</strong>: customer, driver, or restaurant — plus price, billing cycle, active flag, and benefit text / flags.
-            </p>
-            <p class="section-subtext">
-              Seeded demos usually include sample tiers so lists are not empty after migrations. Edit those to match your pricing story before go-live.
-            </p>
-            <figure class="doc-shot wide">
-              <img src="../assets/images/features/admin-subscriptions.jpg" alt="Subscriptions" />
-              <figcaption>Admin subscription tiers</figcaption>
-            </figure>
-            <h3>Create or edit a plan</h3>
-            <ol class="doc-steps">
-              <li>Open <strong>Subscriptions</strong> in the admin sidebar.</li>
-              <li>Review existing rows (name, target, price, cycle, active).</li>
-              <li>Add New or View to edit: set target audience, price, billing cycle, and benefits.</li>
-              <li>Save, then open the matching mobile app and confirm the plan appears on that role’s subscription screen.</li>
-            </ol>
-            <p class="section-subtext">
-              Customer, driver, and restaurant subscribe UIs: <a href="../subscriptions.html">customer</a>, <a href="../delivery-app/subscriptions.html">driver</a>, <a href="../restaurant-app/subscriptions.html">restaurant</a>.
-            </p>
-          </section>
-          <section class="section-block">
-            <h2>Payment gateways</h2>
-            <p>
-              Gateways tell the platform which PSPs and local methods are available (cards, wallets, cash on delivery, regional providers, and the internal wallet). Each row typically shows fees, name, and whether it is active.
-            </p>
-            <p class="section-subtext">
-              Turn on only what you have credentials and compliance for. Checkout and wallet top-ups will fail in production if the customer’s method points at a disabled or misconfigured gateway.
-            </p>
-            <figure class="doc-shot wide">
-              <img src="../assets/images/features/gateways.jpg" alt="Gateways" />
-              <figcaption>Active payment gateways and fees</figcaption>
-            </figure>
-            <h3>Configure for a market</h3>
-            <ol class="doc-steps">
-              <li>Open <strong>Gateways</strong> in admin.</li>
-              <li>Enable the methods you support; disable the rest.</li>
-              <li>Enter provider credentials / fees as your form requires (View on a row).</li>
-              <li>Verify a test checkout and a wallet top-up from the <a href="../wallet.html">customer wallet</a> docs path.</li>
-            </ol>
-          </section>
-        </section>
       </section>
     </main>
   </body>

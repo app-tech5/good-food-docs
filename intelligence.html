@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI intelligence — Customer app</title>
+    <meta http-equiv="refresh" content="0; url=./recommendations.html" />
+    <link rel="canonical" href="./recommendations.html" />
+    <title>AI intelligence</title>
     <link rel="stylesheet" href="./site.css" />
   </head>
   <body>
-    <script src="./js/sidebar-scroll.js"></script>
     <main class="layout">
       <aside class="sidebar" data-docs-sidebar>
         <a class="brand-link" href="./index.html" aria-label="Good Food Pro Docs home">
@@ -23,25 +24,37 @@
         <nav class="nav">
           <a href="./index.html">Overview</a>
           <a href="./getting-started.html">Getting Started</a>
-          <a href="./ordering.html">Ordering & discovery</a>
+          <a href="./discovery.html">Discovery</a>
+          <a href="./restaurant-page.html">Restaurant page</a>
+          <a href="./menu-cart.html">Menu & cart</a>
+          <a href="./checkout.html">Checkout & offers</a>
+          <a href="./order-history.html">Order history</a>
+          <a href="./order-tracking.html">Order tracking</a>
           <a href="./wallet.html">Wallet & payments</a>
           <a href="./subscriptions.html">Subscriptions</a>
-          <a class="active" href="./intelligence.html">AI intelligence</a>
-          <a href="./order-tracking.html">Order tracking</a>
+          <a href="./recommendations.html">Recommendations</a>
+          <a href="./smart-eta.html">Smart ETA</a>
+          <a href="./delivery-fee.html">Delivery fee</a>
         </nav>
         <p class="sidebar-label">Delivery app (driver)</p>
         <nav class="nav">
           <a href="./delivery-app/index.html">Overview</a>
           <a href="./delivery-app/getting-started.html">Getting Started</a>
-          <a href="./delivery-app/logistics.html">Logistics & POD</a>
-          <a href="./delivery-app/earnings.html">Earnings & payouts</a>
+          <a href="./delivery-app/deliveries.html">Deliveries</a>
+          <a href="./delivery-app/active-delivery.html">Active delivery</a>
+          <a href="./delivery-app/proof-of-delivery.html">Proof of delivery</a>
+          <a href="./delivery-app/earnings.html">Earnings</a>
+          <a href="./delivery-app/transactions-payouts.html">Transactions & payouts</a>
           <a href="./delivery-app/subscriptions.html">Subscriptions</a>
         </nav>
         <p class="sidebar-label">Restaurant app</p>
         <nav class="nav">
           <a href="./restaurant-app/index.html">Overview</a>
           <a href="./restaurant-app/getting-started.html">Getting Started</a>
-          <a href="./restaurant-app/operations.html">Orders & menu</a>
+          <a href="./restaurant-app/orders.html">Live orders</a>
+          <a href="./restaurant-app/menu.html">Menu</a>
+          <a href="./restaurant-app/hours.html">Hours & delivery</a>
+          <a href="./restaurant-app/analytics.html">Analytics</a>
           <a href="./restaurant-app/kitchen-display.html">Kitchen Display (KDS)</a>
           <a href="./restaurant-app/subscriptions.html">Subscriptions</a>
           <a href="./restaurant-app/sponsored.html">Sponsored listings</a>
@@ -50,12 +63,21 @@
         <nav class="nav">
           <a href="./admin-app/index.html">Overview</a>
           <a href="./admin-app/getting-started.html">Getting Started</a>
-          <a href="./admin-app/operations.html">Operations</a>
-          <a href="./admin-app/monetization.html">Monetization</a>
-          <a href="./admin-app/promotions.html">Promotions & coupons</a>
-          <a href="./admin-app/market.html">Market & languages</a>
+          <a href="./admin-app/orders.html">Orders</a>
+          <a href="./admin-app/partners.html">Partners</a>
+          <a href="./admin-app/catalog.html">Catalog</a>
+          <a href="./admin-app/earnings.html">Earnings</a>
+          <a href="./admin-app/subscriptions.html">Subscriptions</a>
+          <a href="./admin-app/gateways.html">Payment gateways</a>
+          <a href="./admin-app/promotions.html">Promotions</a>
+          <a href="./admin-app/coupons.html">Coupons</a>
+          <a href="./admin-app/languages.html">Languages</a>
+          <a href="./admin-app/currencies-taxes.html">Currencies & taxes</a>
+          <a href="./admin-app/app-settings.html">App settings</a>
           <a href="./admin-app/sponsored.html">Sponsored listings</a>
-          <a href="./admin-app/reports.html">Reports & analytics</a>
+          <a href="./admin-app/sales-reports.html">Sales reports</a>
+          <a href="./admin-app/partner-reports.html">Partner reports</a>
+          <a href="./admin-app/transactions.html">Transactions</a>
         </nav>
         <p class="sidebar-label">Backend (API)</p>
         <nav class="nav">
@@ -64,71 +86,10 @@
         </nav>
       </aside>
       <section class="content">
-        <header id="top" class="hero">
+        <header class="hero">
           <h1>AI intelligence</h1>
-          <p class="subtitle">
-            Three customer-facing helpers: personalized recommendations, smarter arrival times, and delivery fees that can rise when demand spikes.
-          </p>
-          <div class="meta-strip">
-            <span class="meta-pill">Recommendations</span>
-            <span class="meta-pill">Smart ETA</span>
-            <span class="meta-pill">Surge</span>
-          </div>
+          <p class="subtitle">This topic moved. <a href="./recommendations.html">Recommendations</a>.</p>
         </header>
-
-        <section class="overview">
-          <section class="section-block">
-            <h2>Recommendations that grow the basket</h2>
-            <p>
-              On restaurant and discovery surfaces, a <strong>Recommended for you</strong> block can suggest dishes that fit the customer’s history, time of day, and context such as weather. Each card shows a short reason line so the suggestion feels explained rather than random.
-            </p>
-            <p class="section-subtext">
-              The goal is a natural add-to-cart moment (sides, drinks, extras) that raises average order value without forcing a separate upsell screen.
-            </p>
-            <h3>What the customer sees</h3>
-            <p class="section-subtext">
-              A horizontal row of recommended items with title, price, and a short match reason. Tapping a card follows your normal product / add-to-cart path — same as browsing the menu, just smarter placement.
-            </p>
-            <figure class="doc-shot phone">
-              <img src="./assets/images/features/ai-reco.jpg" alt="Recommendations" />
-              <figcaption>Recommended for you with reason lines on the restaurant screen</figcaption>
-            </figure>
-          </section>
-          <section class="section-block">
-            <h2>Arrival times customers can trust</h2>
-            <p>
-              Smart ETA estimates how long food will take, using kitchen load and travel time where your backend intelligence stack is enabled. On the restaurant page the estimate appears as its own chip (for example “ETA 26–36 min”).
-            </p>
-            <p class="section-subtext">
-              Clearer arrivals reduce “where is my food?” support load and set expectations before the customer commits to checkout.
-            </p>
-            <h3>The ETA chip</h3>
-            <p class="section-subtext">
-              Look for the pink/clock ETA chip on restaurant detail. That chip is only about time — open/closed status and the delivery-fee chip are separate cues on the same header.
-            </p>
-            <figure class="doc-shot phone">
-              <img src="./assets/images/features/ai-eta.jpg" alt="ETA badge" />
-              <figcaption>ETA 26–36 min chip on restaurant detail</figcaption>
-            </figure>
-          </section>
-          <section class="section-block">
-            <h2>Delivery fee when the city is busy</h2>
-            <p>
-              When demand is high and courier capacity is tight, the delivery-fee chip can show a surge multiplier (for example “Surge 1.45x”). Quiet periods keep a standard fee; peaks stay explicit so the customer understands the cost before paying.
-            </p>
-            <p class="section-subtext">
-              Fee / surge is a marketplace lever for reliability — separate from the ETA chip, which only answers “how long?”.
-            </p>
-            <h3>The fee / surge chip</h3>
-            <p class="section-subtext">
-              On restaurant detail, read the fee chip for what delivery costs now. Surge replaces the standard fee when your rules say demand is elevated; if you only see “Standard fee”, that hour is quiet.
-            </p>
-            <figure class="doc-shot phone">
-              <img src="./assets/images/features/ai-surge.jpg" alt="Fee / surge" />
-              <figcaption>Surge (or standard) fee chip on restaurant detail</figcaption>
-            </figure>
-          </section>
-        </section>
       </section>
     </main>
   </body>
