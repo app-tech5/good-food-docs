@@ -86,6 +86,22 @@ Also verify language switching and currency formatting after you change market s
 | Orders never arrive | Customer pointed at same API; restaurant user tied to the correct restaurant document |
 | KDS empty | Accept an order, or rely on KDS demo seed from migrations |
 
+
+## Stack & where things live (for launch)
+
+The restaurant app is **React Native + Expo**. Use **live** mode against your API for real orders (`npm run start:live` / equivalent in the package scripts).
+
+| You want to… | Look here |
+|--------------|-----------|
+| Point at your API | Root `config.js` / `.env` → API base URL |
+| Demo vs live behaviour | Package scripts and demo flags (turn demo off before production) |
+| Accept / reject orders | Orders screens under `screens/` |
+| Menu edits | Menu screens + item form |
+| Kitchen Display | KDS screen in navigation / drawer |
+| Sponsored + subscriptions | Partner monetization screens in the drawer |
+
+Staff accounts must be tied to the correct **restaurant** document on the API. See also [03-kitchen-display.md](./03-kitchen-display.md) and [01-monetization.md](./01-monetization.md).
+
 ## Next
 
 - [00-launch-suite.md](./00-launch-suite.md) for the full order → deliver path

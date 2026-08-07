@@ -68,240 +68,69 @@
         <header id="top" class="hero">
           <h1>Backend API</h1>
           <p class="subtitle">
-            The Node.js API and database layer every client talks to: auth, catalog, orders, drivers, settings, uploads, and more.
-          </p>
-          <p class="intro-line">
-            This overview is for non-technical readers (buyers, PMs) and engineers alike: what the backend does, how it connects to mobile and web apps,
-            and why it must run before you test any front-end.
+            The shared brain of the suite — one place for accounts, menus, orders, money rules, and live status so every app tells the same story.
           </p>
           <div class="meta-strip">
-            <span class="meta-pill">Express.js + MongoDB</span>
-            <span class="meta-pill">REST under /api</span>
-            <span class="meta-pill">Socket.io ready</span>
+            <span class="meta-pill">Self-hosted</span>
+            <span class="meta-pill">One API for all apps</span>
+            <span class="meta-pill">Start this first</span>
           </div>
         </header>
 
         <section class="overview">
           <section class="section-block">
-            <h2>Overview (Presentation)</h2>
+            <h2>Who this product is for</h2>
             <p>
-              <strong>my-backend</strong> is the reference <strong>server</strong> for the suite — the single source of truth that powers
-              customer, restaurant, driver, and admin apps over REST (and real-time channels) with users, menus, orders, and configuration in
-              <strong>MongoDB</strong>.
+              Teams who own the marketplace end-to-end. You host the API (laptop, VPS, or cloud), keep the data,
+              and decide how orders, wallets, and partners behave — instead of renting a black-box backend you cannot extend.
             </p>
             <p class="section-subtext">
-              You host it yourself (laptop, VPS, or cloud) and own the full stack. Mobile apps and the admin dashboard point to the same base URL
-              (for example <code>http://YOUR_IP:5000/api</code>).
+              Buyers and PMs can read this page for the role of the API. Engineers follow Getting Started and the source markdown
+              for env files, migrations, and boot order.
             </p>
-            <p class="section-subtext">
-              In practice, this API is where business rules live: who can see what, how order state changes propagate, how payouts are tracked, and how localized settings are delivered to each app.
-              Front-ends stay focused on user experience because the backend carries the operational logic.
-            </p>
-            <div class="compare-note">
-              <p class="compare-title">Start the API before the apps</p>
-              <p style="margin: 0; color: #334155; font-size: 15px; max-width: none;">
-                If the backend is stopped, every client shows errors, empty lists, or failed login—even when the front-end install is perfect.
-                For local work, run <code>npm run dev</code> (or <code>npm start</code>) in <code>my-backend</code> first, then launch Expo or the admin site.
-              </p>
-            </div>
-            <a class="product-link" href="../index.html">Customer app — Overview</a>
-            <a class="product-link" href="../admin-app/index.html" style="margin-left: 8px;">Admin app — Overview</a>
           </section>
 
           <section class="section-block">
-            <h2>What the API provides</h2>
+            <h2>Why every other app depends on it</h2>
             <p>
-              In plain terms: <strong>accounts and roles</strong> (customer, restaurant staff, driver, admin), <strong>catalog</strong> (restaurants, categories, products, menus),
-              <strong>cart and checkout flows</strong>, <strong>orders</strong> and related updates, <strong>drivers</strong>, <strong>reviews</strong>, <strong>settings and languages</strong>,
-              <strong>file uploads</strong> for images, and <strong>generic CRUD</strong> routes used heavily by the admin dashboard.
+              Customer, driver, restaurant, and admin are faces. The backend is the memory and the rules:
             </p>
-            <p class="section-subtext">
-              Beyond catalog and orders, the same API powers monetization (subscriptions, sponsored placement, wallets, gateways),
-              market options (languages, channels), kitchen ops, live logistics, and smart recommendations —
-              so every app in the suite shares one brain. Explore
-              <a href="../admin-app/monetization.html">Monetization</a>,
-              <a href="../admin-app/market.html">Market adaptability</a>,
-              <a href="../intelligence.html">AI intelligence</a>, and
-              <a href="../delivery-app/logistics.html">Logistics &amp; POD</a>.
-            </p>
-            <p class="section-subtext">
-              Sign-in is secure; each role only sees what it is allowed to manage. The admin dashboard and mobile apps all talk to this one service.
-            </p>
-          </section>
-
-          <section class="section-block">
-            <h2>Main Function</h2>
-            <p class="highlight">
-              Be the single source of truth for data and permissions: every app reads and writes through the same REST surface and database.
-            </p>
-            <p class="section-subtext">
-              The process is standard for a food platform: sign in → receive a token → call endpoints with that identity → server validates role and returns or updates documents in MongoDB.
-            </p>
-          </section>
-
-          <section class="section-block">
-            <h2>Supported Platforms</h2>
             <ul>
-              <li>Node.js (LTS recommended)</li>
-              <li>MongoDB (local or Atlas)</li>
+              <li><strong>Identity</strong> — who is a customer, restaurant, driver, or admin</li>
+              <li><strong>Catalog &amp; cart</strong> — what can be sold and how checkout settles</li>
+              <li><strong>Order lifecycle</strong> — kitchen → courier → delivered, visible everywhere</li>
+              <li><strong>Money &amp; market</strong> — plans, sponsorship, gateways, languages, taxes, fees</li>
             </ul>
             <p class="section-subtext">
-              Default HTTP port is <strong>5000</strong> when <code>PORT</code> is unset. Match that (or your chosen port) in every client’s API base URL.
+              If the API is down, every polished front-end looks broken. Boot the server first, then open Expo or the admin site.
             </p>
           </section>
 
           <section class="section-block">
-            <h2>Tech Stack</h2>
-            <div class="stack-wrap">
-              <div class="chip">Node.js</div>
-              <div class="chip">Express.js</div>
-              <div class="chip">MongoDB</div>
-              <div class="chip">Mongoose</div>
-              <div class="chip">JWT</div>
-              <div class="chip">Socket.io</div>
-              <div class="chip">Multer</div>
-              <div class="chip">i18n</div>
-              <div class="chip">migrate-mongo</div>
-            </div>
-            <p class="section-subtext">
-              Migrations initialise and evolve collections; Vitest and in-memory Mongo support automated tests. See the repository README for the full feature list and deployment notes.
-            </p>
-          </section>
-
-          <section id="project-structure" class="section-block">
-            <h2>Project Structure</h2>
-            <p class="section-subtext">
-              Well-organized Express service following standard conventions. Key directories are highlighted below.
-            </p>
-
-            <div class="project-structure">
-              <div class="tree-container">
-                <div class="tree-title">
-                  <span class="icon">📁</span>
-                  my-backend/
-                </div>
-                <ul class="tree">
-                  <li>
-                    <div class="node file"><span class="icon">📄</span> package.json <span style="font-size:10px; color:#94a3b8;">(scripts: start, dev, migrate, test:db)</span></div>
-                  </li>
-                  <li>
-                    <div class="node file"><span class="icon">📄</span> migrate-mongo-config.js <span style="font-size:10px; color:#94a3b8;">(migrate-mongo)</span></div>
-                  </li>
-                  <li>
-                    <div class="node file"><span class="icon">📄</span> postman_collection.json <span style="font-size:10px; color:#94a3b8;">(API collection)</span></div>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> migrations/ <span style="font-size:10px; color:#94a3b8;">(migrate-mongo scripts)</span></div>
-                    <ul>
-                      <li><div class="node file"><span class="icon">📄</span> 02-create-language-schema.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> 03-create-settings-schema.js …</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> 09-create-demo-user.js</div></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> scripts/ <span style="font-size:10px; color:#94a3b8;">(2 utility scripts)</span></div>
-                    <ul>
-                      <li><div class="node file"><span class="icon">📄</span> test-db-connection.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> cleanup.js</div></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> __tests__/ <span style="font-size:10px; color:#94a3b8;">(Vitest)</span></div>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> src/</div>
-                    <ul>
-                      <li><div class="node file"><span class="icon">📄</span> server.js <span style="font-size:10px; color:#94a3b8;">(entry point)</span></div></li>
-                      <li>
-                        <div class="node folder"><span class="icon">📁</span> config/ <span style="font-size:10px; color:#94a3b8;">(2 files)</span></div>
-                        <ul>
-                          <li><div class="node file"><span class="icon">📄</span> db.js</div></li>
-                          <li><div class="node file"><span class="icon">📄</span> i18n.js</div></li>
-                        </ul>
-                      </li>
-                      <li>
-                        <div class="node folder"><span class="icon">📁</span> routes/ <span style="font-size:10px; color:#94a3b8;">(16 route modules)</span></div>
-                        <ul>
-                          <li><div class="node file"><span class="icon">📄</span> authRoutes.js</div></li>
-                          <li><div class="node file"><span class="icon">📄</span> userRoutes.js</div></li>
-                          <li><div class="node file"><span class="icon">📄</span> restaurantRoutes.js</div></li>
-                          <li><div class="node file"><span class="icon">📄</span> orderRoutes.js</div></li>
-                          <li><div class="node file"><span class="icon">📄</span> cartRoutes.js</div></li>
-                        </ul>
-                      </li>
-                      <li>
-                        <div class="node folder"><span class="icon">📁</span> models/ <span style="font-size:10px; color:#94a3b8;">(30+ Mongoose schemas)</span></div>
-                        <ul>
-                          <li><div class="node file"><span class="icon">📄</span> User.js</div></li>
-                          <li><div class="node file"><span class="icon">📄</span> Restaurant.js</div></li>
-                          <li><div class="node file"><span class="icon">📄</span> Order.js</div></li>
-                          <li><div class="node file"><span class="icon">📄</span> Product.js</div></li>
-                          <li><div class="node file"><span class="icon">📄</span> Driver.js …</div></li>
-                        </ul>
-                      </li>
-                      <li>
-                        <div class="node folder"><span class="icon">📁</span> controllers/ <span style="font-size:10px; color:#94a3b8;">(9 controllers)</span></div>
-                        <ul>
-                          <li><div class="node file"><span class="icon">📄</span> baseController.js</div></li>
-                          <li><div class="node file"><span class="icon">📄</span> genericController.js</div></li>
-                          <li><div class="node file"><span class="icon">📄</span> cartController.js …</div></li>
-                        </ul>
-                      </li>
-                      <li>
-                        <div class="node folder"><span class="icon">📁</span> middleware/ <span style="font-size:10px; color:#94a3b8;">(3 middleware files)</span></div>
-                        <ul>
-                          <li><div class="node file"><span class="icon">📄</span> authMiddleware.js</div></li>
-                          <li><div class="node file"><span class="icon">📄</span> roleMiddleware.js</div></li>
-                          <li><div class="node file"><span class="icon">📄</span> responseHandler.js</div></li>
-                        </ul>
-                      </li>
-                      <li>
-                        <div class="node folder"><span class="icon">📁</span> utils/ <span style="font-size:10px; color:#94a3b8;">(9 helper modules)</span></div>
-                        <ul>
-                          <li><div class="node file"><span class="icon">📄</span> loadModels.js</div></li>
-                          <li><div class="node file"><span class="icon">📄</span> populateFields.js …</div></li>
-                        </ul>
-                      </li>
-                      <li>
-                        <div class="node folder"><span class="icon">📁</span> locales/ <span style="font-size:10px; color:#94a3b8;">(i18n EN/FR/ES/AR)</span></div>
-                        <ul>
-                          <li><div class="node file"><span class="icon">📄</span> en.json</div></li>
-                          <li><div class="node file"><span class="icon">📄</span> fr.json</div></li>
-                        </ul>
-                      </li>
-                      <li>
-                        <div class="node folder"><span class="icon">📁</span> entity/ <span style="font-size:10px; color:#94a3b8;">(entity configs)</span></div>
-                        <ul>
-                          <li><div class="node file"><span class="icon">📄</span> User.js</div></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-              <div class="tree-path">
-                Full structure available in README.md • 90+ files • Clean separation of routes, models, and controllers
-              </div>
-            </div>
-          </section>
-
-          <section class="section-block">
-            <h2>Current Version</h2>
-            <p><strong>1.0.0</strong></p>
-            <p class="section-subtext">
-              Version from <code>my-backend/package.json</code>; align your deployment and changelog with your own release process.
-            </p>
-          </section>
-
-          <section class="section-block">
-            <h2>What you need next</h2>
+            <h2>What it unlocks in the product docs</h2>
             <p>
-              Install Node.js and MongoDB, configure <code>.env</code>, run migrations, then start the server—step by step on
-              <a href="./getting-started.html">Getting Started</a>.
+              Feature pages for monetization, market setup, intelligence, logistics, and kitchen display all assume this API is running
+              and seeded. Use those pages to understand <em>what operators and end users see</em>; use Getting Started (and source markdown)
+              to understand <em>how to turn the service on</em>.
+            </p>
+            <ul>
+              <li><a href="../admin-app/monetization.html">Monetization</a></li>
+              <li><a href="../admin-app/market.html">Market &amp; languages</a></li>
+              <li><a href="../intelligence.html">AI intelligence</a></li>
+              <li><a href="../delivery-app/logistics.html">Logistics &amp; POD</a></li>
+              <li><a href="../restaurant-app/kitchen-display.html">Kitchen Display</a></li>
+            </ul>
+          </section>
+
+          <section class="section-block">
+            <h2>Read next</h2>
+            <p>
+              Step-by-step for this product: <a href="./getting-started.html">Getting Started</a>.
+              Shared reachability notes: <a href="../environment-setup.html">Environment setup</a>.
             </p>
             <p class="section-subtext">
-              Cross-cutting setup (Node install paths, CORS ideas, reachability from phones) is also on
-              <a href="../environment-setup.html">Environment setup</a>.
+              In the CodeCanyon source pack, the markdown guides go deeper on Mongo, migrations, `.env` keys, and the full-suite smoke test —
+              that is where stack details and “where to look while configuring” live, not on this overview.
             </p>
           </section>
         </section>

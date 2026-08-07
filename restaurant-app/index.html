@@ -68,261 +68,68 @@
         <header id="top" class="hero">
           <h1>Restaurant app</h1>
           <p class="subtitle">
-            The mobile workspace for restaurant teams: handle incoming orders, keep menu availability accurate, and stay aligned during service without jumping between tools.
-          </p>
-          <p class="intro-line">
-            This overview is written for non-technical readers (owners, managers, buyers) as well as developers.
-            You will understand what the app is for, how it behaves for staff, and how it connects to the same backend as the customer and driver apps.
+            The partner workspace for service — accept tickets, keep the menu honest, run the pass, and grow visibility without a second toolkit.
           </p>
           <div class="meta-strip">
-            <span class="meta-pill">Easy to launch</span>
-            <span class="meta-pill">Android &amp; iOS ready</span>
-            <span class="meta-pill">Self-hosted REST API</span>
+            <span class="meta-pill">Android &amp; iOS</span>
+            <span class="meta-pill">Service ops</span>
+            <span class="meta-pill">Kitchen Display</span>
           </div>
         </header>
 
         <section class="overview">
           <section class="section-block">
-            <h2>Overview (Presentation)</h2>
+            <h2>Who this app is for</h2>
             <p>
-              The <strong>restaurant app</strong> is the operations companion in the suite. While the
-              <strong>customer app</strong> is where people place orders, the restaurant app is where your team
-              <strong>receives</strong> those orders, prepares them, and keeps the <strong>menu</strong> accurate.
+              Owners, shift managers, and kitchen staff. They need to know what just came in, what is burning,
+              and whether the catalog customers see still matches what the kitchen can cook.
             </p>
             <p class="section-subtext">
-              Like the rest of the stack, it talks to <strong>your</strong> REST API and database.
-              You host the backend; the app only displays and updates what the server authorizes for a signed-in restaurant account.
+              It is not a consumer storefront — it is the operational twin of the customer app for each restaurant on your marketplace.
             </p>
-            <p class="section-subtext">
-              API URL, branding, and behaviour stay fully under your control — ready to white-label for your market.
-            </p>
-            <p class="section-subtext">
-              Beyond classic order intake, the restaurant app includes
-              <a href="./operations.html">Orders &amp; menu</a>,
-              a <a href="./kitchen-display.html">Kitchen Display (KDS)</a>,
-              <a href="./subscriptions.html">Subscriptions</a> for SaaS tiers,
-              and <a href="./sponsored.html">Sponsored Listings</a> so partners can buy paid placement in the customer app.
-            </p>
-            <div class="shot-grid phones">
-              <div class="shot phone">
-                <img src="../assets/images/apps/restaurant-dash.jpg" alt="Restaurant app dashboard" />
-                <p>Dashboard — live operations</p>
-              </div>
-              <div class="shot phone">
-                <img src="../assets/images/apps/restaurant-menu.jpg" alt="Restaurant menu management" />
-                <p>Menu — keep the catalog accurate</p>
-              </div>
-              <div class="shot phone">
-                <img src="../assets/images/apps/restaurant-analytics.jpg" alt="Restaurant analytics" />
-                <p>Analytics — how the service performs</p>
-              </div>
-            </div>
-            <p class="section-subtext" style="margin-top: 14px;">
-              Partners also get <a href="./operations.html">Orders &amp; menu</a>,
-              a dedicated <a href="./kitchen-display.html">Kitchen Display</a>,
-              plus <a href="./subscriptions.html">subscriptions</a> and
-              <a href="./sponsored.html">sponsored listings</a> in the same app.
-            </p>
-            <div class="compare-note">
-              <p class="compare-title">Same backend as customer and driver</p>
-              <p style="margin: 0; color: #334155; font-size: 15px; max-width: none;">
-                Orders created on the customer app appear here when your API routes them to the right restaurant.
-                Status changes you make here are what customers and drivers see next—one coherent pipeline, three tailored apps.
-              </p>
-            </div>
-            <a class="product-link" href="../index.html">Customer app — Overview</a>
-            <a class="product-link" href="../delivery-app/index.html" style="margin-left: 8px;">Driver app — Overview</a>
           </section>
 
           <section class="section-block">
-            <h2>Restaurant App Presentation</h2>
+            <h2>Where it sits in the suite</h2>
             <p>
-              The interface is meant for <strong>busy teams</strong>: large touch targets, clear statuses, and flows that match
-              real service (new order → preparing → ready → handed off). You do not need to be a developer to use it day to day.
+              When a diner places an order, this app is the first human gate:
             </p>
-            <p class="section-subtext">
-              Typical tasks: review the live order list, mark steps as done, adjust items or availability on the menu, glance at
-              sales or activity, read feedback, and change preferences (notifications, language, and similar options).
-            </p>
-
-            <p class="section-subtext">
-              A <strong>demo mode</strong> is available for presentations: it can preload sample login details so stakeholders
-              can explore without touching production data. Turn it off before going live.
-            </p>
-          </section>
-
-          <section class="section-block">
-            <h2>Main Function</h2>
-            <p class="highlight">
-              Give restaurant staff one reliable mobile hub: stay on top of incoming orders, keep the menu truthful, and see
-              whether service is running smoothly—all synced through your API.
-            </p>
-
-            <p class="section-subtext">
-              After sign in, users land in a guided structure (dashboard, orders, menu, analytics, reports, and more) similar to
-              how other modern ops apps work: a main menu, then detail screens for each task.
-            </p>
-            <p class="section-subtext">
-              The app is designed to stay responsive: data can refresh in the background so lists do not freeze while the kitchen is in a rush.
-            </p>
-          </section>
-
-          <section class="section-block">
-            <h2>Supported Platforms</h2>
             <ul>
-              <li>Android</li>
-              <li>iOS</li>
+              <li><strong>Accept or reject</strong> — the kitchen commits (or declines) before a courier is wasted</li>
+              <li><strong>Kitchen Display</strong> — the same order as tickets on the pass</li>
+              <li><strong>Driver app</strong> — picks up when food is ready</li>
+              <li><strong>Admin</strong> — commissions, sponsorship, and support if something goes wrong</li>
             </ul>
             <p class="section-subtext">
-              One shared React Native / Expo codebase serves both stores, so updates and fixes roll out consistently.
-            </p>
-            <p class="section-subtext">
-              Package identity in the project is aligned under the restaurant bundle name for both platforms (see app metadata in the repository if you publish to stores).
+              Menu edits, hours, and analytics stay with the partner so you are not the bottleneck for every price change.
+              Subscriptions and sponsored listings let restaurants invest in better economics and placement inside the customer feed.
             </p>
           </section>
 
           <section class="section-block">
-            <h2>Tech Stack</h2>
-            <div class="stack-wrap">
-              <div class="chip">JavaScript</div>
-              <div class="chip">React Native</div>
-              <div class="chip">Expo</div>
-              <div class="chip">React Navigation</div>
-              <div class="chip">i18n (EN/FR/ES/AR)</div>
-              <div class="chip">REST API</div>
-            </div>
-            <p class="section-subtext">
-              Technically, this is a standard React Native + Expo client: screens, reusable UI pieces, and hooks that call your HTTP API.
-              Business rules and persistent data stay on the server; the phone is the control surface.
-            </p>
-            <p class="section-subtext">
-              To point the app at your environment, you set the API base URL and related options in a single configuration file at the
-              <strong>root of the restaurant project</strong> (see <a href="./getting-started.html">Getting Started</a>).
-            </p>
-          </section>
-
-          <section id="project-structure" class="section-block">
-            <h2>Project Structure</h2>
-            <p class="section-subtext">
-              Well-organized React Native codebase following standard conventions. Key directories and files are highlighted below.
-            </p>
-
-            <div class="project-structure">
-              <div class="tree-container">
-                <div class="tree-title">
-                  <span class="icon">📁</span>
-                  restaurant-app/
-                </div>
-                <ul class="tree">
-                  <li>
-                    <div class="node file"><span class="icon">📄</span> App.js <span style="font-size:10px; color:#94a3b8;">(entry point)</span></div>
-                  </li>
-                  <li>
-                    <div class="node file"><span class="icon">📄</span> api.js <span style="font-size:10px; color:#94a3b8;">(REST client &amp; endpoints)</span></div>
-                  </li>
-                  <li>
-                    <div class="node file"><span class="icon">📄</span> config.js <span style="font-size:10px; color:#94a3b8;">(API URL, demo, feature flags)</span></div>
-                  </li>
-                  <li>
-                    <div class="node file"><span class="icon">📄</span> i18n.js <span style="font-size:10px; color:#94a3b8;">(localization bootstrap)</span></div>
-                  </li>
-                  <li>
-                    <div class="node file"><span class="icon">📄</span> global.js <span style="font-size:10px; color:#94a3b8;">(theme, shared styles)</span></div>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> navigation/ <span style="font-size:10px; color:#94a3b8;">(drawer &amp; stack navigators)</span></div>
-                    <ul>
-                      <li><div class="node file"><span class="icon">📄</span> AppNavigator.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> DrawerNavigator.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> OrdersStackNavigator.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> MenuStackNavigator.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> ReportsStackNavigator.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> ReviewsStackNavigator.js</div></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> screens/ <span style="font-size:10px; color:#94a3b8;">(19+ screens)</span></div>
-                    <ul>
-                      <li><div class="node file"><span class="icon">📄</span> SplashScreen.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> LoginScreen.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> DashboardScreen.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> OrdersScreen.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> OrderDetailsScreen.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> MenuScreen.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> AddEditMenuItemScreen.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> AnalyticsScreen.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> ReportsScreen.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> SettingsScreen.js</div></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> components/ <span style="font-size:10px; color:#94a3b8;">(30+ reusable UI components)</span></div>
-                    <ul>
-                      <li><div class="node file"><span class="icon">📄</span> ScreenHeader.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> OrderCard.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> OrderFilters.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> AnalyticsGrid.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> ReportCharts.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> MenuItemCard.js</div></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> hooks/ <span style="font-size:10px; color:#94a3b8;">(data &amp; UI logic)</span></div>
-                    <ul>
-                      <li><div class="node file"><span class="icon">📄</span> useRestaurantAuth.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> useRestaurantOrders.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> useRestaurantMenu.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> useOrderFilters.js</div></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> contexts/</div>
-                    <ul>
-                      <li><div class="node file"><span class="icon">📄</span> RestaurantContext.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> SettingContext.js</div></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> utils/ <span style="font-size:10px; color:#94a3b8;">(cache, currency, orders…)</span></div>
-                    <ul>
-                      <li><div class="node file"><span class="icon">📄</span> cacheUtils.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> currencyUtils.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> orderUtils.js</div></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> lang/ <span style="font-size:10px; color:#94a3b8;">(i18n EN/FR/ES/AR)</span></div>
-                    <ul>
-                      <li><div class="node file"><span class="icon">📄</span> en.json</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> fr.json</div></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-              <div class="tree-path">
-                Full structure available in README.md • 100+ files • Clean separation of concerns
-              </div>
-            </div>
-          </section>
-
-          <section class="section-block">
-            <h2>Current Version</h2>
-            <p><strong>1.0.0</strong></p>
-            <p class="section-subtext">
-              Baseline version shipped with the suite; bump the version in project metadata when you publish your own releases.
-            </p>
-          </section>
-
-          <section class="section-block">
-            <h2>What you need to run the app</h2>
+            <h2>What “good” looks like during service</h2>
             <p>
-              Node.js, Expo, simulators, API URLs, maps keys, and languages are explained once for the whole suite on
-              <a href="../environment-setup.html">Environment setup</a>.
+              New tickets are impossible to miss, the board advances New → Preparing → Ready without paper slips,
+              86’d items disappear from the customer menu, and owners can see bestsellers after a few real days — not empty charts on day one.
             </p>
             <p class="section-subtext">
-              For this app: clone <code>restaurant-app</code>, install dependencies, connect your API, use a
-              <strong>restaurant</strong> account from your backend, then follow
-              <a href="./getting-started.html">Getting Started</a>.
+              Detailed screens for orders, menu, hours, analytics, KDS, subscriptions, and sponsored campaigns live on the feature pages —
+              this overview explains the partner role, not a second gallery of those captures.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Read next</h2>
+            <ul>
+              <li><a href="./operations.html">Orders &amp; menu</a> — accept/reject, catalog, hours, analytics</li>
+              <li><a href="./kitchen-display.html">Kitchen Display (KDS)</a> — paperless tickets</li>
+              <li><a href="./subscriptions.html">Subscriptions</a> — restaurant tiers</li>
+              <li><a href="./sponsored.html">Sponsored listings</a> — paid placement from the partner app</li>
+            </ul>
+            <p class="section-subtext">
+              To run locally: <a href="./getting-started.html">Getting Started</a>
+              (shared tooling: <a href="../environment-setup.html">Environment setup</a>).
+              Source markdown covers live vs demo mode, first accept, and KDS smoke tests.
             </p>
           </section>
         </section>

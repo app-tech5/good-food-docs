@@ -130,6 +130,25 @@ If you set `PORT=6000`, update **every** client:
 - Rotate `JWT_SECRET` and Stripe keys for production.
 - Restrict `CORS_ORIGINS` to real admin (and any web) origins — not `*`.
 
+
+## Stack & where things live (for launch)
+
+The API is **Node.js + Express** with **MongoDB** (Mongoose), JWT auth, file uploads, i18n, and **migrate-mongo** for schema/seed evolution. Real-time channels (for example live tracking) are available when enabled in your deploy.
+
+| You want to… | Look here |
+|--------------|-----------|
+| Install & run | `npm install`, then `npm run migrate:up`, then `npm start` / `npm run dev` |
+| Secrets & DB | `.env` from `.env.example` (`MONGO_URI`, `JWT_SECRET`, `PORT`, `CORS_ORIGINS`, …) |
+| Evolve data | `migrations/` + `migrate-mongo-config.js` |
+| HTTP entry | `src/server.js` mounts routes under `/api` |
+| Auth / roles | Auth middleware + role checks on routes |
+| Manual API exploration | `postman_collection.json` when present |
+| Connectivity check | `npm run test:db` (if scripted in `package.json`) |
+
+Default HTTP port is **5000** when `PORT` is unset — every mobile/admin client must use the same host:port (and `/api` where required).
+
+Version baseline is typically `1.0.0` in `package.json`.
+
 ## Next steps
 
 - [Launch the whole suite](./00-launch-suite.md) for boot order and smoke test.

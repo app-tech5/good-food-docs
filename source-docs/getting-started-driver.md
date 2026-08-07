@@ -88,6 +88,22 @@ This single path exercises logistics assignment, live tracking, and POD — the 
 
 Drivers may see a **Subscriptions** screen for courier tiers (access / support style benefits). Configure plans in admin first — [01-monetization.md](./01-monetization.md).
 
+
+## Stack & where things live (for launch)
+
+The driver app is **React Native + Expo**, same family as the customer and restaurant apps. Configuration sits at the **project root** (not under a nested `config/` folder in every build — check `config.js` / `.env` as shipped).
+
+| You want to… | Look here |
+|--------------|-----------|
+| Point at your API | Root config / `.env` → API base URL ending in `/api` |
+| Demo login shortcuts | Demo flags in the same config / `.env` |
+| Maps & location | Maps key + OS location permission prompts |
+| Day-to-day courier screens | `screens/` (home, deliveries, details, earnings, …) |
+| POD UI (photo / signature) | Components used from the complete-delivery flow |
+| Translations | `lang/` + `i18n.js` |
+
+Login requires a **driver** account on the API (a pure customer user will be rejected). Version baseline is usually `1.0.0` in `package.json`.
+
 ## Next
 
 - Suite boot order & checklist: [00-launch-suite.md](./00-launch-suite.md)

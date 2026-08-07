@@ -103,6 +103,24 @@ If auth fails with a reachable API, re-check migrations and that the user role i
 - Open **Subscriptions** / wallet screens if you are following the [monetization guide](./01-monetization.md).
 - Switch language in Settings (EN / FR / ES / AR) — see [market adaptability](./02-market-adaptability.md).
 
+
+## Stack & where things live (for launch)
+
+The customer app is **React Native + Expo** (Android & iOS from one codebase). It talks to your HTTP API; it does not store the marketplace database on the phone.
+
+| You want to… | Look here |
+|--------------|-----------|
+| Point the app at your API | `.env` → `EXPO_PUBLIC_API_URL` (restart Metro after changes) |
+| Demo login helpers | `.env` → `EXPO_PUBLIC_DEMO_*` |
+| Stripe / maps publishable keys | `.env` → `EXPO_PUBLIC_STRIPE_*`, `EXPO_PUBLIC_MAPTILER_*` |
+| Change copy / languages | `lang/` (EN / FR / ES / AR) |
+| Find a screen while debugging UX | `screens/` (Home, cart, tracking, wallet, …) |
+| Follow an API call | `api/` (auth, restaurants, orders, …) |
+
+You do **not** need a full source-tree map to launch. Configure `.env`, start the API, then `npm run android` / `npm run ios` as above.
+
+**Baseline version** in `package.json` is typically `1.0.0` — bump it when you ship your own builds.
+
 ## Next
 
 - Full suite smoke test: [00-launch-suite.md](./00-launch-suite.md)

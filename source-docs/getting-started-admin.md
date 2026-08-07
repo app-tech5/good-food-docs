@@ -78,6 +78,22 @@ Languages, currency, channels: [02-market-adaptability.md](./02-market-adaptabil
 
 Browser tab title and PWA labels live under `public/` (`index.html`, `manifest.json`). Logo assets follow the project’s public logo path. Full branding notes: [environment-config.md](./environment-config.md).
 
+
+## Stack & where things live (for launch)
+
+The admin app is a **React** web dashboard (Create React App–style). Deploy the built static assets to any static host; day-to-day work is desktop-first (wide tables).
+
+| You want to… | Look here |
+|--------------|-----------|
+| Point at your API | `.env` → `REACT_APP_API_URL` / `REACT_APP_SERVER_URL` (exact names in `.env.example`) |
+| Sign-in & roles | Login page; use an **admin**-capable account from migrations / seed |
+| List / create / edit entities | Sidebar modules (orders, restaurants, users, drivers, settings, …) |
+| Forms & tables | Shared list / detail / new patterns under `src/pages/` |
+| Branding (tab title, icons) | `public/` (`index.html`, `manifest.json`, logos) |
+| Languages in the UI | `src/locales/` |
+
+Package version may read `0.1.0` / `1.0.0` depending on the pack — bump it when you publish your own release.
+
 ## Next
 
 - [00-launch-suite.md](./00-launch-suite.md) — end-to-end smoke test  

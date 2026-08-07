@@ -68,232 +68,70 @@
         <header id="top" class="hero">
           <h1>Customer app</h1>
           <p class="subtitle">
-            The mobile storefront of your food marketplace — from “I’m hungry” to a tracked delivery,
-            with wallet, memberships, and smart suggestions that make the next order feel inevitable.
-          </p>
-          <p class="intro-line">
-            This overview is for buyers and teams who want to feel the product before they open a terminal:
-            what customers do, what the screens look like, and how this app sits next to driver, restaurant, admin, and your API.
+            The storefront of your marketplace — where hungry people become paying orders, then come back because the next meal feels easy.
           </p>
           <div class="meta-strip">
-            <span class="meta-pill">Easy to launch</span>
             <span class="meta-pill">Android &amp; iOS</span>
-            <span class="meta-pill">Self-hosted API</span>
+            <span class="meta-pill">Multi-restaurant</span>
+            <span class="meta-pill">End-to-end order</span>
           </div>
         </header>
 
         <section class="overview">
           <section class="section-block">
-            <h2>A storefront people actually enjoy</h2>
+            <h2>Who this app is for</h2>
             <p>
-              The <strong>customer app</strong> is where your brand meets the street. People browse nearby restaurants,
-              open rich menus, fill a cart, pay, and follow the order until it arrives — without needing a tutorial.
-              Everything important lives on <strong>your</strong> server: accounts, menus, orders, and payments talk to the shared REST API you host.
+              Diners in your city. They are not here to learn a “platform” — they want food tonight, a fair price, and a clear idea of when the bag arrives.
+              The customer app is that experience: discovery, cart, payment, and peace of mind after checkout.
             </p>
             <p class="section-subtext">
-              It is one piece of a five-product suite (customer, driver, restaurant, admin, and MongoDB-backed API).
-              Point the app at your API base URL and the same data powers every role — so a status change in the kitchen
-              can show up for the customer and the driver without juggling three databases.
+              If you are evaluating the suite as a buyer or agency, start here: this is the surface your end customers will judge in the first thirty seconds.
             </p>
-            <div class="shot-grid phones">
-              <div class="shot phone">
-                <img src="./assets/images/apps/customer-home.jpg" alt="Customer home: delivery/pickup, search, categories, special offers" />
-                <p>Home — discover places and offers</p>
-              </div>
-              <div class="shot phone">
-                <img src="./assets/images/apps/customer-menu.jpg" alt="Restaurant menu in customer app" />
-                <p>Menu — browse and add items</p>
-              </div>
-              <div class="shot phone">
-                <img src="./assets/images/apps/customer-checkout.jpg" alt="Checkout screen" />
-                <p>Checkout — pay and confirm</p>
-              </div>
-            </div>
-            <div class="compare-note">
-              <p class="compare-title">Your API, your data</p>
-              <p style="margin: 0; color: #334155; font-size: 15px; max-width: none;">
-                Auth and business data go through the suite’s REST API and MongoDB. You run them (laptop, VPS, or cloud),
-                set the app’s API base URL, and grow the backend like any Node.js service.
-              </p>
-            </div>
           </section>
 
           <section class="section-block">
-            <h2>More than a menu browser</h2>
+            <h2>Where it sits in the suite</h2>
             <p>
-              Everyday ordering is the core: sign in, find food, customize items, checkout, track. Around that journey sit the features
-              operators need to compete — addresses and languages (EN/FR/ES/AR), wallet and cards, membership plans,
-              sponsored restaurant placement on the feed, smart recommendations / ETA / surge cues, and live tracking.
+              An order is one story told by four other products:
             </p>
-            <p class="section-subtext">
-              Dive deeper in this app:
-              <a href="./ordering.html">Ordering &amp; discovery</a>,
-              <a href="./wallet.html">Wallet &amp; payments</a>,
-              <a href="./subscriptions.html">Subscriptions</a>,
-              <a href="./intelligence.html">AI intelligence</a>, and
-              <a href="./order-tracking.html">Order tracking</a>.
-            </p>
-            <div class="shot-grid phones">
-              <div class="shot phone">
-                <img src="./assets/images/apps/customer-cart.jpg" alt="Full cart screen" />
-                <p>Cart — review before checkout</p>
-              </div>
-              <div class="shot phone">
-                <img src="./assets/images/apps/customer-restaurant.jpg" alt="Restaurant detail with offers and reviews" />
-                <p>Restaurant — offers, reviews, info</p>
-              </div>
-            </div>
-          </section>
-
-          <section class="section-block">
-            <h2>What customers come to do</h2>
-            <p class="highlight">
-              Place food orders from a phone — from discovery to confirmation — then stay informed until the bag arrives.
-            </p>
-            <p class="section-subtext">
-              Search and filters shrink a crowded city to “what I want tonight.” Menu detail and quantities stay obvious.
-              After checkout, status updates replace anxious guessing. That calm loop is what turns a first install into a habit.
-            </p>
-          </section>
-
-          <section class="section-block">
-            <h2>Supported Platforms</h2>
             <ul>
-              <li>Android</li>
-              <li>iOS</li>
+              <li><strong>Restaurant app</strong> — accepts and cooks what the customer just paid for</li>
+              <li><strong>Driver app</strong> — carries the bag and proves the drop-off</li>
+              <li><strong>Admin</strong> — configures the city, money rules, and support view</li>
+              <li><strong>Backend API</strong> — keeps one shared order record for everyone</li>
             </ul>
             <p class="section-subtext">
-              A single shared codebase powers both platforms, which helps maintain consistent user
-              experience and visual quality across devices.
-            </p>
-            <p class="section-subtext">
-              This approach also lowers maintenance cost and speeds up feature delivery, updates,
-              and bug fixes for product teams.
+              When kitchen status or courier position changes, the customer should see it without calling support.
+              That only works because every app shares the same marketplace brain — not three disconnected databases.
             </p>
           </section>
 
           <section class="section-block">
-            <h2>Tech Stack</h2>
-            <div class="stack-wrap">
-              <div class="chip">JavaScript</div>
-              <div class="chip">React</div>
-              <div class="chip">React Native</div>
-              <div class="chip">Expo</div>
-              <div class="chip">React Navigation</div>
-              <div class="chip">Redux</div>
-              <div class="chip">REST API</div>
-              <div class="chip">Express.js</div>
-              <div class="chip">MongoDB</div>
-            </div>
-            <p class="section-subtext">
-              The customer app uses React Native and Expo for Android and iOS. State and navigation patterns
-              are built for production ordering flows against your HTTP API.
-            </p>
-            <p class="section-subtext">
-              Persistence and business rules live on your API and database; the mobile app consumes your HTTP endpoints.
-            </p>
-            <p class="section-subtext">
-              Run the backend from the repository that ships with the suite (for example <code>my-backend</code>),
-              then connect the app using <code>config/index.js</code> as described in Getting Started.
-            </p>
-          </section>
-
-          <section id="project-structure" class="section-block">
-            <h2>Project Structure</h2>
-            <p class="section-subtext">
-              Well-organized React Native codebase following standard conventions. Key directories are highlighted below.
-            </p>
-
-            <div class="project-structure">
-              <div class="tree-container">
-                <div class="tree-title">
-                  <span class="icon">📁</span>
-                  customer-app/
-                </div>
-                <ul class="tree">
-                  <li>
-                    <div class="node file"><span class="icon">📄</span> App.js <span style="font-size:10px; color:#94a3b8;">(entry point)</span></div>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> api/ <span style="font-size:10px; color:#94a3b8;">(REST client &amp; 15+ endpoints)</span></div>
-                    <ul>
-                      <li><div class="node file"><span class="icon">📄</span> index.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> client.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> auth.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> restaurants.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> orders.js</div></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> components/ <span style="font-size:10px; color:#94a3b8;">(41+ reusable UI components)</span></div>
-                    <ul>
-                      <li><div class="node folder"><span class="icon">📁</span> home/</div></li>
-                      <li><div class="node folder"><span class="icon">📁</span> restaurantDetail/</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> Cart.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> FilterModal.js</div></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> screens/ <span style="font-size:10px; color:#94a3b8;">(34+ screens)</span></div>
-                    <ul>
-                      <li><div class="node file"><span class="icon">📄</span> Home.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> RestaurantDetail.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> CartScreen.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> OrderTracking.js</div></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> navigation/</div>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> contexts/</div>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> global/ <span style="font-size:10px; color:#94a3b8;">(theme, constants)</span></div>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> lang/ <span style="font-size:10px; color:#94a3b8;">(i18n EN/FR/ES/AR)</span></div>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> utils/ <span style="font-size:10px; color:#94a3b8;">(cache, helpers)</span></div>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> config/ <span style="font-size:10px; color:#94a3b8;">(API, assets)</span></div>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> docs/ <span style="font-size:10px; color:#94a3b8;">(this documentation)</span></div>
-                  </li>
-                </ul>
-              </div>
-              <div class="tree-path">
-                Full structure available in README.md • 100+ files • Clean separation of concerns
-              </div>
-            </div>
-          </section>
-
-          <section class="section-block">
-            <h2>Current Version</h2>
-            <p><strong>1.0.0</strong></p>
-            <p class="section-subtext">
-              The current public baseline is version 1.0.0, ready to be used as a solid starting point
-              for deployment, demos, and project customization.
-            </p>
-            <p class="section-subtext">
-              This version is ideal for teams that want to launch efficiently while keeping room for
-              future feature expansion.
-            </p>
-          </section>
-
-          <section class="section-block">
-            <h2>What you need to run the app</h2>
+            <h2>What “good” looks like for your brand</h2>
             <p>
-              Node.js, Expo, simulators, API URLs, and Maps keys are documented once for the whole suite on
-              <a href="./environment-setup.html">Environment setup</a>.
+              A first-time user finds a restaurant, builds a basket, pays with a method you actually support, and can answer
+              “where is my food?” without leaving the app. Regulars come back through wallet balance, membership perks,
+              and offers that feel local — not generic.
             </p>
             <p class="section-subtext">
-              For this customer app specifically: clone <code>customer-app</code>, install dependencies, set <code>API_BASE_URL</code> in <code>config/index.js</code>,
-              start the API from <code>my-backend</code> (see <a href="./my-backend/getting-started.html">Backend — Getting Started</a>),
-              then follow <a href="./getting-started.html">Getting Started</a>.
+              Screen-by-screen journeys (home, search, map, open/closed, ETA, fee, menu, cart, checkout, tracking, wallet, AI cues)
+              are documented on the feature pages below — this overview stays on the role of the app, not a second copy of those captures.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Read next</h2>
+            <ul>
+              <li><a href="./ordering.html">Ordering &amp; discovery</a> — the path from browse to place order</li>
+              <li><a href="./wallet.html">Wallet &amp; payments</a> — balance and top-up</li>
+              <li><a href="./subscriptions.html">Subscriptions</a> — customer membership plans</li>
+              <li><a href="./intelligence.html">AI intelligence</a> — recommendations, ETA, fee / surge</li>
+              <li><a href="./order-tracking.html">Order tracking</a> — timeline and delivery map</li>
+            </ul>
+            <p class="section-subtext">
+              To install and run the app against your API: <a href="./getting-started.html">Getting Started</a>
+              (shared tooling: <a href="./environment-setup.html">Environment setup</a>).
+              Deeper launch steps for the ZIP pack live in the source markdown guides.
             </p>
           </section>
         </section>

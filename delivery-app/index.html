@@ -68,228 +68,67 @@
         <header id="top" class="hero">
           <h1>Driver app</h1>
           <p class="subtitle">
-            Built for couriers on the road: see new jobs, stack nearby drops, update every mile of the delivery,
-            prove the handoff, and check earnings — without spreadsheets or endless phone calls.
-          </p>
-          <p class="intro-line">
-            For buyers and ops leads who need to know what drivers experience, and for teams wiring the same API
-            the rest of the suite already uses.
+            The courier’s shift in one pocket — jobs, navigation, proof at the door, and a clear picture of what the day paid.
           </p>
           <div class="meta-strip">
-            <span class="meta-pill">Easy to launch</span>
             <span class="meta-pill">Android &amp; iOS</span>
-            <span class="meta-pill">Your API</span>
+            <span class="meta-pill">Last mile</span>
+            <span class="meta-pill">Proof of delivery</span>
           </div>
         </header>
 
         <section class="overview">
           <section class="section-block">
-            <h2>The last mile, in one pocket</h2>
+            <h2>Who this app is for</h2>
             <p>
-              Customers order. Kitchens cook. <strong>Drivers deliver.</strong> This app is that third act:
-              accept a job, navigate to the restaurant, carry the bag, mark each status, and finish with confidence at the door.
-              It talks to <strong>your</strong> hosted API — assignments, profile, and stats download after login.
+              Couriers on bikes, scooters, or cars. They work with one hand, in traffic, and they need large targets —
+              not a desktop dashboard squeezed onto a phone. The driver app is built for that reality.
             </p>
             <p class="section-subtext">
-              Last-mile depth includes job <strong>batching</strong>, live map tracking, and
-              <a href="./logistics.html">proof of delivery (photo + signature)</a>.
-              Couriers can also join membership tiers — see <a href="./subscriptions.html">Subscriptions</a>.
-              Day-to-day jobs: <a href="./logistics.html">Logistics &amp; POD</a>. Money side: <a href="./earnings.html">Earnings &amp; payouts</a>.
+              If your marketplace promises “live tracking” and “delivered with proof,” this is the product that makes those promises true on the street.
             </p>
-            <div class="shot-grid phones">
-              <div class="shot phone">
-                <img src="../assets/images/apps/driver-home.jpg" alt="Driver home" />
-                <p>Home — on duty and ready for jobs</p>
-              </div>
-              <div class="shot phone">
-                <img src="../assets/images/apps/driver-deliveries.jpg" alt="Driver deliveries list" />
-                <p>Deliveries — today’s jobs</p>
-              </div>
-              <div class="shot phone">
-                <img src="../assets/images/apps/driver-earn.jpg" alt="Driver earnings" />
-                <p>Earnings — what the shift paid</p>
-              </div>
-            </div>
-            <a class="product-link" href="../index.html">Customer app — Overview</a>
-            <div class="compare-note">
-              <p class="compare-title">Login needs a driver account</p>
-              <p style="margin: 0; color: #334155; font-size: 15px; max-width: none;">
-                Email and password work like any user, but the server must recognize a <strong>driver</strong> profile.
-                A pure customer account will be rejected — create or promote a driver user before testing.
-              </p>
-            </div>
           </section>
 
           <section class="section-block">
-            <h2>Designed for thumbs, not desks</h2>
+            <h2>Where it sits in the suite</h2>
             <p>
-              Large targets, clear labels, and a side menu for home, deliveries, money, history, reports, support, profile, vehicle, and settings.
-              Drivers open a delivery for details and route, advance pickup and drop-off, and keep moving.
-              Maps and GPS power navigation when you grant location — keys and permissions are covered in
-              <a href="./getting-started.html">Getting Started</a>.
+              The driver never invents a separate order. They work the same ticket the customer paid for and the restaurant accepted:
             </p>
-          </section>
-
-          <section class="section-block">
-            <h2>Main Function</h2>
-            <p class="highlight">
-              Keep couriers connected to live orders: they see what to deliver, advance the order through each stage, and track how much they have earned—all from one app.
-            </p>
-            <p class="section-subtext">
-              Behind the scenes, the app remembers who is logged in, refreshes lists of jobs, and can cache some data so screens still feel responsive if the network is slow.
-            </p>
-            <p class="section-subtext">
-              For a technical mental model: one shared &quot;driver context&quot; supplies login state, orders, and statistics to the screens so everything stays in sync after an action.
-            </p>
-          </section>
-
-          <section class="section-block">
-            <h2>How screens are organized</h2>
-            <p>
-              When the app opens, the driver briefly sees a splash screen, then a <strong>login</strong> screen if they are not signed in.
-              After a successful login, they land in the main area with a <strong>side menu</strong> (drawer) listing Home, Deliveries,
-              Earnings, Transactions, History, Reports, Notifications, Support, Profile, Settings, and more.
-            </p>
-            <p class="section-subtext">
-              Some screens open <strong>on top</strong> of others (for example delivery details or order details) and may not appear as separate items in the side menu—that is normal.
-            </p>
-            <p class="section-subtext">
-              Developers: the flow is implemented with React Navigation (stack for splash/login/main, drawer for the day-to-day hub). Files live under <code>navigation/</code>.
-            </p>
-          </section>
-
-          <section class="section-block">
-            <h2>Configuration &amp; demo mode</h2>
-            <p>
-              Day-to-day settings such as <strong>API address</strong>, <strong>demo login shortcuts</strong>, and <strong>timeouts</strong>
-              are edited in <code>config.js</code> at the root of the <code>delivery-app</code> folder (not inside a <code>config/</code> subfolder).
-            </p>
-            <p class="section-subtext">
-              With <strong>demo mode</strong> turned on, the login form can be pre-filled for presentations. Turn it off in production and
-              point <code>API_BASE_URL</code> at your live server. The app sends requests through a single <code>api.js</code> module that handles tokens and errors in one place.
-            </p>
-          </section>
-
-          <section class="section-block">
-            <h2>Supported Platforms</h2>
             <ul>
-              <li>Android (package name <code>com.goodfood.driver</code>)</li>
-              <li>iOS (same bundle identifier)</li>
+              <li><strong>Customer app</strong> — follows the same delivery on the tracking map</li>
+              <li><strong>Restaurant app</strong> — hands off food when it is ready</li>
+              <li><strong>Admin</strong> — sees assignment, payouts, and disputes</li>
+              <li><strong>Backend API</strong> — assigns work, stores POD, updates status for everyone</li>
             </ul>
             <p class="section-subtext">
-              One shared codebase builds both platforms with Expo and React Native, so drivers get a consistent experience on phones and tablets.
-            </p>
-            <p class="section-subtext">
-              That also means you fix a bug or add a feature once, then ship updates to Android and iOS from the same project.
+              Batching nearby drops, live position, and photo + signature at the door are how you cut empty miles and “I never got it” tickets.
             </p>
           </section>
 
           <section class="section-block">
-            <h2>Tech Stack</h2>
-            <div class="stack-wrap">
-              <div class="chip">JavaScript</div>
-              <div class="chip">React</div>
-              <div class="chip">React Native</div>
-              <div class="chip">Expo</div>
-              <div class="chip">React Navigation</div>
-              <div class="chip">Redux</div>
-              <div class="chip">REST API</div>
-              <div class="chip">Maps &amp; location</div>
-              <div class="chip">EN / FR / ES / AR (i18n)</div>
-            </div>
-            <p class="section-subtext">
-              The driver app is a standard React Native + Expo mobile client. It calls your HTTP API for auth, orders, profile, and settings.
-            </p>
-            <p class="section-subtext">
-              Optional libraries (animations, bottom sheets, etc.) are listed in <code>package.json</code> if you need the full list for audits or upgrades.
-            </p>
-            <p class="section-subtext">
-              Run the backend from the suite (for example <code>my-backend</code>), set <code>API_BASE_URL</code> in <code>config.js</code>,
-              and follow <a href="./getting-started.html">Getting Started</a> to run the app locally.
-            </p>
-          </section>
-
-          <section id="project-structure" class="section-block">
-            <h2>Project structure</h2>
-            <p class="section-subtext">
-              High-level layout of the <code>delivery-app</code> repository (representative; the repo contains additional screens, hooks, and utilities).
-            </p>
-            <div class="project-structure">
-              <div class="tree-container">
-                <div class="tree-title">
-                  <span class="icon">📁</span>
-                  delivery-app/
-                </div>
-                <ul class="tree">
-                  <li>
-                    <div class="node file"><span class="icon">📄</span> App.js</div>
-                  </li>
-                  <li>
-                    <div class="node file"><span class="icon">📄</span> api.js <span style="font-size:10px; color:#94a3b8;">(REST client, auth, orders, driver)</span></div>
-                  </li>
-                  <li>
-                    <div class="node file"><span class="icon">📄</span> config.js <span style="font-size:10px; color:#94a3b8;">(API URL, demo, maps key)</span></div>
-                  </li>
-                  <li>
-                    <div class="node file"><span class="icon">📄</span> global.js <span style="font-size:10px; color:#94a3b8;">(theme, colors)</span></div>
-                  </li>
-                  <li>
-                    <div class="node file"><span class="icon">📄</span> i18n.js</div>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> navigation/ <span style="font-size:10px; color:#94a3b8;">(9 files)</span></div>
-                    <ul>
-                      <li><div class="node file"><span class="icon">📄</span> AppNavigator.js, DrawerNavigator.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> DeliveriesStackNavigator.js, ProfileStackNavigator.js</div></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> screens/ <span style="font-size:10px; color:#94a3b8;">(20+ screens)</span></div>
-                    <ul>
-                      <li><div class="node file"><span class="icon">📄</span> HomeScreen.js, DeliveriesScreen.js, DeliveryDetailsScreen.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> EarningsScreen.js, ReportsScreen.js, SettingsScreen.js</div></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <div class="node folder"><span class="icon">📁</span> components/ <span style="font-size:10px; color:#94a3b8;">(61+ files)</span></div>
-                    <ul>
-                      <li><div class="node file"><span class="icon">📄</span> DeliveryCard.js, DriverStats.js, RatingStats.js</div></li>
-                      <li><div class="node file"><span class="icon">📄</span> OrderHeaderCard.js, OrderItemsCard.js, TransactionList.js</div></li>
-                    </ul>
-                  </li>
-                  <li><div class="node folder"><span class="icon">📁</span> hooks/ <span style="font-size:10px; color:#94a3b8;">(20+ hooks)</span></div></li>
-                  <li><div class="node folder"><span class="icon">📁</span> utils/ <span style="font-size:10px; color:#94a3b8;">(16+ helpers)</span></div></li>
-                  <li><div class="node folder"><span class="icon">📁</span> contexts/ <span style="font-size:10px; color:#94a3b8;">(2 files)</span></div></li>
-                  <li><div class="node folder"><span class="icon">📁</span> lang/ <span style="font-size:10px; color:#94a3b8;">(i18n EN/FR/ES/AR)</span></div></li>
-                </ul>
-              </div>
-              <div class="tree-path">
-                The app starts in Expo → <code>App.js</code> → driver/settings providers → main navigator. See <code>README</code> files in the repo for deeper detail.
-              </div>
-            </div>
-          </section>
-
-          <section class="section-block">
-            <h2>Current Version</h2>
-            <p><strong>1.0.0</strong></p>
-            <p class="section-subtext">
-              This matches <code>package.json</code> and the Expo app config. The name people see on the home screen is <strong>Good Food Pro Driver</strong>.
-            </p>
-            <p class="section-subtext">
-              Version 1.0.0 aligns with the customer app baseline in this documentation suite — a solid base for internal testing, demos, and custom branding before you publish to the stores.
-            </p>
-          </section>
-
-          <section class="section-block">
-            <h2>What you need to run the app</h2>
+            <h2>What “good” looks like on a shift</h2>
             <p>
-              Shared setup (Node.js, Expo, API URLs, Maps) is on
-              <a href="../environment-setup.html">Environment setup</a>.
+              The courier goes online, sees clear jobs, stacks nearby drops when it makes sense, finishes with evidence when rules require it,
+              and can open earnings without guessing what the marketplace recorded.
             </p>
             <p class="section-subtext">
-              For drivers you also need a running Good Food API and at least one account promoted as a <strong>driver</strong> on the backend.
-              Then open <code>delivery-app</code>, set <code>API_BASE_URL</code> in <code>config.js</code>, and follow
-              <a href="./getting-started.html">Getting Started</a>.
+              Step-by-step screens for the list, active job, POD, earnings, and payouts are on the feature pages —
+              this overview stays on the courier role inside your marketplace.
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>Read next</h2>
+            <ul>
+              <li><a href="./logistics.html">Logistics &amp; POD</a> — jobs, active delivery, proof of delivery</li>
+              <li><a href="./earnings.html">Earnings &amp; payouts</a> — money and settlement methods</li>
+              <li><a href="./subscriptions.html">Subscriptions</a> — driver membership plans</li>
+              <li><a href="../order-tracking.html">Order tracking</a> — what the customer sees for the same order</li>
+            </ul>
+            <p class="section-subtext">
+              To run locally: <a href="./getting-started.html">Getting Started</a>
+              (shared tooling: <a href="../environment-setup.html">Environment setup</a>).
+              Source markdown covers env, driver accounts, and smoke tests in more depth.
             </p>
           </section>
         </section>
