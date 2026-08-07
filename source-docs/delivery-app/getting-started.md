@@ -134,4 +134,5 @@ Driver login uses `POST /auth/delivery-login` on the same API host as the custom
 ## Next
 
 - Suite boot order & checklist: [00-launch-suite.md](../00-launch-suite.md)
-- Batching, radius, POD detail: [Logistics & POD](./logistics.md)
+- Feature HOW-TOs: [deliveries](./deliveries.md) · [active delivery](./active-delivery.md) · [POD](./proof-of-delivery.md) · [earnings](./earnings.md) · [languages](./languages.md)
+- Index: [logistics.md](./logistics.md)

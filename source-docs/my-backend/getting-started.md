@@ -171,4 +171,4 @@ Mismatched ports are the most common “apps look broken” false alarm after a 
 
 - [Launch the whole suite](../00-launch-suite.md) for boot order and smoke test.
 - [Environment & branding](../environment-config.md) for reachability, FCM, and production checklist.
-- Feature configuration after migrate: [Monetization](../admin-app/monetization.md) · [Market adaptability](../admin-app/market.md).
+- Backend feature HOW-TOs: [order lifecycle](./order-lifecycle.md) · [payments & wallet](./payments-wallet.md) · [AI & pricing](./intelligence-engine.md) · [logistics](./logistics-engine.md) · [channels](./channels-api.md) — full list in [README](../README.md).

@@ -121,7 +121,7 @@ If any hop fails, check API URL + JWT login first, then role permissions, then t
 
 | Mode | Purpose | What to expect |
 |------|---------|----------------|
-| **Demo** | Investor walkthroughs, CodeCanyon preview, offline-friendly UI demos | Login fields may prefill; some restaurant flows use demo handlers; seeded tickets and campaigns appear after `migrate:up` |
+| **Demo** | Investor walkthroughs, product demos, offline-friendly UI demos | Login fields may prefill; some restaurant flows use demo handlers; seeded tickets and campaigns appear after `migrate:up` |
 | **Live** | Real API traffic against your Mongo data | Prefill off; every action hits `/api`; payment keys and FCM matter for full flows |
 
 **Restaurant app:** do **not** set `EXPO_PUBLIC_DEMO_MODE` by hand in `.env`. Use:

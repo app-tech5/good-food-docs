@@ -128,4 +128,4 @@ Restaurant login uses `POST /auth/restaurant-login`. The account must be linked 
 ## Next
 
 - [00-launch-suite.md](../00-launch-suite.md) for the full order → deliver path
-- [Kitchen Display](./kitchen-display.md) · [Monetization](../admin-app/monetization.md)
+- Feature HOW-TOs: [orders](./orders.md) · [menu](./menu.md) · [hours](./hours.md) · [KDS](./kitchen-display.md) · [sponsored](./sponsored.md) · [languages](./languages.md)

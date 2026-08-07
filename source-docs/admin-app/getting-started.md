@@ -120,5 +120,6 @@ Some builds expose quick-fill role credentials on the login screen. Replace samp
 
 ## Next
 
-- [00-launch-suite.md](../00-launch-suite.md) — end-to-end smoke test  
+- [00-launch-suite.md](../00-launch-suite.md) — end-to-end smoke test
+- Feature HOW-TOs under this folder (same topics as the online sidebar) — start with [orders](./orders.md), [earnings](./earnings.md), [languages](./languages.md); indexes: [monetization.md](./monetization.md), [market.md](./market.md)
 - Mobile apps — customer / driver / restaurant getting-started pages

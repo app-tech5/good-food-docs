@@ -1098,9 +1098,9 @@ def main():
                     {
                         "h3": "Restaurants",
                         "paras": [
-                            "Onboarding and ongoing control: activate or close partners, keep profiles consistent with what the customer app displays.",
+                            "Onboarding and ongoing control: open a restaurant record to activate it, set hours, address, service modes, categories, tax, and commission — so the customer app stays consistent with what you approve.",
                         ],
-                        "shot": ("wide", f"{A}/features/admin-ops-restaurants.jpg", "Restaurants", "Approve, edit, activate, or close restaurant partners"),
+                        "shot": ("wide", f"{A}/features/admin-ops-restaurants.jpg", "Restaurant details", "Edit restaurant: activation, hours, address, categories, commission"),
                     },
                     {
                         "h3": "Drivers",
@@ -1214,18 +1214,35 @@ def main():
             {
                 "h2": "Payment gateways",
                 "paras": [
-                    "Gateways tell the platform which PSPs and local methods are available. Turn on only what you have credentials and compliance for.",
+                    "Gateways tell the platform which PSPs and local methods are available. Turn on only what you have credentials and compliance for — typically Stripe and PayPal first, then regional providers.",
                 ],
                 "blocks": [
                     {
-                        "h3": "Configure for a market",
-                        "steps": [
-                            "Open <strong>Gateways</strong> in admin.",
-                            "Enable the methods you support; disable the rest.",
-                            "Enter provider credentials / fees as your form requires.",
-                            'Verify a test checkout and a wallet top-up from the <a href="../wallet.html">customer wallet</a> path.',
+                        "h3": "See what is enabled",
+                        "paras": [
+                            "The Gateways list shows each method, status, and fee fields. Disable anything you are not ready to operate.",
                         ],
-                        "shot": ("wide", f"{A}/features/gateways.jpg", "Gateways", "Active payment gateways and fees"),
+                        "shot": ("wide", f"{A}/features/gateways.jpg", "Gateways list", "Active payment gateways in admin"),
+                    },
+                    {
+                        "h3": "Stripe credentials",
+                        "paras": [
+                            "Open a gateway to set capabilities (refunds, payouts, webhooks, subscriptions), upload a logo, and paste provider keys. Stripe is the usual card stack for checkout and wallet top-ups.",
+                        ],
+                        "steps": [
+                            "Open <strong>Gateways</strong> → View on <strong>Stripe</strong>.",
+                            "Tick the capabilities you support; keep <strong>Active</strong> only when keys are valid.",
+                            "Enter publishable key, secret key, and webhook signing secret from the Stripe dashboard.",
+                            'Run a test checkout and a <a href="../wallet.html">wallet</a> top-up before go-live.',
+                        ],
+                        "shot": ("wide", f"{A}/features/gateways-form-1.jpg", "Stripe form", "Stripe: capabilities, logo, and API keys"),
+                    },
+                    {
+                        "h3": "PayPal credentials",
+                        "paras": [
+                            "Same pattern for PayPal — client id / secret and capabilities. Use sandbox keys while you validate the flow.",
+                        ],
+                        "shot": ("wide", f"{A}/features/gateways-form-2.jpg", "PayPal form", "PayPal: capabilities and provider credentials"),
                     },
                 ],
             },
@@ -1683,6 +1700,316 @@ def main():
 """,
                 encoding="utf-8",
             )
+
+
+    # --- Backend API feature pages (what the shared brain powers) ---
+    w(
+        "my-backend/order-lifecycle.html",
+        "Order lifecycle — Backend API",
+        "Order lifecycle",
+        "One shared order record from checkout to delivered — so customer, kitchen, driver, and admin never disagree on status.",
+        ["One order", "Status", "All apps"],
+        [
+            {
+                "h2": "One order story for the whole marketplace",
+                "paras": [
+                    "When a customer places an order, the API creates the canonical record: line items, payment state, restaurant, driver assignment, and fulfillment status. Restaurant accept, kitchen progress, courier POD, and admin support all mutate that same record — not four copies that drift apart.",
+                ],
+                "blocks": [
+                    {
+                        "h3": "What operators see as proof",
+                        "paras": [
+                            "Admin Orders is the support view of the same lifecycle mobiles advance in real time. If a status looks wrong in one app, investigate here first — the API is the source of truth.",
+                        ],
+                        "shot": ("wide", f"{A}/features/admin-ops-orders.jpg", "Orders", "Admin orders list backed by the shared order API"),
+                    },
+                    {
+                        "h3": "What the customer follows",
+                        "paras": [
+                            'Live tracking and history read the same statuses restaurants and drivers write. See <a href="../order-tracking.html">Live tracking</a> and <a href="../restaurant-app/orders.html">Incoming orders</a>.',
+                        ],
+                        "shot": ("phone", f"{A}/features/tracking.jpg", "Track order", "Customer timeline fed by the order lifecycle API"),
+                    },
+                ],
+                "after": [
+                    'Boot order: <a href="./getting-started.html">Getting Started</a>. Realtime fan-out: <a href="./live-updates.html">Live status sync</a>.',
+                ],
+            },
+        ],
+        D, DJ, DP,
+    )
+
+    w(
+        "my-backend/live-updates.html",
+        "Live status sync — Backend API",
+        "Live status sync",
+        "How status and courier position reach every app so “where is my food?” does not require a phone call.",
+        ["Realtime", "Map", "Notifications"],
+        [
+            {
+                "h2": "Keep every screen honest in real time",
+                "paras": [
+                    "The API is not only REST CRUD. Live status sync pushes kitchen and courier progress so customer tracking, restaurant boards, and driver jobs stay aligned without manual refresh rituals.",
+                ],
+                "blocks": [
+                    {
+                        "h3": "Delivery map while the courier moves",
+                        "paras": [
+                            "Courier position and ETA badges on Track Order depend on logistics data the backend stores and broadcasts. Without the API up, the map has nothing truthful to show.",
+                        ],
+                        "shot": ("phone", f"{A}/features/tracking-map.jpg", "Delivery map", "Live courier map powered by backend location / ETA data"),
+                    },
+                    {
+                        "h3": "Kitchen and driver share the same ticks",
+                        "paras": [
+                            'KDS columns and driver active jobs advance on the same order events. See <a href="../restaurant-app/kitchen-display.html">Kitchen Display</a> and <a href="../delivery-app/active-delivery.html">On the road</a>.',
+                        ],
+                        "shot": ("phone", f"{A}/features/kds.jpg", "KDS", "Kitchen tickets reflecting shared order status"),
+                    },
+                ],
+            },
+        ],
+        D, DJ, DP,
+    )
+
+    w(
+        "my-backend/payments-wallet.html",
+        "Payments & wallet — Backend API",
+        "Payments & wallet",
+        "Gateways, checkout initialize, wallet ledger, cashback, and instant refunds — money rules the apps only display.",
+        ["Gateways", "Wallet", "Refunds"],
+        [
+            {
+                "h2": "Money that stays coherent across apps",
+                "paras": [
+                    "Checkout and wallet top-ups succeed only when the API knows which gateways are active, can initialize payment sessions, and can post ledger movements (pay, cashback, refund to wallet). Front-ends never invent balances.",
+                ],
+                "blocks": [
+                    {
+                        "h3": "Gateway catalogue operators configure",
+                        "paras": [
+                            'Admin enables Stripe / PayPal / Paystack / Flutterwave / Razorpay (and related methods). The API is what checkout and top-up call. UI guide: <a href="../admin-app/gateways.html">Payment gateways</a>.',
+                        ],
+                        "shot": ("wide", f"{A}/features/gateways.jpg", "Gateways", "Active payment gateways served by the API"),
+                    },
+                    {
+                        "h3": "Wallet balance customers trust",
+                        "paras": [
+                            'Balance, top-up, cashback on delivered orders, and instant refund to wallet on cancel are ledger behaviours owned by the backend. Customer UI: <a href="../wallet.html">Wallet &amp; cashback</a>.',
+                        ],
+                        "shot": ("phone", f"{A}/features/wallet.jpg", "Wallet", "Customer wallet balance from the wallet ledger API"),
+                    },
+                ],
+            },
+        ],
+        D, DJ, DP,
+    )
+
+    w(
+        "my-backend/commission-engine.html",
+        "Commission engine — Backend API",
+        "Commission engine",
+        "How each completed order splits value between the platform and partners — with subscription benefits applied when plans say so.",
+        ["Splits", "Earnings", "Plans"],
+        [
+            {
+                "h2": "You earn on every order — with rules you own",
+                "paras": [
+                    "Commission baselines and per-restaurant overrides live in marketplace settings; restaurant subscription benefits can soften the cut while a plan is active. The API computes and stores the split so Earnings views and payouts stay auditable.",
+                ],
+                "blocks": [
+                    {
+                        "h3": "Earnings periods operators review",
+                        "paras": [
+                            'Admin Earnings is the operator face of those calculations. Details: <a href="../admin-app/earnings.html">Commissions &amp; earnings</a>.',
+                        ],
+                        "shot": ("wide", f"{A}/features/earnings.jpg", "Earnings", "Earnings periods produced by the commission engine"),
+                    },
+                ],
+                "after": [
+                    'Related: <a href="./subscriptions-engine.html">Subscriptions engine</a>, <a href="./payments-wallet.html">Payments &amp; wallet</a>.',
+                ],
+            },
+        ],
+        D, DJ, DP,
+    )
+
+    w(
+        "my-backend/subscriptions-engine.html",
+        "Subscriptions engine — Backend API",
+        "Subscriptions engine",
+        "Recurring plans for customers, drivers, and restaurants — defined once, sold in each app, enforced by the API.",
+        ["Targets", "Billing", "Benefits"],
+        [
+            {
+                "h2": "Recurring revenue the apps only sell",
+                "paras": [
+                    "Subscription tiers (target = customer / driver / restaurant), prices, cycles, and benefit flags are stored and enforced server-side. Mobile Subscribe screens list what the API exposes for that role; commission and access perks apply on subsequent orders when the plan is active.",
+                ],
+                "blocks": [
+                    {
+                        "h3": "Admin is the catalogue; apps are the storefront",
+                        "paras": [
+                            'Configure plans in <a href="../admin-app/subscriptions.html">Subscription plans</a>. Sell in <a href="../subscriptions.html">Membership plans</a>, <a href="../delivery-app/subscriptions.html">Priority plans</a>, and <a href="../restaurant-app/subscriptions.html">Partner plans</a>.',
+                        ],
+                        "shot": ("wide", f"{A}/features/admin-subscriptions.jpg", "Subscriptions", "Admin subscription tiers backed by the API"),
+                    },
+                ],
+            },
+        ],
+        D, DJ, DP,
+    )
+
+    w(
+        "my-backend/intelligence-engine.html",
+        "AI & pricing brain — Backend API",
+        "AI & pricing brain",
+        "Recommendations, smart ETA, and surge delivery fees — the conversion layer computed for the customer app.",
+        ["Recommendations", "ETA", "Surge"],
+        [
+            {
+                "h2": "The conversion layer buyers expect",
+                "paras": [
+                    "Dynamic recommendations, arrival estimates, and demand-aware delivery fees are not decorative UI chips. The intelligence routes feed the customer app with scored items, ETA ranges, and fee / surge multipliers when your stack enables them.",
+                ],
+                "blocks": [
+                    {
+                        "h3": "What customers see from those endpoints",
+                        "paras": [
+                            'Product docs: <a href="../recommendations.html">AI recommendations</a>, <a href="../smart-eta.html">Smart delivery ETA</a>, <a href="../delivery-fee.html">Surge pricing</a>.',
+                        ],
+                        "shot": ("phone", f"{A}/features/ai-reco.jpg", "Recommendations", "Recommended for you powered by the intelligence API"),
+                    },
+                ],
+            },
+        ],
+        D, DJ, DP,
+    )
+
+    w(
+        "my-backend/logistics-engine.html",
+        "Logistics engine — Backend API",
+        "Logistics engine",
+        "Assignment, smart batching, live courier data, and proof-of-delivery evidence stored for disputes.",
+        ["Batching", "Tracking", "POD"],
+        [
+            {
+                "h2": "Last-mile rules that cut empty miles",
+                "paras": [
+                    "Driver job lists, nearby batching, route/ETA inputs for tracking, and multimedia POD (photo + signature) are logistics capabilities the API owns. Driver and customer UIs are windows onto that engine.",
+                ],
+                "blocks": [
+                    {
+                        "h3": "Jobs drivers work",
+                        "paras": [
+                            'Shift board and batching: <a href="../delivery-app/deliveries.html">Job board &amp; batching</a>. Door evidence: <a href="../delivery-app/proof-of-delivery.html">Photo &amp; signature POD</a>.',
+                        ],
+                        "shot": ("phone", f"{A}/features/driver-deliveries.jpg", "Deliveries", "Driver jobs assigned through the logistics API"),
+                    },
+                    {
+                        "h3": "Proof stored for support",
+                        "paras": [
+                            "When POD is required, the API keeps the evidence with the delivered order so cash-on-delivery and contactless disputes have facts — not anecdotes.",
+                        ],
+                        "shot": ("phone", f"{A}/features/driver-pod.jpg", "POD", "Photo + signature captured into the order record"),
+                    },
+                ],
+            },
+        ],
+        D, DJ, DP,
+    )
+
+    w(
+        "my-backend/channels-api.html",
+        "Hybrid channels — Backend API",
+        "Hybrid channels",
+        "WhatsApp, USSD, and web intake — orders tagged by source so ops know how each ticket arrived.",
+        ["WhatsApp", "USSD", "Web"],
+        [
+            {
+                "h2": "Reach markets beyond the app store",
+                "paras": [
+                    "Hybrid channels are backend capabilities: WhatsApp Cloud API callbacks and status fan-out, USSD-style aggregator webhooks, and authenticated web / channel order intake with <code>orderSource</code> (app / whatsapp / ussd / web / admin).",
+                ],
+                "blocks": [
+                    {
+                        "h3": "Configure from marketplace settings",
+                        "paras": [
+                            'Operators enable credentials in Admin; the API is what Meta / aggregators / web clients hit. UI path: <a href="../admin-app/order-channels.html">Order channels</a> and <a href="../admin-app/app-settings.html">Marketplace settings</a>.',
+                        ],
+                        "shot": ("wide", f"{A}/features/app-settings.jpg", "Settings", "Marketplace settings where channel flags live"),
+                    },
+                ],
+            },
+        ],
+        D, DJ, DP,
+    )
+
+    w(
+        "my-backend/market-data.html",
+        "Languages & market data — Backend API",
+        "Languages & market data",
+        "Locales, currencies, and taxes the apps consume so every market feels local.",
+        ["Languages", "Currencies", "Taxes"],
+        [
+            {
+                "h2": "Local marketplace data, one API",
+                "paras": [
+                    "Language catalogues (including RTL-capable locales), currencies, and tax rules are served to mobile apps and admin from the backend. Changing a default language or tax without the API updated leaves every client guessing.",
+                ],
+                "blocks": [
+                    {
+                        "h3": "Operator catalogues",
+                        "paras": [
+                            'Admin UI: <a href="../admin-app/languages.html">Languages &amp; RTL</a>, <a href="../admin-app/currencies-taxes.html">Currencies &amp; taxes</a>. Mobile pickers: <a href="../languages-rtl.html">Customer Languages &amp; RTL</a>.',
+                        ],
+                        "shot": ("wide", f"{A}/features/languages.jpg", "Languages", "Language catalogue served by the API"),
+                    },
+                    {
+                        "h3": "Money language for carts and reports",
+                        "paras": [
+                            "Currencies and tax rates attach to checkout and reporting so finance and customers see the same numbers.",
+                        ],
+                        "shot": ("wide", f"{A}/features/currencies.jpg", "Currencies", "Currency catalogue from market data APIs"),
+                    },
+                ],
+            },
+        ],
+        D, DJ, DP,
+    )
+
+    w(
+        "my-backend/catalog-api.html",
+        "Catalog & partners — Backend API",
+        "Catalog & partners",
+        "Restaurants, menus, products, and partner accounts every discovery and kitchen screen depends on.",
+        ["Restaurants", "Menus", "Users"],
+        [
+            {
+                "h2": "What customers browse is what you store",
+                "paras": [
+                    "Discovery, restaurant pages, and menus are API-backed catalogues. Partner activation, menu edits from the restaurant app, and admin curation all write through the same models — so a closed restaurant or 86’d dish disappears everywhere.",
+                ],
+                "blocks": [
+                    {
+                        "h3": "Partner records operators control",
+                        "paras": [
+                            'Admin partner screens: <a href="../admin-app/partners.html">Partners &amp; users</a>. Restaurant self-serve: <a href="../restaurant-app/menu.html">Menu management</a>.',
+                        ],
+                        "shot": ("wide", f"{A}/features/admin-ops-restaurants.jpg", "Restaurant details", "Restaurant partner record stored by the API"),
+                    },
+                    {
+                        "h3": "Central catalog when you seed a city",
+                        "paras": [
+                            'Menus and products can also be curated centrally: <a href="../admin-app/catalog.html">Menus &amp; catalog</a>.',
+                        ],
+                        "shot": ("wide", f"{A}/features/admin-ops-menus.jpg", "Menus", "Admin catalog backed by the same product APIs"),
+                    },
+                ],
+            },
+        ],
+        D, DJ, DP,
+    )
 
     print("OK — feature pages written")
 

@@ -117,11 +117,21 @@
         <details class="nav-group is-current" open>
           <summary class="nav-group-summary">
             <span class="nav-group-title">Backend API</span>
-            <span class="nav-count">2</span>
+            <span class="nav-count">12</span>
           </summary>
           <nav class="nav" aria-label="Backend API">
             <a class="active" href="#overview"><span class="nav-link-text">Overview</span></a>
             <a href="../my-backend/getting-started.html"><span class="nav-link-text">Getting Started</span></a>
+            <a href="../my-backend/order-lifecycle.html"><span class="nav-link-text">Order lifecycle</span></a>
+            <a href="../my-backend/live-updates.html"><span class="nav-link-text">Live status sync</span></a>
+            <a href="../my-backend/payments-wallet.html"><span class="nav-link-text">Payments & wallet</span></a>
+            <a href="../my-backend/commission-engine.html"><span class="nav-link-text">Commission engine</span></a>
+            <a href="../my-backend/subscriptions-engine.html"><span class="nav-link-text">Subscriptions engine</span></a>
+            <a href="../my-backend/intelligence-engine.html"><span class="nav-link-text">AI & pricing brain</span></a>
+            <a href="../my-backend/logistics-engine.html"><span class="nav-link-text">Logistics engine</span></a>
+            <a href="../my-backend/channels-api.html"><span class="nav-link-text">Hybrid channels</span></a>
+            <a href="../my-backend/market-data.html"><span class="nav-link-text">Languages & market data</span></a>
+            <a href="../my-backend/catalog-api.html"><span class="nav-link-text">Catalog & partners</span></a>
           </nav>
         </details>
         </div>
@@ -172,25 +182,27 @@
           <section class="section-block">
             <h2>What it unlocks in the product docs</h2>
             <p>
-              Feature pages for commissions, order channels, AI recommendations, surge pricing, languages, logistics, and kitchen display all assume this API is running
-              and seeded. Use those pages to understand <em>what operators and end users see</em>; use Getting Started (and source markdown)
-              to understand <em>how to turn the service on</em>.
+              Feature pages below explain what this API guarantees for the suite. Mobile and admin docs show the screens;
+              these pages explain the shared brain behind them.
             </p>
             <ul>
-              <li><a href="../admin-app/earnings.html">Commissions &amp; earnings</a> · <a href="../admin-app/order-channels.html">Order channels</a></li>
-              <li><a href="../recommendations.html">AI recommendations</a> · <a href="../smart-eta.html">Smart delivery ETA</a> · <a href="../delivery-fee.html">Surge pricing</a></li>
-              <li><a href="../languages-rtl.html">Languages &amp; RTL</a> · <a href="../delivery-app/deliveries.html">Job board &amp; batching</a> · <a href="../restaurant-app/kitchen-display.html">Kitchen Display</a></li>
+              <li><a href="./order-lifecycle.html">Order lifecycle</a> · <a href="./live-updates.html">Live status sync</a></li>
+              <li><a href="./payments-wallet.html">Payments &amp; wallet</a> · <a href="./commission-engine.html">Commission engine</a> · <a href="./subscriptions-engine.html">Subscriptions engine</a></li>
+              <li><a href="./intelligence-engine.html">AI &amp; pricing brain</a> · <a href="./logistics-engine.html">Logistics engine</a></li>
+              <li><a href="./channels-api.html">Hybrid channels</a> · <a href="./market-data.html">Languages &amp; market data</a> · <a href="./catalog-api.html">Catalog &amp; partners</a></li>
             </ul>
           </section>
 
           <section class="section-block">
             <h2>Read next</h2>
-            <p>
-              Step-by-step for this product: <a href="./getting-started.html">Getting Started</a>.
-              Shared reachability notes: <a href="../environment-setup.html">Environment setup</a>.
-            </p>
+            <ul>
+              <li><a href="./getting-started.html">Getting Started</a> — boot the API first</li>
+              <li><a href="./order-lifecycle.html">Order lifecycle</a> — one shared order record</li>
+              <li><a href="./payments-wallet.html">Payments &amp; wallet</a> · <a href="./intelligence-engine.html">AI &amp; pricing brain</a></li>
+              <li><a href="../environment-setup.html">Environment setup</a> — shared reachability notes</li>
+            </ul>
             <p class="section-subtext">
-              In the CodeCanyon source pack, the markdown guides go deeper on Mongo, migrations, `.env` keys, and the full-suite smoke test —
+              In the <strong>source-docs</strong> markdown guides, you will find deeper detail on Mongo, migrations, <code>.env</code> keys, and the full-suite smoke test —
               that is where stack details and “where to look while configuring” live, not on this overview.
             </p>
           </section>

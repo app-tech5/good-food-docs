@@ -117,11 +117,21 @@
         <details class="nav-group">
           <summary class="nav-group-summary">
             <span class="nav-group-title">Backend API</span>
-            <span class="nav-count">2</span>
+            <span class="nav-count">12</span>
           </summary>
           <nav class="nav" aria-label="Backend API">
             <a href="../my-backend/index.html"><span class="nav-link-text">Overview</span></a>
             <a href="../my-backend/getting-started.html"><span class="nav-link-text">Getting Started</span></a>
+            <a href="../my-backend/order-lifecycle.html"><span class="nav-link-text">Order lifecycle</span></a>
+            <a href="../my-backend/live-updates.html"><span class="nav-link-text">Live status sync</span></a>
+            <a href="../my-backend/payments-wallet.html"><span class="nav-link-text">Payments & wallet</span></a>
+            <a href="../my-backend/commission-engine.html"><span class="nav-link-text">Commission engine</span></a>
+            <a href="../my-backend/subscriptions-engine.html"><span class="nav-link-text">Subscriptions engine</span></a>
+            <a href="../my-backend/intelligence-engine.html"><span class="nav-link-text">AI & pricing brain</span></a>
+            <a href="../my-backend/logistics-engine.html"><span class="nav-link-text">Logistics engine</span></a>
+            <a href="../my-backend/channels-api.html"><span class="nav-link-text">Hybrid channels</span></a>
+            <a href="../my-backend/market-data.html"><span class="nav-link-text">Languages & market data</span></a>
+            <a href="../my-backend/catalog-api.html"><span class="nav-link-text">Catalog & partners</span></a>
           </nav>
         </details>
         </div>
@@ -143,18 +153,37 @@
           <section class="section-block">
             <h2>Payment gateways</h2>
             <p>
-              Gateways tell the platform which PSPs and local methods are available. Turn on only what you have credentials and compliance for.
+              Gateways tell the platform which PSPs and local methods are available. Turn on only what you have credentials and compliance for — typically Stripe and PayPal first, then regional providers.
             </p>
-            <h3>Configure for a market</h3>
+            <h3>See what is enabled</h3>
+            <p class="section-subtext">
+              The Gateways list shows each method, status, and fee fields. Disable anything you are not ready to operate.
+            </p>
+            <figure class="doc-shot wide">
+              <img src="../assets/images/features/gateways.jpg" alt="Gateways list" />
+              <figcaption>Active payment gateways in admin</figcaption>
+            </figure>
+            <h3>Stripe credentials</h3>
+            <p class="section-subtext">
+              Open a gateway to set capabilities (refunds, payouts, webhooks, subscriptions), upload a logo, and paste provider keys. Stripe is the usual card stack for checkout and wallet top-ups.
+            </p>
             <ol class="doc-steps">
-              <li>Open <strong>Gateways</strong> in admin.</li>
-              <li>Enable the methods you support; disable the rest.</li>
-              <li>Enter provider credentials / fees as your form requires.</li>
-              <li>Verify a test checkout and a wallet top-up from the <a href="../wallet.html">customer wallet</a> path.</li>
+              <li>Open <strong>Gateways</strong> → View on <strong>Stripe</strong>.</li>
+              <li>Tick the capabilities you support; keep <strong>Active</strong> only when keys are valid.</li>
+              <li>Enter publishable key, secret key, and webhook signing secret from the Stripe dashboard.</li>
+              <li>Run a test checkout and a <a href="../wallet.html">wallet</a> top-up before go-live.</li>
             </ol>
             <figure class="doc-shot wide">
-              <img src="../assets/images/features/gateways.jpg" alt="Gateways" />
-              <figcaption>Active payment gateways and fees</figcaption>
+              <img src="../assets/images/features/gateways-form-1.jpg" alt="Stripe form" />
+              <figcaption>Stripe: capabilities, logo, and API keys</figcaption>
+            </figure>
+            <h3>PayPal credentials</h3>
+            <p class="section-subtext">
+              Same pattern for PayPal — client id / secret and capabilities. Use sandbox keys while you validate the flow.
+            </p>
+            <figure class="doc-shot wide">
+              <img src="../assets/images/features/gateways-form-2.jpg" alt="PayPal form" />
+              <figcaption>PayPal: capabilities and provider credentials</figcaption>
             </figure>
           </section>
         </section>

@@ -33,7 +33,7 @@ Status changes on the KDS should stay consistent with what drivers and customers
 
 Migrations include kitchen-oriented demo tickets so you can:
 
-- Screenshot the board for investors or CodeCanyon previews
+- Screenshot the board for investors or product demos
 - Train staff before lunch rush
 - Verify tablet layout without placing ten real orders
 

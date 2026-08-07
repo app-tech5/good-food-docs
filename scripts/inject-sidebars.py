@@ -111,6 +111,16 @@ def build_sidebar(html_path: Path) -> str:
 
     is_be_ov = rel == "my-backend/index.html"
     is_be_gs = rel == "my-backend/getting-started.html"
+    is_be_ord = rel == "my-backend/order-lifecycle.html"
+    is_be_live = rel == "my-backend/live-updates.html"
+    is_be_pay = rel == "my-backend/payments-wallet.html"
+    is_be_com = rel == "my-backend/commission-engine.html"
+    is_be_sub = rel == "my-backend/subscriptions-engine.html"
+    is_be_ai = rel == "my-backend/intelligence-engine.html"
+    is_be_log = rel == "my-backend/logistics-engine.html"
+    is_be_ch = rel == "my-backend/channels-api.html"
+    is_be_mkt = rel == "my-backend/market-data.html"
+    is_be_cat = rel == "my-backend/catalog-api.html"
 
     cust_ov = f"{prefix}index.html" if not is_cust_ov else "#overview"
     drv_ov = f"{prefix}delivery-app/index.html" if not is_drv_ov else "#overview"
@@ -242,6 +252,16 @@ def build_sidebar(html_path: Path) -> str:
             [
                 (be_ov, "Overview", is_be_ov),
                 (f"{prefix}my-backend/getting-started.html", "Getting Started", is_be_gs),
+                (f"{prefix}my-backend/order-lifecycle.html", "Order lifecycle", is_be_ord),
+                (f"{prefix}my-backend/live-updates.html", "Live status sync", is_be_live),
+                (f"{prefix}my-backend/payments-wallet.html", "Payments & wallet", is_be_pay),
+                (f"{prefix}my-backend/commission-engine.html", "Commission engine", is_be_com),
+                (f"{prefix}my-backend/subscriptions-engine.html", "Subscriptions engine", is_be_sub),
+                (f"{prefix}my-backend/intelligence-engine.html", "AI & pricing brain", is_be_ai),
+                (f"{prefix}my-backend/logistics-engine.html", "Logistics engine", is_be_log),
+                (f"{prefix}my-backend/channels-api.html", "Hybrid channels", is_be_ch),
+                (f"{prefix}my-backend/market-data.html", "Languages & market data", is_be_mkt),
+                (f"{prefix}my-backend/catalog-api.html", "Catalog & partners", is_be_cat),
             ],
             force_open=in_be,
         ),

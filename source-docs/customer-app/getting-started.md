@@ -150,3 +150,4 @@ Customer login hits the suite auth endpoints on your API (same host/port as ever
 
 - Full suite smoke test: [00-launch-suite.md](../00-launch-suite.md)
 - Branding & production env: [environment-config.md](../environment-config.md)
+- Feature HOW-TOs (same topics as the online sidebar): [discovery](./discovery.md) · [checkout](./checkout.md) · [tracking](./order-tracking.md) · [wallet](./wallet.md) · [recommendations](./recommendations.md) · [languages](./languages-rtl.md) — see [README index](../README.md)
