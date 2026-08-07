@@ -208,6 +208,23 @@
           </section>
 
           <section class="section-block">
+            <h2>Push notifications</h2>
+            <p>
+              Order status and offers reach the phone via <strong>push</strong>. Accounts and menus still live on your marketplace API —
+              Firebase is only the notification channel. Register this customer app in a Firebase project, drop in the platform config files,
+              and confirm a test order triggers a notification once the API is connected for messaging.
+            </p>
+            <figure class="doc-shot wide">
+              <img src="./assets/images/capture-firebase.png" alt="Firebase project" />
+              <figcaption>Firebase project for customer push</figcaption>
+            </figure>
+            <figure class="doc-shot wide">
+              <img src="./assets/images/findFirebaseConfig.png" alt="Firebase Project Settings" />
+              <figcaption>Download the config files from Project Settings</figcaption>
+            </figure>
+          </section>
+
+          <section class="section-block">
             <h2>After it runs — what to explore</h2>
             <p>
               Once home loads from the API, use the feature guides (with their dedicated captures) instead of repeating them here:
@@ -220,8 +237,8 @@
             </ul>
             <p class="section-subtext">
               Full suite boot order and smoke checklist: <strong>source-docs/00-launch-suite.md</strong>.
-              Branding, languages, and production checklist: <a href="./environment-setup.html">Environment setup</a>
-              and <strong>source-docs/environment-config.md</strong>.
+              Shared toolchain: <a href="./environment-setup.html">Environment setup</a>.
+              Currency: <a href="./admin-app/currencies-taxes.html">Currencies &amp; taxes</a>.
             </p>
           </section>
         </section>

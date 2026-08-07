@@ -204,6 +204,18 @@
           </section>
 
           <section class="section-block">
+            <h2>Push from the API</h2>
+            <p>
+              The API sends device notifications when orders move — Firebase Cloud Messaging is the delivery pipe, not the database.
+              Connect a Firebase service account to the backend, register each mobile app in the same Firebase project, then verify a status change reaches a phone.
+            </p>
+            <figure class="doc-shot wide">
+              <img src="../assets/images/findFirebaseConfig.png" alt="Firebase Project Settings" />
+              <figcaption>Firebase Project Settings — service account and app configs</figcaption>
+            </figure>
+          </section>
+
+          <section class="section-block">
             <h2>After it runs — what to explore</h2>
             <ul>
               <li><a href="./order-lifecycle.html">Order lifecycle</a> · <a href="./live-updates.html">Live status sync</a></li>

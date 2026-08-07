@@ -1,51 +1,52 @@
 # Payments & wallet — Backend API
 
-Gateways, checkout initialize, wallet ledger, cashback, and instant refund behaviour.
+How marketplace payment switches and wallet cashback/refunds are configured — and how the API applies them at checkout.
 
-Admin UI field-by-field HOW-TOs (ZIP docs): [gateways index](../admin-app/gateways.md) and per-provider pages under `source-docs/admin-app/gateway-*.md`. Online HTML stays the soft product explanation.
+## Turning payment methods on / off
 
-## Prerequisites
+Two Admin surfaces stay **in sync**:
 
-- `migrate:up` applied (wallet / gateway seeds)
-- Admin can open **Gateways** and **App Settings**
-- For Stripe beyond demo: `STRIPE_SECRET_KEY` (and Connect URLs if used) in `my-backend/.env` — see `.env.example`
+| Surface | What you set | Effect |
+|---|---|---|
+| **App Settings → Stripe Enabled** | Marketplace-wide card switch | On → Stripe payment intents work and the Stripe **Gateway** row is set **Active**. Off → card checkout is refused |
+| **App Settings → Cash On Delivery Enabled** | Marketplace-wide COD switch | On → COD orders/methods allowed and COD **Gateway** set **Active**. Off → COD refused |
+| **Gateways → Active** (per provider) | Paystack, Flutterwave, Razorpay, PayPal, Crypto, Wallet, … | Each PSP must be **Active** (with real credentials when you leave demo) to initialize that method |
 
-## Operator steps
+Toggling Stripe/COD in either App Settings **or** the matching Gateway row updates the other, so operators never fight two conflicting switches.
 
-1. Admin → **Gateways** — enable only methods you have credentials for (`/api/gateways`). Use the matching [per-gateway HOW-TO](../admin-app/gateways.md).
-2. Set Stripe secrets in backend `.env` when leaving demo keys — see [getting started](./getting-started.md) and [gateway-stripe.md](../admin-app/gateway-stripe.md).
-3. App Settings — review wallet flags (cashback / instant refund to wallet).
-4. Customer app — top up wallet, pay an order from balance ([customer wallet](../customer-app/wallet.md)).
-5. Cancel a paid test order if instant-refund is on — confirm wallet credit.
+Wallet (`platform_credit`) stays available whenever the customer has a balance — it is not gated by those two App Settings flags.
 
-## API smoke (hosted PSPs)
+## Demo credentials vs. real credentials
 
-```bash
-# List active providers (shape may omit secrets)
-curl -s -H "Authorization: Bearer $TOKEN" \\
-  http://localhost:5000/api/gateways/providers
+Each gateway stores its own `credentials` map. Seeded rows ship with `demo_` placeholders. Until you replace them, initialize returns a clear “configure in Admin → Gateways” demo response (Stripe needs a real `STRIPE_SECRET_KEY` in `.env`). Nothing charges for real until credentials are live.
 
-# Initialize (paystack | flutterwave | razorpay | paypal | crypto/…)
-curl -s -X POST http://localhost:5000/api/gateways/initialize \\
-  -H "Authorization: Bearer $TOKEN" \\
-  -H "Content-Type: application/json" \\
-  -d '{"provider":"paystack","amount":10,"currency":"NGN","email":"buyer@example.com"}'
-```
+Per-provider fields: [gateways](../admin-app/gateways.md) and `gateway-*.md`.
 
-Stripe card intents: `/api/payments/stripe/payment-intent` (not only `/initialize`).
+## Wallet: cashback & instant refund
 
-## Smoke test
+Balance = ledger of `Transaction` rows (credits minus wallet debits). App Settings:
+
+| Flag | Default | Effect |
+|---|---|---|
+| `walletCashbackEnabled` + `walletCashbackPercent` | on, 2% | On `delivered`, credit cashback % of subtotal (once per order) |
+| `walletInstantRefundEnabled` | on | On `cancelled` of a **paid** order, credit full total to wallet (skipped for unpaid COD) |
+
+## Restaurant-level payment acceptance
+
+`RestaurantPaymentSetting` can further restrict cash/card/online per partner under the global switches above.
+
+## Verify
 
 | Step | Expect |
 |------|--------|
-| Gateway disabled | Checkout with that method fails clearly |
-| Demo secrets on Active gateway | `demo: true` init (or Stripe failure) until real keys |
-| Wallet top-up | Balance increases |
-| Pay from wallet | Order paid; ledger entry exists |
-| Refund / cashback flags | Matching ledger movement after eligible event |
+| App Settings Stripe **off** | Card payment intent refused |
+| App Settings COD **off** | New COD order refused |
+| Gateway Paystack **Active** + real key | Init returns provider authorization URL |
+| Delivered order + cashback on | `cashback` credit on wallet |
+| Cancel paid order + instant refund on | `refund` credit on wallet |
 
 ## Related
 
-- [Commission engine](./commission-engine.md)
-- Admin HOW-TOs: [gateways.md](../admin-app/gateways.md)
-- Customer: [wallet.md](../customer-app/wallet.md)
+- [Order lifecycle](./order-lifecycle.md) · [Commission engine](./commission-engine.md)
+- Admin: [gateways](../admin-app/gateways.md) · [app settings](../admin-app/app-settings.md)
+- Customer: [wallet](../customer-app/wallet.md)

@@ -357,6 +357,13 @@ def main():
                         ],
                         "shot": ("phone", f"{A}/features/ordering-checkout.jpg", "Checkout", "Summary, payment method, place order"),
                     },
+                    {
+                        "h3": "Address autocomplete",
+                        "paras": [
+                            "Delivery addresses can use Google Places suggestions. Enable Places in Google Cloud, create an API key with billing attached, and wire it into the customer build so checkout suggestions return.",
+                        ],
+                        "shot": ("wide", f"{A}/capture-console1.png", "Places API", "Enable Places API in Google Cloud"),
+                    },
                 ],
             },
         ],
@@ -1105,7 +1112,7 @@ def main():
                         "paras": [
                             "Onboarding and ongoing control: open a restaurant record to activate it, set hours, address, service modes, categories, tax, and commission — so the customer app stays consistent with what you approve.",
                         ],
-                        "shot": ("wide", f"{A}/features/admin-ops-restaurants.jpg", "Restaurant details", "Edit restaurant: activation, hours, address, categories, commission"),
+                        "shot": ("wide", f"{A}/features/admin-ops-restaurants-hl.jpg", "Restaurant details", "Restaurant form — Commission Rate (%) highlighted"),
                     },
                     {
                         "h3": "Drivers",
@@ -1185,7 +1192,10 @@ def main():
                             "Scan Transactions for the restaurants and amounts in that period; check Payouts if money should already be owed out.",
                             "If numbers look wrong, cross-check App Settings commission and the related orders.",
                         ],
-                        "shot": ("wide", f"{A}/features/earnings-details.jpg", "Earnings details", "Period summary, split cards, transactions, and payouts"),
+                        "shots": [
+                            ("wide", f"{A}/features/earnings-details-hl-summary.jpg", "Earnings summary", "Full earnings details — summary split cards highlighted"),
+                            ("wide", f"{A}/features/earnings-details-hl-tx.jpg", "Earnings transactions", "Full earnings details — Transactions (Commission column) highlighted"),
+                        ],
                     },
                 ],
             },
@@ -1214,7 +1224,14 @@ def main():
                             "Add New or View to edit: set target audience, price, billing cycle, and benefits.",
                             "Save, then open the matching mobile app and confirm the plan appears.",
                         ],
-                        "shot": ("wide", f"{A}/features/admin-subscriptions.jpg", "Subscriptions", "Admin subscription tiers"),
+                        "shot": ("wide", f"{A}/features/admin-subscriptions.jpg", "Subscriptions", "Admin subscription tiers list"),
+                    },
+                    {
+                        "h3": "Restaurant plan benefits that change commission",
+                        "paras": [
+                            "On a restaurant-target plan, open <strong>Benefit flags</strong> to set <strong>Reduced commission %</strong> or <strong>Waive commission</strong>. Those flags are what the commission engine reads while the plan is active.",
+                        ],
+                        "shot": ("wide", f"{A}/features/admin-subscriptions-hl-benefits.jpg", "Plan benefits", "Restaurant Pro — Benefit flags highlighted"),
                     },
                 ],
                 "after": [
@@ -1289,7 +1306,7 @@ def main():
                             "Point your Stripe webhook endpoint at your API’s Stripe webhook handler; use the signing secret from that endpoint.",
                             "Place a test card checkout and, if used, a wallet top-up; confirm the order/transaction ledger updates.",
                         ],
-                        "shot": ("wide", f"{A}/features/gateway-stripe.jpg", "Stripe form", "Capabilities, logo, publishable/secret/webhook keys"),
+                        "shot": ("wide", f"{A}/features/gateway-stripe-hl.jpg", "Stripe form", "Stripe — Capabilities and Provider credentials highlighted"),
                     },
                     {
                         "h3": "What differs from other gateways",
@@ -1326,7 +1343,7 @@ def main():
                             "Keep Active only when those credentials work; switch mode to <strong>Live</strong> with live credentials for production.",
                             "Run a checkout that selects PayPal and complete the approval page; confirm capture and order status on the API.",
                         ],
-                        "shot": ("wide", f"{A}/features/gateway-paypal.jpg", "PayPal form", "Client ID, client secret, and Sandbox/Live mode"),
+                        "shot": ("wide", f"{A}/features/gateway-paypal-hl.jpg", "PayPal form", "PayPal — Capabilities and Provider credentials highlighted"),
                     },
                     {
                         "h3": "What differs from other gateways",
@@ -1363,7 +1380,7 @@ def main():
                             "Ensure checkout/wallet passes a currency Flutterwave supports for that country.",
                             "Complete a hosted payment and confirm the redirect/callback updates the order.",
                         ],
-                        "shot": ("wide", f"{A}/features/gateway-flutterwave.jpg", "Flutterwave form", "Public, secret, and encryption keys"),
+                        "shot": ("wide", f"{A}/features/gateway-flutterwave-hl.jpg", "Flutterwave form", "Flutterwave — Capabilities and credentials highlighted"),
                     },
                     {
                         "h3": "What differs from other gateways",
@@ -1400,7 +1417,7 @@ def main():
                             "Register your callback URL in Paystack and in the app/API config used at initialize time.",
                             "Pay a test checkout; verify the reference settles and the order moves forward.",
                         ],
-                        "shot": ("wide", f"{A}/features/gateway-paystack.jpg", "Paystack form", "Public key, secret key, and capabilities"),
+                        "shot": ("wide", f"{A}/features/gateway-paystack-hl.jpg", "Paystack form", "Paystack — Capabilities and credentials highlighted"),
                     },
                     {
                         "h3": "What differs from other gateways",
@@ -1437,7 +1454,7 @@ def main():
                             "Enable only the capabilities Orange actually grants your merchant account.",
                             "Run a mobile-money checkout in a supported currency and confirm callback/webhook handling.",
                         ],
-                        "shot": ("wide", f"{A}/features/gateway-orangepay.jpg", "OrangePay form", "Merchant id, API key, client id/secret"),
+                        "shot": ("wide", f"{A}/features/gateway-orangepay-hl.jpg", "OrangePay form", "OrangePay — Capabilities and credentials highlighted"),
                     },
                     {
                         "h3": "What differs from other gateways",
@@ -1474,7 +1491,7 @@ def main():
                             "Ensure customer checkout uses the Razorpay provider path that consumes `orderId` + `keyId`.",
                             "Complete a test payment in INR (or your configured currency) and verify capture/webhook updates.",
                         ],
-                        "shot": ("wide", f"{A}/features/gateway-razorpay.jpg", "Razorpay form", "Key id, key secret, and capabilities"),
+                        "shot": ("wide", f"{A}/features/gateway-razorpay-hl.jpg", "Razorpay form", "Razorpay — Capabilities and credentials highlighted"),
                     },
                     {
                         "h3": "What differs from other gateways",
@@ -1511,7 +1528,7 @@ def main():
                             "Align driver app / POD processes so cash collected is recorded.",
                             "Train support: COD disputes are ops tickets, not PSP chargebacks.",
                         ],
-                        "shot": ("wide", f"{A}/features/gateway-cod.jpg", "COD form", "COD method without card provider keys"),
+                        "shot": ("wide", f"{A}/features/gateway-cod-hl.jpg", "COD form", "Cash on Delivery form — key controls highlighted"),
                     },
                     {
                         "h3": "What differs from other gateways",
@@ -1548,7 +1565,7 @@ def main():
                             "Ensure at least one external gateway is configured for top-ups.",
                             "Test: top up → pay an order fully or partially with wallet → confirm ledger lines.",
                         ],
-                        "shot": ("wide", f"{A}/features/gateway-wallet.jpg", "Internal Wallet form", "Platform wallet method and capabilities"),
+                        "shot": ("wide", f"{A}/features/gateway-wallet-hl.jpg", "Internal Wallet form", "Internal Wallet — capabilities and credentials highlighted"),
                     },
                     {
                         "h3": "What differs from other gateways",
@@ -1585,7 +1602,7 @@ def main():
                             "Expose and verify the webhook endpoint the API uses for payment confirmation.",
                             "Run a small test payment and confirm the order only advances after webhook confirmation.",
                         ],
-                        "shot": ("wide", f"{A}/features/gateway-crypto.jpg", "Crypto form", "API key, webhook secret, and crypto capabilities"),
+                        "shot": ("wide", f"{A}/features/gateway-crypto-hl.jpg", "Crypto form", "Crypto — Capabilities and credentials highlighted"),
                     },
                     {
                         "h3": "What differs from other gateways",
@@ -1683,13 +1700,9 @@ def main():
                         ],
                         "shot": ("wide", f"{A}/features/languages.jpg", "Languages", "Admin language catalogue with default flag"),
                     },
-                    {
-                        "h3": "Customer language picker",
-                        "paras": [
-                            "Customers change language from their settings screen — including RTL when you enable Arabic or similar locales.",
-                        ],
-                        "shot": ("phone", f"{A}/features/lang-picker.jpg", "Customer settings", "Language selection in customer settings"),
-                    },
+                ],
+                "after": [
+                    'Shoppers switch language in the app: <a href="../languages-rtl.html">Customer — Languages &amp; RTL</a>. Same idea on <a href="../delivery-app/languages.html">driver</a> and <a href="../restaurant-app/languages.html">restaurant</a>.',
                 ],
             },
         ],
@@ -1706,10 +1719,30 @@ def main():
             {
                 "h2": "Currencies",
                 "paras": [
-                    "Menus, carts, wallets, subscriptions, and reports should speak one money language per market. Treat currency changes as a go-live decision.",
+                    "Menus, carts, wallets, subscriptions, and reports should speak one money language per market. Add the currency you sell in, then mark it as the platform main currency so every client shows the same symbol — no mobile code edits required.",
                 ],
-                "shots": [
-                    ("wide", f"{A}/features/currencies.jpg", "Currencies", "Admin currencies"),
+                "blocks": [
+                    {
+                        "h3": "Add a currency",
+                        "paras": [
+                            "Open <strong>Currencies</strong>, create the code, name, symbol, and exchange rate you need.",
+                        ],
+                        "shot": ("wide", f"{A}/add_currency.png", "Add currency", "Add a currency in Admin"),
+                    },
+                    {
+                        "h3": "Set it as the main currency",
+                        "paras": [
+                            "Open general / App Settings, select that currency as the marketplace default, and save. Refresh or relaunch the mobile apps if an old symbol still appears.",
+                        ],
+                        "shot": ("wide", f"{A}/update-currency-in-general-settings.png", "Main currency", "Main currency in general settings"),
+                    },
+                    {
+                        "h3": "Currency catalogue",
+                        "paras": [
+                            "The Currencies list is the catalogue every client can draw from once the main currency is set.",
+                        ],
+                        "shot": ("wide", f"{A}/features/currencies.jpg", "Currencies", "Admin currencies list"),
+                    },
                 ],
             },
             {
@@ -1747,7 +1780,7 @@ def main():
                             "Enable only the order channels you will actually operate.",
                             "Run one full order in that configuration before inviting real restaurants.",
                         ],
-                        "shot": ("wide", f"{A}/features/app-settings.jpg", "App settings", "Marketplace app settings"),
+                        "shot": ("wide", f"{A}/features/app-settings-hl.jpg", "App settings", "App Settings — commission, delivery, wallet flags highlighted"),
                     },
                 ],
             },
@@ -1909,9 +1942,16 @@ def main():
                     {
                         "h3": "Arabic RTL in the customer app",
                         "paras": [
-                            "With Arabic selected, the UI mirrors (I18nManager forceRTL): navigation, lists, and forms read right-to-left. That is a product feature for Gulf / MENA launches — not a hidden developer flag.",
+                            "With Arabic selected, the UI mirrors: navigation, lists, and forms read right-to-left. That is a product feature for Gulf / MENA launches — not a hidden developer flag.",
                         ],
                         "shot": ("phone", f"{A}/features/customer-languages-rtl.jpg", "Arabic RTL", "Customer settings mirrored EN → AR"),
+                    },
+                    {
+                        "h3": "Customize the wording",
+                        "paras": [
+                            "Each app ships its own locale files. Translators copy the English structure, change only the visible text, and keep the keys identical so every screen stays wired.",
+                        ],
+                        "shot": ("wide", f"{A}/translation-doc.gif", "Locale files", "Locale files for regional copy"),
                     },
                 ],
                 "after": [
@@ -2014,7 +2054,7 @@ def main():
                             "Place a test order per channel and confirm <code>orderSource</code> shows correctly on the order record.",
                             "Verify status notifications fan out on the channel you enabled.",
                         ],
-                        "shot": ("wide", f"{A}/features/app-settings.jpg", "Marketplace settings", "Where channel and marketplace flags are configured"),
+                        "shot": ("wide", f"{A}/features/app-settings-hl-channels.jpg", "Channel toggles", "App Settings — Web Ordering, WhatsApp, and USSD toggles (orders outside the app store)"),
                     },
                 ],
                 "after": [
@@ -2225,7 +2265,7 @@ def main():
                         "paras": [
                             'Configure plans in <a href="../admin-app/subscriptions.html">Subscription plans</a>. Sell in <a href="../subscriptions.html">Membership plans</a>, <a href="../delivery-app/subscriptions.html">Priority plans</a>, and <a href="../restaurant-app/subscriptions.html">Partner plans</a>.',
                         ],
-                        "shot": ("wide", f"{A}/features/admin-subscriptions.jpg", "Subscriptions", "Admin subscription tiers backed by the API"),
+                        "shot": ("wide", f"{A}/features/admin-subscriptions-hl-benefits.jpg", "Subscriptions", "Restaurant plan — Benefit flags highlighted"),
                     },
                 ],
             },
@@ -2310,7 +2350,7 @@ def main():
                         "paras": [
                             'Operators enable credentials in Admin; the API is what Meta / aggregators / web clients hit. UI path: <a href="../admin-app/order-channels.html">Order channels</a> and <a href="../admin-app/app-settings.html">Marketplace settings</a>.',
                         ],
-                        "shot": ("wide", f"{A}/features/app-settings.jpg", "Settings", "Marketplace settings where channel flags live"),
+                        "shot": ("wide", f"{A}/features/app-settings-hl-channels.jpg", "Channel toggles", "App Settings — Web Ordering, WhatsApp, and USSD (the intake paths beyond native apps)"),
                     },
                 ],
             },
@@ -2369,7 +2409,7 @@ def main():
                         "paras": [
                             'Admin partner screens: <a href="../admin-app/partners.html">Partners &amp; users</a>. Restaurant self-serve: <a href="../restaurant-app/menu.html">Menu management</a>.',
                         ],
-                        "shot": ("wide", f"{A}/features/admin-ops-restaurants.jpg", "Restaurant details", "Restaurant partner record stored by the API"),
+                        "shot": ("wide", f"{A}/features/admin-ops-restaurants-hl.jpg", "Restaurant details", "Restaurant record — Commission Rate (%) highlighted"),
                     },
                     {
                         "h3": "Central catalog when you seed a city",

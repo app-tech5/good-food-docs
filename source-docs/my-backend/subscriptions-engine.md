@@ -1,24 +1,44 @@
 # Subscriptions engine — Backend API
 
-Recurring plans for **customer**, **driver**, and **restaurant** targets — stored and enforced server-side.
+What each plan benefit does once a customer, driver, or restaurant is enrolled.
 
-## Operator steps
+## Plan shape
 
-1. Admin → **Subscriptions** (`/api/subscriptions`).
-2. Review seeded tiers; edit price, cycle, benefits, `target`, active flag.
-3. Align currency with [market data](./market-data.md).
+A `Subscription` is a template: `target` (`customer` / `restaurant` / `driver`), `price`, `currency`, `billing_cycle`, display `benefits` tags, and `benefitFlags` (the flags that change money and checkout).
 
-## App smoke tests
+Enrollment creates a `UserSubscription` (active + period end). Other services resolve perks via the member’s active plan for their role.
 
-| App | Path |
-|-----|------|
-| Customer | [Membership plans](../customer-app/subscriptions.md) |
-| Driver | [Priority plans](../delivery-app/subscriptions.md) |
-| Restaurant | [Partner plans](../restaurant-app/subscriptions.md) |
+## Benefit flags — what they do
 
-Empty lists → `migrate:status`, admin CRUD, and that the signed-in role matches the plan `target`.
+| Flag | Audience | Effect |
+|---|---|---|
+| `reducedCommissionPercent` | Restaurant | Lowers platform commission on completed orders |
+| `waiveCommission` / `platformAccess` | Restaurant | Platform commission **0%** while enrolled (flat SaaS fee instead) |
+| `freeDelivery` | Customer | Checkout sets delivery fee to **0** |
+| `discountPercent` | Customer | Checkout takes that % off subtotal (before tax) |
+| `prioritySupport` | Driver (also customer/restaurant display) | Drivers get first look at new pending jobs and a wider batch radius |
+
+Restaurant commission math: [commission engine](./commission-engine.md).  
+Customer pricing is applied when the order is created (app checkout and channel intake), so totals cannot be bypassed by the client.
+
+## Configure a plan
+
+1. Admin → **Subscriptions** — set `target`, price, cycle, and the benefit flags above.
+2. Restaurant SaaS: prefer `waiveCommission` + `platformAccess`; or use `reducedCommissionPercent` for a softer cut.
+3. Customer perks: turn on `freeDelivery` and/or set `discountPercent`.
+4. `is_active: false` hides the plan from new sign-ups without wiping existing members.
+
+## Verify
+
+| Check | Expect |
+|---|---|
+| Restaurant + `waiveCommission` | Earnings show 0% platform cut on new orders |
+| Restaurant + `reducedCommissionPercent` | Platform cut softens by that % |
+| Customer + `freeDelivery` | Checkout delivery fee is 0 |
+| Customer + `discountPercent` | Checkout subtotal reduced before tax |
 
 ## Related
 
-- [Commission engine](./commission-engine.md) — restaurant plan benefits
+- [Commission engine](./commission-engine.md)
 - Admin: [subscriptions](../admin-app/subscriptions.md)
+- Apps: [customer](../customer-app/subscriptions.md) · [driver](../delivery-app/subscriptions.md) · [restaurant](../restaurant-app/subscriptions.md)

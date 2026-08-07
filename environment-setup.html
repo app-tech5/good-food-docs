@@ -3,25 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Environment &amp; Branding — Good Food Pro Docs</title>
+    <title>Environment setup — Good Food Pro Docs</title>
     <link rel="stylesheet" href="site.css" />
-    <script>
-      function switchPlatform(el) {
-        document.querySelectorAll(".platform-tab").forEach(function (tab) {
-          tab.classList.remove("active");
-        });
-        el.classList.add("active");
-        document.getElementById("mac-content").style.display = "none";
-        document.getElementById("win-content").style.display = "none";
-        document.getElementById("linux-content").style.display = "none";
-        var platform = el.getAttribute("data-platform");
-        if (platform === "mac") document.getElementById("mac-content").style.display = "block";
-        else if (platform === "win") document.getElementById("win-content").style.display = "block";
-        else if (platform === "linux") document.getElementById("linux-content").style.display = "block";
-      }
-    </script>
   </head>
   <body>
+    <script src="js/sidebar-scroll.js"></script>
     <main class="layout">
       <aside class="sidebar" data-docs-sidebar>
         <div class="sidebar-head">
@@ -169,383 +155,71 @@
       </aside>
 
       <section class="content">
-        <header class="hero">
-          <h1 id="top">Environment setup</h1>
+        <header id="top" class="hero">
+          <h1>Environment setup</h1>
           <p class="subtitle">
-            Node.js, Expo CLI (command lines), languages (i18n), API reachability from devices, Google Maps for production, and <a href="#change-app-currency">app currency</a> — one place for the whole suite.
+            Shared foundation for the suite: install the toolchain once, then make sure every app can reach the same API.
           </p>
+          <div class="meta-strip">
+            <span class="meta-pill">Toolchain</span>
+            <span class="meta-pill">Devices</span>
+            <span class="meta-pill">One API</span>
+          </div>
           <p class="back-links">
-            Then continue with
-            <a href="./getting-started.html">Customer app — Getting Started</a>,
-            <a href="./restaurant-app/getting-started.html">Restaurant app — Getting Started</a>,
-            <a href="./admin-app/getting-started.html">Admin app — Getting Started</a>,
-            or <a href="./delivery-app/getting-started.html">Driver app — Getting Started</a>.
+            Then open each Getting Started —
+            <a href="./getting-started.html">Customer</a>,
+            <a href="./restaurant-app/getting-started.html">Restaurant</a>,
+            <a href="./admin-app/getting-started.html">Admin</a>,
+            <a href="./delivery-app/getting-started.html">Driver</a>,
+            <a href="./my-backend/getting-started.html">Backend</a>.
           </p>
         </header>
 
-        <section class="section" id="nodejs">
-          <h2>Node.js</h2>
-          <p>
-            Node.js runs JavaScript on your computer and ships with <code>npm</code>, which installs the mobile apps&apos; dependencies.
-            Use an <strong>LTS</strong> (Long Term Support) release (for example 18.x or 20.x).
-          </p>
-          <p class="sub">Install for your operating system:</p>
+        <section class="overview">
+          <section class="section-block" id="prepare">
+            <h2>Prepare the machines once</h2>
+            <p>
+              Good Food Pro spans five surfaces that must share one backend. Environment setup is only that shared foundation —
+              not currency, languages, push, or payments (those live on the Admin and app pages linked below).
+            </p>
+            <ol class="doc-steps">
+              <li>Install a current <strong>Node.js LTS</strong> on the machine that builds and runs the apps.</li>
+              <li>Install native tooling for mobile (Android Studio and/or Xcode). The mobile apps use a <strong>development build</strong>, not Expo Go.</li>
+              <li>Start MongoDB and the API, then Admin, then the mobile clients — each pointed at an API address that device can reach.</li>
+            </ol>
+            <p class="section-subtext">
+              Buyers with the source ZIP: install commands, environment variables, and production checks are in the
+              Environment &amp; branding guide inside the source documentation pack.
+            </p>
+          </section>
 
-          <div style="margin: 20px 0 24px 0;">
-            <div style="display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap;">
-              <div onclick="switchPlatform(this)" class="platform-tab active" data-platform="mac">macOS</div>
-              <div onclick="switchPlatform(this)" class="platform-tab" data-platform="win">Windows</div>
-              <div onclick="switchPlatform(this)" class="platform-tab" data-platform="linux">Linux</div>
-            </div>
+          <section class="section-block" id="devices">
+            <h2>Phones, simulators, and the API</h2>
+            <p>
+              A phone on Wi‑Fi cannot use “localhost” to mean your laptop — it means the phone itself.
+              Simulators on the same computer can usually reach the host; a physical device needs your computer’s
+              network address (or a deployed HTTPS API). Guest networks that isolate clients will block LAN demos.
+            </p>
+            <p class="section-subtext">
+              Keep one shared API base across customer, driver, restaurant, and Admin. After you change a client’s
+              API address, restart that app’s development session so the new value is picked up.
+            </p>
+          </section>
 
-            <div id="mac-content">
-              <div class="code-block">
-                <div class="code-head">
-                  <span class="code-title">macOS — Homebrew (recommended)</span>
-                </div>
-                <pre><code><span class="tok-cmd">brew</span> <span class="tok-cmd">install</span> <span class="tok-arg">node</span></code></pre>
-              </div>
-            </div>
-
-            <div id="win-content" style="display: none;">
-              <div class="code-block">
-                <div class="code-head">
-                  <span class="code-title">Windows — official installer</span>
-                </div>
-                <pre><code><span class="tok-comment"># 1. Go to https://nodejs.org</span>
-<span class="tok-comment"># 2. Download the LTS version</span>
-<span class="tok-comment"># 3. Run the installer (.msi file)</span></code></pre>
-              </div>
-            </div>
-
-            <div id="linux-content" style="display: none;">
-              <div class="code-block">
-                <div class="code-head">
-                  <span class="code-title">Linux — NodeSource (Debian/Ubuntu example)</span>
-                </div>
-                <pre><code><span class="tok-cmd">curl</span> -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
-<span class="tok-cmd">sudo</span> <span class="tok-cmd">apt-get</span> <span class="tok-cmd">install</span> <span class="tok-arg">-y</span> nodejs</code></pre>
-              </div>
-            </div>
-          </div>
-
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">Verify (all platforms)</span>
-            </div>
-            <pre><code><span class="tok-cmd">node</span> <span class="tok-arg">--version</span>
-<span class="tok-cmd">npm</span> <span class="tok-arg">--version</span></code></pre>
-          </div>
-        </section>
-
-        <section class="section" id="expo-tooling">
-          <h2>Expo — installation and commands</h2>
-          <p>
-            The mobile apps use <strong>React Native</strong> with <strong>Expo</strong> (~54) and a custom native stack.
-            Install dependencies with <code>npm install</code> in <code>customer-app</code>, <code>delivery-app</code>, or <code>restaurant-app</code>.
-            Node.js <strong>20+</strong> is required.
-          </p>
-
-          <h3>1) Use Expo from the project (recommended)</h3>
-          <p>After Node.js is installed, open the app folder and install dependencies. Then start the dev server with <code>npx</code> (uses the CLI shipped in <code>node_modules</code>):</p>
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">Customer or driver repo — install and start</span>
-            </div>
-            <pre><code><span class="tok-cmd">cd</span> <span class="tok-arg">customer-app</span>   <span class="tok-comment"># or: cd delivery-app</span>
-<span class="tok-cmd">npm</span> <span class="tok-cmd">install</span>
-<span class="tok-cmd">npx</span> <span class="tok-arg">expo</span> <span class="tok-arg">--version</span>
-<span class="tok-cmd">npx</span> <span class="tok-arg">expo</span> <span class="tok-cmd">start</span></code></pre>
-          </div>
-          <p class="sub">
-            The same thing is usually wired as <code>npm start</code> in <code>package.json</code>, so you can run <code>npm start</code> instead of <code>npx expo start</code> if you prefer.
-          </p>
-          <div class="callout">
-            <strong>Expo Go is not supported</strong> for these mobile apps.
-            They need a <strong>development build</strong> (<code>expo-dev-client</code> / native project under <code>android/</code> and <code>ios/</code>).
-            First install: <code>npm run android</code> or <code>npm run ios</code>. Later sessions: <code>npm start</code>, then open the installed app.
-          </div>
-          <p class="sub">
-            After the development build is installed, you can press <code>a</code> / <code>i</code> in the Expo terminal if it resolves your installed client — otherwise open the app icon on the device/emulator.
-          </p>
-
-          <h3>2) Optional — global Expo CLI</h3>
-          <p>If you want the <code>expo</code> command available in any directory (without <code>npx</code>):</p>
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">Install Expo CLI globally</span>
-            </div>
-            <pre><code><span class="tok-cmd">npm</span> <span class="tok-cmd">install</span> <span class="tok-arg">-g</span> @expo/cli
-<span class="tok-cmd">expo</span> <span class="tok-arg">--version</span>
-<span class="tok-comment"># then from the app folder:</span>
-<span class="tok-cmd">expo</span> <span class="tok-cmd">start</span></code></pre>
-          </div>
-
-          <h3>3) Optional — EAS CLI (cloud builds, store submission)</h3>
-          <p>For <code>eas build</code>, <code>eas submit</code>, and related workflows:</p>
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">EAS CLI</span>
-            </div>
-            <pre><code><span class="tok-cmd">npm</span> <span class="tok-cmd">install</span> <span class="tok-arg">-g</span> eas-cli
-<span class="tok-cmd">eas</span> <span class="tok-arg">--version</span>
-<span class="tok-cmd">eas</span> <span class="tok-cmd">login</span></code></pre>
-          </div>
-          <p class="sub">Official reference: <a href="https://docs.expo.dev/get-started/installation/">Expo — installation</a> and <a href="https://docs.expo.dev/build/setup/">EAS Build</a>.</p>
-
-          <h3>4) Development build on a physical device</h3>
-          <p>
-            Connect the phone with USB debugging (Android) or a signed iOS development device, then run
-            <code>npm run android</code> / <code>npm run ios</code> once from the app folder.
-            Point <code>EXPO_PUBLIC_API_URL</code> at your computer’s LAN IP (not <code>localhost</code> on a physical phone).
-            For Metro over USB you can also use <code>adb reverse tcp:8081 tcp:8081</code>.
-          </p>
-
-          <h3>5) Android Studio and Xcode</h3>
-          <ul>
-            <li><strong>Android Studio</strong> — Android emulator, SDK, and local Android builds.</li>
-            <li><strong>Xcode</strong> (macOS only) — iOS Simulator and App Store builds.</li>
-          </ul>
-          <p class="sub">On macOS, <strong>Watchman</strong> can speed up file watching: <code>brew install watchman</code>.</p>
-
-          <h3>6) Backend</h3>
-          <p>Keep a running <strong>REST API</strong> (for example <code>my-backend</code>) reachable from your computer and from any phone you use for testing — see <a href="#api-reachability">API reachability</a>.</p>
-        </section>
-
-        <section class="section" id="change-app-currency">
-          <h2>App currency (change)</h2>
-          <p>
-            Set the platform currency entirely from the <strong>Admin app</strong> — no changes in customer, driver, restaurant, or backend source code.
-            After you add a currency, choose it as the <strong>main</strong> currency in general app settings so every client uses it.
-          </p>
-
-          <h3>1) Add a currency</h3>
-          <p>
-            Under <strong>Currencies</strong> (resource <code>currencies</code>), create the currency you need: code, name, symbol, and exchange rate.
-          </p>
-          <p>
-            <img
-              src="./assets/images/add_currency.png"
-              alt="Add a currency in the admin app"
-              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
-            />
-          </p>
-
-          <h3>2) Set it as the main currency</h3>
-          <p>
-            Open <strong>Settings</strong> → <strong>App Settings</strong> / general settings and select that currency as the default (main) currency for the platform, then save.
-          </p>
-          <p>
-            <img
-              src="./assets/images/update-currency-in-general-settings.png"
-              alt="Set the main currency in general app settings"
-              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
-            />
-          </p>
-
-          <h3>3) Refresh clients</h3>
-          <p>
-            Restart or refresh mobile apps so they reload settings. Driver and restaurant apps may cache settings — clear cache or sign out and back in if the old symbol still appears.
-          </p>
-        </section>
-
-        <section class="section" id="i18n-languages">
-          <h2>Languages (i18n)</h2>
-          <p>
-            The suite ships UI strings in <strong>English, French, Spanish, and Arabic</strong>
-            (Arabic is RTL). Mobile apps follow the device locale via <code>expo-localization</code>
-            when a matching pack exists; users can also switch language in Settings.
-          </p>
-          <p class="sub">Where the files live:</p>
-          <ul>
-            <li><strong>Customer app:</strong> <code>lang/en.json</code>, <code>fr.json</code>, <code>es.json</code>, <code>ar.json</code> — configured in <code>lang/i18n.js</code></li>
-            <li><strong>Driver / Restaurant apps:</strong> same four files under <code>lang/</code>, wired in root <code>i18n.js</code></li>
-            <li><strong>Admin app:</strong> <code>src/locales/en.json</code>, <code>fr.json</code>, <code>es.json</code>, <code>ar.json</code></li>
-            <li><strong>Backend:</strong> <code>src/locales/</code> + language documents (see migration <code>44-market-adaptability.js</code>)</li>
-          </ul>
-          <p class="sub">
-            Market / channel context:
-            <a href="./admin-app/languages.html">Admin — Languages</a>
-            (and <a href="./admin-app/currencies-taxes.html">Currencies &amp; taxes</a>).
-          </p>
-          <p class="sub">To add another language:</p>
-          <ol>
-            <li>Create a new JSON file in <code>lang/</code> (or <code>src/locales/</code> for admin/backend).</li>
-            <li>Copy the full key structure from <code>en.json</code> and translate only the values.</li>
-            <li>Import and register the locale in the app&apos;s i18n entry the same way EN/FR/ES/AR are registered.</li>
-            <li>Optionally upsert a <code>languages</code> document in MongoDB (code, name, <code>rtl</code>).</li>
-          </ol>
-          <p class="sub">Restart the dev server after editing translations (<code>npm start</code> or <code>npx expo start</code>).</p>
-
-          <h3 style="margin-top: 28px;">Translation (how to edit)</h3>
-          <p>
-            It&apos;s very easy to customize the experience for specific regions, languages, or cultures. It also provides access to the locale data on the native device.
-          </p>
-
-          <p>
-            <img
-              src="./assets/images/translation-doc.gif"
-              alt="Translation folder and workflow example"
-              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
-            />
-          </p>
-
-          <p>In en.json file, inside of lang folder, you can translate for your specific language</p>
-
-          <p>
-            <img
-              src="./assets/images/vscode-translation-annotation-1.png"
-              alt="VS Code translation annotation example"
-              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
-            />
-          </p>
-        </section>
-
-        <section class="section" id="api-reachability">
-          <h2>API reachability (devices vs localhost)</h2>
-          <p>
-            In your app config, <code>API_BASE_URL</code> must point to a host and port your phone or emulator can actually reach.
-          </p>
-          <div class="callout">
-            <strong>Physical device:</strong> If the backend runs on your laptop at <code>192.168.1.20:5000</code>, use that LAN IP in the URL — not <code>localhost</code>, because on the phone &quot;localhost&quot; means the phone itself, not your computer.
-          </div>
-          <p class="sub">Simulators on the same machine can sometimes use special host aliases (for example Android emulator&apos;s <code>10.0.2.2</code>); use whatever your platform documents for reaching the host from the guest.</p>
-        </section>
-
-        <section class="section" id="firebase-setup">
-          <h2>Firebase Cloud Messaging (push notifications)</h2>
-          <p>
-            In <strong>Good Food Pro</strong>, users, restaurants, orders, and auth live on your
-            <strong>Node.js + MongoDB API</strong> (JWT) — not in Firebase as a database.
-            Firebase is used for <strong>push notifications (FCM)</strong> on the mobile apps.
-          </p>
-
-          <ul>
-            <li>Create a project on <a href="https://console.firebase.google.com/" target="_blank" rel="noopener">Firebase Console</a></li>
-            <li>Add Android / iOS apps for Customer, Driver, and Restaurant as needed</li>
-            <li>Download <code>google-services.json</code> (Android) and/or the iOS GoogleService plist</li>
-            <li>Enable <strong>Cloud Messaging</strong> — you do <em>not</em> need Firebase Authentication or Firestore for the Pro stack</li>
-            <li>Put the FCM / Firebase config into each mobile app following that app&apos;s Getting Started notes</li>
-          </ul>
-
-          <p class="sub" style="margin-top: 12px;">
-            Auth and data: configure <code>API_BASE_URL</code> against <code>my-backend</code>.
-            Push: wire FCM so order events from the API can notify devices.
-          </p>
-
-          <p style="margin-top: 16px;">
-            <img
-              src="./assets/images/capture-firebase.png"
-              alt="Firebase project creation screenshot"
-              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
-            />
-          </p>
-
-          <h3 style="margin-top: 26px;">Where to find project credentials</h3>
-          <p>
-            Open <a href="https://console.firebase.google.com/" target="_blank" rel="noopener">Firebase Console</a>
-            → Project Settings for app IDs, Cloud Messaging keys, and downloadable config files.
-          </p>
-
-          <p style="margin-top: 16px;">
-            <img
-              src="./assets/images/findFirebaseConfig.png"
-              alt="Finding Firebase config in Project Settings screenshot"
-              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
-            />
-          </p>
-        </section>
-
-        <section class="section" id="google-places-api">
-          <h2>Get Google Places API key</h2>
-          <p>In order to implement autocomplete functionality, we need to get an API for Google Places API.</p>
-
-          <h3>Go to Google Cloud Platform</h3>
-          <p>
-            Visit <a href="https://console.cloud.google.com/google/maps-apis/" target="_blank" rel="noopener ugc nofollow">Google Cloud Platform console</a> to get an API key to use &ldquo;Google Maps Javascript API&rdquo;.
-          </p>
-
-          <h3>Create a project and enable the API</h3>
-          <p>
-            First, create a new project on the console and navigate to &ldquo;<strong>APIs and Services</strong>&rdquo; on the left drawer navigation. Then, click on &ldquo;<strong>ENABLE APIs AND SERVICES</strong>&rdquo; on the dashboard.
-          </p>
-
-          <p style="margin-top: 16px;">
-            <img
-              src="./assets/images/capture-console.png"
-              alt="Enable APIs and Services screenshot"
-              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
-            />
-          </p>
-
-          <p>On the next screen, search for &ldquo;<strong>Places API</strong>&rdquo; and enable it.</p>
-
-          <p style="margin-top: 16px;">
-            <img
-              src="./assets/images/capture-console1.png"
-              alt="Places API enabled screenshot"
-              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
-            />
-          </p>
-
-          <h3>Generate an API key</h3>
-          <p>
-            After enabling the API, you need to create a key to actually use the API. navigate to &ldquo;<strong>Credentials</strong>&rdquo; under &ldquo;<strong>APIs &amp; Services</strong>&rdquo;, and click on &ldquo;<strong>CREATE CREDENTIALS</strong>&rdquo; in the upper middle of the screen and choose &ldquo;API key&rdquo;.
-          </p>
-
-          <p style="margin-top: 16px;">
-            <img
-              src="./assets/images/capture-console2.png"
-              alt="Create API key screenshot"
-              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
-            />
-          </p>
-
-          <p>This will generate an API key, so keep it somewhere safe because you need it later to use the API in the app.</p>
-
-          <h3>Create a billing account and link it to the project</h3>
-          <p>
-            In order to get results from the API, your Google Cloud project need to have a billing account linked to your project. You can create a billing account and link it to your project on the &ldquo;<strong>Billing</strong>&rdquo; page.
-          </p>
-        </section>
-
-        <section class="section" id="google-maps-expo">
-          <h2>Google Maps (Expo, production Android)</h2>
-          <p>
-            Some map experiences may use Google Maps SDKs on customer builds. The <strong>driver app</strong> uses <strong>MapLibre</strong> by default and does <strong>not</strong> require a Google Maps API key in <code>config.js</code>.
-            When a Google key is needed for a production APK/AAB, place it in your Expo Android config as below.
-          </p>
-
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">Step 1 — Google Cloud Console</span>
-            </div>
-            <pre><code><span class="tok-comment">1. Open https://console.cloud.google.com</span>
-<span class="tok-comment">2. Create or select a project</span>
-<span class="tok-comment">3. Enable &quot;Maps SDK for Android&quot; (and Maps SDK for iOS if you ship to the App Store)</span>
-<span class="tok-comment">4. Credentials → Create credentials → API key</span></code></pre>
-          </div>
-
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">Step 2 — app.json (Expo)</span>
-            </div>
-            <pre><code>{
-  "expo": {
-    "android": {
-      "config": {
-        "googleMaps": {
-          "apiKey": "<span class="tok-str">YOUR_KEY_HERE</span>"
-        }
-      }
-    }
-  }
-}</code></pre>
-          </div>
-
-          <p class="sub">
-            If your project also reads a key from <code>config/index.js</code> (customer) or <code>config.js</code> (driver), keep that value in sync. Rebuild with <code>eas build</code> or your usual Expo workflow after changing keys.
-          </p>
+          <section class="section-block" id="where-topics-live">
+            <h2>Where each topic lives</h2>
+            <p>
+              Do not look for marketplace money, languages, push, or maps on this page — they already have homes:
+            </p>
+            <ul>
+              <li><a href="./admin-app/currencies-taxes.html">Currencies &amp; taxes</a> — add a currency and set the platform main currency</li>
+              <li><a href="./admin-app/languages.html">Admin languages</a> · <a href="./languages-rtl.html">Customer languages &amp; RTL</a> · driver / restaurant language pages</li>
+              <li><a href="./admin-app/app-settings.html">Marketplace settings</a> · <a href="./admin-app/gateways.html">Gateways</a> · <a href="./admin-app/order-channels.html">Order channels</a></li>
+              <li>Push notifications — each mobile <a href="./getting-started.html">Getting Started</a> (and Backend for the API side)</li>
+              <li>Address autocomplete — <a href="./checkout.html">Checkout &amp; vouchers</a></li>
+              <li>Driver maps — <a href="./delivery-app/getting-started.html">Driver Getting Started</a></li>
+            </ul>
+          </section>
         </section>
         <p class="docs-footer"><a href="#top">↑ Back to top</a></p>
       </section>

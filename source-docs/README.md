@@ -5,8 +5,10 @@ Technical HOW-TO guides that ship with the source ZIP. Same **app split and feat
 | | Online HTML docs | This `source-docs/` pack |
 |---|---|---|
 | Audience | Shoppers & evaluators | Buyers with the ZIP |
-| Tone | Soft product stories | Step-by-step launch & configuration |
+| Tone | Soft product stories | **What you configure** (fields, toggles, effects) + how to verify |
 | Layout | Pages under each app | **Same folders & topics by app** |
+
+Each feature guide should answer: which Admin/backend settings drive it, what each field means when on/off, and a short verify checklist — not a catalogue of API routes.
 
 ## Folder map (mirrors the online site)
 

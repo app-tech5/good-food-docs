@@ -49,7 +49,7 @@ Those credentials must exist as a **driver-role** user in Mongo (seeded by migra
 EXPO_PUBLIC_GOOGLE_MAPS_API_KEY=
 ```
 
-The driver experience is MapLibre-oriented by default; you may still need Google Maps configuration for certain production Android builds. See [environment-config.md](./environment-config.md) for Google Cloud / `app.json` notes.
+The driver experience is MapLibre-oriented by default; you may still need Google Maps configuration for certain production Android builds (`expo.android.config.googleMaps.apiKey` + rebuild). Job/shift alerts use FCM — register this driver app in Firebase and ensure the API has `FIREBASE_SERVICE_ACCOUNT_JSON`.
 
 ## 3. Start the app
 

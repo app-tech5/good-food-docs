@@ -1,14 +1,18 @@
 # Market & languages — index
 
-Market HOW-TOs are split to match the online admin menu:
+Everything that adapts the marketplace to a language, currency, or intake channel, split to match the online admin menu:
 
-| Guide | Path |
-|-------|------|
-| Languages & RTL | [languages.md](./languages.md) |
-| Currencies & taxes | [currencies-taxes.md](./currencies-taxes.md) |
-| Marketplace settings | [app-settings.md](./app-settings.md) |
-| Order channels | [order-channels.md](./order-channels.md) |
+| Guide | What you configure there |
+|---|---|
+| [Languages](./languages.md) | Language catalogue (EN/FR/ES/AR) and the marketplace default |
+| [Currencies & taxes](./currencies-taxes.md) | Currency codes/symbols/exchange rates and tax rate rows |
+| [App Settings](./app-settings.md) | Timezone, default language, delivery defaults, and the WhatsApp/USSD/Web channel toggles |
+| [Order channels](./order-channels.md) | Turning on WhatsApp, USSD, and Web ordering as intake channels alongside the native apps |
 
-Backend: [Languages & market data](../my-backend/market-data.md), [Hybrid channels](../my-backend/channels-api.md).
+Backend internals: [Languages & market data](../my-backend/market-data.md), [Hybrid channels](../my-backend/channels-api.md).
 
-Editing locale JSON: [environment-config.md](../environment-config.md).
+Editing locale JSON directly (adding UI translation strings, not the Languages catalogue above): [environment-config.md](../environment-config.md).
+
+## Related
+
+- [Monetization index](./monetization.md) · [Getting started](./getting-started.md)
