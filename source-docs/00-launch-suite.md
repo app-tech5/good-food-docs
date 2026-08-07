@@ -65,7 +65,7 @@ npm start                # or: npm run dev
 
 You should see the API listening on **`PORT`** (default **5000**). Migrations seed languages, app settings, demo users, subscription tiers, sponsored samples, kitchen demo tickets, and related marketplace defaults — so the apps look alive on first open.
 
-Details: [getting-started-backend.md](./getting-started-backend.md).
+Details: [Backend getting started](./my-backend/getting-started.md).
 
 ### 3. Start the admin dashboard
 
@@ -78,7 +78,7 @@ npm start
 
 Sign in with an admin account that exists after migrations (demo presets often use `admin@example.com` / `admin123` — replace these before production). Confirm lists and **App Settings** load.
 
-Details: [getting-started-admin.md](./getting-started-admin.md).
+Details: [Admin getting started](./admin-app/getting-started.md).
 
 ### 4. Start the mobile apps
 
@@ -92,7 +92,7 @@ Point each app’s `EXPO_PUBLIC_API_URL` at the **same** `/api` base the admin u
 
 On a **physical phone**, replace `localhost` with your computer’s LAN IP. On Android emulator, `10.0.2.2` often reaches the host machine’s `localhost`.
 
-Details: [customer](./getting-started-customer.md) · [driver](./getting-started-driver.md) · [restaurant](./getting-started-restaurant.md).
+Details: [customer](./customer-app/getting-started.md) · [driver](./delivery-app/getting-started.md) · [restaurant](./restaurant-app/getting-started.md).
 
 ## Shared API URL checklist
 
@@ -136,6 +136,6 @@ For a first successful smoke test, **demo mode + migrated seed data** is the fas
 ## What to read next
 
 - Deeper env / branding / production: [environment-config.md](./environment-config.md)
-- Turn on commissions, plans, ads, wallet: [01-monetization.md](./01-monetization.md)
-- Languages, currency, channels: [02-market-adaptability.md](./02-market-adaptability.md)
-- KDS, logistics POD, intelligence demos: [03](./03-kitchen-display.md) · [04](./04-logistics.md) · [05](./05-intelligence.md)
+- Turn on commissions, plans, ads, wallet: [Monetization](./admin-app/monetization.md)
+- Languages, currency, channels: [Market adaptability](./admin-app/market.md)
+- KDS, logistics POD, intelligence demos: [03](./restaurant-app/kitchen-display.md) · [04](./delivery-app/logistics.md) · [05](./customer-app/intelligence.md)

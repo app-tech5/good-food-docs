@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Getting Started — Good Food Pro Customer App</title>
+    <title>Getting Started — Customer app</title>
     <link rel="stylesheet" href="site.css" />
   </head>
   <body>
@@ -65,214 +65,78 @@
       </aside>
 
       <section class="content">
-        <header id="getting-started" class="hero">
+        <header id="top" class="hero">
           <h1>Getting Started</h1>
           <p class="subtitle">
-            Launch the customer app in minutes with a clear, beginner-friendly setup path.
+            Get the customer storefront running against your API, sign in once, and place a first test order.
           </p>
-          <p class="meta">
-            Goal: complete installation quickly and run your first working app session.
-          </p>
+          <div class="meta-strip">
+            <span class="meta-pill">Customer app</span>
+            <span class="meta-pill">First launch</span>
+            <span class="meta-pill">Android &amp; iOS</span>
+          </div>
         </header>
 
-        <section class="section">
-          <h2>1) Prerequisites</h2>
-          <p>Before you can run the customer app, you need to install several tools. Don't worry, this guide will walk you through everything step by step, even if you're doing this for the first time.</p>
+        <section class="overview">
+          <section class="section-block">
+            <h2>What you will achieve</h2>
+            <p>
+              By the end of this path you can open the customer app on a phone or emulator, reach your marketplace API,
+              browse restaurants, and complete a small order. That is the smoke test buyers and agencies use before branding or store builds.
+            </p>
+            <p class="section-subtext">
+              Commands, env variable names, and device networking quirks live in the <strong>source markdown</strong> that ships with the ZIP
+              (and are mirrored under this docs repo’s <code>source-docs/</code>). This page stays on the journey — not a second copy of those terminal steps.
+            </p>
+          </section>
 
-          <div class="callout">
-            <strong>Important:</strong> Start your backend before launching this app so login and API calls succeed. Use the
-            <a href="./my-backend/getting-started.html">my-backend — Getting Started</a> guide to install MongoDB, run migrations, and start the API.
-          </div>
+          <section class="section-block">
+            <h2>Before you open the customer app</h2>
+            <ol class="doc-steps">
+              <li>Install the shared tooling once (Node, Android and/or iOS tools) — see <a href="./environment-setup.html">Environment setup</a>.</li>
+              <li>Start the <strong>Backend API</strong> and confirm it answers — <a href="./my-backend/getting-started.html">Backend — Getting Started</a>.</li>
+              <li>Have a <strong>customer</strong> account ready (seeded demo user or one you created in admin).</li>
+            </ol>
+            <p class="section-subtext">
+              If the API is down, login and menus fail even when the mobile install looks perfect. Always boot the server first.
+            </p>
+          </section>
 
-          <p class="sub">
-            Install <strong>Node.js LTS</strong> and the usual Expo / Android / iOS tooling once for the whole suite — the full walkthrough (macOS, Windows, Linux, verify commands) lives on
-            <a href="./environment-setup.html#nodejs">Environment setup → Node.js</a>.
-          </p>
+          <section class="section-block">
+            <h2>Soft path to first login</h2>
+            <ol class="doc-steps">
+              <li>Open the customer app project from your suite ZIP.</li>
+              <li>Install dependencies, then point the app at the <strong>same API URL</strong> the rest of the suite uses (including the <code>/api</code> path when required).</li>
+              <li>Build a development client the first time (Expo Go is not enough for this stack), then start the bundler for later sessions.</li>
+              <li>Sign in as a customer and land on home / discovery.</li>
+              <li>Place a small order; complete the loop later with restaurant accept + driver delivery.</li>
+            </ol>
+            <p class="section-subtext">
+              Exact <code>npm</code> / <code>.env</code> lines, simulator vs physical phone URLs, and demo credentials:
+              see <strong>source-docs/customer-app/getting-started.md</strong> in the pack (also in this repo under <code>source-docs/</code>).
+            </p>
+          </section>
+
+          <section class="section-block">
+            <h2>After it runs — what to explore</h2>
+            <p>
+              Once home loads from the API, use the feature guides (with their dedicated captures) instead of repeating them here:
+            </p>
+            <ul>
+              <li><a href="./ordering.html">Ordering &amp; discovery</a></li>
+              <li><a href="./wallet.html">Wallet &amp; payments</a></li>
+              <li><a href="./subscriptions.html">Subscriptions</a></li>
+              <li><a href="./intelligence.html">AI intelligence</a></li>
+              <li><a href="./order-tracking.html">Order tracking</a></li>
+            </ul>
+            <p class="section-subtext">
+              Full suite boot order and smoke checklist: <strong>source-docs/00-launch-suite.md</strong>.
+              Branding, languages, and production checklist: <a href="./environment-setup.html">Environment setup</a>
+              and <strong>source-docs/environment-config.md</strong>.
+            </p>
+          </section>
         </section>
-
-
-        <section class="section">
-          <h2>2) Step-by-Step Installation</h2>
-          <ol>
-            <li>Open a terminal in the <code>customer-app</code> folder.</li>
-            <li>Install dependencies with <code>npm install</code>.</li>
-            <li>Wait for the installation to finish without errors.</li>
-            <li>Confirm your backend API is up and reachable from your device/emulator.</li>
-          </ol>
-          <p class="sub">
-            This process gives you a ready local environment for development and demos.
-          </p>
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">Install Dependencies</span>
-              <span class="code-copy">customer-app</span>
-            </div>
-            <pre><code><span class="tok-cmd">cd</span> <span class="tok-arg">customer-app</span>
-<span class="tok-cmd">npm</span> <span class="tok-cmd">install</span></code></pre>
-          </div>
-        </section>
-
-        <section class="section">
-          <h2>3) Configuration &amp; Personalization</h2>
-          <p>
-            The customer app is highly configurable: branding, demo mode, and visuals. Languages (EN/FR/ES/AR and adding locales) are documented once for every app on
-            <a href="./environment-setup.html#i18n-languages">Environment setup → Languages (i18n)</a>.
-          </p>
-
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">API Configuration</h3>
-          <p>
-            The most important setting is the connection to your backend server. Edit the file 
-            <code>config/index.js</code> to set your API URL.
-          </p>
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">config/index.js</span>
-            </div>
-            <pre><code><span class="tok-comment"># Prefer .env (see .env.example)</span>
-<span class="tok-var">EXPO_PUBLIC_API_URL</span>=<span class="tok-str">http://YOUR_SERVER_IP:5000/api</span>
-
-<span class="tok-comment"># config/index.js (or config.js) also exposes:</span>
-APP_NAME: <span class="tok-str">'Good Food Pro Customer'</span>,
-VERSION: <span class="tok-str">'1.0.0'</span></code></pre>
-          </div>
-
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Demo Mode</h3>
-          <p>
-            Perfect for demonstrations and client presentations. When enabled, the app automatically fills 
-            the login form with demo credentials.
-          </p>
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">Demo Configuration</span>
-            </div>
-            <pre><code><span class="tok-var">DEMO_MODE</span>: <span class="tok-arg">true</span>,
-DEMO_EMAIL: <span class="tok-str">'demo@customer.com'</span>,
-DEMO_PASSWORD: <span class="tok-str">'demo123'</span></code></pre>
-          </div>
-
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Visual Customization</h3>
-          <p>
-            You can customize colors, themes, and assets by editing the files in the <code>global/</code> 
-            and <code>config/assets.js</code> folders.
-          </p>
-
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Change app name</h3>
-          <p>
-            For the customer app, update both the Expo app label and the in-app config label.
-            If native folders are present (prebuild/ejected), update those labels too.
-          </p>
-
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">app.json (customer-app)</span>
-            </div>
-            <pre><code>{
-  "expo": {
-    <span class="tok-comment">// Replace with your public app label</span>
-    "name": "<span class="tok-str">YOUR_CUSTOMER_APP_NAME</span>",
-    "slug": "<span class="tok-str">your-customer-app-slug</span>",
-    "ios": {
-      "bundleIdentifier": "<span class="tok-str">com.yourcompany.yourcustomerapp</span>"
-    },
-    "android": {
-      "package": "<span class="tok-str">com.yourcompany.yourcustomerapp</span>"
-    }
-  }
-}</code></pre>
-          </div>
-
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">config/index.js (in-app name)</span>
-            </div>
-            <pre><code>export const config = {
-  <span class="tok-comment">// Replace with the in-app label you want</span>
-  <span class="tok-var">APP_NAME</span>: <span class="tok-str">'YOUR_CUSTOMER_APP_NAME'</span>,
-  <span class="tok-var">VERSION</span>: <span class="tok-str">'1.0.0'</span>
-}</code></pre>
-          </div>
-
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">Optional native labels</span>
-            </div>
-            <pre><code><span class="tok-comment"># iOS</span>  ios/.../Info.plist         <span class="tok-comment">(CFBundleDisplayName)</span>
-<span class="tok-comment"># Android</span> android/app/src/main/res/values/strings.xml  <span class="tok-comment">(app_name)</span></code></pre>
-          </div>
-
-          <div class="callout">
-            <strong>Tip:</strong> After making configuration changes, restart the development server 
-            with <code>npm start</code> for the changes to take effect.
-          </div>
-
-          <h3 id="logo-update" style="margin: 28px 0 12px 0; font-size: 19px;">Logo update</h3>
-          <p>
-            Update only the logo image file in <code>assets/images</code> and keep the <strong>same file name</strong>.
-            Do not change paths or configuration when you only want a new logo.
-          </p>
-          <ol>
-            <li>Open the app logo file in <code>assets/images</code> inside <code>customer-app</code>.</li>
-            <li>Replace the image with your own logo.</li>
-            <li>Keep exactly the same filename.</li>
-            <li>Restart the app.</li>
-          </ol>
-          <p>
-            <img
-              src="./assets/images/add_logo.png"
-              alt="Replace logo image while keeping same filename"
-              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
-            />
-          </p>
-
-          <p class="sub">
-            Default currency for the whole platform (admin + mobile) is documented here:
-            <a href="./environment-setup.html#change-app-currency">Environment setup → App currency (change)</a>.
-          </p>
-
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Maps Configuration for Production APK</h3>
-          <p>
-            Maps keys and <code>app.json</code> steps are shared by every Expo app in this suite. See
-            <a href="./environment-setup.html#google-maps-expo">Environment setup → Google Maps (Expo)</a>.
-          </p>
-        </section>
-
-        <section class="section">
-          <h2>4) API Connection</h2>
-          <p>
-            The customer app sends requests to your backend API for authentication, restaurants,
-            menus, cart actions, checkout, and order tracking updates.
-          </p>
-          <p class="sub">
-            Keep <code>API_BASE_URL</code> stable and reachable from the simulator or phone. Why <code>localhost</code> often fails on a real device is explained on
-            <a href="./environment-setup.html#api-reachability">Environment setup → API reachability</a>.
-          </p>
-        </section>
-
-        <section class="section">
-          <h2>5) Run the Project</h2>
-          <div class="callout">
-            <strong>Expo Go is not supported.</strong> Install a development build first, then use Metro for day-to-day JS changes.
-          </div>
-          <ol>
-            <li>Copy <code>.env.example</code> to <code>.env</code> and set <code>EXPO_PUBLIC_API_URL</code>.</li>
-            <li>First time (or after native dependency changes): <code>npm run android</code> or <code>npm run ios</code>.</li>
-            <li>Later sessions: <code>npm start</code>, then open the already installed <strong>Good Food Pro Customer</strong> app.</li>
-            <li>Verify the core flow: sign in (<code>POST /auth/customer-login</code>), browse restaurants, add to cart, checkout, track order.</li>
-          </ol>
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">Run Commands</span>
-              <span class="code-copy">Expo</span>
-            </div>
-            <pre><code><span class="tok-cmd">cp</span> <span class="tok-arg">.env.example</span> <span class="tok-arg">.env</span>
-<span class="tok-cmd">npm</span> <span class="tok-cmd">run</span> <span class="tok-arg">android</span>   <span class="tok-comment"># first time: development build</span>
-<span class="tok-cmd">npm</span> <span class="tok-cmd">start</span>           <span class="tok-comment"># later: Metro only</span>
-
-<span class="tok-comment"># iOS (macOS)</span>
-<span class="tok-cmd">npm</span> <span class="tok-cmd">run</span> <span class="tok-arg">ios</span></code></pre>
-          </div>
-        </section>
-        <p class="docs-footer"><a href="#getting-started">↑ Back to top</a></p>
+        <p class="docs-footer"><a href="#top">↑ Back to top</a></p>
       </section>
     </main>
   </body>

@@ -149,8 +149,26 @@ Default HTTP port is **5000** when `PORT` is unset — every mobile/admin client
 
 Version baseline is typically `1.0.0` in `package.json`.
 
+## Project name & port (operators)
+
+### Optional rename
+
+Update `package.json` `"name"` / `"version"` if you rename the backend folder for your own tooling. This does not change mobile branding.
+
+### Changing `PORT`
+
+If you set e.g. `PORT=6000` in `.env`:
+
+1. Restart the API.
+2. Update **every** client API URL to the new host:port (and keep `/api` where required):
+   - Mobiles: `EXPO_PUBLIC_API_URL`
+   - Admin: `REACT_APP_API_URL` / `REACT_APP_SERVER_URL`
+3. Ensure `CORS_ORIGINS` still lists your admin (and any web) origins.
+
+Mismatched ports are the most common “apps look broken” false alarm after a backend tweak.
+
 ## Next steps
 
-- [Launch the whole suite](./00-launch-suite.md) for boot order and smoke test.
-- [Environment & branding](./environment-config.md) for reachability, FCM, and production checklist.
-- Feature configuration after migrate: [Monetization](./01-monetization.md) · [Market adaptability](./02-market-adaptability.md).
+- [Launch the whole suite](../00-launch-suite.md) for boot order and smoke test.
+- [Environment & branding](../environment-config.md) for reachability, FCM, and production checklist.
+- Feature configuration after migrate: [Monetization](../admin-app/monetization.md) · [Market adaptability](../admin-app/market.md).

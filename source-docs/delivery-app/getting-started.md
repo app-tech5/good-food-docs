@@ -4,7 +4,7 @@ Goal: run the courier app against your API, grant location permissions, and comp
 
 ## Before you start
 
-1. Backend is running with `migrate:up` applied ([backend guide](./getting-started-backend.md)).
+1. Backend is running with `migrate:up` applied ([backend guide](../my-backend/getting-started.md)).
 2. Prefer having at least one **accepted restaurant order** waiting for a driver (customer + restaurant apps), or use seeded demo jobs if present.
 3. Use a **development build** (`npm run android` / `npm run ios`) — Expo Go is not supported.
 
@@ -72,7 +72,7 @@ npm start
 3. Go **online** / available so the platform can offer jobs.
 4. Keep the device awake during an active delivery so location updates continue for customer live tracking.
 
-If jobs never appear: confirm the API URL, that the user is actually a driver, that restaurant orders are in a ready-for-pickup / assignable state, and that delivery settings / radius are not impossibly small (see [logistics](./04-logistics.md)).
+If jobs never appear: confirm the API URL, that the user is actually a driver, that restaurant orders are in a ready-for-pickup / assignable state, and that delivery settings / radius are not impossibly small (see [logistics](./logistics.md)).
 
 ## 5. First job smoke test
 
@@ -86,7 +86,7 @@ This single path exercises logistics assignment, live tracking, and POD — the 
 
 ## Subscriptions note
 
-Drivers may see a **Subscriptions** screen for courier tiers (access / support style benefits). Configure plans in admin first — [01-monetization.md](./01-monetization.md).
+Drivers may see a **Subscriptions** screen for courier tiers (access / support style benefits). Configure plans in admin first — [Monetization](../admin-app/monetization.md).
 
 
 ## Stack & where things live (for launch)
@@ -104,7 +104,34 @@ The driver app is **React Native + Expo**, same family as the customer and resta
 
 Login requires a **driver** account on the API (a pure customer user will be rejected). Version baseline is usually `1.0.0` in `package.json`.
 
+## Branding & personalization
+
+Settings typically live in root `config.js` **and** `.env` (`EXPO_PUBLIC_API_URL`, demo flags). Some builds also expose `API_BASE_URL` / timeout in `config.js` — keep them aligned with `.env`.
+
+### Change the public app name
+
+1. `app.json` → `expo.name`, `slug`, bundle/package ids.
+2. `config.js` → `APP_NAME` (login / settings titles).
+3. If present, fallback display name in `utils/settingsUtils.js` (or equivalent).
+4. Restart Metro after edits.
+
+### Logo
+
+Replace the image in `assets/images` with the **same filename**. Restart the app.
+
+### Look and feel
+
+Colors / shared styles: `global.js` (or the project’s global theme module).
+
+### Maps
+
+Default map experience uses **MapLibre** (not Google Places). You do not need a Google Maps key in `config.js` for the stock map. Location permission is still required for assignment and tracking.
+
+### Auth note
+
+Driver login uses `POST /auth/delivery-login` on the same API host as the customer app.
+
 ## Next
 
-- Suite boot order & checklist: [00-launch-suite.md](./00-launch-suite.md)
-- Batching, radius, POD detail: [04-logistics.md](./04-logistics.md)
+- Suite boot order & checklist: [00-launch-suite.md](../00-launch-suite.md)
+- Batching, radius, POD detail: [Logistics & POD](./logistics.md)

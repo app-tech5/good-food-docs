@@ -19,7 +19,7 @@ Couriers get work that fits your geography. Delivery settings (including **`auto
 3. Place two orders to nearby drop-offs if you want to demonstrate batching.
 4. If drivers never see jobs, widen radius slightly and confirm restaurants are marking orders ready for assignment.
 
-Driver subscription tiers may gate some logistics features — configure plans under [monetization](./01-monetization.md) if access seems plan-locked.
+Driver subscription tiers may gate some logistics features — configure plans under [monetization](../admin-app/monetization.md) if access seems plan-locked.
 
 ## 2. Batching (concept & how to demo)
 
@@ -59,7 +59,7 @@ If the API rejects completion, read the on-screen error: common causes are missi
 ## 5. Full logistics smoke test
 
 1. Customer orders delivery.
-2. Restaurant accepts and advances kitchen status ([KDS](./03-kitchen-display.md) optional).
+2. Restaurant accepts and advances kitchen status ([KDS](../restaurant-app/kitchen-display.md) optional).
 3. Driver accepts job (and a batch if offered).
 4. Customer watches live tracking.
 5. Driver completes with **photo + signature**.
@@ -67,6 +67,6 @@ If the API rejects completion, read the on-screen error: common causes are missi
 
 ## Related
 
-- [Driver getting started](./getting-started-driver.md)  
+- [Driver getting started](./getting-started.md)  
 - [Launch suite checklist](./00-launch-suite.md)  
-- [Intelligence](./05-intelligence.md) — ETA / surge that customers see beside tracking
+- [Intelligence](../customer-app/intelligence.md) — ETA / surge that customers see beside tracking

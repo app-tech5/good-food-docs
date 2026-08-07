@@ -4,7 +4,7 @@ Goal: point the customer mobile app at your running API, start Expo with a devel
 
 ## Before you start
 
-1. Backend is up with migrations applied — see [getting-started-backend.md](./getting-started-backend.md).
+1. Backend is up with migrations applied — see [Backend getting started](../my-backend/getting-started.md).
 2. Node.js **20+** and Android Studio and/or Xcode are installed.
 3. You understand that **Expo Go is not supported**. Install a **development build** once with `npm run android` or `npm run ios`.
 
@@ -84,7 +84,7 @@ If login spins forever or network errors appear:
 4. Restart Metro after editing `.env`.
 5. For USB Android debugging of Metro, `adb reverse tcp:8081 tcp:8081` can help the packager; the **API port** still needs a reachable host in `EXPO_PUBLIC_API_URL`.
 
-More detail: [environment-config.md](./environment-config.md) → API reachability.
+More detail: [environment-config.md](../environment-config.md) → API reachability.
 
 ## 5. First customer login
 
@@ -100,8 +100,8 @@ If auth fails with a reachable API, re-check migrations and that the user role i
 - Browse restaurants and open a menu.
 - Add to cart and checkout (cash / wallet / card depending on keys and admin gateway settings).
 - Watch live tracking once a driver is assigned.
-- Open **Subscriptions** / wallet screens if you are following the [monetization guide](./01-monetization.md).
-- Switch language in Settings (EN / FR / ES / AR) — see [market adaptability](./02-market-adaptability.md).
+- Open **Subscriptions** / wallet screens if you are following the [monetization guide](../admin-app/monetization.md).
+- Switch language in Settings (EN / FR / ES / AR) — see [market adaptability](../admin-app/market.md).
 
 
 ## Stack & where things live (for launch)
@@ -121,7 +121,32 @@ You do **not** need a full source-tree map to launch. Configure `.env`, start th
 
 **Baseline version** in `package.json` is typically `1.0.0` — bump it when you ship your own builds.
 
+## Branding & personalization
+
+Prefer `.env` for API and demo flags (see above). Runtime labels also appear in `config/index.js` (or equivalent) as `APP_NAME` / `VERSION`.
+
+### Change the public app name
+
+1. Update Expo metadata in `app.json` / `app.config.*`: `expo.name`, `slug`, and store identifiers (`ios.bundleIdentifier`, `android.package`).
+2. Update the in-app label in config (`APP_NAME`).
+3. If native folders already exist (prebuild), also update:
+   - iOS: `Info.plist` → `CFBundleDisplayName`
+   - Android: `android/app/src/main/res/values/strings.xml` → `app_name`
+4. Restart Metro (`npm start`) so bundler caches clear.
+
+### Logo
+
+Replace the logo file under `assets/images` and **keep the exact same filename** so you do not chase path changes. Restart the app afterward.
+
+### Theme / colors
+
+Shared colors and theme tokens live under `global/` (and related asset config). Adjust there for brand colors.
+
+### Auth note
+
+Customer login hits the suite auth endpoints on your API (same host/port as every other client). Keep `/api` consistent with the backend.
+
 ## Next
 
-- Full suite smoke test: [00-launch-suite.md](./00-launch-suite.md)
-- Branding & production env: [environment-config.md](./environment-config.md)
+- Full suite smoke test: [00-launch-suite.md](../00-launch-suite.md)
+- Branding & production env: [environment-config.md](../environment-config.md)

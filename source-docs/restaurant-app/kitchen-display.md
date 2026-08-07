@@ -5,7 +5,7 @@ The Kitchen Display turns accepted restaurant orders into a paperless prep board
 ## Prerequisites
 
 1. Backend migrated (`npm run migrate:up`) — kitchen **demo tickets** are seeded so the board can look alive even before your first real order.
-2. Restaurant app running, preferably **`npm run start:live`** when you want real API tickets ([restaurant getting started](./getting-started-restaurant.md)).
+2. Restaurant app running, preferably **`npm run start:live`** when you want real API tickets ([restaurant getting started](./getting-started.md)).
 3. A restaurant user that can see that restaurant’s orders.
 
 ## 1. Open Kitchen Display
@@ -58,6 +58,6 @@ After you are comfortable, switch to live orders only and clear or ignore seed t
 
 ## Related
 
-- [Restaurant getting started](./getting-started-restaurant.md)  
-- [Logistics & POD](./04-logistics.md) — what happens after food is ready  
-- [Monetization](./01-monetization.md) — partner subscriptions alongside KDS
+- [Restaurant getting started](./getting-started.md)  
+- [Logistics & POD](../delivery-app/logistics.md) — what happens after food is ready  
+- [Monetization](../admin-app/monetization.md) — partner subscriptions alongside KDS

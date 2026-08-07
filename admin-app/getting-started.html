@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Getting Started — Good Food Pro Admin App</title>
+    <title>Getting Started — Admin app</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
@@ -65,204 +65,70 @@
       </aside>
 
       <section class="content">
-        <header id="getting-started" class="hero">
+        <header id="top" class="hero">
           <h1>Getting Started</h1>
           <p class="subtitle">
-            Bring the admin dashboard online with the same beginner-friendly recipe as the customer app: prerequisites, install, configure, run.
+            Open the operator console in a browser, sign in as admin, and confirm the marketplace settings your mobile apps will obey.
           </p>
-          <p class="meta">
-            Goal: install dependencies, point the UI at your API, sign in with an administrator account, and open at least one real data screen.
-          </p>
+          <div class="meta-strip">
+            <span class="meta-pill">Admin web</span>
+            <span class="meta-pill">First login</span>
+            <span class="meta-pill">Desktop</span>
+          </div>
         </header>
 
-        <section class="section">
-          <h2>1) Prerequisites</h2>
-          <p>
-            You need Node.js on your computer and a running Good Food backend. The admin interface is a standard React dev server in local development;
-            in production you would build static files and host them behind HTTPS like any internal tool.
-          </p>
+        <section class="overview">
+          <section class="section-block">
+            <h2>What you will achieve</h2>
+            <p>
+              A working admin session: dashboard loads, lists show seeded data, and you can open App Settings, languages, currencies,
+              subscriptions, and orders — the cockpit before you invite real restaurants or run a full city.
+            </p>
+            <p class="section-subtext">
+              Env variable names, build/start commands, and branding file paths are in <strong>source-docs/admin-app/getting-started.md</strong>.
+            </p>
+          </section>
 
-          <div class="callout">
-            <strong>Important:</strong> Start your backend (for example <code>my-backend</code>) before <code>npm start</code> on the admin project.
-            The dashboard immediately requests protected data after login; an offline API produces errors that look scarier than they are.
-          </div>
+          <section class="section-block">
+            <h2>Before you open the admin app</h2>
+            <ol class="doc-steps">
+              <li>Node tooling installed — <a href="../environment-setup.html">Environment setup</a>.</li>
+              <li>API running with migrations applied — <a href="../my-backend/getting-started.html">Backend — Getting Started</a>.</li>
+              <li>An <strong>admin-capable</strong> account from seed / your own create step.</li>
+            </ol>
+            <p class="section-subtext">
+              Admin only shows what the API allows for that role. Wrong URL or stopped server looks like “empty console,” not a UI bug.
+            </p>
+          </section>
 
-          <div class="callout" style="margin-top: 12px;">
-            <strong>Admin account:</strong> Use credentials your server recognises as privileged (admin, manager, or whatever your backend encodes).
-            Limited roles might sign in but see empty sections—this is usually a permissions issue, not a broken install.
-          </div>
+          <section class="section-block">
+            <h2>Soft path to first console session</h2>
+            <ol class="doc-steps">
+              <li>Open the admin project from the suite ZIP.</li>
+              <li>Install dependencies and point the web app at your API (base URL + server URL as documented in the markdown).</li>
+              <li>Start the local web server and open the URL in a desktop browser.</li>
+              <li>Sign in, land on the dashboard, open Orders / Restaurants / Settings to confirm data loads.</li>
+              <li>Align languages, currency, and gateways before a public demo — then try a full order with the mobile apps.</li>
+            </ol>
+          </section>
 
-          <p class="sub">
-            Install <strong>Node.js LTS</strong>:
-            <a href="../environment-setup.html#nodejs">Environment setup → Node.js</a>.
-            Languages (EN/FR/ES/AR) for all apps:
-            <a href="../environment-setup.html#i18n-languages">Environment setup → Languages (i18n)</a>.
-          </p>
+          <section class="section-block">
+            <h2>After it runs — what to explore</h2>
+            <ul>
+              <li><a href="./operations.html">Operations</a></li>
+              <li><a href="./monetization.html">Monetization</a></li>
+              <li><a href="./promotions.html">Promotions &amp; coupons</a></li>
+              <li><a href="./market.html">Market &amp; languages</a></li>
+              <li><a href="./sponsored.html">Sponsored listings</a></li>
+              <li><a href="./reports.html">Reports &amp; analytics</a></li>
+            </ul>
+            <p class="section-subtext">
+              Suite smoke test: <strong>source-docs/00-launch-suite.md</strong>.
+              Money &amp; market depth: <strong>source-docs/admin-app/monetization.md</strong>, <strong>source-docs/admin-app/market.md</strong>.
+            </p>
+          </section>
         </section>
-
-        <section class="section">
-          <h2>2) Step-by-Step Installation</h2>
-          <ol>
-            <li>Open a terminal.</li>
-            <li>Enter the <code>admin-app</code> folder (next to <code>package.json</code>).</li>
-            <li>Run <code>npm install</code> and wait for a clean finish.</li>
-            <li>Open the configuration section below—do not skip the API URL step.</li>
-          </ol>
-          <p class="sub">
-            This downloads the React tooling the repository expects. No database runs inside the admin repo itself; your API remains the source of truth.
-          </p>
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">Install dependencies</span>
-              <span class="code-copy">admin-app</span>
-            </div>
-            <pre><code><span class="tok-cmd">cd</span> <span class="tok-arg">admin-app</span>
-<span class="tok-cmd">npm</span> <span class="tok-cmd">install</span></code></pre>
-          </div>
-        </section>
-
-        <section class="section">
-          <h2>3) Configuration &amp; Personalization</h2>
-          <p>
-            The admin project keeps its networking defaults in a small <code>config</code> folder inside <code>src</code>.
-            You do not need to memorise file names: follow the example block, paste your real URL, save, restart the dev server if needed.
-          </p>
-
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">API configuration</h3>
-          <p>
-            Set the <strong>API base URL</strong> to the same origin your mobile apps use—usually ending with <code>/api</code>.
-            Local development often starts with <code>http://localhost:5000/api</code> on the same machine as the backend.
-          </p>
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">Example API and preset credentials (adjust to match your backend)</span>
-            </div>
-            <pre><code><span class="tok-var">API_BASE_URL</span> = <span class="tok-str">'http://YOUR_SERVER_IP:5000/api'</span>
-
-<span class="tok-comment">// optional: quick-fill presets used on the login screen in dev</span>
-roleCredentials = {
-  admin: { email: <span class="tok-str">'admin@example.com'</span>, password: <span class="tok-str">'admin123'</span> },
-  manager: { email: <span class="tok-str">'manager@example.com'</span>, password: <span class="tok-str">'manager123'</span> }
-}</code></pre>
-          </div>
-          <p class="sub">
-            Replace sample emails and passwords with users that actually exist in <em>your</em> database.
-            Troubleshooting reachability:
-            <a href="../environment-setup.html#api-reachability">Environment setup → API reachability</a>.
-          </p>
-
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Interface language</h3>
-          <p>
-            Translation bundles live with the admin source; follow the suite-wide i18n guide linked above if you need an extra locale or wording tweak.
-          </p>
-
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Look and feel</h3>
-          <p>
-            Global styling is applied from the project’s main CSS entry; individual screens and widgets may add their own scoped styles.
-            For brand tweaks, cooperate with your designer rather than editing random components without a plan.
-          </p>
-
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Change app name</h3>
-          <p>
-            For the admin web app, update the browser title and PWA labels. Unlike Expo apps, this project is a React web app, so naming is controlled by files in <code>public/</code>.
-          </p>
-
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">public/index.html (tab title)</span>
-            </div>
-            <pre><code>&lt;head&gt;
-  <span class="tok-comment">&lt;!-- Replace with your brand labels --&gt;</span>
-  &lt;meta name=<span class="tok-str">"YOUR_ADMIN_APP_META_NAME"</span> content=<span class="tok-str">"YOUR_ADMIN_APP_META_DESCRIPTION"</span> /&gt;
-  &lt;title&gt;<span class="tok-str">YOUR_ADMIN_APP_TITLE</span>&lt;/title&gt;
-&lt;/head&gt;</code></pre>
-          </div>
-
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">public/manifest.json (PWA name)</span>
-            </div>
-            <pre><code>{
-  <span class="tok-var">"short_name"</span>: <span class="tok-str">"YOUR_ADMIN_SHORT_NAME"</span>,
-  <span class="tok-var">"name"</span>: <span class="tok-str">"YOUR_ADMIN_PWA_NAME"</span>
-}</code></pre>
-          </div>
-
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">package.json (project metadata)</span>
-            </div>
-            <pre><code>{
-  <span class="tok-var">"name"</span>: <span class="tok-str">"your-admin-project-name"</span>,
-  <span class="tok-var">"version"</span>: <span class="tok-str">"0.1.0"</span>
-}</code></pre>
-          </div>
-
-          <p class="sub">
-            After updating these files, restart <code>npm start</code>. For installed PWA updates, clear site data/reinstall if the old name is cached by the browser.
-          </p>
-
-          <div class="callout">
-            <strong>Tip:</strong> After changing API defaults, restart <code>npm start</code> so every module reads the fresh values.
-          </div>
-
-          <h3 id="logo-update" style="margin: 28px 0 12px 0; font-size: 19px;">Logo update</h3>
-          <p>
-            The dashboard logo shown in the admin UI comes from <strong>platform app settings</strong> (stored via the API), not from replacing a file under <code>public/</code> alone.
-            Open <strong>Settings</strong> → <strong>Settings List</strong> (general settings), update the logo field (upload or URL, depending on your form), then save.
-          </p>
-          <ol>
-            <li>Sign in to the admin app.</li>
-            <li>Go to general / settings.</li>
-            <li>Set or upload the logo, then save.</li>
-            <li>Hard-refresh the browser or clear site data if an old image is cached.</li>
-          </ol>
-          <p>
-            <img
-              src="../assets/images/update-logo-in-general-settings.png"
-              alt="Update the admin logo in general app settings"
-              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
-            />
-          </p>
-
-          <p class="sub">
-            Default currency for the whole platform (admin + mobile) is documented here:
-            <a href="../environment-setup.html#change-app-currency">Environment setup → App currency (change)</a>.
-          </p>
-        </section>
-
-        <section class="section">
-          <h2>4) API Connection</h2>
-          <p>
-            Everything meaningful—session check, listing restaurants, editing a driver profile, exporting a report—flows through HTTP calls to your backend.
-            The admin repo already wires those calls; your responsibility is a <strong>reachable URL</strong> and <strong>valid credentials</strong>.
-          </p>
-          <p class="sub">
-            If lists stay empty, verify the user’s role on the server and that pagination filters are not hiding data before assuming the UI is broken.
-          </p>
-        </section>
-
-        <section class="section">
-          <h2>5) Run the Project</h2>
-          <ol>
-            <li>Backend up; API base URL saved; <code>npm install</code> done.</li>
-            <li>From <code>admin-app</code>, run <code>npm start</code>.</li>
-            <li>Your browser should open <code>http://localhost:3000</code> (or follow the terminal link).</li>
-            <li>Log in with an admin-capable user and click through dashboard, one list screen, and settings.</li>
-          </ol>
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">Run commands</span>
-              <span class="code-copy">React Scripts</span>
-            </div>
-            <pre><code><span class="tok-cmd">npm</span> <span class="tok-cmd">start</span>
-
-<span class="tok-comment"># optional quality checks</span>
-<span class="tok-cmd">npm</span> <span class="tok-cmd">run</span> <span class="tok-arg">lint</span>
-<span class="tok-cmd">npm</span> <span class="tok-cmd">test</span></code></pre>
-          </div>
-        </section>
-        <p class="docs-footer"><a href="#getting-started">↑ Back to top</a></p>
+        <p class="docs-footer"><a href="#top">↑ Back to top</a></p>
       </section>
     </main>
   </body>

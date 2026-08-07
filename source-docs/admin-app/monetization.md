@@ -50,7 +50,7 @@ Typical benefit ideas you will see in seeded plans:
 1. In admin, open **Subscriptions**.
 2. Review seeded plans: price, currency, billing cycle, benefits / flags.
 3. Edit or create plans that match your pricing story.
-4. Ensure currencies align with your main market currency ([market adaptability](./02-market-adaptability.md)).
+4. Ensure currencies align with your main market currency ([market adaptability](./market.md)).
 
 ### App steps (buyers / partners)
 
@@ -134,6 +134,6 @@ Restart API and Metro after changes. Use Stripe **test** keys until you are read
 
 ## Related guides
 
-- [Market adaptability](./02-market-adaptability.md) — currency, languages, regional wallet/payment flags  
-- [Restaurant getting started](./getting-started-restaurant.md) — where partner screens live  
+- [Market adaptability](./market.md) — currency, languages, regional wallet/payment flags  
+- [Restaurant getting started](../restaurant-app/getting-started.md) — where partner screens live  
 - [Environment config](./environment-config.md) — secrets and production checklist

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Getting Started — Good Food Pro Driver App</title>
+    <title>Getting Started — Driver app</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
@@ -65,218 +65,71 @@
       </aside>
 
       <section class="content">
-        <header id="getting-started" class="hero">
+        <header id="top" class="hero">
           <h1>Getting Started</h1>
           <p class="subtitle">
-            Launch the driver app with the same gentle, step-by-step style as the customer app—even if this is your first mobile project.
+            Put a courier online against your API, accept a first job, and complete a delivery with proof when your rules require it.
           </p>
-          <p class="meta">
-            Goal: install tools, connect to your API, and complete one successful login as a driver. You will need a user account that is registered as a courier on the server (not only a customer).
-          </p>
+          <div class="meta-strip">
+            <span class="meta-pill">Driver app</span>
+            <span class="meta-pill">First shift</span>
+            <span class="meta-pill">Android &amp; iOS</span>
+          </div>
         </header>
 
-        <section class="section">
-          <h2>1) Prerequisites</h2>
-          <p>
-            Before the driver app can run, you need a few free tools on your computer. This section explains each one in plain language.
-            Follow the steps for your operating system; you can always come back if something fails the first time.
-          </p>
+        <section class="overview">
+          <section class="section-block">
+            <h2>What you will achieve</h2>
+            <p>
+              A working driver session: sign in as a courier, go available, see assignable jobs, and finish at least one drop-off.
+              That proves last-mile, live tracking for the customer, and proof of delivery in one loop.
+            </p>
+            <p class="section-subtext">
+              Terminal commands, config keys, and map/location notes are in <strong>source-docs/delivery-app/getting-started.md</strong>.
+              This page is the orientation for buyers and ops leads.
+            </p>
+          </section>
 
-          <div class="callout">
-            <strong>Important:</strong> Start your Good Food backend (for example the <code>my-backend</code> project) before opening the driver app.
-            The mobile app only shows real data when the server is online and reachable from your phone or emulator.
-          </div>
+          <section class="section-block">
+            <h2>Before you open the driver app</h2>
+            <ol class="doc-steps">
+              <li>Shared tooling installed — <a href="../environment-setup.html">Environment setup</a>.</li>
+              <li>API running — <a href="../my-backend/getting-started.html">Backend — Getting Started</a>.</li>
+              <li>A user with the <strong>driver</strong> role (customer-only accounts are rejected at login).</li>
+              <li>Ideally: a restaurant-ready order waiting so a job can appear after you go online.</li>
+            </ol>
+          </section>
 
-          <div class="callout" style="margin-top: 12px;">
-            <strong>Driver account:</strong> The email you use to log in must belong to someone your backend recognizes as a <strong>driver</strong>.
-            If you try a normal customer account, the app may refuse login after the password step. Create or promote a test driver in your database or admin tools first.
-          </div>
+          <section class="section-block">
+            <h2>Soft path to first job</h2>
+            <ol class="doc-steps">
+              <li>Open the driver project from the suite ZIP.</li>
+              <li>Install dependencies and point the app at the <strong>same API base</strong> as customer / restaurant / admin.</li>
+              <li>Install a development build once (Expo Go is not supported here), then start Metro for later sessions.</li>
+              <li>Sign in as a driver, allow location when prompted, go <strong>online</strong>.</li>
+              <li>Accept a job (or a nearby batch), navigate, then complete with photo / signature when required.</li>
+            </ol>
+            <p class="section-subtext">
+              Exact env lines, demo driver credentials, and troubleshooting (“no jobs”) are in the source markdown —
+              including radius / accept state checks covered further in the logistics guide.
+            </p>
+          </section>
 
-          <p class="sub">
-            Install <strong>Node.js LTS</strong>, Expo tooling, and Android Studio / Xcode using the shared guide:
-            <a href="../environment-setup.html#nodejs">Environment setup → Node.js</a>
-            and
-            <a href="../environment-setup.html#expo-tooling">Expo and native tooling</a>.
-            When the app asks for <strong>location</strong> access, allow it if you want maps and GPS-based features.
-          </p>
+          <section class="section-block">
+            <h2>After it runs — what to explore</h2>
+            <ul>
+              <li><a href="./logistics.html">Logistics &amp; POD</a> — list, active job, proof of delivery</li>
+              <li><a href="./earnings.html">Earnings &amp; payouts</a></li>
+              <li><a href="./subscriptions.html">Subscriptions</a></li>
+              <li><a href="../order-tracking.html">Order tracking</a> — customer view of the same order</li>
+            </ul>
+            <p class="section-subtext">
+              Full suite smoke test: <strong>source-docs/00-launch-suite.md</strong>.
+              Deeper POD / batching: <strong>source-docs/delivery-app/logistics.md</strong>.
+            </p>
+          </section>
         </section>
-
-        <section class="section">
-          <h2>2) Step-by-step installation</h2>
-          <ol>
-            <li>Open a terminal.</li>
-            <li>Go to the <code>delivery-app</code> folder (the same level as <code>package.json</code>).</li>
-            <li>Run <code>npm install</code> and wait until it finishes without red errors.</li>
-            <li>Confirm your backend is still running and that you know the API URL you will paste into config.</li>
-          </ol>
-          <p class="sub">
-            When this completes, your computer has everything the project needs to start in development mode.
-          </p>
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">Install dependencies</span>
-              <span class="code-copy">delivery-app</span>
-            </div>
-            <pre><code><span class="tok-cmd">cd</span> <span class="tok-arg">delivery-app</span>
-<span class="tok-cmd">npm</span> <span class="tok-cmd">install</span></code></pre>
-          </div>
-        </section>
-
-        <section class="section">
-          <h2>3) Configuration &amp; personalization</h2>
-          <p>
-            The driver app keeps its settings in one file at the root of the project: <code>config.js</code>.
-            (The customer app uses <code>config/index.js</code>—different path, same idea.)
-          </p>
-
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">API address</h3>
-          <p>
-            The line that matters most is <code>API_BASE_URL</code>. It must match the address where your backend listens,
-            usually ending with <code>/api</code> exactly as your server expects.
-          </p>
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">config.js (excerpt)</span>
-            </div>
-            <pre><code><span class="tok-comment"># Prefer .env (see .env.example)</span>
-<span class="tok-var">EXPO_PUBLIC_API_URL</span>=<span class="tok-str">http://YOUR_SERVER_IP:5000/api</span>
-<span class="tok-var">EXPO_PUBLIC_DEMO_MODE</span>=<span class="tok-arg">true</span>
-<span class="tok-var">EXPO_PUBLIC_DEMO_EMAIL</span>=<span class="tok-str">driver@demo.com</span>
-<span class="tok-var">EXPO_PUBLIC_DEMO_PASSWORD</span>=<span class="tok-str">driver123</span>
-
-<span class="tok-comment"># config.js</span>
-APP_NAME: <span class="tok-str">'Good Food Pro Driver'</span>,
-VERSION: <span class="tok-str">'1.0.0'</span>,
-<span class="tok-var">API_TIMEOUT</span>: <span class="tok-arg">10000</span></code></pre>
-          </div>
-          <p class="sub">
-            Login uses <code>POST /auth/delivery-login</code>. Use the same host and port as the customer app. If the port in your backend is different (for example 8080), change the URL accordingly.
-          </p>
-
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Demo mode</h3>
-          <p>
-            When <code>DEMO_MODE</code> is <code>true</code>, the login screen can be pre-filled with sample credentials—handy for demos.
-            Before a real release, set it to <code>false</code> and rely on real courier accounts.
-          </p>
-          <p class="sub">
-            Languages (EN/FR/ES/AR, <code>lang/</code>, <code>i18n.js</code>): see
-            <a href="../environment-setup.html#i18n-languages">Environment setup → Languages (i18n)</a>.
-          </p>
-
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Look and feel</h3>
-          <p>
-            Colors and shared styles are centralized in <code>global.js</code>. Adjust them there if you want the driver app to match your brand.
-          </p>
-
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Change app name</h3>
-          <p>
-            In delivery app, rename the Expo label and the runtime labels used in login/settings logic.
-          </p>
-
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">app.json (delivery-app)</span>
-            </div>
-            <pre><code>{
-  "expo": {
-    <span class="tok-comment">// Replace with your public app label</span>
-    "name": "<span class="tok-str">YOUR_DELIVERY_APP_NAME</span>",
-    "slug": "<span class="tok-str">your-delivery-app-slug</span>",
-    "ios": {
-      "bundleIdentifier": "<span class="tok-str">com.yourcompany.yourdeliveryapp</span>"
-    },
-    "android": {
-      "package": "<span class="tok-str">com.yourcompany.yourdeliveryapp</span>"
-    }
-  }
-}</code></pre>
-          </div>
-
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">config.js (visible title in screens)</span>
-            </div>
-            <pre><code>export const config = {
-  <span class="tok-comment">// Replace with the in-app label you want</span>
-  <span class="tok-var">APP_NAME</span>: <span class="tok-str">'YOUR_DELIVERY_APP_NAME'</span>,
-  <span class="tok-var">VERSION</span>: <span class="tok-str">'1.0.0'</span>
-}</code></pre>
-          </div>
-
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">utils/settingsUtils.js (fallback name)</span>
-            </div>
-            <pre><code>export const <span class="tok-var">DEFAULT_APP_NAME</span> = <span class="tok-str">'YOUR_DELIVERY_APP_NAME'</span></code></pre>
-          </div>
-
-          <div class="callout">
-            <strong>Tip:</strong> After editing <code>config.js</code> or theme files, stop and restart <code>npm start</code> so the bundler picks up changes.
-          </div>
-
-          <h3 id="logo-update" style="margin: 28px 0 12px 0; font-size: 19px;">Logo update</h3>
-          <p>
-            Update only the logo image file in <code>assets/images</code> and keep the <strong>same file name</strong>.
-            Do not change paths or configuration when you only want a new logo.
-          </p>
-          <ol>
-            <li>Open the app logo file in <code>assets/images</code> inside <code>delivery-app</code>.</li>
-            <li>Replace the image with your own logo.</li>
-            <li>Keep exactly the same filename.</li>
-            <li>Restart the app.</li>
-          </ol>
-          <p>
-            <img
-              src="../assets/images/add_logo.png"
-              alt="Replace logo image while keeping same filename"
-              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
-            />
-          </p>
-
-          <p class="sub">
-            Default currency for the whole platform (admin + mobile) is documented here:
-            <a href="../environment-setup.html#change-app-currency">Environment setup → App currency (change)</a>.
-          </p>
-
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Maps</h3>
-          <p>
-            The driver app uses <strong>MapLibre</strong> (not Google Places). No Google Maps API key is required in <code>config.js</code> for the default map experience.
-          </p>
-        </section>
-
-        <section class="section">
-          <h2>4) API connection checklist</h2>
-          <p>
-            The driver app contacts your server for sign-in (<code>POST /auth/delivery-login</code>), order lists, profile updates, and settings—driver-specific endpoints on the same REST API as the rest of the suite.
-          </p>
-          <p class="sub">
-            For a basic test you only need the correct URL in <code>.env</code> / <code>config.js</code>. Device vs <code>localhost</code> is covered on
-            <a href="../environment-setup.html#api-reachability">Environment setup → API reachability</a>.
-          </p>
-        </section>
-
-        <section class="section">
-          <h2>5) Run the project</h2>
-          <div class="callout">
-            <strong>Expo Go is not supported.</strong> Install a development build first (<code>expo-dev-client</code> + MapLibre + background location).
-          </div>
-          <ol>
-            <li>Backend running, <code>.env</code> set from <code>.env.example</code>, <code>npm install</code> already done.</li>
-            <li>First time: <code>npm run android</code> or <code>npm run ios</code>.</li>
-            <li>Later: <code>npm start</code>, then open the installed <strong>Good Food Pro Driver</strong> app.</li>
-            <li>Sign in with demo <code>driver@demo.com</code> / <code>driver123</code> (or your seeded driver); open Home, Deliveries, and Profile.</li>
-          </ol>
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">Run commands</span>
-              <span class="code-copy">Expo</span>
-            </div>
-            <pre><code><span class="tok-cmd">cp</span> <span class="tok-arg">.env.example</span> <span class="tok-arg">.env</span>
-<span class="tok-cmd">npm</span> <span class="tok-cmd">run</span> <span class="tok-arg">android</span>   <span class="tok-comment"># first time: development build</span>
-<span class="tok-cmd">npm</span> <span class="tok-cmd">start</span>           <span class="tok-comment"># later: Metro only</span></code></pre>
-          </div>
-        </section>
-        <p class="docs-footer"><a href="#getting-started">↑ Back to top</a></p>
+        <p class="docs-footer"><a href="#top">↑ Back to top</a></p>
       </section>
     </main>
   </body>

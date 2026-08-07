@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Getting Started — Good Food Pro my-backend</title>
+    <title>Getting Started — Backend API</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
@@ -65,309 +65,69 @@
       </aside>
 
       <section class="content">
-        <header id="getting-started" class="hero">
+        <header id="top" class="hero">
           <h1>Getting Started</h1>
           <p class="subtitle">
-            Run the API locally: install dependencies, connect MongoDB, apply migrations, and confirm the server answers on port 5000.
+            Bring the shared API online first — every mobile and admin client depends on it answering before login or orders work.
           </p>
-          <p class="meta">
-            Goal: a healthy <code>GET</code> or login flow against <code>/api</code> before you open any mobile or web client.
-          </p>
+          <div class="meta-strip">
+            <span class="meta-pill">Backend API</span>
+            <span class="meta-pill">Boot first</span>
+            <span class="meta-pill">Self-hosted</span>
+          </div>
         </header>
 
-        <section class="section" id="prerequisites">
-          <h2>1) Prerequisites</h2>
-          <p>
-            You need a terminal, <strong>Node.js LTS</strong>, and a reachable <strong>MongoDB</strong>. The commands below are copy-paste friendly; full OS-specific Node install steps are on
-            <a href="../environment-setup.html#nodejs">Environment setup → Node.js</a>.
-          </p>
+        <section class="overview">
+          <section class="section-block">
+            <h2>What you will achieve</h2>
+            <p>
+              A healthy API process: database reachable, migrations applied, server listening, and a successful login from admin or a mobile app.
+              That is the gate before any storefront or courier demo.
+            </p>
+            <p class="section-subtext">
+              <code>.env</code> keys, migrate commands, port changes, and security notes are in <strong>source-docs/my-backend/getting-started.md</strong>
+              and the suite launcher <strong>source-docs/00-launch-suite.md</strong>. This page stays on the boot story.
+            </p>
+          </section>
 
-          <h3 class="subheading">What this stack does</h3>
-          <p>
-            <code>my-backend</code> is the JSON API (port <strong>5000</strong> by default). <strong>Node.js</strong> runs it; <strong>npm</strong> installs dependencies from <code>package.json</code>. <strong>MongoDB</strong> stores data—if it is down, fix Mongo before <code>npm start</code>.
-          </p>
-          <p class="sub"><strong>Order:</strong> Mongo running → <code>.env</code> → migrations → start the server.</p>
+          <section class="section-block">
+            <h2>Before you start the server</h2>
+            <ol class="doc-steps">
+              <li>Node.js LTS installed — <a href="../environment-setup.html">Environment setup</a>.</li>
+              <li>A MongoDB instance available (local, Docker, or Atlas).</li>
+              <li>The backend project from your suite ZIP, with secrets copied from the example env file (never commit real secrets).</li>
+            </ol>
+          </section>
 
-          <h3 class="subheading">Open the project folder</h3>
-          <p class="sub">
-            The <code>my-backend</code> project lives on your machine like any other folder (for example next to <code>customer-app</code>). Open a terminal there—you should see <code>package.json</code>.
-          </p>
-          <div class="code-block">
-            <div class="code-head">
-              <div class="code-head-left">
-                <span class="code-dots" aria-hidden="true">
-                  <span class="code-dot code-dot-red"></span>
-                  <span class="code-dot code-dot-yellow"></span>
-                  <span class="code-dot code-dot-green"></span>
-                </span>
-                <span class="code-title">Shell</span>
-              </div>
-              <span class="code-copy">bash / zsh / PowerShell</span>
-            </div>
-            <pre><code><span class="tok-cmd">cd</span> <span class="tok-arg">path/to/my-backend</span></code></pre>
-          </div>
+          <section class="section-block">
+            <h2>Soft path to a healthy API</h2>
+            <ol class="doc-steps">
+              <li>Open the backend project and install dependencies.</li>
+              <li>Configure database URL, JWT secret, port, and allowed web origins.</li>
+              <li>Run migrations so collections and demo users exist.</li>
+              <li>Start the server and confirm it listens (default local port is commonly <strong>5000</strong> unless you changed it).</li>
+              <li>Point <strong>every</strong> client (customer, driver, restaurant, admin) at the same host and <code>/api</code> path, then try one login.</li>
+            </ol>
+            <p class="section-subtext">
+              If you change the port, update all four clients — mismatched URLs look like “apps are broken” when only the address is wrong.
+            </p>
+          </section>
 
-          <h3 class="subheading">Verify Node.js and npm</h3>
-          <p class="sub">Use a <strong>new</strong> terminal after installing. Expect something like <code>v20.x.x</code> and <code>10.x.x</code>. “Command not found” means Node is missing from PATH.</p>
-          <div class="code-block">
-            <div class="code-head">
-              <div class="code-head-left">
-                <span class="code-dots" aria-hidden="true">
-                  <span class="code-dot code-dot-red"></span>
-                  <span class="code-dot code-dot-yellow"></span>
-                  <span class="code-dot code-dot-green"></span>
-                </span>
-                <span class="code-title">Versions</span>
-              </div>
-              <span class="code-copy">Node LTS</span>
-            </div>
-            <pre><code><span class="tok-cmd">node</span> -v
-<span class="tok-cmd">npm</span> -v</code></pre>
-          </div>
-
-          <h3 class="subheading">MongoDB (via Docker)</h3>
-          <p class="sub">This backend uses MongoDB running in Docker.</p>
-          <div class="code-block">
-            <div class="code-head">
-              <div class="code-head-left">
-                <span class="code-dots" aria-hidden="true">
-                  <span class="code-dot code-dot-red"></span>
-                  <span class="code-dot code-dot-yellow"></span>
-                  <span class="code-dot code-dot-green"></span>
-                </span>
-                <span class="code-title">Install + run MongoDB</span>
-              </div>
-              <span class="code-copy">docker</span>
-            </div>
-            <pre><code><span class="tok-cmd">docker</span> <span class="tok-cmd">pull</span> mongo:7
-<span class="tok-cmd">docker</span> <span class="tok-cmd">run</span> -d <span class="tok-arg">--name</span> <span class="tok-arg">&lt;mongo_container_name&gt;</span> <span class="tok-arg">-p</span> <span class="tok-str">&lt;mongo_host_port&gt;</span>:27017 mongo:7
-<span class="tok-cmd">docker</span> <span class="tok-cmd">ps</span></code></pre>
-          </div>
-          <div class="code-block">
-            <div class="code-head">
-              <div class="code-head-left">
-                <span class="code-dots" aria-hidden="true">
-                  <span class="code-dot code-dot-red"></span>
-                  <span class="code-dot code-dot-yellow"></span>
-                  <span class="code-dot code-dot-green"></span>
-                </span>
-                <span class="code-title">.env</span>
-              </div>
-              <span class="code-copy">required</span>
-            </div>
-            <pre><code><span class="tok-var">MONGO_URI</span>=mongodb://127.0.0.1:<span class="tok-arg">&lt;mongo_host_port&gt;</span>/<span class="tok-arg">&lt;mongo_database_name&gt;</span></code></pre>
-          </div>
-
-          <h3 class="subheading">Ready?</h3>
-          <div class="code-block">
-            <div class="code-head">
-              <div class="code-head-left">
-                <span class="code-dots" aria-hidden="true">
-                  <span class="code-dot code-dot-red"></span>
-                  <span class="code-dot code-dot-yellow"></span>
-                  <span class="code-dot code-dot-green"></span>
-                </span>
-                <span class="code-title">Checklist</span>
-              </div>
-              <span class="code-copy">before step 2</span>
-            </div>
-            <pre><code><span class="tok-comment"># You should have:</span>
-<span class="tok-comment"># - node -v and npm -v working</span>
-<span class="tok-comment"># - Mongo reachable at the URI you will put in .env</span>
-<span class="tok-comment"># - a plain-text editor for .env (no smart quotes)</span></code></pre>
-          </div>
-
-          <div class="callout">
-            <strong>Secrets:</strong> Never commit <code>MONGO_URI</code> or <code>JWT_SECRET</code>. Keep them in <code>.env</code> only and do not publish that file.
-          </div>
-
-          <p class="sub">
-            Phones and emulators: <code>localhost</code> is not your laptop—see
-            <a href="../environment-setup.html#api-reachability">API reachability</a>.
-          </p>
+          <section class="section-block">
+            <h2>After it runs — open the suite</h2>
+            <ul>
+              <li><a href="../admin-app/getting-started.html">Admin — Getting Started</a></li>
+              <li><a href="../getting-started.html">Customer — Getting Started</a></li>
+              <li><a href="../restaurant-app/getting-started.html">Restaurant — Getting Started</a></li>
+              <li><a href="../delivery-app/getting-started.html">Driver — Getting Started</a></li>
+            </ul>
+            <p class="section-subtext">
+              Feature behaviour (monetization, market, logistics, KDS, intelligence) assumes this API is up —
+              start from each app’s overview, then the feature pages. Deep configuration stays in source markdown.
+            </p>
+          </section>
         </section>
-
-        <section class="section">
-          <h2>2) Step-by-Step Installation</h2>
-          <ol>
-            <li>Place the <code>my-backend</code> folder next to your other Good Food apps (or wherever you keep the suite).</li>
-            <li>Open a terminal in the <code>my-backend</code> folder (where <code>package.json</code> lives).</li>
-            <li>Run <code>npm install</code>.</li>
-            <li>Create a <code>.env</code> file in the project root (see next section).</li>
-          </ol>
-          <div class="code-block">
-            <div class="code-head">
-              <div class="code-head-left">
-                <span class="code-dots" aria-hidden="true">
-                  <span class="code-dot code-dot-red"></span>
-                  <span class="code-dot code-dot-yellow"></span>
-                  <span class="code-dot code-dot-green"></span>
-                </span>
-                <span class="code-title">Install dependencies</span>
-              </div>
-              <span class="code-copy">my-backend</span>
-            </div>
-            <pre><code><span class="tok-cmd">cd</span> <span class="tok-arg">my-backend</span>
-<span class="tok-cmd">npm</span> <span class="tok-cmd">install</span></code></pre>
-          </div>
-        </section>
-
-        <section class="section">
-          <h2>3) Environment variables</h2>
-          <p>
-            The server reads configuration from <code>.env</code> via <code>dotenv</code>. In your backend code,
-            <code>src/config/db.js</code> requires <code>MONGO_URI</code> explicitly, so keep this value valid first.
-            Then set <code>JWT_SECRET</code>, <code>PORT</code>, and <code>CORS_ORIGINS</code> for your client URLs.
-          </p>
-          <div class="code-block">
-            <div class="code-head">
-              <div class="code-head-left">
-                <span class="code-dots" aria-hidden="true">
-                  <span class="code-dot code-dot-red"></span>
-                  <span class="code-dot code-dot-yellow"></span>
-                  <span class="code-dot code-dot-green"></span>
-                </span>
-                <span class="code-title">.env (example)</span>
-              </div>
-              <span class="code-copy">env</span>
-            </div>
-            <pre><code><span class="tok-var">MONGO_URI</span>=mongodb://127.0.0.1:<span class="tok-arg">&lt;mongo_host_port&gt;</span>/<span class="tok-arg">&lt;mongo_database_name&gt;</span>
-<span class="tok-var">JWT_SECRET</span>=<span class="tok-arg">&lt;your_super_secure_jwt_secret&gt;</span>
-<span class="tok-var">PORT</span>=<span class="tok-arg">&lt;api_port_ex_5000&gt;</span>
-<span class="tok-var">NODE_ENV</span>=development
-<span class="tok-var">CORS_ORIGINS</span>=<span class="tok-arg">&lt;admin_origin_1&gt;</span>,<span class="tok-arg">&lt;admin_origin_2&gt;</span></code></pre>
-          </div>
-          <p class="sub">
-            Match <code>PORT</code> and <code>/api</code> to what you put in customer, restaurant, driver, and admin configs (for example <code>http://localhost:5000/api</code>).
-          </p>
-        </section>
-
-        <section class="section">
-          <h2>Backend project name &amp; port</h2>
-          <p>
-            The backend doesn&apos;t display a “brand name” in the UI like Expo apps do. However, the backend project itself and its runtime
-            host/port are configured here.
-          </p>
-
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">1) Rename the backend project (optional)</h3>
-          <p class="sub">
-            If you rename the folder or want a different tooling name, update <code>my-backend/package.json</code>.
-          </p>
-          <div class="code-block">
-            <div class="code-head">
-              <div class="code-head-left">
-                <span class="code-dots" aria-hidden="true">
-                  <span class="code-dot code-dot-red"></span>
-                  <span class="code-dot code-dot-yellow"></span>
-                  <span class="code-dot code-dot-green"></span>
-                </span>
-                <span class="code-title">package.json (project name)</span>
-              </div>
-              <span class="code-copy">my-backend</span>
-            </div>
-            <pre><code>{
-  <span class="tok-var">"name"</span>: <span class="tok-str">"your-backend-project-name"</span>,
-  <span class="tok-var">"version"</span>: <span class="tok-str">"1.0.0"</span>
-}</code></pre>
-          </div>
-
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">2) Change the server port (important)</h3>
-          <p>
-            If you change <code>PORT</code>, update every client’s <code>API_BASE_URL</code> so mobile apps and the admin dashboard still reach your
-            server&apos;s <code>/api</code>.
-          </p>
-          <div class="code-block">
-            <div class="code-head">
-              <div class="code-head-left">
-                <span class="code-dots" aria-hidden="true">
-                  <span class="code-dot code-dot-red"></span>
-                  <span class="code-dot code-dot-yellow"></span>
-                  <span class="code-dot code-dot-green"></span>
-                </span>
-                <span class="code-title">.env (PORT)</span>
-              </div>
-              <span class="code-copy">env</span>
-            </div>
-            <pre><code><span class="tok-var">PORT</span>=<span class="tok-str">5000</span>
-<span class="tok-var">CORS_ORIGINS</span>=<span class="tok-str">http://localhost:3000</span>,<span class="tok-str">http://localhost:19006</span></code></pre>
-          </div>
-
-          <p class="sub">
-            After changes, restart the backend with <code>npm start</code>.
-          </p>
-        </section>
-
-        <section class="section">
-          <h2>4) Database &amp; migrations</h2>
-          <p>
-            Migrations create collections and seed baseline data (languages, settings, demo users, etc.).
-            Run them once on a fresh database before relying on the apps.
-          </p>
-          <div class="code-block">
-            <div class="code-head">
-              <div class="code-head-left">
-                <span class="code-dots" aria-hidden="true">
-                  <span class="code-dot code-dot-red"></span>
-                  <span class="code-dot code-dot-yellow"></span>
-                  <span class="code-dot code-dot-green"></span>
-                </span>
-                <span class="code-title">Database commands</span>
-              </div>
-              <span class="code-copy">npm</span>
-            </div>
-            <pre><code><span class="tok-cmd">npm</span> <span class="tok-cmd">run</span> <span class="tok-arg">test:db</span>
-<span class="tok-cmd">npm</span> <span class="tok-cmd">run</span> <span class="tok-arg">migrate:up</span>
-<span class="tok-cmd">npm</span> <span class="tok-cmd">run</span> <span class="tok-arg">migrate:status</span></code></pre>
-          </div>
-          <p class="sub">
-            Full migration order and rollback notes are in <strong>README.md</strong> inside the <code>my-backend</code> repository.
-          </p>
-          <p class="sub">
-            Demo data also prepares subscription plans, sponsored campaigns, kitchen tickets, and multi-language / wallet defaults
-            so the apps look alive on first launch. Product stories:
-            <a href="../admin-app/monetization.html">Monetization</a> ·
-            <a href="../restaurant-app/kitchen-display.html">KDS</a> ·
-            <a href="../admin-app/market.html">Market adaptability</a>.
-          </p>
-        </section>
-
-        <section class="section">
-          <h2>5) Run the server</h2>
-          <ol>
-            <li>MongoDB running; <code>.env</code> present; migrations applied.</li>
-            <li>Start the process: <code>npm start</code> (or <code>npm run dev</code> if you have configured nodemon—see <code>package.json</code> in the repo).</li>
-            <li>Confirm the console logs the listening port (default <strong>5000</strong>).</li>
-            <li>From a client app, set <code>API_BASE_URL</code> to <code>http://&lt;host&gt;:5000/api</code> and test sign-in.</li>
-          </ol>
-          <div class="code-block">
-            <div class="code-head">
-              <div class="code-head-left">
-                <span class="code-dots" aria-hidden="true">
-                  <span class="code-dot code-dot-red"></span>
-                  <span class="code-dot code-dot-yellow"></span>
-                  <span class="code-dot code-dot-green"></span>
-                </span>
-                <span class="code-title">Start API</span>
-              </div>
-              <span class="code-copy">server</span>
-            </div>
-            <pre><code><span class="tok-cmd">npm</span> <span class="tok-cmd">start</span>
-
-<span class="tok-comment"># or during development</span>
-<span class="tok-cmd">npm</span> <span class="tok-cmd">run</span> <span class="tok-arg">dev</span></code></pre>
-          </div>
-        </section>
-
-        <section class="section">
-          <h2>6) Verify &amp; next steps</h2>
-          <p>
-            Use the bundled <strong>Postman collection</strong> (<code>postman_collection.json</code>) or your client apps to hit auth and a simple resource route.
-            When the API responds correctly, proceed to
-            <a href="../getting-started.html">Customer Getting Started</a>
-            or any other app guide—always with the backend still running.
-          </p>
-        </section>
-        <p class="docs-footer"><a href="#getting-started">↑ Back to top</a></p>
+        <p class="docs-footer"><a href="#top">↑ Back to top</a></p>
       </section>
     </main>
   </body>

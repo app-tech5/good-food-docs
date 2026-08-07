@@ -191,5 +191,5 @@ Restart the API after changes. Mobile apps calling JSON over HTTP(S) are not bro
 ## Related guides
 
 - [Launch the suite](./00-launch-suite.md)  
-- [Backend](./getting-started-backend.md) · [Customer](./getting-started-customer.md) · [Driver](./getting-started-driver.md) · [Restaurant](./getting-started-restaurant.md) · [Admin](./getting-started-admin.md)  
-- Feature HOW-TOs: [Monetization](./01-monetization.md) · [Market](./02-market-adaptability.md) · [KDS](./03-kitchen-display.md) · [Logistics](./04-logistics.md) · [Intelligence](./05-intelligence.md)
+- [Backend](./my-backend/getting-started.md) · [Customer](./customer-app/getting-started.md) · [Driver](./delivery-app/getting-started.md) · [Restaurant](./restaurant-app/getting-started.md) · [Admin](./admin-app/getting-started.md)  
+- Feature HOW-TOs: [Monetization](./admin-app/monetization.md) · [Market](./admin-app/market.md) · [KDS](./restaurant-app/kitchen-display.md) · [Logistics](./delivery-app/logistics.md) · [Intelligence](./customer-app/intelligence.md)

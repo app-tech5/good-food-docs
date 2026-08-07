@@ -4,7 +4,7 @@ Goal: run the React operator console against your API, sign in as an administrat
 
 ## Before you start
 
-The dashboard talks to the backend immediately after login. Start **`my-backend`** first ([backend guide](./getting-started-backend.md)) and confirm migrations ran.
+The dashboard talks to the backend immediately after login. Start **`my-backend`** first ([backend guide](../my-backend/getting-started.md)) and confirm migrations ran.
 
 ## 1. Install
 
@@ -64,8 +64,8 @@ After login, use the sidebar entities (names may be translated, but the concepts
 | **Gateways** | Payment providers available to initialize for your markets |
 | **Restaurants / Orders / Users** | Day-to-day operations, verification, and support |
 
-Deeper money setup: [01-monetization.md](./01-monetization.md).  
-Languages, currency, channels: [02-market-adaptability.md](./02-market-adaptability.md).
+Deeper money setup: [Monetization](./monetization.md).  
+Languages, currency, channels: [Market adaptability](./market.md).
 
 ## 6. Quick verification
 
@@ -94,7 +94,31 @@ The admin app is a **React** web dashboard (Create React App–style). Deploy th
 
 Package version may read `0.1.0` / `1.0.0` depending on the pack — bump it when you publish your own release.
 
+## Branding & personalization (detail)
+
+Short note above covers `public/` titles. Practical checklist:
+
+### Browser tab & PWA name
+
+- `public/index.html` → `<title>` and meta description
+- `public/manifest.json` → `name` / `short_name`
+- Optional: `package.json` → project `name` / `version`
+- Restart `npm start`; clear site data if an installed PWA caches the old name
+
+### Logo in the dashboard UI
+
+The sidebar / header logo usually comes from **platform App Settings** (API), not only from a static file under `public/`:
+
+1. Sign in as admin.
+2. Open Settings → general / app settings.
+3. Upload or set the logo field, save.
+4. Hard-refresh the browser if the old image is cached.
+
+### Login presets (dev only)
+
+Some builds expose quick-fill role credentials on the login screen. Replace sample emails/passwords with users that exist in **your** database — never ship demo passwords to production.
+
 ## Next
 
-- [00-launch-suite.md](./00-launch-suite.md) — end-to-end smoke test  
+- [00-launch-suite.md](../00-launch-suite.md) — end-to-end smoke test  
 - Mobile apps — customer / driver / restaurant getting-started pages

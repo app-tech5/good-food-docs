@@ -26,7 +26,7 @@ Mobile apps can also follow the device locale when a matching pack exists; users
 
 ### Editing copy
 
-Translate by editing the locale JSON for each app (same keys as English, translated values only), then restart Metro / the admin dev server. Register any brand-new language the same way the four shipped locales are registered, and optionally add a languages document in Mongo via admin. Practical detail: [environment-config.md](./environment-config.md).
+Translate by editing the locale JSON for each app (same keys as English, translated values only), then restart Metro / the admin dev server. Register any brand-new language the same way the four shipped locales are registered, and optionally add a languages document in Mongo via admin. Practical detail: [environment-config.md](../environment-config.md).
 
 ## 2. Change currency
 
@@ -54,7 +54,7 @@ Not every order starts in your branded mobile app. **Channels** describe how dem
 2. Keep one kitchen and one courier flow — channels should not become a second disconnected system.
 3. Place a test order from the normal customer app first; then explore alternate channel entry only once the core accept → deliver path is solid.
 
-API surface: **`/api/channels`**. Pair with [Kitchen Display](./03-kitchen-display.md) and [Logistics](./04-logistics.md) so every entry mode still ends in tickets and drivers.
+API surface: **`/api/channels`**. Pair with [Kitchen Display](../restaurant-app/kitchen-display.md) and [Logistics](../delivery-app/logistics.md) so every entry mode still ends in tickets and drivers.
 
 ## 4. Regional payments & wallet flags
 
@@ -64,7 +64,7 @@ Feeling “local” also means payment brands and wallet habits people already t
 
 1. Open admin **Gateways** (backed by **`/api/gateways`**).
 2. Enable Stripe and/or regional PSP options your deployment supports (for example Paystack, Flutterwave, Razorpay slots).
-3. Align mobile publishable keys and backend secrets — see [01-monetization.md](./01-monetization.md) and [environment-config.md](./environment-config.md).
+3. Align mobile publishable keys and backend secrets — see [Monetization](./monetization.md) and [environment-config.md](../environment-config.md).
 
 ### Wallet behaviour
 
@@ -84,5 +84,5 @@ Stripe Connect remains available for marketplace-style payouts where you turn it
 
 ## Related
 
-- [Monetization](./01-monetization.md) — commissions, plans, ads, Stripe env  
-- [Environment config](./environment-config.md) — i18n edit approach and production checklist
+- [Monetization](./monetization.md) — commissions, plans, ads, Stripe env  
+- [Environment config](../environment-config.md) — i18n edit approach and production checklist

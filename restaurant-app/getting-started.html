@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Getting Started — Good Food Pro Restaurant App</title>
+    <title>Getting Started — Restaurant app</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
@@ -65,224 +65,70 @@
       </aside>
 
       <section class="content">
-        <header id="getting-started" class="hero">
+        <header id="top" class="hero">
           <h1>Getting Started</h1>
           <p class="subtitle">
-            Launch the restaurant app with the same calm, step-by-step style as the customer app—no assumed prior knowledge.
+            Connect the partner app to your API, accept a first order, and open the kitchen board when you are ready for service.
           </p>
-          <p class="meta">
-            Goal: install everything once, point the app at your API, sign in as a restaurant user, and complete a real order flow.
-          </p>
+          <div class="meta-strip">
+            <span class="meta-pill">Restaurant app</span>
+            <span class="meta-pill">First accept</span>
+            <span class="meta-pill">Android &amp; iOS</span>
+          </div>
         </header>
 
-        <section class="section">
-          <h2>1) Prerequisites</h2>
-          <p>
-            You will need a computer with Node.js, the Expo toolchain, and (for device testing) Android Studio or Xcode as described in the shared environment guide.
-            If any term is new to you, start with the linked sections—they are written for first-time setup.
-          </p>
+        <section class="overview">
+          <section class="section-block">
+            <h2>What you will achieve</h2>
+            <p>
+              Staff can sign in as a restaurant, see live incoming tickets, accept (or reject) with confidence,
+              and optionally run Kitchen Display on a tablet at the pass — all against the same order the customer just placed.
+            </p>
+            <p class="section-subtext">
+              Live vs demo scripts, env keys, and first-accept troubleshooting are in <strong>source-docs/restaurant-app/getting-started.md</strong>.
+            </p>
+          </section>
 
-          <div class="callout">
-            <strong>Important:</strong> Start your Good Food backend (for example the <code>my-backend</code> project) <em>before</em> opening the restaurant app.
-            The mobile client only shows live data when the server answers on the URL you configure.
-          </div>
+          <section class="section-block">
+            <h2>Before you open the restaurant app</h2>
+            <ol class="doc-steps">
+              <li>Tooling ready — <a href="../environment-setup.html">Environment setup</a>.</li>
+              <li>API up — <a href="../my-backend/getting-started.html">Backend — Getting Started</a>.</li>
+              <li>A <strong>restaurant</strong> user tied to the correct restaurant on the API.</li>
+              <li>Prefer <strong>live</strong> mode against your API when you want real orders (demo mode is for empty presentations only).</li>
+            </ol>
+          </section>
 
-          <div class="callout" style="margin-top: 12px;">
-            <strong>Restaurant account:</strong> The email and password must belong to a <strong>restaurant</strong> user in your database.
-            A customer-only or driver-only login may open the app but will not behave correctly on restaurant screens.
-          </div>
+          <section class="section-block">
+            <h2>Soft path to first accept</h2>
+            <ol class="doc-steps">
+              <li>Open the restaurant project from the suite ZIP.</li>
+              <li>Install dependencies and point the app at the shared API URL.</li>
+              <li>Install a development build once, then use the bundler for later sessions.</li>
+              <li>Sign in, keep the restaurant open for service, watch the orders list.</li>
+              <li>From the customer app, place an order; here, <strong>accept</strong> it — that unlocks KDS tickets and driver assignment.</li>
+            </ol>
+            <p class="section-subtext">
+              After the first accept, open Kitchen Display, menu edits, subscriptions, and sponsored listings from the drawer —
+              those flows are documented on the feature pages and in source markdown (KDS + monetization).
+            </p>
+          </section>
 
-          <p class="sub">
-            Install <strong>Node.js LTS</strong> and Expo / native tooling once for the suite:
-            <a href="../environment-setup.html#nodejs">Environment setup → Node.js</a>
-            and
-            <a href="../environment-setup.html#expo-tooling">Expo and native tooling</a>.
-            Allow location when prompted if you rely on map or GPS-based features.
-          </p>
+          <section class="section-block">
+            <h2>After it runs — what to explore</h2>
+            <ul>
+              <li><a href="./operations.html">Orders &amp; menu</a></li>
+              <li><a href="./kitchen-display.html">Kitchen Display (KDS)</a></li>
+              <li><a href="./subscriptions.html">Subscriptions</a></li>
+              <li><a href="./sponsored.html">Sponsored listings</a></li>
+            </ul>
+            <p class="section-subtext">
+              Suite checklist: <strong>source-docs/00-launch-suite.md</strong>.
+              KDS detail: <strong>source-docs/restaurant-app/kitchen-display.md</strong>.
+            </p>
+          </section>
         </section>
-
-        <section class="section">
-          <h2>2) Step-by-Step Installation</h2>
-          <ol>
-            <li>Open a terminal.</li>
-            <li>Go into the folder named <code>restaurant-app</code> (the one that contains <code>package.json</code>).</li>
-            <li>Run <code>npm install</code> and wait until it finishes without errors.</li>
-            <li>Continue to the configuration section below before your first <code>npm start</code>.</li>
-          </ol>
-          <p class="sub">
-            When installation succeeds, your machine has downloaded the libraries the project declares—nothing is “magic”, it is standard Node.js workflow.
-          </p>
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">Install dependencies</span>
-              <span class="code-copy">restaurant-app</span>
-            </div>
-            <pre><code><span class="tok-cmd">cd</span> <span class="tok-arg">restaurant-app</span>
-<span class="tok-cmd">npm</span> <span class="tok-cmd">install</span></code></pre>
-          </div>
-        </section>
-
-        <section class="section">
-          <h2>3) Configuration &amp; Personalization</h2>
-          <p>
-            Most settings live in <strong>one file at the root of the project</strong>. Think of it as the contract between the app and your server:
-            where to call the API, whether demo credentials are allowed, timeouts, and several product toggles.
-            (The customer app splits some of this into a <code>config</code> folder—same idea, different layout.)
-          </p>
-
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">API configuration</h3>
-          <p>
-            The critical value is the <strong>base URL</strong> of your API—the address your phone or emulator must reach, usually ending with <code>/api</code>
-            exactly as your backend expects. On a real phone, <code>localhost</code> refers to the phone itself, not your laptop; use your computer’s LAN IP instead.
-          </p>
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">Example values (root config file)</span>
-            </div>
-            <pre><code><span class="tok-comment"># Prefer .env (see .env.example)</span>
-<span class="tok-var">EXPO_PUBLIC_API_URL</span>=<span class="tok-str">http://YOUR_SERVER_IP:5000/api</span>
-<span class="tok-var">EXPO_PUBLIC_DEMO_MODE</span>=<span class="tok-arg">true</span>
-<span class="tok-var">EXPO_PUBLIC_DEMO_EMAIL</span>=<span class="tok-str">demo@restaurant.com</span>
-<span class="tok-var">EXPO_PUBLIC_DEMO_PASSWORD</span>=<span class="tok-str">password123</span>
-
-<span class="tok-comment"># config.js</span>
-APP_NAME: <span class="tok-str">'Good Food Pro'</span>,
-APP_SUBTITLE: <span class="tok-str">'Restaurant'</span>,
-VERSION: <span class="tok-str">'1.0.0'</span>,
-<span class="tok-var">API_TIMEOUT</span>: <span class="tok-arg">10000</span></code></pre>
-          </div>
-          <p class="sub">
-            Login uses <code>POST /auth/restaurant-login</code>. During local development many teams start from <code>http://localhost:5000/api</code> on an emulator; switch to your network IP before testing on hardware.
-            More detail:
-            <a href="../environment-setup.html#api-reachability">Environment setup → API reachability</a>.
-          </p>
-
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Demo mode</h3>
-          <p>
-            When demo mode is on, the login screen can offer sample credentials—ideal for showroom demos. Before production, turn it off and rely on real accounts only.
-          </p>
-
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Languages (EN / FR / ES / AR)</h3>
-          <p>
-            Adding or adjusting languages is documented once for every mobile app:
-            <a href="../environment-setup.html#i18n-languages">Environment setup → Languages (i18n)</a>.
-          </p>
-
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Visual customization</h3>
-          <p>
-            Brand colours and shared visual tokens are grouped in the project’s global theme file so designers can iterate without hunting through every screen.
-          </p>
-
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Change app name</h3>
-          <p>
-            In restaurant app, update Expo app metadata and both in-app labels (<code>APP_NAME</code> and <code>APP_SUBTITLE</code>).
-          </p>
-
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">app.json (restaurant-app)</span>
-            </div>
-            <pre><code>{
-  "expo": {
-    <span class="tok-comment">// Replace with your public app label</span>
-    "name": "<span class="tok-str">YOUR_RESTAURANT_APP_NAME</span>",
-    "slug": "<span class="tok-str">your-restaurant-app-slug</span>",
-    "ios": {
-      "bundleIdentifier": "<span class="tok-str">com.yourcompany.yourrestaurantapp</span>"
-    },
-    "android": {
-      "package": "<span class="tok-str">com.yourcompany.yourrestaurantapp</span>"
-    }
-  }
-}</code></pre>
-          </div>
-
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">config.js (labels used in login/splash)</span>
-            </div>
-            <pre><code>export const config = {
-  <span class="tok-comment">// Replace with the in-app labels you want</span>
-  <span class="tok-var">APP_NAME</span>: <span class="tok-str">'YOUR_RESTAURANT_APP_NAME'</span>,
-  <span class="tok-var">APP_SUBTITLE</span>: <span class="tok-str">'YOUR_RESTAURANT_APP_SUBTITLE'</span>,
-  <span class="tok-var">VERSION</span>: <span class="tok-str">'1.0.0'</span>
-}</code></pre>
-          </div>
-
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">utils/settingsUtils.js (fallback name)</span>
-            </div>
-            <pre><code>export const <span class="tok-var">DEFAULT_APP_NAME</span> = <span class="tok-str">'YOUR_RESTAURANT_APP_NAME'</span></code></pre>
-          </div>
-
-          <div class="callout">
-            <strong>Tip:</strong> After you change configuration or theme files, stop the dev server and run <code>npm start</code> again so nothing is cached incorrectly.
-          </div>
-
-          <h3 id="logo-update" style="margin: 28px 0 12px 0; font-size: 19px;">Logo update</h3>
-          <p>
-            Update only the logo image file in <code>assets/images</code> and keep the <strong>same file name</strong>.
-            Do not change paths or configuration when you only want a new logo.
-          </p>
-          <ol>
-            <li>Open the app logo file in <code>assets/images</code> inside <code>restaurant-app</code>.</li>
-            <li>Replace the image with your own logo.</li>
-            <li>Keep exactly the same filename.</li>
-            <li>Restart the app.</li>
-          </ol>
-          <p>
-            <img
-              src="../assets/images/add_logo.png"
-              alt="Replace logo image while keeping same filename"
-              style="width: 100%; max-width: 760px; height: auto; border-radius: 10px; border: 1px solid var(--border); display: block;"
-            />
-          </p>
-
-          <p class="sub">
-            Default currency for the whole platform (admin + mobile) is documented here:
-            <a href="../environment-setup.html#change-app-currency">Environment setup → App currency (change)</a>.
-          </p>
-
-          <h3 style="margin: 28px 0 12px 0; font-size: 19px;">Firebase (push)</h3>
-          <p>
-            The repo ships a <strong>placeholder</strong> <code>android/app/google-services.json</code>. Replace it with your Firebase Android config (package <code>com.goodfood.restaurant</code> or your renamed package) before expecting push notifications.
-          </p>
-        </section>
-
-        <section class="section">
-          <h2>4) API Connection</h2>
-          <p>
-            Once the app is running, every meaningful action—sign-in (<code>POST /auth/restaurant-login</code>), loading today’s orders, updating preparation status, editing dishes—goes through your REST API.
-            You do not configure each call by hand: the project already knows the endpoints; your job is to keep <strong>one correct base URL</strong> and a healthy backend.
-          </p>
-          <p class="sub">
-            If login fails, check three things in order: server running, URL reachable from the device, and a restaurant user that exists in the database (demo: <code>demo@restaurant.com</code> / <code>password123</code>).
-          </p>
-        </section>
-
-        <section class="section">
-          <h2>5) Run the Project</h2>
-          <div class="callout">
-            <strong>Expo Go is not supported.</strong> Install a development build first (<code>expo-dev-client</code>, Firebase messaging, etc.).
-          </div>
-          <ol>
-            <li>Backend running; <code>.env</code> from <code>.env.example</code>; <code>npm install</code> completed.</li>
-            <li>First time: <code>npm run android</code> or <code>npm run ios</code>.</li>
-            <li>Later: <code>npm start</code>, then open the installed <strong>Good Food Pro Restaurant</strong> app.</li>
-            <li>Sign in and walk through Dashboard → Orders → Menu → settings.</li>
-          </ol>
-          <div class="code-block">
-            <div class="code-head">
-              <span class="code-title">Run commands</span>
-              <span class="code-copy">Expo</span>
-            </div>
-            <pre><code><span class="tok-cmd">cp</span> <span class="tok-arg">.env.example</span> <span class="tok-arg">.env</span>
-<span class="tok-cmd">npm</span> <span class="tok-cmd">run</span> <span class="tok-arg">android</span>   <span class="tok-comment"># first time: development build</span>
-<span class="tok-cmd">npm</span> <span class="tok-cmd">start</span>           <span class="tok-comment"># later: Metro only</span></code></pre>
-          </div>
-        </section>
-        <p class="docs-footer"><a href="#getting-started">↑ Back to top</a></p>
+        <p class="docs-footer"><a href="#top">↑ Back to top</a></p>
       </section>
     </main>
   </body>

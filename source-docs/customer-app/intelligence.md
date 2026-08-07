@@ -61,10 +61,10 @@ For CodeCanyon and laptop demos, **fallbacks matter**: you can pitch intelligenc
 1. API running; `/api/intelligence` reachable from the customer app’s host.
 2. At least one restaurant with products and a customer session.
 3. Demo script above rehearsed before investor calls.
-4. Pair with [logistics](./04-logistics.md) so ETA stories continue into live tracking after checkout.
+4. Pair with [logistics](../delivery-app/logistics.md) so ETA stories continue into live tracking after checkout.
 
 ## Related
 
 - [Launch suite](./00-launch-suite.md)  
-- [Monetization](./01-monetization.md) — commission on larger baskets  
+- [Monetization](../admin-app/monetization.md) — commission on larger baskets  
 - [Environment config](./environment-config.md) — network assumptions for production
