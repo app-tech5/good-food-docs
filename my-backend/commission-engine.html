@@ -101,7 +101,24 @@
             <a href="../admin-app/catalog.html"><span class="nav-link-text">Menus & catalog</span></a>
             <a href="../admin-app/earnings.html"><span class="nav-link-text">Commissions & earnings</span></a>
             <a href="../admin-app/subscriptions.html"><span class="nav-link-text">Subscription plans</span></a>
-            <a href="../admin-app/gateways.html"><span class="nav-link-text">Payment gateways</span></a>
+            <details class="nav-nested">
+              <summary class="nav-nested-summary">
+                <span class="nav-nested-title">Payment gateways</span>
+                <span class="nav-count">10</span>
+              </summary>
+              <nav class="nav nav-nested-links" aria-label="Payment gateways">
+                <a href="../admin-app/gateways.html"><span class="nav-link-text">Overview</span></a>
+                <a href="../admin-app/gateway-stripe.html"><span class="nav-link-text">Stripe</span></a>
+                <a href="../admin-app/gateway-paypal.html"><span class="nav-link-text">PayPal</span></a>
+                <a href="../admin-app/gateway-flutterwave.html"><span class="nav-link-text">Flutterwave</span></a>
+                <a href="../admin-app/gateway-paystack.html"><span class="nav-link-text">Paystack</span></a>
+                <a href="../admin-app/gateway-orangepay.html"><span class="nav-link-text">OrangePay</span></a>
+                <a href="../admin-app/gateway-razorpay.html"><span class="nav-link-text">Razorpay</span></a>
+                <a href="../admin-app/gateway-cod.html"><span class="nav-link-text">Cash on Delivery</span></a>
+                <a href="../admin-app/gateway-wallet.html"><span class="nav-link-text">Internal Wallet</span></a>
+                <a href="../admin-app/gateway-crypto.html"><span class="nav-link-text">Crypto (Commerce)</span></a>
+              </nav>
+            </details>
             <a href="../admin-app/promotions.html"><span class="nav-link-text">Promo campaigns</span></a>
             <a href="../admin-app/coupons.html"><span class="nav-link-text">Coupon codes</span></a>
             <a href="../admin-app/languages.html"><span class="nav-link-text">Languages & RTL</span></a>
@@ -153,18 +170,46 @@
           <section class="section-block">
             <h2>You earn on every order — with rules you own</h2>
             <p>
-              Commission baselines and per-restaurant overrides live in marketplace settings; restaurant subscription benefits can soften the cut while a plan is active. The API computes and stores the split so Earnings views and payouts stay auditable.
+              The API owns the math. Operators configure rates in admin; when an order completes, the backend applies the effective commission (marketplace baseline → optional restaurant override → active restaurant-plan benefits) and stores an auditable split for Earnings and payouts.
             </p>
-            <h3>Earnings periods operators review</h3>
+            <h3>1. Marketplace baseline</h3>
             <p class="section-subtext">
-              Admin Earnings is the operator face of those calculations. Details: <a href="../admin-app/earnings.html">Commissions &amp; earnings</a>.
+              App Settings holds the default <strong>Commission Rate</strong> (percentage) used when a restaurant has no stronger rule.
             </p>
             <figure class="doc-shot wide">
-              <img src="../assets/images/features/earnings.jpg" alt="Earnings" />
-              <figcaption>Earnings periods produced by the commission engine</figcaption>
+              <img src="../assets/images/features/commission-baseline.jpg" alt="Commission Rate" />
+              <figcaption>Full App Settings — Commission Rate highlighted</figcaption>
+            </figure>
+            <h3>2. Per-restaurant override</h3>
+            <p class="section-subtext">
+              On a restaurant record, <strong>Commission Rate (%)</strong> overrides the marketplace default for that partner only.
+            </p>
+            <figure class="doc-shot wide">
+              <img src="../assets/images/features/commission-restaurant-override.jpg" alt="Restaurant commission" />
+              <figcaption>Restaurant details — Commission Rate (%) highlighted</figcaption>
+            </figure>
+            <h3>3. Subscription benefits soften the cut</h3>
+            <p class="section-subtext">
+              Restaurant plans expose <strong>Reduced commission %</strong> and <strong>Waive commission</strong>. While the plan is active, the API softens or zeroes the platform cut on qualifying orders.
+            </p>
+            <figure class="doc-shot wide">
+              <img src="../assets/images/features/commission-plan-benefits.jpg" alt="Plan commission benefits" />
+              <figcaption>Restaurant Pro — Benefit flags (reduced / waive commission) highlighted</figcaption>
+            </figure>
+            <h3>4. Stored split operators can audit</h3>
+            <p class="section-subtext">
+              Earnings details show the stored result: platform commission, restaurant earnings, delivery earnings, and taxes — then per-order commission lines.
+            </p>
+            <figure class="doc-shot wide">
+              <img src="../assets/images/features/commission-earnings-audit.jpg" alt="Earnings split" />
+              <figcaption>Earnings details — summary split cards highlighted</figcaption>
+            </figure>
+            <figure class="doc-shot wide">
+              <img src="../assets/images/features/commission-earnings-lines.jpg" alt="Per-order commission" />
+              <figcaption>Earnings details — Transactions (with Commission) highlighted</figcaption>
             </figure>
             <p class="section-subtext">
-              Related: <a href="./subscriptions-engine.html">Subscriptions engine</a>, <a href="./payments-wallet.html">Payments &amp; wallet</a>.
+              Operator UI guide: <a href="../admin-app/earnings.html">Commissions &amp; earnings</a>. Related engines: <a href="./subscriptions-engine.html">Subscriptions</a>, <a href="./payments-wallet.html">Payments &amp; wallet</a>.
             </p>
           </section>
         </section>

@@ -19,12 +19,36 @@ def build_sidebar(html_path: Path) -> str:
     prefix = rel_prefix(html_path)
     rel = html_path.relative_to(ROOT).as_posix()
 
-    def link(href: str, label: str, active: bool = False) -> str:
+    def link(href: str, label: str, active: bool = False, *, indent: int = 12) -> str:
+        pad = " " * indent
         cls = ' class="active"' if active else ""
-        return f'            <a{cls} href="{href}"><span class="nav-link-text">{label}</span></a>'
+        return f'{pad}<a{cls} href="{href}"><span class="nav-link-text">{label}</span></a>'
 
-    def section(label: str, items: list[tuple[str, str, bool]], *, force_open: bool = False) -> list[str]:
+    def item_is_active(item) -> bool:
+        if isinstance(item, tuple) and len(item) >= 3 and item[0] == "__nested__":
+            return any(active for _, _, active in item[2])
+        return bool(item[2])
+
+    def nested_subgroup(label: str, items: list[tuple[str, str, bool]], *, force_open: bool = False) -> list[str]:
         any_active = any(active for _, _, active in items)
+        open_attr = " open" if (force_open or any_active) else ""
+        active_cls = " is-current" if any_active else ""
+        out = [
+            f'            <details class="nav-nested{active_cls}"{open_attr}>',
+            '              <summary class="nav-nested-summary">',
+            f'                <span class="nav-nested-title">{label}</span>',
+            f'                <span class="nav-count">{len(items)}</span>',
+            "              </summary>",
+            f'              <nav class="nav nav-nested-links" aria-label="{label}">',
+        ]
+        for href, text, active in items:
+            out.append(link(href, text, active, indent=16))
+        out.append("              </nav>")
+        out.append("            </details>")
+        return out
+
+    def section(label: str, items: list, *, force_open: bool = False) -> list[str]:
+        any_active = any(item_is_active(it) for it in items)
         open_attr = " open" if (force_open or any_active) else ""
         active_cls = " is-current" if any_active else ""
         out = [
@@ -35,8 +59,12 @@ def build_sidebar(html_path: Path) -> str:
             "          </summary>",
             '          <nav class="nav" aria-label="' + label + '">',
         ]
-        for href, text, active in items:
-            out.append(link(href, text, active))
+        for it in items:
+            if isinstance(it, tuple) and len(it) >= 3 and it[0] == "__nested__":
+                out.extend(nested_subgroup(it[1], it[2], force_open=False))
+            else:
+                href, text, active = it
+                out.append(link(href, text, active))
         out.append("          </nav>")
         out.append("        </details>")
         return out
@@ -92,6 +120,27 @@ def build_sidebar(html_path: Path) -> str:
     is_adm_earn = rel == "admin-app/earnings.html"
     is_adm_sub = rel == "admin-app/subscriptions.html"
     is_adm_gw = rel == "admin-app/gateways.html"
+    is_adm_gw_stripe = rel == "admin-app/gateway-stripe.html"
+    is_adm_gw_paypal = rel == "admin-app/gateway-paypal.html"
+    is_adm_gw_flutterwave = rel == "admin-app/gateway-flutterwave.html"
+    is_adm_gw_paystack = rel == "admin-app/gateway-paystack.html"
+    is_adm_gw_orange = rel == "admin-app/gateway-orangepay.html"
+    is_adm_gw_razorpay = rel == "admin-app/gateway-razorpay.html"
+    is_adm_gw_cod = rel == "admin-app/gateway-cod.html"
+    is_adm_gw_wallet = rel == "admin-app/gateway-wallet.html"
+    is_adm_gw_crypto = rel == "admin-app/gateway-crypto.html"
+    is_adm_gw_any = (
+        is_adm_gw
+        or is_adm_gw_stripe
+        or is_adm_gw_paypal
+        or is_adm_gw_flutterwave
+        or is_adm_gw_paystack
+        or is_adm_gw_orange
+        or is_adm_gw_razorpay
+        or is_adm_gw_cod
+        or is_adm_gw_wallet
+        or is_adm_gw_crypto
+    )
     is_adm_promo = rel == "admin-app/promotions.html"
     is_adm_coup = rel == "admin-app/coupons.html"
     is_adm_lang = rel == "admin-app/languages.html"
@@ -233,7 +282,22 @@ def build_sidebar(html_path: Path) -> str:
                 (f"{prefix}admin-app/catalog.html", "Menus & catalog", is_adm_cat),
                 (f"{prefix}admin-app/earnings.html", "Commissions & earnings", is_adm_earn),
                 (f"{prefix}admin-app/subscriptions.html", "Subscription plans", is_adm_sub),
-                (f"{prefix}admin-app/gateways.html", "Payment gateways", is_adm_gw),
+                (
+                    "__nested__",
+                    "Payment gateways",
+                    [
+                        (f"{prefix}admin-app/gateways.html", "Overview", is_adm_gw),
+                        (f"{prefix}admin-app/gateway-stripe.html", "Stripe", is_adm_gw_stripe),
+                        (f"{prefix}admin-app/gateway-paypal.html", "PayPal", is_adm_gw_paypal),
+                        (f"{prefix}admin-app/gateway-flutterwave.html", "Flutterwave", is_adm_gw_flutterwave),
+                        (f"{prefix}admin-app/gateway-paystack.html", "Paystack", is_adm_gw_paystack),
+                        (f"{prefix}admin-app/gateway-orangepay.html", "OrangePay", is_adm_gw_orange),
+                        (f"{prefix}admin-app/gateway-razorpay.html", "Razorpay", is_adm_gw_razorpay),
+                        (f"{prefix}admin-app/gateway-cod.html", "Cash on Delivery", is_adm_gw_cod),
+                        (f"{prefix}admin-app/gateway-wallet.html", "Internal Wallet", is_adm_gw_wallet),
+                        (f"{prefix}admin-app/gateway-crypto.html", "Crypto (Commerce)", is_adm_gw_crypto),
+                    ],
+                ),
                 (f"{prefix}admin-app/promotions.html", "Promo campaigns", is_adm_promo),
                 (f"{prefix}admin-app/coupons.html", "Coupon codes", is_adm_coup),
                 (f"{prefix}admin-app/languages.html", "Languages & RTL", is_adm_lang),

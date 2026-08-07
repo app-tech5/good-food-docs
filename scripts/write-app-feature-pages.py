@@ -21,7 +21,12 @@ def esc(s: str) -> str:
 def render_shot(shot, img_prefix: str) -> str:
     """One screenshot under its own text — never packed in a multi-column grid."""
     kind, src, alt, cap = shot
-    cls = "phone" if kind == "phone" else "wide"
+    if kind == "phone":
+        cls = "phone"
+    elif kind == "detail":
+        cls = "detail"
+    else:
+        cls = "wide"
     return f"""            <figure class="doc-shot {cls}">
               <img src="{img_prefix}{src}" alt="{html.escape(alt)}" />
               <figcaption>{html.escape(cap)}</figcaption>
@@ -1153,18 +1158,34 @@ def main():
                 "h2": "Commissions and earnings",
                 "paras": [
                     "Every completed order splits value between the marketplace and the restaurant. The baseline platform commission is configured in marketplace / app settings; restaurant subscription benefits can soften that cut.",
-                    "The Earnings area is where you review periods and totals before payouts or investigations.",
+                    "The Earnings area is where you review periods and totals before payouts or investigations — first as a list of earning records, then as a detail form when you need the full split math.",
                 ],
                 "blocks": [
                     {
-                        "h3": "Operator checklist",
+                        "h3": "Earnings list",
+                        "paras": [
+                            "Open <strong>Earnings</strong> to scan periods, restaurants, and totals at a glance. Use filters when you investigate a single partner or a date range.",
+                        ],
                         "steps": [
                             "Set or review the default commission rate in App Settings.",
                             "Place a test order end-to-end (customer → restaurant accept → complete).",
-                            "Open <strong>Earnings</strong> and confirm the platform vs restaurant split.",
-                            "Use View on a row when you need the detail behind a period.",
+                            "Open <strong>Earnings</strong> and confirm platform vs restaurant totals appear for that activity.",
                         ],
-                        "shot": ("wide", f"{A}/features/earnings.jpg", "Earnings", "Earnings list — periods and totals"),
+                        "shot": ("wide", f"{A}/features/earnings.jpg", "Earnings list", "Earnings list — periods and totals"),
+                    },
+                    {
+                        "h3": "Earnings details",
+                        "paras": [
+                            "Click <strong>View</strong> on a row to open the earning record for a period. The detail screen starts with an <strong>Earnings summary</strong> (period range, reference id, and total), then breaks that total into <strong>platform commission</strong>, <strong>restaurant earnings</strong>, <strong>delivery earnings</strong>, and <strong>taxes</strong>.",
+                            "Below the summary you get the contributing <strong>Transactions</strong> (date, restaurant, amount, commission, delivery, status) and any related <strong>Payouts</strong> (recipient, type, amount, pending vs completed). Use this when a partner disputes a payout, when you verify a subscription changed the cut, or when support needs the exact numbers behind a period total.",
+                        ],
+                        "steps": [
+                            "From the Earnings list, open <strong>View</strong> on the period you care about.",
+                            "Confirm the summary split (platform / restaurant / delivery / taxes) adds up to the total.",
+                            "Scan Transactions for the restaurants and amounts in that period; check Payouts if money should already be owed out.",
+                            "If numbers look wrong, cross-check App Settings commission and the related orders.",
+                        ],
+                        "shot": ("wide", f"{A}/features/earnings-details.jpg", "Earnings details", "Period summary, split cards, transactions, and payouts"),
                     },
                 ],
             },
@@ -1208,41 +1229,369 @@ def main():
         "admin-app/gateways.html",
         "Payment gateways — Admin app",
         "Payment gateways",
-        "Which PSPs and local methods power checkout, wallets, and COD.",
-        ["Gateways", "Fees", "Active"],
+        "Each PSP and local method has its own credentials, capabilities, and checkout behaviour. Open a sub-tab for the gateway you are configuring.",
+        ["Gateways", "PSPs", "Active"],
         [
             {
-                "h2": "Payment gateways",
+                "h2": "One list, many different payment engines",
                 "paras": [
-                    "Gateways tell the platform which PSPs and local methods are available. Turn on only what you have credentials and compliance for — typically Stripe and PayPal first, then regional providers.",
+                    "In Admin → <strong>Gateways</strong> you maintain every payment method the marketplace can offer at checkout, for wallet top-ups, and for cash-on-delivery style flows. The list is not cosmetic: the API only initializes a provider when that gateway row is <strong>Active</strong> and has usable credentials.",
+                    "Each provider works differently. Stripe expects publishable/secret keys and a webhook signing secret; PayPal needs a client id/secret and a sandbox vs live mode; Paystack and Flutterwave initialize hosted authorization URLs; Razorpay returns an order id for the client SDK; Orange Money uses merchant/API keys; COD and Internal Wallet are ledger/ops methods without a card PSP; Crypto is a separate commerce slot. Use the sub-tabs under <strong>Payment gateways</strong> in the sidebar for the full story of each one.",
                 ],
                 "blocks": [
                     {
-                        "h3": "See what is enabled",
+                        "h3": "Start from the Gateways list",
                         "paras": [
-                            "The Gateways list shows each method, status, and fee fields. Disable anything you are not ready to operate.",
-                        ],
-                        "shot": ("wide", f"{A}/features/gateways.jpg", "Gateways list", "Active payment gateways in admin"),
-                    },
-                    {
-                        "h3": "Stripe credentials",
-                        "paras": [
-                            "Open a gateway to set capabilities (refunds, payouts, webhooks, subscriptions), upload a logo, and paste provider keys. Stripe is the usual card stack for checkout and wallet top-ups.",
+                            "Open the list to see fee percentage, active flags, and which methods exist in this environment. Disable anything you have not finished onboarding with the provider — a half-configured gateway causes failed checkouts and confusing demo fallbacks.",
                         ],
                         "steps": [
-                            "Open <strong>Gateways</strong> → View on <strong>Stripe</strong>.",
-                            "Tick the capabilities you support; keep <strong>Active</strong> only when keys are valid.",
-                            "Enter publishable key, secret key, and webhook signing secret from the Stripe dashboard.",
-                            'Run a test checkout and a <a href="../wallet.html">wallet</a> top-up before go-live.',
+                            "Open <strong>Gateways</strong> in admin.",
+                            "Confirm only the methods you operate are Active.",
+                            "Open each provider (View) and fill its own credential fields — do not copy Stripe fields into Paystack.",
+                            "Pick the matching sidebar sub-tab below for field-by-field guidance.",
                         ],
-                        "shot": ("wide", f"{A}/features/gateways-form-1.jpg", "Stripe form", "Stripe: capabilities, logo, and API keys"),
+                        "shot": ("wide", f"{A}/features/gateways.jpg", "Gateways list", "All payment methods with fees and status"),
                     },
                     {
-                        "h3": "PayPal credentials",
+                        "h3": "Choose a gateway guide",
                         "paras": [
-                            "Same pattern for PayPal — client id / secret and capabilities. Use sandbox keys while you validate the flow.",
+                            'Detailed pages: <a href="./gateway-stripe.html">Stripe</a> · <a href="./gateway-paypal.html">PayPal</a> · <a href="./gateway-flutterwave.html">Flutterwave</a> · <a href="./gateway-paystack.html">Paystack</a> · <a href="./gateway-orangepay.html">OrangePay</a> · <a href="./gateway-razorpay.html">Razorpay</a> · <a href="./gateway-cod.html">Cash on Delivery</a> · <a href="./gateway-wallet.html">Internal Wallet</a> · <a href="./gateway-crypto.html">Crypto (Commerce)</a>.',
+                            'API behaviour for hosted checkout init: <a href="../my-backend/payments-wallet.html">Payments &amp; wallet</a>. Customer surfaces: <a href="../checkout.html">Checkout</a> and <a href="../wallet.html">Wallet</a>.',
                         ],
-                        "shot": ("wide", f"{A}/features/gateways-form-2.jpg", "PayPal form", "PayPal: capabilities and provider credentials"),
+                    },
+                ],
+            },
+        ],
+        D, DJ, DP,
+    )
+
+    w(
+        "admin-app/gateway-stripe.html",
+        "Stripe — Payment gateways",
+        "Stripe",
+        "Card rails, webhooks, and Connect-style payouts — the default global card stack.",
+        ["Cards", "Webhooks", "Subscriptions"],
+        [
+            {
+                "h2": "How Stripe works in this marketplace",
+                "paras": [
+                    "Stripe is the primary card and subscription-oriented provider. Checkout and many wallet top-up paths expect a Stripe-shaped credential set: a <strong>publishable key</strong> (safe to expose to apps), a <strong>secret key</strong> (server only), and a <strong>webhook signing secret</strong> so the API can verify events from Stripe (payment succeeded, refund updated, subscription renewed).",
+                    "Unlike Paystack or Flutterwave — which often return a browser authorization URL — Stripe is deeply wired through dedicated payment and Connect routes on the API (`/api/payments`, `/api/connect`). Drivers can be paid out via Stripe Connect when that flow is enabled. Capabilities on the admin form should match what you actually operate: refunds, withdrawals/payouts, webhooks, and subscription/recurring charges.",
+                    "Typical card fee placeholders in the seed are around 2.9% + a fixed minor unit. Replace demo keys before production; leave keys that contain “demo” / “test” wording only for local demos.",
+                ],
+                "blocks": [
+                    {
+                        "h3": "Configure the Stripe form",
+                        "steps": [
+                            "Admin → <strong>Gateways</strong> → View on <strong>Stripe</strong>.",
+                            "Tick capabilities you support (refunds, payouts, webhooks, subscriptions) and keep <strong>Active</strong> only when keys are valid.",
+                            "Paste publishable key, secret key, and webhook signing secret from the Stripe Dashboard (Developers → API keys / Webhooks).",
+                            "Point your Stripe webhook endpoint at your API’s Stripe webhook handler; use the signing secret from that endpoint.",
+                            "Place a test card checkout and, if used, a wallet top-up; confirm the order/transaction ledger updates.",
+                        ],
+                        "shot": ("wide", f"{A}/features/gateway-stripe.jpg", "Stripe form", "Capabilities, logo, publishable/secret/webhook keys"),
+                    },
+                    {
+                        "h3": "What differs from other gateways",
+                        "paras": [
+                            "You do not set a PayPal-style sandbox/live dropdown here — Stripe keys themselves encode test vs live (`pk_test_` / `pk_live_`). Subscription readiness is meaningful for Stripe because membership plans can bill through Stripe-backed flows. If you only enable Paystack for Africa and leave Stripe Active with demo keys, card checkout may still attempt Stripe and fail or fall back inconsistently — deactivate Stripe when it is not your live card PSP.",
+                        ],
+                    },
+                ],
+            },
+        ],
+        D, DJ, DP,
+    )
+
+    w(
+        "admin-app/gateway-paypal.html",
+        "PayPal — Payment gateways",
+        "PayPal",
+        "OAuth client credentials, sandbox vs live, and hosted PayPal approval URLs.",
+        ["OAuth", "Sandbox", "Capture"],
+        [
+            {
+                "h2": "How PayPal works in this marketplace",
+                "paras": [
+                    "PayPal does not use Stripe-style publishable/secret card keys. The admin form stores a <strong>Client ID</strong>, a <strong>Client secret</strong>, and an <strong>Environment mode</strong> (`sandbox` or `live`). The API first exchanges those credentials for an OAuth access token against either `api-m.sandbox.paypal.com` or `api-m.paypal.com`, then creates a Checkout Order with intent <strong>CAPTURE</strong> and returns an <strong>approve</strong> link the customer opens to pay.",
+                    "That two-step OAuth + order model is why PayPal feels different from Paystack (single initialize call with a secret key) or Razorpay (order id for an in-app SDK). Return and cancel URLs come from your callback configuration / public app URL. Until real credentials replace demo client ids, the API returns a demo init payload with a configuration hint instead of a live approval URL.",
+                    "Capabilities on the form (refunds, payouts, webhooks, subscriptions) document what you intend to operate; wire PayPal webhooks separately in the PayPal developer dashboard if you rely on asynchronous confirmations.",
+                ],
+                "blocks": [
+                    {
+                        "h3": "Configure the PayPal form",
+                        "steps": [
+                            "Create a REST app in the PayPal Developer Dashboard and copy Client ID + Secret.",
+                            "In Admin → Gateways → <strong>PayPal</strong>, paste client id/secret and set mode to <strong>Sandbox</strong> while testing.",
+                            "Keep Active only when those credentials work; switch mode to <strong>Live</strong> with live credentials for production.",
+                            "Run a checkout that selects PayPal and complete the approval page; confirm capture and order status on the API.",
+                        ],
+                        "shot": ("wide", f"{A}/features/gateway-paypal.jpg", "PayPal form", "Client ID, client secret, and Sandbox/Live mode"),
+                    },
+                    {
+                        "h3": "What differs from other gateways",
+                        "paras": [
+                            "Amounts are sent as decimal strings in the purchase unit (not always minor units like Stripe/Paystack). There is no publishable key for the mobile app in the same sense as Stripe — the customer is redirected to PayPal’s hosted approval experience. Do not put Stripe webhook secrets in this form; they will be ignored by the PayPal initializer.",
+                        ],
+                    },
+                ],
+            },
+        ],
+        D, DJ, DP,
+    )
+
+    w(
+        "admin-app/gateway-flutterwave.html",
+        "Flutterwave — Payment gateways",
+        "Flutterwave",
+        "Pan-African / multi-method hosted payments via public, secret, and encryption keys.",
+        ["Africa", "Hosted link", "v3 API"],
+        [
+            {
+                "h2": "How Flutterwave works in this marketplace",
+                "paras": [
+                    "Flutterwave is aimed at markets where cards, mobile money, and local methods sit behind one PSP. The admin credentials are a <strong>public key</strong>, a <strong>secret key</strong>, and an <strong>encryption key</strong> — not Stripe’s publishable/webhook trio and not PayPal’s client-id pair.",
+                    "When checkout asks the API to initialize Flutterwave, the backend calls Flutterwave’s v3 payments API with `tx_ref`, amount, currency, customer email, redirect URL, and metadata. On success it returns an <strong>authorization URL</strong> (`data.link`) that the customer app opens. Demo or placeholder secrets (strings containing `demo_`) short-circuit to a demo response telling you to configure the secret key in Admin → Gateways.",
+                    "Seed capabilities typically allow refunds, withdrawals, and webhooks, while subscription-ready may be off depending on how you sell memberships. Fee placeholders are often lower percentage with zero fixed — still override with your Flutterwave contract rates.",
+                ],
+                "blocks": [
+                    {
+                        "h3": "Configure the Flutterwave form",
+                        "steps": [
+                            "From the Flutterwave dashboard, copy public, secret, and encryption keys for your environment.",
+                            "Admin → Gateways → <strong>Flutterwave</strong>: paste keys, set capabilities, mark Active.",
+                            "Ensure checkout/wallet passes a currency Flutterwave supports for that country.",
+                            "Complete a hosted payment and confirm the redirect/callback updates the order.",
+                        ],
+                        "shot": ("wide", f"{A}/features/gateway-flutterwave.jpg", "Flutterwave form", "Public, secret, and encryption keys"),
+                    },
+                    {
+                        "h3": "What differs from other gateways",
+                        "paras": [
+                            "Unlike Razorpay (which returns an order id + key id for an SDK checkout), Flutterwave’s path here is redirect-first. Unlike Paystack, you also store an encryption key on the gateway record for client-side encryption scenarios Flutterwave documents. Keep Flutterwave Active only in markets where you actually settled KYC with Flutterwave.",
+                        ],
+                    },
+                ],
+            },
+        ],
+        D, DJ, DP,
+    )
+
+    w(
+        "admin-app/gateway-paystack.html",
+        "Paystack — Payment gateways",
+        "Paystack",
+        "Nigeria / Ghana-focused initialize + authorization URL flow with public and secret keys.",
+        ["Initialize", "Bearer secret", "Callback"],
+        [
+            {
+                "h2": "How Paystack works in this marketplace",
+                "paras": [
+                    "Paystack is a hosted-checkout style provider. Admin stores a <strong>public key</strong> and a <strong>secret key</strong>. The API initializes a transaction with `POST https://api.paystack.co/transaction/initialize`, sending email, amount in <strong>minor units</strong> (kobo/pesewas-style conversion via the payment service), currency, reference, callback URL, and metadata. The response’s `authorization_url` and `access_code` are what the client uses to complete payment.",
+                    "Authorization uses a Bearer secret key — similar spirit to Flutterwave’s secret, but the endpoint, payload shapes, and currency minor-unit rules are Paystack-specific. Demo secrets containing `demo_` return a demo init object instead of calling Paystack.",
+                    "Capabilities in the seed usually include refunds, withdrawals, webhooks, and subscription readiness. Use Paystack when your operating countries match Paystack’s coverage; otherwise prefer Stripe, Flutterwave, or Razorpay for their regions.",
+                ],
+                "blocks": [
+                    {
+                        "h3": "Configure the Paystack form",
+                        "steps": [
+                            "Copy test then live keys from the Paystack dashboard.",
+                            "Admin → Gateways → <strong>Paystack</strong>: paste public/secret keys, enable Active, align capabilities.",
+                            "Register your callback URL in Paystack and in the app/API config used at initialize time.",
+                            "Pay a test checkout; verify the reference settles and the order moves forward.",
+                        ],
+                        "shot": ("wide", f"{A}/features/gateway-paystack.jpg", "Paystack form", "Public key, secret key, and capabilities"),
+                    },
+                    {
+                        "h3": "What differs from other gateways",
+                        "paras": [
+                            "Paystack amounts are converted with the shared minor-unit helper (including zero-decimal currencies where applicable). There is no PayPal environment dropdown — test vs live is entirely which keys you paste. Do not reuse Flutterwave encryption key fields here; Paystack’s form schema is public + secret only.",
+                        ],
+                    },
+                ],
+            },
+        ],
+        D, DJ, DP,
+    )
+
+    w(
+        "admin-app/gateway-orangepay.html",
+        "OrangePay — Payment gateways",
+        "OrangePay",
+        "Orange Money / Orange Pay merchant credentials for mobile-money heavy markets.",
+        ["Mobile money", "Merchant", "Webhooks"],
+        [
+            {
+                "h2": "How OrangePay works in this marketplace",
+                "paras": [
+                    "OrangePay (Orange Money Web Payment style integration) targets markets where customers pay with Orange Money wallets more often than international cards. The admin credential set is different again: <strong>merchant id</strong>, <strong>API key</strong>, <strong>client id</strong>, and <strong>client secret</strong> — reflecting Orange’s merchant + OAuth-style developer credentials rather than a single PSP secret.",
+                    "Seed capabilities often disable refunds, withdrawals, and subscriptions while keeping webhooks on — mobile-money rails do not always mirror card refund semantics. Treat Active as “we completed Orange merchant onboarding for this country,” not as a generic toggle.",
+                    "Fees in the seed may show a modest percentage with no fixed fee; replace with your Orange commercial terms. Documentation for the underlying API is typically Orange Money WebPay / developer portal oriented.",
+                ],
+                "blocks": [
+                    {
+                        "h3": "Configure the OrangePay form",
+                        "steps": [
+                            "Complete Orange developer / merchant enrollment for the countries you serve.",
+                            "Admin → Gateways → <strong>OrangePay</strong>: enter merchant id, API key, client id, and client secret.",
+                            "Enable only the capabilities Orange actually grants your merchant account.",
+                            "Run a mobile-money checkout in a supported currency and confirm callback/webhook handling.",
+                        ],
+                        "shot": ("wide", f"{A}/features/gateway-orangepay.jpg", "OrangePay form", "Merchant id, API key, client id/secret"),
+                    },
+                    {
+                        "h3": "What differs from other gateways",
+                        "paras": [
+                            "This is not a drop-in replacement for Stripe card fields. Customers expect USSD/wallet confirmation UX, longer async confirmation, and different failure modes (insufficient Orange Money balance, SIM mismatch). Keep Stripe or another card PSP Active alongside OrangePay if you still sell to card-first customers in the same city.",
+                        ],
+                    },
+                ],
+            },
+        ],
+        D, DJ, DP,
+    )
+
+    w(
+        "admin-app/gateway-razorpay.html",
+        "Razorpay — Payment gateways",
+        "Razorpay",
+        "India-focused order creation: key id + key secret, then client SDK checkout.",
+        ["Orders API", "Key id", "SDK"],
+        [
+            {
+                "h2": "How Razorpay works in this marketplace",
+                "paras": [
+                    "Razorpay is the usual choice for India-centric deployments. Credentials are a <strong>key id</strong> and <strong>key secret</strong> (the form may also accept public/secret aliases). The API creates a Razorpay Order with Basic auth (`keyId:keySecret`), amount in minor units, currency, receipt/reference, and notes. The client receives `orderId`, `keyId`, amount, and currency to open Razorpay’s checkout SDK — not primarily a Paystack-style redirect link.",
+                    "Demo key secrets containing `demo_` skip the live Orders API and return a demo init hint. Capabilities in the seed typically allow refunds, withdrawals, webhooks, and subscriptions when you use Razorpay for recurring products.",
+                    "Because the mobile/web client must finish payment with Razorpay’s UI, app builds need the key id available in a controlled way while the secret stays on the server only.",
+                ],
+                "blocks": [
+                    {
+                        "h3": "Configure the Razorpay form",
+                        "steps": [
+                            "Create a Razorpay account and copy Key Id / Key Secret (test then live).",
+                            "Admin → Gateways → <strong>Razorpay</strong>: paste key id and key secret; set Active and capabilities.",
+                            "Ensure customer checkout uses the Razorpay provider path that consumes `orderId` + `keyId`.",
+                            "Complete a test payment in INR (or your configured currency) and verify capture/webhook updates.",
+                        ],
+                        "shot": ("wide", f"{A}/features/gateway-razorpay.jpg", "Razorpay form", "Key id, key secret, and capabilities"),
+                    },
+                    {
+                        "h3": "What differs from other gateways",
+                        "paras": [
+                            "Do not expect an `authorizationUrl` the same way as Paystack/Flutterwave/PayPal — the important return fields are order id and key id for the SDK. Mixing Razorpay keys into the Stripe form will not work; each gateway row has its own credential schema generated from that provider’s template.",
+                        ],
+                    },
+                ],
+            },
+        ],
+        D, DJ, DP,
+    )
+
+    w(
+        "admin-app/gateway-cod.html",
+        "Cash on Delivery — Payment gateways",
+        "Cash on Delivery",
+        "Collect cash at the door — no card PSP keys, different refund and settlement rules.",
+        ["COD", "Ops", "No PSP"],
+        [
+            {
+                "h2": "How Cash on Delivery works in this marketplace",
+                "paras": [
+                    "Cash on Delivery (COD) is not a card processor. The gateway row exists so checkout can offer “pay the courier” as a first-class method, with an Active flag and light credentials (often just an <strong>enabled</strong> style flag). There are no publishable keys, no hosted authorization URL, and no OAuth token exchange.",
+                    "Capabilities usually turn off refunds, withdrawals, webhooks, and subscriptions: money never sat at a PSP, so “refund” means an operational/credit decision, not a Stripe refund API call. Fees are typically zero percentage and zero fixed — your cost is cash-handling risk, failed collection, and driver reconciliation instead of interchange.",
+                    "COD interacts with logistics: drivers must collect the right amount, restaurants and the platform must agree who absorbs non-payment, and the ledger should still record the order as COD so reports stay honest.",
+                ],
+                "blocks": [
+                    {
+                        "h3": "Configure Cash on Delivery",
+                        "steps": [
+                            "Admin → Gateways → <strong>Cash on Delivery</strong>.",
+                            "Keep Active only in cities where you allow cash collection.",
+                            "Align driver app / POD processes so cash collected is recorded.",
+                            "Train support: COD disputes are ops tickets, not PSP chargebacks.",
+                        ],
+                        "shot": ("wide", f"{A}/features/gateway-cod.jpg", "COD form", "COD method without card provider keys"),
+                    },
+                    {
+                        "h3": "What differs from other gateways",
+                        "paras": [
+                            "Never paste Stripe or Paystack secrets into COD — the form is intentionally minimal. If COD is Active while card gateways are not, checkout can still succeed for cash orders; that is expected. Disable COD when you run prepaid-only campaigns or high-fraud zones.",
+                        ],
+                    },
+                ],
+            },
+        ],
+        D, DJ, DP,
+    )
+
+    w(
+        "admin-app/gateway-wallet.html",
+        "Internal Wallet — Payment gateways",
+        "Internal Wallet",
+        "Pay from the customer’s in-app balance — ledger debit, not an external authorize URL.",
+        ["Balance", "Ledger", "Cashback"],
+        [
+            {
+                "h2": "How Internal Wallet works in this marketplace",
+                "paras": [
+                    "Internal Wallet lets customers spend a platform balance built from top-ups, cashback, refunds-to-wallet, or promotions. The gateway credentials are not a bank PSP: the seed uses a <strong>platform secret</strong> style field for server-side wallet operations. Payment is a ledger debit against the user wallet, coordinated by the API’s wallet / transaction services.",
+                    "Capabilities often allow refunds (credit back to wallet) but not external withdrawals, and no provider webhooks — there is no Stripe event stream. Subscription-ready is typically off unless you explicitly bill plans from wallet balance.",
+                    "Wallet top-ups still need a real PSP (Stripe, Paystack, …) to move money into the wallet; Internal Wallet is how that balance is spent at checkout. See the customer <a href=\"../wallet.html\">Wallet &amp; cashback</a> docs for the user-facing side.",
+                ],
+                "blocks": [
+                    {
+                        "h3": "Configure Internal Wallet",
+                        "steps": [
+                            "Admin → Gateways → <strong>Internal Wallet</strong>; keep Active if checkout should offer wallet pay.",
+                            "Set or rotate the platform secret according to your deployment practice; never ship it in mobile apps.",
+                            "Ensure at least one external gateway is configured for top-ups.",
+                            "Test: top up → pay an order fully or partially with wallet → confirm ledger lines.",
+                        ],
+                        "shot": ("wide", f"{A}/features/gateway-wallet.jpg", "Internal Wallet form", "Platform wallet method and capabilities"),
+                    },
+                    {
+                        "h3": "What differs from other gateways",
+                        "paras": [
+                            "There is no hosted payment page. Failures look like “insufficient balance,” not “card declined.” Combining wallet + card partial payments depends on checkout rules in the apps/API — validate that path before promising split tender in a market launch.",
+                        ],
+                    },
+                ],
+            },
+        ],
+        D, DJ, DP,
+    )
+
+    w(
+        "admin-app/gateway-crypto.html",
+        "Crypto (Commerce) — Payment gateways",
+        "Crypto (Commerce)",
+        "Optional crypto commerce slot — API keys and webhooks, not card rails.",
+        ["Crypto", "Webhooks", "Optional"],
+        [
+            {
+                "h2": "How Crypto (Commerce) works in this marketplace",
+                "paras": [
+                    "Crypto (Commerce) is a dedicated gateway slot for cryptocurrency checkout providers (for example Coinbase Commerce–style or similar commerce APIs). The admin form focuses on an <strong>API key</strong> and a <strong>webhook signing secret</strong>, plus capabilities that often emphasize webhooks while leaving classic card refunds/payouts/subscriptions off until you wire them.",
+                    "The payment initializer treats crypto identifiers (`crypto`, `coinbase-commerce`, …) as a pluggable path: with demo keys it returns a demo init message asking you to plug real commerce keys in Admin. Settlement is on-chain / commerce-provider confirmed via webhooks, not via Stripe’s card capture model.",
+                    "Only enable this gateway if your market, compliance, and support team are ready for crypto payment support (volatility messaging, delayed confirmations, refund policy).",
+                ],
+                "blocks": [
+                    {
+                        "h3": "Configure Crypto (Commerce)",
+                        "steps": [
+                            "Create a commerce account with your chosen crypto payment provider and copy API + webhook secrets.",
+                            "Admin → Gateways → <strong>Crypto (Commerce)</strong>: paste credentials, enable webhook capability, set Active when ready.",
+                            "Expose and verify the webhook endpoint the API uses for payment confirmation.",
+                            "Run a small test payment and confirm the order only advances after webhook confirmation.",
+                        ],
+                        "shot": ("wide", f"{A}/features/gateway-crypto.jpg", "Crypto form", "API key, webhook secret, and crypto capabilities"),
+                    },
+                    {
+                        "h3": "What differs from other gateways",
+                        "paras": [
+                            "Customers leave the usual card UX for a crypto invoice/address flow. Confirmation can take longer than card auth. Do not treat Crypto as a substitute for COD or wallet — it is still an external provider with its own dispute and refund limitations.",
+                        ],
                     },
                 ],
             },
@@ -1815,19 +2164,43 @@ def main():
             {
                 "h2": "You earn on every order — with rules you own",
                 "paras": [
-                    "Commission baselines and per-restaurant overrides live in marketplace settings; restaurant subscription benefits can soften the cut while a plan is active. The API computes and stores the split so Earnings views and payouts stay auditable.",
+                    "The API owns the math. Operators configure rates in admin; when an order completes, the backend applies the effective commission (marketplace baseline → optional restaurant override → active restaurant-plan benefits) and stores an auditable split for Earnings and payouts.",
                 ],
                 "blocks": [
                     {
-                        "h3": "Earnings periods operators review",
+                        "h3": "1. Marketplace baseline",
                         "paras": [
-                            'Admin Earnings is the operator face of those calculations. Details: <a href="../admin-app/earnings.html">Commissions &amp; earnings</a>.',
+                            "App Settings holds the default <strong>Commission Rate</strong> (percentage) used when a restaurant has no stronger rule.",
                         ],
-                        "shot": ("wide", f"{A}/features/earnings.jpg", "Earnings", "Earnings periods produced by the commission engine"),
+                        "shot": ("wide", f"{A}/features/commission-baseline.jpg", "Commission Rate", "Full App Settings — Commission Rate highlighted"),
+                    },
+                    {
+                        "h3": "2. Per-restaurant override",
+                        "paras": [
+                            "On a restaurant record, <strong>Commission Rate (%)</strong> overrides the marketplace default for that partner only.",
+                        ],
+                        "shot": ("wide", f"{A}/features/commission-restaurant-override.jpg", "Restaurant commission", "Restaurant details — Commission Rate (%) highlighted"),
+                    },
+                    {
+                        "h3": "3. Subscription benefits soften the cut",
+                        "paras": [
+                            "Restaurant plans expose <strong>Reduced commission %</strong> and <strong>Waive commission</strong>. While the plan is active, the API softens or zeroes the platform cut on qualifying orders.",
+                        ],
+                        "shot": ("wide", f"{A}/features/commission-plan-benefits.jpg", "Plan commission benefits", "Restaurant Pro — Benefit flags (reduced / waive commission) highlighted"),
+                    },
+                    {
+                        "h3": "4. Stored split operators can audit",
+                        "paras": [
+                            "Earnings details show the stored result: platform commission, restaurant earnings, delivery earnings, and taxes — then per-order commission lines.",
+                        ],
+                        "shots": [
+                            ("wide", f"{A}/features/commission-earnings-audit.jpg", "Earnings split", "Earnings details — summary split cards highlighted"),
+                            ("wide", f"{A}/features/commission-earnings-lines.jpg", "Per-order commission", "Earnings details — Transactions (with Commission) highlighted"),
+                        ],
                     },
                 ],
                 "after": [
-                    'Related: <a href="./subscriptions-engine.html">Subscriptions engine</a>, <a href="./payments-wallet.html">Payments &amp; wallet</a>.',
+                    'Operator UI guide: <a href="../admin-app/earnings.html">Commissions &amp; earnings</a>. Related engines: <a href="./subscriptions-engine.html">Subscriptions</a>, <a href="./payments-wallet.html">Payments &amp; wallet</a>.',
                 ],
             },
         ],

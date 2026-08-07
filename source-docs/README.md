@@ -44,6 +44,9 @@ source-docs/
     getting-started.md
     orders.md · partners.md · catalog.md
     earnings.md · subscriptions.md · gateways.md
+    gateway-stripe.md · gateway-paypal.md · gateway-flutterwave.md
+    gateway-paystack.md · gateway-orangepay.md · gateway-razorpay.md
+    gateway-cod.md · gateway-wallet.md · gateway-crypto.md
     promotions.md · coupons.md
     languages.md · currencies-taxes.md · app-settings.md · order-channels.md
     sponsored.md
@@ -135,7 +138,16 @@ source-docs/
 | Menus & catalog | [catalog.md](./admin-app/catalog.md) |
 | Commissions & earnings | [earnings.md](./admin-app/earnings.md) |
 | Subscription plans | [subscriptions.md](./admin-app/subscriptions.md) |
-| Payment gateways | [gateways.md](./admin-app/gateways.md) |
+| Payment gateways (index) | [gateways.md](./admin-app/gateways.md) |
+| → Stripe | [gateway-stripe.md](./admin-app/gateway-stripe.md) |
+| → PayPal | [gateway-paypal.md](./admin-app/gateway-paypal.md) |
+| → Flutterwave | [gateway-flutterwave.md](./admin-app/gateway-flutterwave.md) |
+| → Paystack | [gateway-paystack.md](./admin-app/gateway-paystack.md) |
+| → OrangePay | [gateway-orangepay.md](./admin-app/gateway-orangepay.md) |
+| → Razorpay | [gateway-razorpay.md](./admin-app/gateway-razorpay.md) |
+| → Cash on Delivery | [gateway-cod.md](./admin-app/gateway-cod.md) |
+| → Internal Wallet | [gateway-wallet.md](./admin-app/gateway-wallet.md) |
+| → Crypto (Commerce) | [gateway-crypto.md](./admin-app/gateway-crypto.md) |
 | Promo campaigns | [promotions.md](./admin-app/promotions.md) |
 | Coupon codes | [coupons.md](./admin-app/coupons.md) |
 | Languages & RTL | [languages.md](./admin-app/languages.md) |

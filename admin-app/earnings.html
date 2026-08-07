@@ -101,7 +101,24 @@
             <a href="../admin-app/catalog.html"><span class="nav-link-text">Menus & catalog</span></a>
             <a class="active" href="../admin-app/earnings.html"><span class="nav-link-text">Commissions & earnings</span></a>
             <a href="../admin-app/subscriptions.html"><span class="nav-link-text">Subscription plans</span></a>
-            <a href="../admin-app/gateways.html"><span class="nav-link-text">Payment gateways</span></a>
+            <details class="nav-nested">
+              <summary class="nav-nested-summary">
+                <span class="nav-nested-title">Payment gateways</span>
+                <span class="nav-count">10</span>
+              </summary>
+              <nav class="nav nav-nested-links" aria-label="Payment gateways">
+                <a href="../admin-app/gateways.html"><span class="nav-link-text">Overview</span></a>
+                <a href="../admin-app/gateway-stripe.html"><span class="nav-link-text">Stripe</span></a>
+                <a href="../admin-app/gateway-paypal.html"><span class="nav-link-text">PayPal</span></a>
+                <a href="../admin-app/gateway-flutterwave.html"><span class="nav-link-text">Flutterwave</span></a>
+                <a href="../admin-app/gateway-paystack.html"><span class="nav-link-text">Paystack</span></a>
+                <a href="../admin-app/gateway-orangepay.html"><span class="nav-link-text">OrangePay</span></a>
+                <a href="../admin-app/gateway-razorpay.html"><span class="nav-link-text">Razorpay</span></a>
+                <a href="../admin-app/gateway-cod.html"><span class="nav-link-text">Cash on Delivery</span></a>
+                <a href="../admin-app/gateway-wallet.html"><span class="nav-link-text">Internal Wallet</span></a>
+                <a href="../admin-app/gateway-crypto.html"><span class="nav-link-text">Crypto (Commerce)</span></a>
+              </nav>
+            </details>
             <a href="../admin-app/promotions.html"><span class="nav-link-text">Promo campaigns</span></a>
             <a href="../admin-app/coupons.html"><span class="nav-link-text">Coupon codes</span></a>
             <a href="../admin-app/languages.html"><span class="nav-link-text">Languages & RTL</span></a>
@@ -156,18 +173,37 @@
               Every completed order splits value between the marketplace and the restaurant. The baseline platform commission is configured in marketplace / app settings; restaurant subscription benefits can soften that cut.
             </p>
             <p class="section-subtext">
-              The Earnings area is where you review periods and totals before payouts or investigations.
+              The Earnings area is where you review periods and totals before payouts or investigations — first as a list of earning records, then as a detail form when you need the full split math.
             </p>
-            <h3>Operator checklist</h3>
+            <h3>Earnings list</h3>
+            <p class="section-subtext">
+              Open <strong>Earnings</strong> to scan periods, restaurants, and totals at a glance. Use filters when you investigate a single partner or a date range.
+            </p>
             <ol class="doc-steps">
               <li>Set or review the default commission rate in App Settings.</li>
               <li>Place a test order end-to-end (customer → restaurant accept → complete).</li>
-              <li>Open <strong>Earnings</strong> and confirm the platform vs restaurant split.</li>
-              <li>Use View on a row when you need the detail behind a period.</li>
+              <li>Open <strong>Earnings</strong> and confirm platform vs restaurant totals appear for that activity.</li>
             </ol>
             <figure class="doc-shot wide">
-              <img src="../assets/images/features/earnings.jpg" alt="Earnings" />
+              <img src="../assets/images/features/earnings.jpg" alt="Earnings list" />
               <figcaption>Earnings list — periods and totals</figcaption>
+            </figure>
+            <h3>Earnings details</h3>
+            <p class="section-subtext">
+              Click <strong>View</strong> on a row to open the earning record for a period. The detail screen starts with an <strong>Earnings summary</strong> (period range, reference id, and total), then breaks that total into <strong>platform commission</strong>, <strong>restaurant earnings</strong>, <strong>delivery earnings</strong>, and <strong>taxes</strong>.
+            </p>
+            <p class="section-subtext">
+              Below the summary you get the contributing <strong>Transactions</strong> (date, restaurant, amount, commission, delivery, status) and any related <strong>Payouts</strong> (recipient, type, amount, pending vs completed). Use this when a partner disputes a payout, when you verify a subscription changed the cut, or when support needs the exact numbers behind a period total.
+            </p>
+            <ol class="doc-steps">
+              <li>From the Earnings list, open <strong>View</strong> on the period you care about.</li>
+              <li>Confirm the summary split (platform / restaurant / delivery / taxes) adds up to the total.</li>
+              <li>Scan Transactions for the restaurants and amounts in that period; check Payouts if money should already be owed out.</li>
+              <li>If numbers look wrong, cross-check App Settings commission and the related orders.</li>
+            </ol>
+            <figure class="doc-shot wide">
+              <img src="../assets/images/features/earnings-details.jpg" alt="Earnings details" />
+              <figcaption>Period summary, split cards, transactions, and payouts</figcaption>
             </figure>
           </section>
         </section>

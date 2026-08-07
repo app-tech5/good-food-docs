@@ -101,7 +101,24 @@
             <a href="../admin-app/catalog.html"><span class="nav-link-text">Menus & catalog</span></a>
             <a href="../admin-app/earnings.html"><span class="nav-link-text">Commissions & earnings</span></a>
             <a href="../admin-app/subscriptions.html"><span class="nav-link-text">Subscription plans</span></a>
-            <a class="active" href="../admin-app/gateways.html"><span class="nav-link-text">Payment gateways</span></a>
+            <details class="nav-nested is-current" open>
+              <summary class="nav-nested-summary">
+                <span class="nav-nested-title">Payment gateways</span>
+                <span class="nav-count">10</span>
+              </summary>
+              <nav class="nav nav-nested-links" aria-label="Payment gateways">
+                <a class="active" href="../admin-app/gateways.html"><span class="nav-link-text">Overview</span></a>
+                <a href="../admin-app/gateway-stripe.html"><span class="nav-link-text">Stripe</span></a>
+                <a href="../admin-app/gateway-paypal.html"><span class="nav-link-text">PayPal</span></a>
+                <a href="../admin-app/gateway-flutterwave.html"><span class="nav-link-text">Flutterwave</span></a>
+                <a href="../admin-app/gateway-paystack.html"><span class="nav-link-text">Paystack</span></a>
+                <a href="../admin-app/gateway-orangepay.html"><span class="nav-link-text">OrangePay</span></a>
+                <a href="../admin-app/gateway-razorpay.html"><span class="nav-link-text">Razorpay</span></a>
+                <a href="../admin-app/gateway-cod.html"><span class="nav-link-text">Cash on Delivery</span></a>
+                <a href="../admin-app/gateway-wallet.html"><span class="nav-link-text">Internal Wallet</span></a>
+                <a href="../admin-app/gateway-crypto.html"><span class="nav-link-text">Crypto (Commerce)</span></a>
+              </nav>
+            </details>
             <a href="../admin-app/promotions.html"><span class="nav-link-text">Promo campaigns</span></a>
             <a href="../admin-app/coupons.html"><span class="nav-link-text">Coupon codes</span></a>
             <a href="../admin-app/languages.html"><span class="nav-link-text">Languages & RTL</span></a>
@@ -140,51 +157,45 @@
         <header id="top" class="hero">
           <h1>Payment gateways</h1>
           <p class="subtitle">
-            Which PSPs and local methods power checkout, wallets, and COD.
+            Each PSP and local method has its own credentials, capabilities, and checkout behaviour. Open a sub-tab for the gateway you are configuring.
           </p>
           <div class="meta-strip">
             <span class="meta-pill">Gateways</span>
-            <span class="meta-pill">Fees</span>
+            <span class="meta-pill">PSPs</span>
             <span class="meta-pill">Active</span>
           </div>
         </header>
 
         <section class="overview">
           <section class="section-block">
-            <h2>Payment gateways</h2>
+            <h2>One list, many different payment engines</h2>
             <p>
-              Gateways tell the platform which PSPs and local methods are available. Turn on only what you have credentials and compliance for — typically Stripe and PayPal first, then regional providers.
+              In Admin → <strong>Gateways</strong> you maintain every payment method the marketplace can offer at checkout, for wallet top-ups, and for cash-on-delivery style flows. The list is not cosmetic: the API only initializes a provider when that gateway row is <strong>Active</strong> and has usable credentials.
             </p>
-            <h3>See what is enabled</h3>
             <p class="section-subtext">
-              The Gateways list shows each method, status, and fee fields. Disable anything you are not ready to operate.
+              Each provider works differently. Stripe expects publishable/secret keys and a webhook signing secret; PayPal needs a client id/secret and a sandbox vs live mode; Paystack and Flutterwave initialize hosted authorization URLs; Razorpay returns an order id for the client SDK; Orange Money uses merchant/API keys; COD and Internal Wallet are ledger/ops methods without a card PSP; Crypto is a separate commerce slot. Use the sub-tabs under <strong>Payment gateways</strong> in the sidebar for the full story of each one.
             </p>
-            <figure class="doc-shot wide">
-              <img src="../assets/images/features/gateways.jpg" alt="Gateways list" />
-              <figcaption>Active payment gateways in admin</figcaption>
-            </figure>
-            <h3>Stripe credentials</h3>
+            <h3>Start from the Gateways list</h3>
             <p class="section-subtext">
-              Open a gateway to set capabilities (refunds, payouts, webhooks, subscriptions), upload a logo, and paste provider keys. Stripe is the usual card stack for checkout and wallet top-ups.
+              Open the list to see fee percentage, active flags, and which methods exist in this environment. Disable anything you have not finished onboarding with the provider — a half-configured gateway causes failed checkouts and confusing demo fallbacks.
             </p>
             <ol class="doc-steps">
-              <li>Open <strong>Gateways</strong> → View on <strong>Stripe</strong>.</li>
-              <li>Tick the capabilities you support; keep <strong>Active</strong> only when keys are valid.</li>
-              <li>Enter publishable key, secret key, and webhook signing secret from the Stripe dashboard.</li>
-              <li>Run a test checkout and a <a href="../wallet.html">wallet</a> top-up before go-live.</li>
+              <li>Open <strong>Gateways</strong> in admin.</li>
+              <li>Confirm only the methods you operate are Active.</li>
+              <li>Open each provider (View) and fill its own credential fields — do not copy Stripe fields into Paystack.</li>
+              <li>Pick the matching sidebar sub-tab below for field-by-field guidance.</li>
             </ol>
             <figure class="doc-shot wide">
-              <img src="../assets/images/features/gateways-form-1.jpg" alt="Stripe form" />
-              <figcaption>Stripe: capabilities, logo, and API keys</figcaption>
+              <img src="../assets/images/features/gateways.jpg" alt="Gateways list" />
+              <figcaption>All payment methods with fees and status</figcaption>
             </figure>
-            <h3>PayPal credentials</h3>
+            <h3>Choose a gateway guide</h3>
             <p class="section-subtext">
-              Same pattern for PayPal — client id / secret and capabilities. Use sandbox keys while you validate the flow.
+              Detailed pages: <a href="./gateway-stripe.html">Stripe</a> · <a href="./gateway-paypal.html">PayPal</a> · <a href="./gateway-flutterwave.html">Flutterwave</a> · <a href="./gateway-paystack.html">Paystack</a> · <a href="./gateway-orangepay.html">OrangePay</a> · <a href="./gateway-razorpay.html">Razorpay</a> · <a href="./gateway-cod.html">Cash on Delivery</a> · <a href="./gateway-wallet.html">Internal Wallet</a> · <a href="./gateway-crypto.html">Crypto (Commerce)</a>.
             </p>
-            <figure class="doc-shot wide">
-              <img src="../assets/images/features/gateways-form-2.jpg" alt="PayPal form" />
-              <figcaption>PayPal: capabilities and provider credentials</figcaption>
-            </figure>
+            <p class="section-subtext">
+              API behaviour for hosted checkout init: <a href="../my-backend/payments-wallet.html">Payments &amp; wallet</a>. Customer surfaces: <a href="../checkout.html">Checkout</a> and <a href="../wallet.html">Wallet</a>.
+            </p>
           </section>
         </section>
       </section>
