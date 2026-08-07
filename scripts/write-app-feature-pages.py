@@ -168,8 +168,8 @@ def main():
     # --- Customer ---
     w(
         "discovery.html",
-        "Discovery — Customer app",
-        "Discovery",
+        "Browse & discover — Customer app",
+        "Browse & discover",
         "How customers find restaurants: home, search, and the nearby map — before opening a place.",
         ["Home", "Search", "Map"],
         [
@@ -211,7 +211,7 @@ def main():
                     },
                 ],
                 "after": [
-                    'Next: open a place on <a href="./restaurant-page.html">Restaurant page</a>, then <a href="./menu-cart.html">Menu &amp; cart</a>.',
+                    'Next: open a place on <a href="./restaurant-page.html">Restaurant details</a>, then <a href="./menu-cart.html">Menu &amp; basket</a>.',
                 ],
             },
         ],
@@ -220,8 +220,8 @@ def main():
 
     w(
         "restaurant-page.html",
-        "Restaurant page — Customer app",
-        "Restaurant page",
+        "Restaurant details — Customer app",
+        "Restaurant details",
         "What customers see on a restaurant header: open/closed, ETA, delivery fee, and that restaurant’s offers and reviews.",
         ["Open/closed", "ETA", "Fee", "Offers"],
         [
@@ -241,14 +241,14 @@ def main():
                     {
                         "h3": "Smart ETA",
                         "paras": [
-                            'The ETA chip (for example “ETA 26–36 min”) estimates how long food will take. It is separate from open/closed and from the fee chip. More detail: <a href="./smart-eta.html">Smart ETA</a>.',
+                            'The ETA chip (for example “ETA 26–36 min”) estimates how long food will take. It is separate from open/closed and from the fee chip. More detail: <a href="./smart-eta.html">Smart delivery ETA</a>.',
                         ],
                         "shot": ("phone", f"{A}/features/ordering-restaurant-eta.jpg", "ETA", "ETA chip on the restaurant page"),
                     },
                     {
                         "h3": "Delivery fee (standard or surge)",
                         "paras": [
-                            'The fee chip shows what delivery costs now — “Standard fee” or a surge multiplier. Separate from ETA. Details: <a href="./delivery-fee.html">Delivery fee</a>.',
+                            'The fee chip shows what delivery costs now — “Standard fee” or a surge multiplier. Separate from ETA. Details: <a href="./delivery-fee.html">Surge pricing</a>.',
                         ],
                         "shot": ("phone", f"{A}/features/ordering-restaurant-fee.jpg", "Delivery fee", "Fee / surge chip on the restaurant page"),
                     },
@@ -261,7 +261,7 @@ def main():
                     },
                 ],
                 "after": [
-                    'Continue with <a href="./menu-cart.html">Menu &amp; cart</a>.',
+                    'Continue with <a href="./menu-cart.html">Menu &amp; basket</a>.',
                 ],
             },
         ],
@@ -270,8 +270,8 @@ def main():
 
     w(
         "menu-cart.html",
-        "Menu & cart — Customer app",
-        "Menu & cart",
+        "Menu & basket — Customer app",
+        "Menu & basket",
         "Browse the catalog, add items with quantities, then review the cart before checkout.",
         ["Menu", "Add to cart", "Cart"],
         [
@@ -313,7 +313,7 @@ def main():
                     },
                 ],
                 "after": [
-                    'Next: <a href="./checkout.html">Checkout &amp; offers</a>. Personalized upsells: <a href="./recommendations.html">Recommendations</a>.',
+                    'Next: <a href="./checkout.html">Checkout &amp; vouchers</a>. AI cross-sell: <a href="./recommendations.html">AI recommendations</a>.',
                 ],
             },
         ],
@@ -322,8 +322,8 @@ def main():
 
     w(
         "checkout.html",
-        "Checkout & offers — Customer app",
-        "Checkout & offers",
+        "Checkout & vouchers — Customer app",
+        "Checkout & vouchers",
         "Claim vouchers on the Offers surface, then confirm address and payment to place the order.",
         ["Offers", "Checkout"],
         [
@@ -343,7 +343,7 @@ def main():
                     {
                         "h3": "Checkout — address, payment, place order",
                         "paras": [
-                            'Checkout confirms fulfillment (delivery vs pickup), the address, and the payment method (card, cash on delivery, wallet, or other gateways you activate). After place order, follow progress in <a href="./order-history.html">order history</a> / <a href="./order-tracking.html">tracking</a>.',
+                            'Checkout confirms fulfillment (delivery vs pickup), the address, and the payment method (card, cash on delivery, wallet, or other gateways you activate). After place order, follow progress in <a href="./order-history.html">order history</a> / <a href="./order-tracking.html">live tracking</a>.',
                         ],
                         "steps": [
                             "Confirm delivery or pickup, address, and payment method.",
@@ -380,7 +380,7 @@ def main():
                     },
                 ],
                 "after": [
-                    'Live progress: <a href="./order-tracking.html">Order tracking</a>.',
+                    'Live progress: <a href="./order-tracking.html">Live tracking</a>.',
                 ],
             },
         ],
@@ -389,15 +389,15 @@ def main():
 
     w(
         "recommendations.html",
-        "Recommendations — Customer app",
-        "Recommendations",
-        "Personalized “Recommended for you” suggestions that grow the basket without a separate upsell screen.",
+        "AI recommendations — Customer app",
+        "AI recommendations",
+        "Dynamic AI picks that cross-sell sides, drinks, and extras that grow the basket without a separate upsell screen.",
         ["Recommended", "Upsell", "AOV"],
         [
             {
-                "h2": "Recommendations that grow the basket",
+                "h2": "AI recommendations that grow the basket",
                 "paras": [
-                    "On restaurant and discovery surfaces, a <strong>Recommended for you</strong> block can suggest dishes that fit the customer’s history, time of day, and context such as weather. Each card shows a short reason line so the suggestion feels explained rather than random.",
+                    "This is the conversion layer buyers expect: a <strong>Recommended for you</strong> block that cross-sells complementary items from the customer’s history, time of day, and context such as weather. Each card shows a short reason line so the suggestion feels explained rather than random.",
                     "The goal is a natural add-to-cart moment (sides, drinks, extras) that raises average order value.",
                 ],
                 "blocks": [
@@ -410,7 +410,7 @@ def main():
                     },
                 ],
                 "after": [
-                    'Related header cues: <a href="./smart-eta.html">Smart ETA</a>, <a href="./delivery-fee.html">Delivery fee</a>.',
+                    'Related header cues: <a href="./smart-eta.html">Smart delivery ETA</a>, <a href="./delivery-fee.html">Surge pricing</a>.',
                 ],
             },
         ],
@@ -419,8 +419,8 @@ def main():
 
     w(
         "smart-eta.html",
-        "Smart ETA — Customer app",
-        "Smart ETA",
+        "Smart delivery ETA — Customer app",
+        "Smart delivery ETA",
         "How arrival-time estimates appear on the restaurant page so customers commit with clear expectations.",
         ["ETA chip", "Kitchen load", "Travel"],
         [
@@ -440,7 +440,7 @@ def main():
                     },
                 ],
                 "after": [
-                    'See the same cue in context on <a href="./restaurant-page.html">Restaurant page</a>. Fee / surge is separate: <a href="./delivery-fee.html">Delivery fee</a>.',
+                    'See the same cue in context on <a href="./restaurant-page.html">Restaurant details</a>. Fee / surge is separate: <a href="./delivery-fee.html">Surge pricing</a>.',
                 ],
             },
         ],
@@ -449,13 +449,13 @@ def main():
 
     w(
         "delivery-fee.html",
-        "Delivery fee — Customer app",
-        "Delivery fee",
+        "Surge pricing — Customer app",
+        "Surge pricing",
         "How the fee chip shows a standard delivery price or a surge multiplier when the city is busy.",
         ["Standard fee", "Surge", "Reliability"],
         [
             {
-                "h2": "Delivery fee when the city is busy",
+                "h2": "Surge pricing when the city is busy",
                 "paras": [
                     "When demand is high and courier capacity is tight, the delivery-fee chip can show a surge multiplier (for example “Surge 1.45x”). Quiet periods keep a standard fee; peaks stay explicit so the customer understands the cost before paying.",
                     "Fee / surge is a marketplace lever for reliability — separate from the ETA chip, which only answers “how long?”.",
@@ -470,7 +470,7 @@ def main():
                     },
                 ],
                 "after": [
-                    'Header context: <a href="./restaurant-page.html">Restaurant page</a>. Timing: <a href="./smart-eta.html">Smart ETA</a>.',
+                    'Header context: <a href="./restaurant-page.html">Restaurant details</a>. Timing: <a href="./smart-eta.html">Smart delivery ETA</a>.',
                 ],
             },
         ],
@@ -480,15 +480,15 @@ def main():
     # wallet + subscriptions + tracking (kept, links updated)
     w(
         "wallet.html",
-        "Wallet & payments — Customer app",
-        "Wallet & payments",
+        "Wallet & cashback — Customer app",
+        "Wallet & cashback",
         "How the in-app balance works for customers, how they top up, and what you configure so checkout and refunds stay coherent.",
         ["Balance", "Top up", "Payment methods"],
         [
             {
                 "h2": "What the wallet is for",
                 "paras": [
-                    "The wallet is a prepaid balance inside the customer app. Instead of entering a card on every order, the customer can pay from money already on the account. That shortens checkout, reduces failed payments at the door of the kitchen, and gives you a place to land refunds or promotions as credit.",
+                    "The wallet is a prepaid balance inside the customer app. Instead of entering a card on every order, the customer can pay from money already on the account. That shortens checkout, reduces failed payments at the door of the kitchen, and gives you a place to land refunds or promotions as credit — including cashback on delivered orders and instant refund to wallet when a paid order is cancelled.",
                 ],
                 "blocks": [
                     {
@@ -525,8 +525,8 @@ def main():
 
     w(
         "subscriptions.html",
-        "Subscriptions — Customer app",
-        "Subscriptions",
+        "Membership plans — Customer app",
+        "Membership plans",
         "How membership plans appear to customers, what benefits they unlock, and how those plans are created in admin.",
         ["Plans", "Benefits", "Subscribe"],
         [
@@ -561,8 +561,8 @@ def main():
 
     w(
         "order-tracking.html",
-        "Order tracking — Customer app",
-        "Order tracking",
+        "Live tracking — Customer app",
+        "Live tracking",
         "How customers follow an order from acceptance to delivery, and how that ties to the map and the driver app.",
         ["Status steps", "ETA", "Map"],
         [
@@ -588,7 +588,7 @@ def main():
                     {
                         "h3": "Delivery map while the courier is en route",
                         "paras": [
-                            'When the order is out for delivery, Track Order can show a <strong>Delivery Map</strong>: destination pin, live courier position, route line, and an ETA badge. That is live tracking — not the nearby-restaurant discovery map. Driver-side job handling: <a href="./delivery-app/deliveries.html">Deliveries</a> and <a href="./delivery-app/proof-of-delivery.html">Proof of delivery</a>.',
+                            'When the order is out for delivery, Track Order can show a <strong>Delivery Map</strong>: destination pin, live courier position, route line, and an ETA badge. That is live tracking — not the nearby-restaurant discovery map. Driver-side job handling: <a href="./delivery-app/deliveries.html">Job board &amp; batching</a> and <a href="./delivery-app/proof-of-delivery.html">Photo &amp; signature POD</a>.',
                         ],
                         "shot": ("phone", f"{A}/features/tracking-map.jpg", "Delivery map", "Route, courier pin, destination, and ETA badge"),
                     },
@@ -598,19 +598,19 @@ def main():
         C, CJ, CP,
     )
 
-    r("ordering.html", "Ordering & discovery", "./discovery.html", "Discovery", C)
-    r("intelligence.html", "AI intelligence", "./recommendations.html", "Recommendations", C)
+    r("ordering.html", "Ordering & discovery", "./discovery.html", "Browse & discover", C)
+    r("intelligence.html", "AI intelligence", "./recommendations.html", "AI recommendations", C)
 
     # --- Driver ---
     w(
         "delivery-app/deliveries.html",
-        "Deliveries — Driver app",
-        "Deliveries",
+        "Job board & batching — Driver app",
+        "Job board & batching",
         "The shift board: today’s jobs, batching nearby drops, and how assignment radius shapes which work appears.",
         ["List", "Online", "Radius"],
         [
             {
-                "h2": "Today’s deliveries and assignment radius",
+                "h2": "Job board, smart batching, and assignment radius",
                 "paras": [
                     "The driver app centres on a clear list of jobs for the shift — pending, on the way, and completed. Batching nearby drops reduces empty miles at lunch peak.",
                 ],
@@ -636,7 +636,7 @@ def main():
                     },
                 ],
                 "after": [
-                    'On the road: <a href="./active-delivery.html">Active delivery</a>. At the door: <a href="./proof-of-delivery.html">Proof of delivery</a>.',
+                    'On the road: <a href="./active-delivery.html">On the road</a>. At the door: <a href="./proof-of-delivery.html">Photo &amp; signature POD</a>.',
                 ],
             },
         ],
@@ -645,8 +645,8 @@ def main():
 
     w(
         "delivery-app/active-delivery.html",
-        "Active delivery — Driver app",
-        "Active delivery",
+        "On the road — Driver app",
+        "On the road",
         "The live job screen and customer details drivers use between restaurant and door.",
         ["Active job", "Details", "Navigate"],
         [
@@ -672,7 +672,7 @@ def main():
                     },
                 ],
                 "after": [
-                    'Finish the job with <a href="./proof-of-delivery.html">Proof of delivery</a>.',
+                    'Finish the job with <a href="./proof-of-delivery.html">Photo &amp; signature POD</a>.',
                 ],
             },
         ],
@@ -681,8 +681,8 @@ def main():
 
     w(
         "delivery-app/proof-of-delivery.html",
-        "Proof of delivery — Driver app",
-        "Proof of delivery",
+        "Photo & signature POD — Driver app",
+        "Photo & signature POD",
         "Photo and signature at the door so contactless and COD disputes have evidence.",
         ["Photo", "Signature", "Complete"],
         [
@@ -710,8 +710,8 @@ def main():
 
     w(
         "delivery-app/earnings.html",
-        "Earnings — Driver app",
-        "Earnings",
+        "Shift earnings — Driver app",
+        "Shift earnings",
         "How drivers see what a shift paid before digging into transactions or payout methods.",
         ["Shift totals", "Periods"],
         [
@@ -727,14 +727,14 @@ def main():
                             "Earnings summarizes the shift and periods your build shows — totals the driver can trust after completing deliveries.",
                         ],
                         "steps": [
-                            'Complete deliveries for the shift (see <a href="./deliveries.html">Deliveries</a>).',
+                            'Complete deliveries for the shift (see <a href="./deliveries.html">Job board &amp; batching</a>).',
                             "Open <strong>Earnings</strong> to review today’s totals and available periods.",
                         ],
                         "shot": ("phone", f"{A}/features/driver-earnings.jpg", "Earnings", "Driver earnings overview for the shift"),
                     },
                 ],
                 "after": [
-                    'Line items and bank setup: <a href="./transactions-payouts.html">Transactions &amp; payouts</a>.',
+                    'Line items and bank setup: <a href="./transactions-payouts.html">Payouts &amp; history</a>.',
                 ],
             },
         ],
@@ -743,8 +743,8 @@ def main():
 
     w(
         "delivery-app/transactions-payouts.html",
-        "Transactions & payouts — Driver app",
-        "Transactions & payouts",
+        "Payouts & history — Driver app",
+        "Payouts & history",
         "Line-by-line money history and where settlements are sent.",
         ["Transactions", "Payouts"],
         [
@@ -775,7 +775,7 @@ def main():
                     },
                 ],
                 "after": [
-                    'Shift totals: <a href="./earnings.html">Earnings</a>.',
+                    'Shift totals: <a href="./earnings.html">Shift earnings</a>.',
                 ],
             },
         ],
@@ -784,15 +784,15 @@ def main():
 
     w(
         "delivery-app/subscriptions.html",
-        "Subscriptions — Driver app",
-        "Subscriptions",
-        "How courier membership plans appear in the driver app and how you define those tiers in admin.",
-        ["Driver plans", "Benefits", "Subscribe"],
+        "Priority plans — Driver app",
+        "Priority plans",
+        "How courier priority tiers appear in the driver app — and how you define those plans in admin.",
+        ["Priority", "Benefits", "Subscribe"],
         [
             {
-                "h2": "Plans for couriers",
+                "h2": "Priority plans for couriers",
                 "paras": [
-                    "Driver subscriptions are tiers targeted at <strong>driver</strong> accounts. Typical benefits include access perks, support priority, or other marketplace rules you attach to the plan.",
+                    "Driver subscriptions are tiers targeted at <strong>driver</strong> accounts. Typical benefits include priority job access, support priority, or other marketplace rules you attach to the plan — a recurring revenue stream, not just a vanity badge.",
                 ],
                 "blocks": [
                     {
@@ -819,13 +819,13 @@ def main():
         D, DJ, DP,
     )
 
-    r("delivery-app/logistics.html", "Logistics & POD", "./deliveries.html", "Deliveries", D)
+    r("delivery-app/logistics.html", "Logistics & POD", "./deliveries.html", "Job board & batching", D)
 
     # --- Restaurant ---
     w(
         "restaurant-app/orders.html",
-        "Live orders — Restaurant app",
-        "Live orders",
+        "Incoming orders — Restaurant app",
+        "Incoming orders",
         "Accept or reject incoming tickets and advance status through prep and ready.",
         ["Accept", "Reject", "Status"],
         [
@@ -854,8 +854,8 @@ def main():
 
     w(
         "restaurant-app/menu.html",
-        "Menu — Restaurant app",
-        "Menu",
+        "Menu management — Restaurant app",
+        "Menu management",
         "Manage categories, dishes, prices, photos, variants, and availability from the restaurant app.",
         ["Catalog", "Items", "Availability"],
         [
@@ -892,8 +892,8 @@ def main():
 
     w(
         "restaurant-app/hours.html",
-        "Hours & delivery — Restaurant app",
-        "Hours & delivery",
+        "Hours & delivery zone — Restaurant app",
+        "Hours & delivery zone",
         "Opening hours and delivery settings that drive open/closed and how far the restaurant sells.",
         ["Hours", "Radius", "Prep time"],
         [
@@ -918,8 +918,8 @@ def main():
 
     w(
         "restaurant-app/analytics.html",
-        "Analytics — Restaurant app",
-        "Analytics",
+        "Performance — Restaurant app",
+        "Performance",
         "Dashboard KPIs after a few service days: periods, bestsellers, and peaks.",
         ["KPIs", "Bestsellers", "Peaks"],
         [
@@ -982,15 +982,15 @@ def main():
 
     w(
         "restaurant-app/subscriptions.html",
-        "Subscriptions — Restaurant app",
-        "Subscriptions",
-        "How restaurant partners subscribe to plans that change commission, visibility, or SaaS-style access.",
-        ["Restaurant plans", "Benefits", "Subscribe"],
+        "Partner plans — Restaurant app",
+        "Partner plans",
+        "How restaurant partners buy SaaS-style plans that change commission, visibility, or tool access.",
+        ["SaaS plans", "Commission", "Subscribe"],
         [
             {
-                "h2": "Plans partners buy from their app",
+                "h2": "Partner plans restaurants buy in-app",
                 "paras": [
-                    "Restaurant subscriptions are tiers with target <strong>restaurant</strong>. Benefits often include a lower platform commission, eligibility for sponsored placement, better support, or tool access.",
+                    "Restaurant subscriptions are tiers with target <strong>restaurant</strong>. Benefits often include a lower platform commission, eligibility for sponsored placement, better support, or tool access — monetization the partner feels every month.",
                 ],
                 "blocks": [
                     {
@@ -1019,8 +1019,8 @@ def main():
 
     w(
         "restaurant-app/sponsored.html",
-        "Sponsored listings — Restaurant app",
-        "Sponsored listings",
+        "Sponsored visibility — Restaurant app",
+        "Sponsored visibility",
         "How a restaurant launches a paid placement campaign (search, home banner, or both) from its own app.",
         ["Campaign", "Bid", "Placement"],
         [
@@ -1048,13 +1048,13 @@ def main():
         D, DJ, DP,
     )
 
-    r("restaurant-app/operations.html", "Orders & menu", "./orders.html", "Live orders", D)
+    r("restaurant-app/operations.html", "Orders & menu", "./orders.html", "Incoming orders", D)
 
     # --- Admin ---
     w(
         "admin-app/orders.html",
-        "Orders — Admin app",
-        "Orders",
+        "Orders & support — Admin app",
+        "Orders & support",
         "Investigate live and past marketplace orders from one list — payment, partners, and fulfillment.",
         ["Orders", "Support", "Detail"],
         [
@@ -1084,8 +1084,8 @@ def main():
 
     w(
         "admin-app/partners.html",
-        "Partners — Admin app",
-        "Partners",
+        "Partners & users — Admin app",
+        "Partners & users",
         "Onboard and control restaurants, drivers, and customer accounts.",
         ["Restaurants", "Drivers", "Users"],
         [
@@ -1124,8 +1124,8 @@ def main():
 
     w(
         "admin-app/catalog.html",
-        "Catalog — Admin app",
-        "Catalog",
+        "Menus & catalog — Admin app",
+        "Menus & catalog",
         "Central menus and catalog curation that power what customers browse.",
         ["Menus", "Categories", "Products"],
         [
@@ -1144,8 +1144,8 @@ def main():
 
     w(
         "admin-app/earnings.html",
-        "Earnings — Admin app",
-        "Earnings",
+        "Commissions & earnings — Admin app",
+        "Commissions & earnings",
         "Platform vs restaurant splits and period totals before payouts or investigations.",
         ["Commission", "Periods", "Splits"],
         [
@@ -1174,8 +1174,8 @@ def main():
 
     w(
         "admin-app/subscriptions.html",
-        "Subscriptions — Admin app",
-        "Subscriptions",
+        "Subscription plans — Admin app",
+        "Subscription plans",
         "Source of truth for plans sold in the customer, driver, and restaurant apps.",
         ["Tiers", "Targets", "Benefits"],
         [
@@ -1235,8 +1235,8 @@ def main():
 
     w(
         "admin-app/promotions.html",
-        "Promotions — Admin app",
-        "Promotions",
+        "Promo campaigns — Admin app",
+        "Promo campaigns",
         "Campaign objects: type, discount, schedule, and scope for marketplace growth.",
         ["Campaigns", "Scope", "Schedule"],
         [
@@ -1266,8 +1266,8 @@ def main():
 
     w(
         "admin-app/coupons.html",
-        "Coupons — Admin app",
-        "Coupons",
+        "Coupon codes — Admin app",
+        "Coupon codes",
         "Redeemable codes with usage limits, expiry, and first-order constraints.",
         ["Codes", "Limits", "Expiry"],
         [
@@ -1297,15 +1297,15 @@ def main():
 
     w(
         "admin-app/languages.html",
-        "Languages — Admin app",
-        "Languages",
+        "Languages & RTL — Admin app",
+        "Languages & RTL",
         "Language catalogue, default locale, and RTL behaviour — plus the customer language picker.",
         ["Catalogue", "Default", "RTL"],
         [
             {
-                "h2": "Languages",
+                "h2": "Marketplace language catalogue",
                 "paras": [
-                    "Admin maintains the language catalogue (code, name, default flag). Mobile apps and the admin UI follow the active / default language. Arabic and similar locales can reverse layout (RTL).",
+                    "Admin maintains the language catalogue (code, name, default flag). That is the operator side. Customers, drivers, and restaurants still change language inside their own apps — see the Languages &amp; RTL pages under each mobile app. Arabic and similar locales reverse layout (RTL) across admin and mobiles.",
                 ],
                 "blocks": [
                     {
@@ -1361,8 +1361,8 @@ def main():
 
     w(
         "admin-app/app-settings.html",
-        "App settings — Admin app",
-        "App settings",
+        "Marketplace settings — Admin app",
+        "Marketplace settings",
         "Cross-cutting marketplace behaviour: timezone, COD, delivery defaults, channels, and commission baselines.",
         ["Timezone", "Delivery", "Channels"],
         [
@@ -1391,8 +1391,8 @@ def main():
 
     w(
         "admin-app/sales-reports.html",
-        "Sales reports — Admin app",
-        "Sales reports",
+        "Sales analytics — Admin app",
+        "Sales analytics",
         "Period volume, AOV, fees, taxes, and category breakdowns for marketplace performance.",
         ["Sales", "AOV", "Fees"],
         [
@@ -1417,8 +1417,8 @@ def main():
 
     w(
         "admin-app/partner-reports.html",
-        "Partner reports — Admin app",
-        "Partner reports",
+        "Partner scorecards — Admin app",
+        "Partner scorecards",
         "Restaurant and driver scorecards for coaching, staffing, and commercial talks.",
         ["Restaurants", "Drivers"],
         [
@@ -1450,8 +1450,8 @@ def main():
 
     w(
         "admin-app/transactions.html",
-        "Transactions — Admin app",
-        "Transactions",
+        "Money ledger — Admin app",
+        "Money ledger",
         "The money ledger: payments, payouts, refunds, tips, and wallet movements.",
         ["Ledger", "Refunds", "Payouts"],
         [
@@ -1480,8 +1480,8 @@ def main():
 
     w(
         "admin-app/sponsored.html",
-        "Sponsored listings — Admin app",
-        "Sponsored listings",
+        "Sponsored inventory — Admin app",
+        "Sponsored inventory",
         "How operators oversee paid placement campaigns that restaurants create from their app.",
         ["Oversight", "Campaigns", "Marketplace"],
         [
@@ -1507,10 +1507,158 @@ def main():
         D, DJ, DP,
     )
 
-    r("admin-app/operations.html", "Operations", "./orders.html", "Orders", D)
-    r("admin-app/monetization.html", "Monetization", "./earnings.html", "Earnings", D)
-    r("admin-app/market.html", "Market & languages", "./languages.html", "Languages", D)
-    r("admin-app/reports.html", "Reports & analytics", "./sales-reports.html", "Sales reports", D)
+    r("admin-app/operations.html", "Operations", "./orders.html", "Orders & support", D)
+    r("admin-app/monetization.html", "Monetization", "./earnings.html", "Commissions & earnings", D)
+    r("admin-app/market.html", "Market & languages", "./languages.html", "Languages & RTL", D)
+    r("admin-app/reports.html", "Reports & analytics", "./sales-reports.html", "Sales analytics", D)
+
+    # --- Languages on mobile (not only admin) ---
+    w(
+        "languages-rtl.html",
+        "Languages & RTL — Customer app",
+        "Languages & RTL",
+        "Customers switch English, French, Spanish, or Arabic — including a fully mirrored RTL layout — from Settings in the app.",
+        ["EN / FR / ES / AR", "RTL", "Settings"],
+        [
+            {
+                "h2": "Speak the customer’s language on their phone",
+                "paras": [
+                    "Languages are not an admin-only catalogue. In the customer app, shoppers open Settings and pick the language they want. Arabic flips the layout (RTL) so the marketplace feels local — the same capability buyers look for when launching outside one English-speaking city.",
+                    "Admin still defines which languages exist and which is the marketplace default; the mobile picker is how each person overrides that for their own session.",
+                ],
+                "blocks": [
+                    {
+                        "h3": "Language picker in Settings",
+                        "paras": [
+                            "Open Settings / Account language, choose EN, FR, ES, or AR, and confirm strings update across home, menu, cart, and tracking.",
+                        ],
+                        "steps": [
+                            "Sign in as a customer.",
+                            "Open <strong>Settings</strong> (drawer or account).",
+                            "Choose a language and return to Home — labels and layout should follow.",
+                            "Try Arabic to verify RTL mirroring on key screens.",
+                        ],
+                        "shot": ("phone", f"{A}/features/lang-picker.jpg", "Language picker", "Customer settings language selection"),
+                    },
+                    {
+                        "h3": "Arabic RTL in the customer app",
+                        "paras": [
+                            "With Arabic selected, the UI mirrors (I18nManager forceRTL): navigation, lists, and forms read right-to-left. That is a product feature for Gulf / MENA launches — not a hidden developer flag.",
+                        ],
+                        "shot": ("phone", f"{A}/features/customer-languages-rtl.jpg", "Arabic RTL", "Customer settings mirrored EN → AR"),
+                    },
+                ],
+                "after": [
+                    'Operator catalogue: <a href="./admin-app/languages.html">Admin — Languages &amp; RTL</a>. Same idea on <a href="./delivery-app/languages.html">driver</a> and <a href="./restaurant-app/languages.html">restaurant</a> apps.',
+                ],
+            },
+        ],
+        C, CJ, CP,
+    )
+
+    w(
+        "delivery-app/languages.html",
+        "Languages & RTL — Driver app",
+        "Languages & RTL",
+        "Couriers change app language from driver Settings — including Arabic RTL — so the shift board speaks their language.",
+        ["Settings", "EN / FR / ES / AR", "RTL"],
+        [
+            {
+                "h2": "Driver app in the courier’s language",
+                "paras": [
+                    "Drivers work long shifts; the app must speak their language. Settings exposes the same locale packs (English, French, Spanish, Arabic with RTL) that customers and restaurants use.",
+                ],
+                "blocks": [
+                    {
+                        "h3": "Change language in Settings",
+                        "paras": [
+                            "Open Settings from the drawer, pick a language, and confirm Deliveries / Active job strings update. Admin still controls which languages are enabled marketplace-wide.",
+                        ],
+                        "steps": [
+                            "Sign in as a driver.",
+                            "Open <strong>Settings</strong>.",
+                            "Select a language and return to the job board.",
+                        ],
+                        "shot": ("phone", f"{A}/features/driver-settings.jpg", "Driver settings", "Driver settings where language is changed"),
+                    },
+                ],
+                "after": [
+                    'Customer picker: <a href="../languages-rtl.html">Languages &amp; RTL</a>. Admin catalogue: <a href="../admin-app/languages.html">Languages &amp; RTL</a>.',
+                ],
+            },
+        ],
+        D, DJ, DP,
+    )
+
+    w(
+        "restaurant-app/languages.html",
+        "Languages & RTL — Restaurant app",
+        "Languages & RTL",
+        "Restaurant staff switch language (and RTL when Arabic is on) from the partner Settings screen.",
+        ["Settings", "EN / FR / ES / AR", "RTL"],
+        [
+            {
+                "h2": "Partner app in the kitchen’s language",
+                "paras": [
+                    "Owners and line staff are not always fluent in the marketplace default language. The restaurant app Settings picker lets them run orders, menu, and KDS labels in EN / FR / ES / AR — with RTL when Arabic is selected.",
+                ],
+                "blocks": [
+                    {
+                        "h3": "Change language in Settings",
+                        "paras": [
+                            "Open Settings, choose a language, and verify Orders / Menu strings. Pair this with correct opening hours so open/closed copy matches the locale customers see.",
+                        ],
+                        "steps": [
+                            "Sign in as the restaurant user.",
+                            "Open <strong>Settings</strong>.",
+                            "Select a language and confirm the drawer and orders list update.",
+                        ],
+                        "shot": ("phone", f"{A}/features/resto-settings.jpg", "Restaurant settings", "Restaurant settings where language is changed"),
+                    },
+                ],
+                "after": [
+                    'Customer: <a href="../languages-rtl.html">Languages &amp; RTL</a>. Admin defaults: <a href="../admin-app/languages.html">Languages &amp; RTL</a>.',
+                ],
+            },
+        ],
+        D, DJ, DP,
+    )
+
+    w(
+        "admin-app/order-channels.html",
+        "Order channels — Admin app",
+        "Order channels",
+        "WhatsApp, USSD, and web intake so the marketplace takes orders beyond the mobile apps — with order source tracked for ops.",
+        ["WhatsApp", "USSD", "Web"],
+        [
+            {
+                "h2": "Reach customers where they already are",
+                "paras": [
+                    "Not every market starts with app installs. Hybrid channels let you notify and intake orders over WhatsApp Cloud API, USSD-style menus for feature phones, and web / API intake — each order tagged with its source (app / whatsapp / ussd / web / admin) so support knows how it arrived.",
+                ],
+                "blocks": [
+                    {
+                        "h3": "Configure channels with marketplace settings",
+                        "paras": [
+                            "Credentials and enablement live with marketplace / app settings (Meta phone number ID + token for WhatsApp, aggregator hooks for USSD, authenticated web intake). Turn on only the channels you will operate before go-live.",
+                        ],
+                        "steps": [
+                            "Open <strong>Settings → App Settings</strong> (or your channels form).",
+                            "Enable WhatsApp / USSD / web only when credentials and compliance are ready.",
+                            "Place a test order per channel and confirm <code>orderSource</code> shows correctly on the order record.",
+                            "Verify status notifications fan out on the channel you enabled.",
+                        ],
+                        "shot": ("wide", f"{A}/features/app-settings.jpg", "Marketplace settings", "Where channel and marketplace flags are configured"),
+                    },
+                ],
+                "after": [
+                    'Related: <a href="./app-settings.html">Marketplace settings</a>, <a href="./orders.html">Orders &amp; support</a>.',
+                ],
+            },
+        ],
+        D, DJ, DP,
+    )
+
 
     # Update legacy feature redirects that pointed at fat pages
     for rel, dest in [

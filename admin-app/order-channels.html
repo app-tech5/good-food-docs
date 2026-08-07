@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Money ledger — Admin app</title>
+    <title>Order channels — Admin app</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
@@ -76,11 +76,11 @@
           <a href="../admin-app/languages.html">Languages & RTL</a>
           <a href="../admin-app/currencies-taxes.html">Currencies & taxes</a>
           <a href="../admin-app/app-settings.html">Marketplace settings</a>
-          <a href="../admin-app/order-channels.html">Order channels</a>
+          <a class="active" href="../admin-app/order-channels.html">Order channels</a>
           <a href="../admin-app/sponsored.html">Sponsored inventory</a>
           <a href="../admin-app/sales-reports.html">Sales analytics</a>
           <a href="../admin-app/partner-reports.html">Partner scorecards</a>
-          <a class="active" href="../admin-app/transactions.html">Money ledger</a>
+          <a href="../admin-app/transactions.html">Money ledger</a>
         </nav>
         <p class="sidebar-label">Backend (API)</p>
         <nav class="nav">
@@ -90,31 +90,40 @@
       </aside>
       <section class="content">
         <header id="top" class="hero">
-          <h1>Money ledger</h1>
+          <h1>Order channels</h1>
           <p class="subtitle">
-            The money ledger: payments, payouts, refunds, tips, and wallet movements.
+            WhatsApp, USSD, and web intake so the marketplace takes orders beyond the mobile apps — with order source tracked for ops.
           </p>
           <div class="meta-strip">
-            <span class="meta-pill">Ledger</span>
-            <span class="meta-pill">Refunds</span>
-            <span class="meta-pill">Payouts</span>
+            <span class="meta-pill">WhatsApp</span>
+            <span class="meta-pill">USSD</span>
+            <span class="meta-pill">Web</span>
           </div>
         </header>
 
         <section class="overview">
           <section class="section-block">
-            <h2>Transactions ledger</h2>
+            <h2>Reach customers where they already are</h2>
             <p>
-              Fee-level transparency for payments, payouts, refunds, tips, and wallet movements. Spot-check it when a payout or refund is disputed — before you invent a spreadsheet.
+              Not every market starts with app installs. Hybrid channels let you notify and intake orders over WhatsApp Cloud API, USSD-style menus for feature phones, and web / API intake — each order tagged with its source (app / whatsapp / ussd / web / admin) so support knows how it arrived.
             </p>
-            <h3>Ledger view</h3>
+            <h3>Configure channels with marketplace settings</h3>
             <p class="section-subtext">
-              Open Transactions when finance or support needs proof of a money movement.
+              Credentials and enablement live with marketplace / app settings (Meta phone number ID + token for WhatsApp, aggregator hooks for USSD, authenticated web intake). Turn on only the channels you will operate before go-live.
             </p>
+            <ol class="doc-steps">
+              <li>Open <strong>Settings → App Settings</strong> (or your channels form).</li>
+              <li>Enable WhatsApp / USSD / web only when credentials and compliance are ready.</li>
+              <li>Place a test order per channel and confirm <code>orderSource</code> shows correctly on the order record.</li>
+              <li>Verify status notifications fan out on the channel you enabled.</li>
+            </ol>
             <figure class="doc-shot wide">
-              <img src="../assets/images/features/admin-transactions.jpg" alt="Transactions" />
-              <figcaption>Money ledger for payments, payouts, refunds</figcaption>
+              <img src="../assets/images/features/app-settings.jpg" alt="Marketplace settings" />
+              <figcaption>Where channel and marketplace flags are configured</figcaption>
             </figure>
+            <p class="section-subtext">
+              Related: <a href="./app-settings.html">Marketplace settings</a>, <a href="./orders.html">Orders &amp; support</a>.
+            </p>
           </section>
         </section>
       </section>

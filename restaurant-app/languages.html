@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Money ledger — Admin app</title>
+    <title>Languages &amp; RTL — Restaurant app</title>
     <link rel="stylesheet" href="../site.css" />
   </head>
   <body>
@@ -59,7 +59,7 @@
           <a href="../restaurant-app/kitchen-display.html">Kitchen Display (KDS)</a>
           <a href="../restaurant-app/subscriptions.html">Partner plans</a>
           <a href="../restaurant-app/sponsored.html">Sponsored visibility</a>
-          <a href="../restaurant-app/languages.html">Languages & RTL</a>
+          <a class="active" href="../restaurant-app/languages.html">Languages & RTL</a>
         </nav>
         <p class="sidebar-label">Admin app (web)</p>
         <nav class="nav">
@@ -80,7 +80,7 @@
           <a href="../admin-app/sponsored.html">Sponsored inventory</a>
           <a href="../admin-app/sales-reports.html">Sales analytics</a>
           <a href="../admin-app/partner-reports.html">Partner scorecards</a>
-          <a class="active" href="../admin-app/transactions.html">Money ledger</a>
+          <a href="../admin-app/transactions.html">Money ledger</a>
         </nav>
         <p class="sidebar-label">Backend (API)</p>
         <nav class="nav">
@@ -90,31 +90,39 @@
       </aside>
       <section class="content">
         <header id="top" class="hero">
-          <h1>Money ledger</h1>
+          <h1>Languages &amp; RTL</h1>
           <p class="subtitle">
-            The money ledger: payments, payouts, refunds, tips, and wallet movements.
+            Restaurant staff switch language (and RTL when Arabic is on) from the partner Settings screen.
           </p>
           <div class="meta-strip">
-            <span class="meta-pill">Ledger</span>
-            <span class="meta-pill">Refunds</span>
-            <span class="meta-pill">Payouts</span>
+            <span class="meta-pill">Settings</span>
+            <span class="meta-pill">EN / FR / ES / AR</span>
+            <span class="meta-pill">RTL</span>
           </div>
         </header>
 
         <section class="overview">
           <section class="section-block">
-            <h2>Transactions ledger</h2>
+            <h2>Partner app in the kitchen’s language</h2>
             <p>
-              Fee-level transparency for payments, payouts, refunds, tips, and wallet movements. Spot-check it when a payout or refund is disputed — before you invent a spreadsheet.
+              Owners and line staff are not always fluent in the marketplace default language. The restaurant app Settings picker lets them run orders, menu, and KDS labels in EN / FR / ES / AR — with RTL when Arabic is selected.
             </p>
-            <h3>Ledger view</h3>
+            <h3>Change language in Settings</h3>
             <p class="section-subtext">
-              Open Transactions when finance or support needs proof of a money movement.
+              Open Settings, choose a language, and verify Orders / Menu strings. Pair this with correct opening hours so open/closed copy matches the locale customers see.
             </p>
-            <figure class="doc-shot wide">
-              <img src="../assets/images/features/admin-transactions.jpg" alt="Transactions" />
-              <figcaption>Money ledger for payments, payouts, refunds</figcaption>
+            <ol class="doc-steps">
+              <li>Sign in as the restaurant user.</li>
+              <li>Open <strong>Settings</strong>.</li>
+              <li>Select a language and confirm the drawer and orders list update.</li>
+            </ol>
+            <figure class="doc-shot phone">
+              <img src="../assets/images/features/resto-settings.jpg" alt="Restaurant settings" />
+              <figcaption>Restaurant settings where language is changed</figcaption>
             </figure>
+            <p class="section-subtext">
+              Customer: <a href="../languages-rtl.html">Languages &amp; RTL</a>. Admin defaults: <a href="../admin-app/languages.html">Languages &amp; RTL</a>.
+            </p>
           </section>
         </section>
       </section>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Checkout &amp; vouchers — Customer app</title>
+    <title>Languages &amp; RTL — Customer app</title>
     <link rel="stylesheet" href="./site.css" />
   </head>
   <body>
@@ -26,7 +26,7 @@
           <a href="./discovery.html">Browse & discover</a>
           <a href="./restaurant-page.html">Restaurant details</a>
           <a href="./menu-cart.html">Menu & basket</a>
-          <a class="active" href="./checkout.html">Checkout & vouchers</a>
+          <a href="./checkout.html">Checkout & vouchers</a>
           <a href="./order-history.html">Order history</a>
           <a href="./order-tracking.html">Live tracking</a>
           <a href="./wallet.html">Wallet & cashback</a>
@@ -34,7 +34,7 @@
           <a href="./recommendations.html">AI recommendations</a>
           <a href="./smart-eta.html">Smart delivery ETA</a>
           <a href="./delivery-fee.html">Surge pricing</a>
-          <a href="./languages-rtl.html">Languages & RTL</a>
+          <a class="active" href="./languages-rtl.html">Languages & RTL</a>
         </nav>
         <p class="sidebar-label">Delivery app (driver)</p>
         <nav class="nav">
@@ -90,43 +90,51 @@
       </aside>
       <section class="content">
         <header id="top" class="hero">
-          <h1>Checkout &amp; vouchers</h1>
+          <h1>Languages &amp; RTL</h1>
           <p class="subtitle">
-            Claim vouchers on the Offers surface, then confirm address and payment to place the order.
+            Customers switch English, French, Spanish, or Arabic — including a fully mirrored RTL layout — from Settings in the app.
           </p>
           <div class="meta-strip">
-            <span class="meta-pill">Offers</span>
-            <span class="meta-pill">Checkout</span>
+            <span class="meta-pill">EN / FR / ES / AR</span>
+            <span class="meta-pill">RTL</span>
+            <span class="meta-pill">Settings</span>
           </div>
         </header>
 
         <section class="overview">
           <section class="section-block">
-            <h2>Convert the cart</h2>
+            <h2>Speak the customer’s language on their phone</h2>
             <p>
-              After the cart looks right, customers either claim a voucher on the Offers surface or go straight to checkout.
+              Languages are not an admin-only catalogue. In the customer app, shoppers open Settings and pick the language they want. Arabic flips the layout (RTL) so the marketplace feels local — the same capability buyers look for when launching outside one English-speaking city.
             </p>
-            <h3>Offers tab — vouchers to claim</h3>
             <p class="section-subtext">
-              The Offers surface lists claimable vouchers / campaigns (separate from the small offers block on a restaurant page). Coupon codes and campaign rules are configured in admin — see <a href="./admin-app/promotions.html">Promotions</a> and <a href="./admin-app/coupons.html">Coupons</a>.
+              Admin still defines which languages exist and which is the marketplace default; the mobile picker is how each person overrides that for their own session.
             </p>
-            <figure class="doc-shot phone">
-              <img src="./assets/images/features/ordering-offers.jpg" alt="Offers" />
-              <figcaption>Offers / vouchers list to claim</figcaption>
-            </figure>
-            <h3>Checkout — address, payment, place order</h3>
+            <h3>Language picker in Settings</h3>
             <p class="section-subtext">
-              Checkout confirms fulfillment (delivery vs pickup), the address, and the payment method (card, cash on delivery, wallet, or other gateways you activate). After place order, follow progress in <a href="./order-history.html">order history</a> / <a href="./order-tracking.html">live tracking</a>.
+              Open Settings / Account language, choose EN, FR, ES, or AR, and confirm strings update across home, menu, cart, and tracking.
             </p>
             <ol class="doc-steps">
-              <li>Confirm delivery or pickup, address, and payment method.</li>
-              <li>Place the order.</li>
-              <li>Open order history / tracking to follow status.</li>
+              <li>Sign in as a customer.</li>
+              <li>Open <strong>Settings</strong> (drawer or account).</li>
+              <li>Choose a language and return to Home — labels and layout should follow.</li>
+              <li>Try Arabic to verify RTL mirroring on key screens.</li>
             </ol>
             <figure class="doc-shot phone">
-              <img src="./assets/images/features/ordering-checkout.jpg" alt="Checkout" />
-              <figcaption>Summary, payment method, place order</figcaption>
+              <img src="./assets/images/features/lang-picker.jpg" alt="Language picker" />
+              <figcaption>Customer settings language selection</figcaption>
             </figure>
+            <h3>Arabic RTL in the customer app</h3>
+            <p class="section-subtext">
+              With Arabic selected, the UI mirrors (I18nManager forceRTL): navigation, lists, and forms read right-to-left. That is a product feature for Gulf / MENA launches — not a hidden developer flag.
+            </p>
+            <figure class="doc-shot phone">
+              <img src="./assets/images/features/customer-languages-rtl.jpg" alt="Arabic RTL" />
+              <figcaption>Customer settings mirrored EN → AR</figcaption>
+            </figure>
+            <p class="section-subtext">
+              Operator catalogue: <a href="./admin-app/languages.html">Admin — Languages &amp; RTL</a>. Same idea on <a href="./delivery-app/languages.html">driver</a> and <a href="./restaurant-app/languages.html">restaurant</a> apps.
+            </p>
           </section>
         </section>
       </section>
