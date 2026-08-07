@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Inject shared sidebar — structure by app, marketing-friendly labels."""
+"""Inject shared sidebar — collapsible app groups (StackFood / GitBook style)."""
 from __future__ import annotations
 
 import re
@@ -21,13 +21,24 @@ def build_sidebar(html_path: Path) -> str:
 
     def link(href: str, label: str, active: bool = False) -> str:
         cls = ' class="active"' if active else ""
-        return f'          <a{cls} href="{href}">{label}</a>'
+        return f'            <a{cls} href="{href}"><span class="nav-link-text">{label}</span></a>'
 
-    def section(label: str, items: list[tuple[str, str, bool]]) -> list[str]:
-        out = [f'        <p class="sidebar-label">{label}</p>', '        <nav class="nav">']
+    def section(label: str, items: list[tuple[str, str, bool]], *, force_open: bool = False) -> list[str]:
+        any_active = any(active for _, _, active in items)
+        open_attr = " open" if (force_open or any_active) else ""
+        active_cls = " is-current" if any_active else ""
+        out = [
+            f'        <details class="nav-group{active_cls}"{open_attr}>',
+            '          <summary class="nav-group-summary">',
+            f'            <span class="nav-group-title">{label}</span>',
+            f'            <span class="nav-count">{len(items)}</span>',
+            "          </summary>",
+            '          <nav class="nav" aria-label="' + label + '">',
+        ]
         for href, text, active in items:
             out.append(link(href, text, active))
-        out.append("        </nav>")
+        out.append("          </nav>")
+        out.append("        </details>")
         return out
 
     is_env = rel == "environment-setup.html"
@@ -47,6 +58,8 @@ def build_sidebar(html_path: Path) -> str:
     is_cust_eta = rel == "smart-eta.html"
     is_cust_fee = rel == "delivery-fee.html"
     is_cust_lang = rel == "languages-rtl.html"
+    # Redirect stubs still under customer root
+    is_cust_redirect = rel in ("ordering.html", "intelligence.html")
 
     is_drv_ov = rel == "delivery-app/index.html"
     is_drv_gs = rel == "delivery-app/getting-started.html"
@@ -57,6 +70,7 @@ def build_sidebar(html_path: Path) -> str:
     is_drv_tx = rel == "delivery-app/transactions-payouts.html"
     is_drv_sub = rel == "delivery-app/subscriptions.html"
     is_drv_lang = rel == "delivery-app/languages.html"
+    is_drv_redirect = rel == "delivery-app/logistics.html"
 
     is_res_ov = rel == "restaurant-app/index.html"
     is_res_gs = rel == "restaurant-app/getting-started.html"
@@ -68,6 +82,7 @@ def build_sidebar(html_path: Path) -> str:
     is_res_sub = rel == "restaurant-app/subscriptions.html"
     is_res_spon = rel == "restaurant-app/sponsored.html"
     is_res_lang = rel == "restaurant-app/languages.html"
+    is_res_redirect = rel == "restaurant-app/operations.html"
 
     is_adm_ov = rel == "admin-app/index.html"
     is_adm_gs = rel == "admin-app/getting-started.html"
@@ -87,6 +102,12 @@ def build_sidebar(html_path: Path) -> str:
     is_adm_sales = rel == "admin-app/sales-reports.html"
     is_adm_prep = rel == "admin-app/partner-reports.html"
     is_adm_tx = rel == "admin-app/transactions.html"
+    is_adm_redirect = rel in (
+        "admin-app/operations.html",
+        "admin-app/monetization.html",
+        "admin-app/market.html",
+        "admin-app/reports.html",
+    )
 
     is_be_ov = rel == "my-backend/index.html"
     is_be_gs = rel == "my-backend/getting-started.html"
@@ -97,17 +118,49 @@ def build_sidebar(html_path: Path) -> str:
     adm_ov = f"{prefix}admin-app/index.html" if not is_adm_ov else "#overview"
     be_ov = f"{prefix}my-backend/index.html" if not is_be_ov else "#overview"
 
+    # Which product owns this page (redirect stubs count too)
+    in_cust = (
+        is_cust_ov
+        or is_cust_gs
+        or is_cust_disc
+        or is_cust_resto
+        or is_cust_menu
+        or is_cust_check
+        or is_cust_hist
+        or is_cust_track
+        or is_cust_wallet
+        or is_cust_sub
+        or is_cust_reco
+        or is_cust_eta
+        or is_cust_fee
+        or is_cust_lang
+        or is_cust_redirect
+    )
+    in_drv = rel.startswith("delivery-app/")
+    in_res = rel.startswith("restaurant-app/")
+    in_adm = rel.startswith("admin-app/")
+    in_be = rel.startswith("my-backend/")
+    in_suite = is_env or is_dl
+
     lines = [
-        f'        <a class="brand-link" href="{prefix}index.html" aria-label="Good Food Pro Docs home">',
-        '          <span class="brand-dot" aria-hidden="true"></span>',
-        '          <span class="brand-title">Good Food Pro Docs</span>',
-        "        </a>",
+        '        <div class="sidebar-head">',
+        f'          <a class="brand-link" href="{prefix}index.html" aria-label="Good Food Pro Docs home">',
+        '            <span class="brand-mark" aria-hidden="true">GF</span>',
+        '            <span class="brand-text">',
+        '              <span class="brand-title">Good Food Pro</span>',
+        '              <span class="brand-tagline">Marketplace docs</span>',
+        "            </span>",
+        "          </a>",
+        '          <button type="button" class="sidebar-close" aria-label="Close navigation" hidden>&times;</button>',
+        "        </div>",
+        '        <div class="sidebar-body">',
         *section(
-            "All apps",
+            "Suite",
             [
                 (f"{prefix}environment-setup.html", "Environment setup", is_env),
                 (f"{prefix}downloads/index.html", "Android downloads", is_dl and rel == "downloads/index.html"),
             ],
+            force_open=in_suite or not (in_cust or in_drv or in_res or in_adm or in_be),
         ),
         *section(
             "Customer app",
@@ -127,9 +180,10 @@ def build_sidebar(html_path: Path) -> str:
                 (f"{prefix}delivery-fee.html", "Surge pricing", is_cust_fee),
                 (f"{prefix}languages-rtl.html", "Languages & RTL", is_cust_lang),
             ],
+            force_open=in_cust,
         ),
         *section(
-            "Delivery app (driver)",
+            "Delivery app",
             [
                 (drv_ov, "Overview", is_drv_ov),
                 (f"{prefix}delivery-app/getting-started.html", "Getting Started", is_drv_gs),
@@ -141,6 +195,7 @@ def build_sidebar(html_path: Path) -> str:
                 (f"{prefix}delivery-app/subscriptions.html", "Priority plans", is_drv_sub),
                 (f"{prefix}delivery-app/languages.html", "Languages & RTL", is_drv_lang),
             ],
+            force_open=in_drv or is_drv_redirect,
         ),
         *section(
             "Restaurant app",
@@ -156,9 +211,10 @@ def build_sidebar(html_path: Path) -> str:
                 (f"{prefix}restaurant-app/sponsored.html", "Sponsored visibility", is_res_spon),
                 (f"{prefix}restaurant-app/languages.html", "Languages & RTL", is_res_lang),
             ],
+            force_open=in_res or is_res_redirect,
         ),
         *section(
-            "Admin app (web)",
+            "Admin app",
             [
                 (adm_ov, "Overview", is_adm_ov),
                 (f"{prefix}admin-app/getting-started.html", "Getting Started", is_adm_gs),
@@ -179,14 +235,17 @@ def build_sidebar(html_path: Path) -> str:
                 (f"{prefix}admin-app/partner-reports.html", "Partner scorecards", is_adm_prep),
                 (f"{prefix}admin-app/transactions.html", "Money ledger", is_adm_tx),
             ],
+            force_open=in_adm or is_adm_redirect,
         ),
         *section(
-            "Backend (API)",
+            "Backend API",
             [
                 (be_ov, "Overview", is_be_ov),
                 (f"{prefix}my-backend/getting-started.html", "Getting Started", is_be_gs),
             ],
+            force_open=in_be,
         ),
+        "        </div>",
     ]
     return "\n".join(lines)
 

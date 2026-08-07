@@ -10,83 +10,121 @@
     <script src="../js/sidebar-scroll.js"></script>
     <main class="layout">
       <aside class="sidebar" data-docs-sidebar>
-        <a class="brand-link" href="../index.html" aria-label="Good Food Pro Docs home">
-          <span class="brand-dot" aria-hidden="true"></span>
-          <span class="brand-title">Good Food Pro Docs</span>
-        </a>
-        <p class="sidebar-label">All apps</p>
-        <nav class="nav">
-          <a href="../environment-setup.html">Environment setup</a>
-          <a href="../downloads/index.html">Android downloads</a>
-        </nav>
-        <p class="sidebar-label">Customer app</p>
-        <nav class="nav">
-          <a href="../index.html">Overview</a>
-          <a href="../getting-started.html">Getting Started</a>
-          <a href="../discovery.html">Browse & discover</a>
-          <a href="../restaurant-page.html">Restaurant details</a>
-          <a href="../menu-cart.html">Menu & basket</a>
-          <a href="../checkout.html">Checkout & vouchers</a>
-          <a href="../order-history.html">Order history</a>
-          <a href="../order-tracking.html">Live tracking</a>
-          <a href="../wallet.html">Wallet & cashback</a>
-          <a href="../subscriptions.html">Membership plans</a>
-          <a href="../recommendations.html">AI recommendations</a>
-          <a href="../smart-eta.html">Smart delivery ETA</a>
-          <a href="../delivery-fee.html">Surge pricing</a>
-          <a href="../languages-rtl.html">Languages & RTL</a>
-        </nav>
-        <p class="sidebar-label">Delivery app (driver)</p>
-        <nav class="nav">
-          <a href="../delivery-app/index.html">Overview</a>
-          <a href="../delivery-app/getting-started.html">Getting Started</a>
-          <a href="../delivery-app/deliveries.html">Job board & batching</a>
-          <a href="../delivery-app/active-delivery.html">On the road</a>
-          <a href="../delivery-app/proof-of-delivery.html">Photo & signature POD</a>
-          <a href="../delivery-app/earnings.html">Shift earnings</a>
-          <a href="../delivery-app/transactions-payouts.html">Payouts & history</a>
-          <a href="../delivery-app/subscriptions.html">Priority plans</a>
-          <a href="../delivery-app/languages.html">Languages & RTL</a>
-        </nav>
-        <p class="sidebar-label">Restaurant app</p>
-        <nav class="nav">
-          <a href="../restaurant-app/index.html">Overview</a>
-          <a href="../restaurant-app/getting-started.html">Getting Started</a>
-          <a href="../restaurant-app/orders.html">Incoming orders</a>
-          <a href="../restaurant-app/menu.html">Menu management</a>
-          <a href="../restaurant-app/hours.html">Hours & delivery zone</a>
-          <a href="../restaurant-app/analytics.html">Performance</a>
-          <a href="../restaurant-app/kitchen-display.html">Kitchen Display (KDS)</a>
-          <a href="../restaurant-app/subscriptions.html">Partner plans</a>
-          <a href="../restaurant-app/sponsored.html">Sponsored visibility</a>
-          <a class="active" href="../restaurant-app/languages.html">Languages & RTL</a>
-        </nav>
-        <p class="sidebar-label">Admin app (web)</p>
-        <nav class="nav">
-          <a href="../admin-app/index.html">Overview</a>
-          <a href="../admin-app/getting-started.html">Getting Started</a>
-          <a href="../admin-app/orders.html">Orders & support</a>
-          <a href="../admin-app/partners.html">Partners & users</a>
-          <a href="../admin-app/catalog.html">Menus & catalog</a>
-          <a href="../admin-app/earnings.html">Commissions & earnings</a>
-          <a href="../admin-app/subscriptions.html">Subscription plans</a>
-          <a href="../admin-app/gateways.html">Payment gateways</a>
-          <a href="../admin-app/promotions.html">Promo campaigns</a>
-          <a href="../admin-app/coupons.html">Coupon codes</a>
-          <a href="../admin-app/languages.html">Languages & RTL</a>
-          <a href="../admin-app/currencies-taxes.html">Currencies & taxes</a>
-          <a href="../admin-app/app-settings.html">Marketplace settings</a>
-          <a href="../admin-app/order-channels.html">Order channels</a>
-          <a href="../admin-app/sponsored.html">Sponsored inventory</a>
-          <a href="../admin-app/sales-reports.html">Sales analytics</a>
-          <a href="../admin-app/partner-reports.html">Partner scorecards</a>
-          <a href="../admin-app/transactions.html">Money ledger</a>
-        </nav>
-        <p class="sidebar-label">Backend (API)</p>
-        <nav class="nav">
-          <a href="../my-backend/index.html">Overview</a>
-          <a href="../my-backend/getting-started.html">Getting Started</a>
-        </nav>
+        <div class="sidebar-head">
+          <a class="brand-link" href="../index.html" aria-label="Good Food Pro Docs home">
+            <span class="brand-mark" aria-hidden="true">GF</span>
+            <span class="brand-text">
+              <span class="brand-title">Good Food Pro</span>
+              <span class="brand-tagline">Marketplace docs</span>
+            </span>
+          </a>
+          <button type="button" class="sidebar-close" aria-label="Close navigation" hidden>&times;</button>
+        </div>
+        <div class="sidebar-body">
+        <details class="nav-group">
+          <summary class="nav-group-summary">
+            <span class="nav-group-title">Suite</span>
+            <span class="nav-count">2</span>
+          </summary>
+          <nav class="nav" aria-label="Suite">
+            <a href="../environment-setup.html"><span class="nav-link-text">Environment setup</span></a>
+            <a href="../downloads/index.html"><span class="nav-link-text">Android downloads</span></a>
+          </nav>
+        </details>
+        <details class="nav-group">
+          <summary class="nav-group-summary">
+            <span class="nav-group-title">Customer app</span>
+            <span class="nav-count">14</span>
+          </summary>
+          <nav class="nav" aria-label="Customer app">
+            <a href="../index.html"><span class="nav-link-text">Overview</span></a>
+            <a href="../getting-started.html"><span class="nav-link-text">Getting Started</span></a>
+            <a href="../discovery.html"><span class="nav-link-text">Browse & discover</span></a>
+            <a href="../restaurant-page.html"><span class="nav-link-text">Restaurant details</span></a>
+            <a href="../menu-cart.html"><span class="nav-link-text">Menu & basket</span></a>
+            <a href="../checkout.html"><span class="nav-link-text">Checkout & vouchers</span></a>
+            <a href="../order-history.html"><span class="nav-link-text">Order history</span></a>
+            <a href="../order-tracking.html"><span class="nav-link-text">Live tracking</span></a>
+            <a href="../wallet.html"><span class="nav-link-text">Wallet & cashback</span></a>
+            <a href="../subscriptions.html"><span class="nav-link-text">Membership plans</span></a>
+            <a href="../recommendations.html"><span class="nav-link-text">AI recommendations</span></a>
+            <a href="../smart-eta.html"><span class="nav-link-text">Smart delivery ETA</span></a>
+            <a href="../delivery-fee.html"><span class="nav-link-text">Surge pricing</span></a>
+            <a href="../languages-rtl.html"><span class="nav-link-text">Languages & RTL</span></a>
+          </nav>
+        </details>
+        <details class="nav-group">
+          <summary class="nav-group-summary">
+            <span class="nav-group-title">Delivery app</span>
+            <span class="nav-count">9</span>
+          </summary>
+          <nav class="nav" aria-label="Delivery app">
+            <a href="../delivery-app/index.html"><span class="nav-link-text">Overview</span></a>
+            <a href="../delivery-app/getting-started.html"><span class="nav-link-text">Getting Started</span></a>
+            <a href="../delivery-app/deliveries.html"><span class="nav-link-text">Job board & batching</span></a>
+            <a href="../delivery-app/active-delivery.html"><span class="nav-link-text">On the road</span></a>
+            <a href="../delivery-app/proof-of-delivery.html"><span class="nav-link-text">Photo & signature POD</span></a>
+            <a href="../delivery-app/earnings.html"><span class="nav-link-text">Shift earnings</span></a>
+            <a href="../delivery-app/transactions-payouts.html"><span class="nav-link-text">Payouts & history</span></a>
+            <a href="../delivery-app/subscriptions.html"><span class="nav-link-text">Priority plans</span></a>
+            <a href="../delivery-app/languages.html"><span class="nav-link-text">Languages & RTL</span></a>
+          </nav>
+        </details>
+        <details class="nav-group is-current" open>
+          <summary class="nav-group-summary">
+            <span class="nav-group-title">Restaurant app</span>
+            <span class="nav-count">10</span>
+          </summary>
+          <nav class="nav" aria-label="Restaurant app">
+            <a href="../restaurant-app/index.html"><span class="nav-link-text">Overview</span></a>
+            <a href="../restaurant-app/getting-started.html"><span class="nav-link-text">Getting Started</span></a>
+            <a href="../restaurant-app/orders.html"><span class="nav-link-text">Incoming orders</span></a>
+            <a href="../restaurant-app/menu.html"><span class="nav-link-text">Menu management</span></a>
+            <a href="../restaurant-app/hours.html"><span class="nav-link-text">Hours & delivery zone</span></a>
+            <a href="../restaurant-app/analytics.html"><span class="nav-link-text">Performance</span></a>
+            <a href="../restaurant-app/kitchen-display.html"><span class="nav-link-text">Kitchen Display (KDS)</span></a>
+            <a href="../restaurant-app/subscriptions.html"><span class="nav-link-text">Partner plans</span></a>
+            <a href="../restaurant-app/sponsored.html"><span class="nav-link-text">Sponsored visibility</span></a>
+            <a class="active" href="../restaurant-app/languages.html"><span class="nav-link-text">Languages & RTL</span></a>
+          </nav>
+        </details>
+        <details class="nav-group">
+          <summary class="nav-group-summary">
+            <span class="nav-group-title">Admin app</span>
+            <span class="nav-count">18</span>
+          </summary>
+          <nav class="nav" aria-label="Admin app">
+            <a href="../admin-app/index.html"><span class="nav-link-text">Overview</span></a>
+            <a href="../admin-app/getting-started.html"><span class="nav-link-text">Getting Started</span></a>
+            <a href="../admin-app/orders.html"><span class="nav-link-text">Orders & support</span></a>
+            <a href="../admin-app/partners.html"><span class="nav-link-text">Partners & users</span></a>
+            <a href="../admin-app/catalog.html"><span class="nav-link-text">Menus & catalog</span></a>
+            <a href="../admin-app/earnings.html"><span class="nav-link-text">Commissions & earnings</span></a>
+            <a href="../admin-app/subscriptions.html"><span class="nav-link-text">Subscription plans</span></a>
+            <a href="../admin-app/gateways.html"><span class="nav-link-text">Payment gateways</span></a>
+            <a href="../admin-app/promotions.html"><span class="nav-link-text">Promo campaigns</span></a>
+            <a href="../admin-app/coupons.html"><span class="nav-link-text">Coupon codes</span></a>
+            <a href="../admin-app/languages.html"><span class="nav-link-text">Languages & RTL</span></a>
+            <a href="../admin-app/currencies-taxes.html"><span class="nav-link-text">Currencies & taxes</span></a>
+            <a href="../admin-app/app-settings.html"><span class="nav-link-text">Marketplace settings</span></a>
+            <a href="../admin-app/order-channels.html"><span class="nav-link-text">Order channels</span></a>
+            <a href="../admin-app/sponsored.html"><span class="nav-link-text">Sponsored inventory</span></a>
+            <a href="../admin-app/sales-reports.html"><span class="nav-link-text">Sales analytics</span></a>
+            <a href="../admin-app/partner-reports.html"><span class="nav-link-text">Partner scorecards</span></a>
+            <a href="../admin-app/transactions.html"><span class="nav-link-text">Money ledger</span></a>
+          </nav>
+        </details>
+        <details class="nav-group">
+          <summary class="nav-group-summary">
+            <span class="nav-group-title">Backend API</span>
+            <span class="nav-count">2</span>
+          </summary>
+          <nav class="nav" aria-label="Backend API">
+            <a href="../my-backend/index.html"><span class="nav-link-text">Overview</span></a>
+            <a href="../my-backend/getting-started.html"><span class="nav-link-text">Getting Started</span></a>
+          </nav>
+        </details>
+        </div>
       </aside>
       <section class="content">
         <header id="top" class="hero">
