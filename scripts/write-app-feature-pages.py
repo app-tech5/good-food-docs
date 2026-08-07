@@ -295,15 +295,15 @@ def main():
                             ],
                         },
                         {
-                            "h3": "Map before and during the order",
+                            "h3": "Delivery map while the courier is en route",
                             "paras": [
-                                'The nearby map helps customers discover restaurants around them. Live courier movement on the customer map depends on your deployment; driver-side job handling and proof of delivery are documented under <a href="./delivery-app/logistics.html">Logistics &amp; POD</a>.',
+                                'When the order is out for delivery, Track Order can show a <strong>Delivery Map</strong>: destination pin, courier position, route line, and an ETA badge. Driver-side job handling and proof of delivery are documented under <a href="./delivery-app/logistics.html">Logistics &amp; POD</a>.',
                             ],
                         },
                     ],
                     "shots": [
                         ("phone", f"{A}/features/tracking.jpg", "Track order", "Status timeline for a live order"),
-                        ("phone", f"{A}/features/map-nearby.jpg", "Map nearby", "Map of nearby restaurants"),
+                        ("phone", f"{A}/features/tracking-map.jpg", "Delivery map", "Live courier map with route and ETA"),
                     ],
                 },
             ],
