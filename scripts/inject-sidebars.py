@@ -204,7 +204,7 @@ def build_sidebar(html_path: Path) -> str:
     lines = [
         '        <div class="sidebar-head">',
         f'          <a class="brand-link" href="{prefix}index.html" aria-label="Good Food Pro Docs home">',
-        '            <span class="brand-mark" aria-hidden="true">GF</span>',
+        f'            <img class="brand-mark" src="{prefix}logo.svg" width="40" height="40" alt="" />',
         '            <span class="brand-text">',
         '              <span class="brand-title">Good Food Pro</span>',
         '              <span class="brand-tagline">Marketplace docs</span>',
