@@ -15,7 +15,6 @@
       --canvas-deep: #010102;
       --surface: #0f1011;
       --surface-2: #141516;
-      --surface-3: #191a1b;
       --hairline: #23252a;
       --hairline-strong: #34343a;
       --ink: #f7f8f8;
@@ -65,7 +64,6 @@
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 14px; letter-spacing: -0.02em; }
     .mark { width: 40px; height: 40px; display: grid; place-items: center; }
     .mark img { width: 40px; height: 40px; object-fit: contain; display: block; }
-    .nav-actions { display: flex; align-items: center; gap: 10px; }
     .nav-link {
       font-size: 13px; font-weight: 500; color: var(--muted);
       border: 1px solid var(--hairline);
@@ -73,14 +71,8 @@
       padding: 8px 14px; border-radius: 999px;
     }
     .nav-link:hover { color: var(--ink); border-color: var(--hairline-strong); }
-    .nav-cta {
-      font-size: 13px; font-weight: 600; color: #111;
-      background: var(--gold);
-      padding: 8px 14px; border-radius: 999px;
-    }
-    .nav-cta:hover { filter: brightness(1.06); }
 
-    .hero { margin-bottom: 40px; max-width: 780px; }
+    .hero { margin-bottom: 28px; max-width: 820px; }
     .eyebrow {
       display: inline-flex; align-items: center; gap: 8px;
       font-size: 12px; font-weight: 500; color: var(--gold);
@@ -100,11 +92,10 @@
     }
     h1 span { color: var(--gold); }
     .lead {
-      font-size: 18px; color: var(--muted); max-width: 640px;
+      font-size: 18px; color: var(--muted); max-width: 680px;
       letter-spacing: -0.011em;
-      margin-bottom: 22px;
+      margin-bottom: 24px;
     }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
     .pills { display: flex; flex-wrap: wrap; gap: 8px; }
     .pill {
       font-size: 12px; font-weight: 500; color: var(--muted);
@@ -119,73 +110,81 @@
       margin: 56px 0 16px;
     }
 
-    .features {
+    .bento {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: 1.35fr 1fr 1fr;
+      grid-template-areas:
+        "ai eta surge"
+        "log log pod"
+        "money ads kds"
+        "pay pay chan";
       gap: 12px;
     }
-    .feat {
+    .a-ai { grid-area: ai; }
+    .a-eta { grid-area: eta; }
+    .a-surge { grid-area: surge; }
+    .a-log { grid-area: log; }
+    .a-pod { grid-area: pod; }
+    .a-money { grid-area: money; }
+    .a-ads { grid-area: ads; }
+    .a-kds { grid-area: kds; }
+    .a-pay { grid-area: pay; }
+    .a-chan { grid-area: chan; }
+
+    .tile {
       background: var(--surface);
       border: 1px solid var(--hairline);
       border-radius: var(--radius);
       padding: 22px;
-    }
-    .feat h3 {
-      font-size: 18px; font-weight: 600; letter-spacing: -0.03em;
-      margin-bottom: 8px;
-    }
-    .feat p { font-size: 14px; color: var(--muted); }
-
-    .bento {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr;
-      grid-template-areas:
-        "cust drv rest"
-        "cust adm adm";
-      gap: 12px;
-    }
-    .tile-cust { grid-area: cust; }
-    .tile-drv { grid-area: drv; }
-    .tile-rest { grid-area: rest; }
-    .tile-adm { grid-area: adm; }
-    .tile {
-      position: relative;
-      background: var(--surface);
-      border: 1px solid var(--hairline);
-      border-radius: var(--radius);
-      overflow: hidden;
-      min-height: 200px;
-      display: flex; flex-direction: column;
+      min-height: 168px;
       transition: border-color .2s ease, background .2s ease;
     }
     .tile:hover { border-color: var(--hairline-strong); background: var(--surface-2); }
-    .tile.hero-tile {
+    .tile.spotlight {
       background:
-        radial-gradient(500px 280px at 80% 20%, var(--gold-dim), transparent 70%),
+        radial-gradient(420px 220px at 90% 0%, var(--gold-dim), transparent 70%),
         var(--surface);
     }
-    .tile.hero-tile:hover { border-color: rgba(245, 197, 24, 0.35); }
-    .tile-body { padding: 22px 22px 20px; display: flex; flex-direction: column; flex: 1; }
-    .num {
-      font-size: 11px; font-weight: 600; color: var(--muted);
-      letter-spacing: 0.12em; margin-bottom: 18px;
+    .tile.spotlight:hover { border-color: rgba(245, 197, 24, 0.35); }
+    .kicker {
+      font-size: 11px; font-weight: 600; color: var(--gold);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 12px;
     }
-    .tile h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 6px; }
-    .tile p { font-size: 14px; color: var(--muted); margin-bottom: auto; padding-bottom: 18px; }
-    .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      height: 36px; padding: 0 14px; border-radius: 8px;
-      font-size: 13px; font-weight: 600; letter-spacing: -0.01em;
+    .tile h3 {
+      font-size: 20px; font-weight: 600; letter-spacing: -0.03em;
+      margin-bottom: 8px;
     }
-    .btn-gold { background: var(--gold); color: #111; }
-    .btn-gold:hover { filter: brightness(1.06); }
-    .btn-ghost {
-      color: var(--ink);
-      border: 1px solid var(--hairline-strong);
-      background: transparent;
+    .tile p { font-size: 14px; color: var(--muted); }
+
+    .money {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
     }
-    .btn-ghost:hover { background: var(--surface-3); }
+    .earn {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+    .earn h3 { font-size: 15px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 6px; }
+    .earn p { font-size: 13px; color: var(--muted); }
+
+    .stack {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .prod {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+    .prod .num { font-size: 11px; font-weight: 600; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 10px; }
+    .prod h3 { font-size: 15px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 6px; }
+    .prod p { font-size: 13px; color: var(--muted); }
 
     .audience {
       display: grid;
@@ -201,7 +200,6 @@
     .who h3 { font-size: 15px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 6px; }
     .who p { font-size: 13px; color: var(--muted); }
 
-    .note { margin-top: 18px; font-size: 13px; color: var(--muted); }
     footer {
       margin-top: 48px;
       padding-top: 18px;
@@ -210,27 +208,28 @@
       display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
     }
 
-    @media (max-width: 860px) {
-      .features, .audience { grid-template-columns: 1fr 1fr; }
+    @media (max-width: 960px) {
       .bento {
         grid-template-columns: 1fr 1fr;
         grid-template-areas:
-          "cust cust"
-          "drv rest"
-          "adm adm";
+          "ai ai"
+          "eta surge"
+          "log pod"
+          "money ads"
+          "kds chan"
+          "pay pay";
       }
+      .money, .audience { grid-template-columns: 1fr 1fr; }
+      .stack { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 560px) {
       .page { width: min(100% - 28px, 1120px); }
-      .features, .audience { grid-template-columns: 1fr; }
       .bento {
         grid-template-columns: 1fr;
         grid-template-areas:
-          "cust"
-          "drv"
-          "rest"
-          "adm";
+          "ai" "eta" "surge" "log" "pod" "money" "ads" "kds" "pay" "chan";
       }
+      .money, .audience, .stack { grid-template-columns: 1fr; }
       h1 { font-size: 34px; }
       nav { margin-bottom: 36px; }
     }
@@ -241,123 +240,146 @@
   <div class="page">
     <nav>
       <div class="brand"><span class="mark"><img src="/hub/logo.svg" alt="" /></span> Good Food Pro</div>
-      <div class="nav-actions">
-        <a class="nav-link" href="/go.html?_g=20260814a&amp;c=docs&amp;utm_source=codecanyon&amp;utm_medium=demo_url&amp;utm_campaign=good_food_pro">Documentation</a>
-        <a class="nav-cta" href="#stack">See the stack</a>
-      </div>
+      <a class="nav-link" href="/go.html?_g=20260814b&amp;c=docs&amp;utm_source=codecanyon&amp;utm_medium=demo_url&amp;utm_campaign=good_food_pro">Documentation</a>
     </nav>
 
     <section class="hero">
-      <div class="eyebrow">CodeCanyon live preview</div>
+      <div class="eyebrow">Food delivery operating system</div>
       <h1>Launch your own <span>Uber Eats–style</span> marketplace</h1>
-      <p class="lead">Customer, Driver, Restaurant, Admin, and the backend you host — a multi-restaurant food delivery business, ready to brand and take real orders in your city.</p>
-      <div class="hero-actions">
-        <a class="btn btn-gold" href="#stack">Explore the products</a>
-        <a class="btn btn-ghost" href="/go.html?_g=20260814a&amp;c=docs&amp;utm_source=codecanyon&amp;utm_medium=demo_url&amp;utm_campaign=good_food_pro">Read the docs</a>
-      </div>
+      <p class="lead">Five products and the backend you host. Real orders, real payouts, AI that grows the ticket, and an admin built to make money — not a UI clone.</p>
       <div class="pills">
-        <span class="pill">5 products + backend</span>
-        <span class="pill">AI reco · ETA · surge</span>
-        <span class="pill">Live tracking &amp; POD</span>
-        <span class="pill">Subscriptions &amp; ads</span>
-        <span class="pill">Stripe Connect</span>
+        <span class="pill">Customer · Driver · Restaurant · Admin · Backend</span>
+        <span class="pill">You own the data</span>
+        <span class="pill">Ready to brand</span>
       </div>
     </section>
 
-    <h2 class="section">Why buyers pick this stack</h2>
-    <div class="features">
-      <article class="feat">
-        <h3>AI that grows order value</h3>
-        <p>Dynamic recommendations, smart ETA, and surge delivery pricing in the customer app — not a static 30-minute label.</p>
-      </article>
-      <article class="feat">
-        <h3>Logistics that cut last-mile cost</h3>
-        <p>Smart order batching, live map tracking, and photo + signature proof of delivery so routes stay dense and disputes close.</p>
-      </article>
-      <article class="feat">
-        <h3>More than per-order commission</h3>
-        <p>SaaS plans for restaurants, priority tiers for drivers, customer memberships, and sponsored search / home banners.</p>
-      </article>
-      <article class="feat">
-        <h3>An operator-grade control room</h3>
-        <p>Earnings, multi-gateway payments, taxes, WhatsApp / USSD channels, partner approval, and sales reports — not a basic CRUD table.</p>
-      </article>
-    </div>
-
-    <h2 class="section" id="stack">One purchase. Five products.</h2>
+    <h2 class="section">The features that close the sale</h2>
     <div class="bento">
-      <article class="tile hero-tile tile-cust">
-        <div class="tile-body">
-          <div class="num">01 · Customer</div>
-          <h3>The storefront</h3>
-          <p>Multi-restaurant discovery, wallet &amp; checkout, live tracking, AI add-ons, and memberships that keep people ordering.</p>
-          <div class="actions">
-            <a class="btn btn-gold" href="/go.html?_g=20260814a&amp;c=customer_web&amp;utm_source=codecanyon&amp;utm_medium=demo_url&amp;utm_campaign=good_food_pro">Launch demo</a>
-            <a class="btn btn-ghost" href="/go.html?_g=20260814a&amp;c=customer_apk&amp;utm_source=codecanyon&amp;utm_medium=demo_url&amp;utm_campaign=good_food_pro">Android APK</a>
-          </div>
-        </div>
+      <article class="tile spotlight a-ai">
+        <div class="kicker">AI · conversion</div>
+        <h3>Recommendations that grow the cart</h3>
+        <p>Cross-sell from order history, time of day, and live weather — “add a drink” feels personal, not random. Built into the customer app, not a slide.</p>
       </article>
-
-      <article class="tile tile-drv">
-        <div class="tile-body">
-          <div class="num">02 · Driver</div>
-          <h3>Last mile</h3>
-          <p>Go online, batch nearby jobs, navigate, prove the drop-off, and get paid via Connect.</p>
-          <div class="actions">
-            <a class="btn btn-gold" href="/go.html?_g=20260814a&amp;c=driver_web&amp;utm_source=codecanyon&amp;utm_medium=demo_url&amp;utm_campaign=good_food_pro">Launch demo</a>
-            <a class="btn btn-ghost" href="/go.html?_g=20260814a&amp;c=driver_demo&amp;utm_source=codecanyon&amp;utm_medium=demo_url&amp;utm_campaign=good_food_pro">Android APK</a>
-          </div>
-        </div>
+      <article class="tile a-eta">
+        <div class="kicker">AI · trust</div>
+        <h3>Smart ETA</h3>
+        <p>Arrival windows from kitchen load, live routing, rush hour, and weather — not a static “30 minutes”.</p>
       </article>
-
-      <article class="tile tile-rest">
-        <div class="tile-body">
-          <div class="num">03 · Restaurant</div>
-          <h3>Kitchen ops</h3>
-          <p>Accept tickets on a paperless KDS, run the menu, buy visibility, subscribe to lower commission.</p>
-          <div class="actions">
-            <a class="btn btn-gold" href="/go.html?_g=20260814a&amp;c=restaurant_web&amp;utm_source=codecanyon&amp;utm_medium=demo_url&amp;utm_campaign=good_food_pro">Launch demo</a>
-            <a class="btn btn-ghost" href="/go.html?_g=20260814a&amp;c=restaurant_apk&amp;utm_source=codecanyon&amp;utm_medium=demo_url&amp;utm_campaign=good_food_pro">Android APK</a>
-          </div>
-        </div>
+      <article class="tile a-surge">
+        <div class="kicker">AI · yield</div>
+        <h3>Surge pricing</h3>
+        <p>Delivery fees rise when demand spikes or drivers are scarce, with a clear surge badge at checkout.</p>
       </article>
-
-      <article class="tile tile-adm">
-        <div class="tile-body">
-          <div class="num">04 · Admin</div>
-          <h3>You run the market</h3>
-          <p>Commissions, gateways, subscriptions, sponsored inventory, partner payouts, and the reports that prove it.</p>
-          <div class="actions">
-            <a class="btn btn-gold" href="/go.html?_g=20260814a&amp;c=admin_demo&amp;utm_source=codecanyon&amp;utm_medium=demo_url&amp;utm_campaign=good_food_pro">Launch demo</a>
-          </div>
-        </div>
+      <article class="tile a-log">
+        <div class="kicker">Logistics</div>
+        <h3>Batch nearby jobs. Track the rider live.</h3>
+        <p>When a driver accepts, ready orders nearby can share the route. Customers watch the rider on the map with ETA from kitchen to door.</p>
+      </article>
+      <article class="tile a-pod">
+        <div class="kicker">Proof</div>
+        <h3>Photo + signature POD</h3>
+        <p>Contactless drop-offs require a photo and on-device signature, geofenced to the customer address so disputes close.</p>
+      </article>
+      <article class="tile spotlight a-money">
+        <div class="kicker">Revenue</div>
+        <h3>Three-sided subscriptions</h3>
+        <p>Sell plans to customers (free delivery), restaurants (lower commission), and drivers (priority jobs). You configure them in Admin. They subscribe in each app.</p>
+      </article>
+      <article class="tile a-ads">
+        <div class="kicker">Ads</div>
+        <h3>Sponsored listings</h3>
+        <p>Restaurants bid for search rank and home-banner slots. Paid discovery you inventory from Admin.</p>
+      </article>
+      <article class="tile a-kds">
+        <div class="kicker">Kitchen</div>
+        <h3>Paperless KDS</h3>
+        <p>New / Preparing / Ready columns, large tickets, one-tap status — restaurants ship without paper.</p>
+      </article>
+      <article class="tile a-pay">
+        <div class="kicker">Payments</div>
+        <h3>Stripe Connect, plus the rest of the world</h3>
+        <p>Card checkout and driver payouts on Connect. PayPal, Paystack, Flutterwave, Razorpay, COD, crypto slot, and an internal wallet with cashback and instant refunds.</p>
+      </article>
+      <article class="tile a-chan">
+        <div class="kicker">Markets</div>
+        <h3>WhatsApp, USSD, RTL</h3>
+        <p>Hybrid intake for emerging markets, English / French / Spanish / Arabic RTL, Admin currencies and VAT / GST.</p>
       </article>
     </div>
-    <p class="note">Demos are for evaluation. On desktop, mobile web apps open a QR page — scan with your phone. Login is pre-filled. Demo data may reset.</p>
+
+    <h2 class="section">How you make money</h2>
+    <div class="money">
+      <article class="earn">
+        <h3>Commission</h3>
+        <p>Set rates — including per restaurant — and take a cut on every completed order.</p>
+      </article>
+      <article class="earn">
+        <h3>Recurring plans</h3>
+        <p>Memberships and SaaS access that keep billing after the first order.</p>
+      </article>
+      <article class="earn">
+        <h3>Delivery fees</h3>
+        <p>Fixed, dynamic, or free-delivery rules. Surge when the market is hot.</p>
+      </article>
+      <article class="earn">
+        <h3>Promos that scale volume</h3>
+        <p>Coupons, flash sales, Buy X Get Y, happy hours — scoped to platform, restaurant, or item.</p>
+      </article>
+    </div>
+
+    <h2 class="section">One purchase. The full loop.</h2>
+    <div class="stack">
+      <article class="prod">
+        <div class="num">01</div>
+        <h3>Customer</h3>
+        <p>Discovery, wallet, AI add-ons, live tracking, memberships.</p>
+      </article>
+      <article class="prod">
+        <div class="num">02</div>
+        <h3>Driver</h3>
+        <p>Online, batching, navigation, POD, Connect payouts.</p>
+      </article>
+      <article class="prod">
+        <div class="num">03</div>
+        <h3>Restaurant</h3>
+        <p>KDS, menu, SaaS plans, sponsored visibility.</p>
+      </article>
+      <article class="prod">
+        <div class="num">04</div>
+        <h3>Admin</h3>
+        <p>Earnings, gateways, ads, partners, reports.</p>
+      </article>
+      <article class="prod">
+        <div class="num">05</div>
+        <h3>Backend</h3>
+        <p>You host it. Your data, your brand, your rules.</p>
+      </article>
+    </div>
 
     <h2 class="section">Who this is for</h2>
     <div class="audience">
       <article class="who">
         <h3>Founders</h3>
-        <p>Launch a food delivery brand in your city without building five apps from zero.</p>
+        <p>A food delivery brand in your city without building five apps from zero.</p>
       </article>
       <article class="who">
         <h3>Agencies</h3>
-        <p>Deliver a white-label Uber Eats–style project to clients with docs they can follow.</p>
+        <p>A white-label Uber Eats–style delivery for clients, with docs they can follow.</p>
       </article>
       <article class="who">
         <h3>Freelancers</h3>
-        <p>Ship one complete, documented package instead of stitching five separate products.</p>
+        <p>One complete package instead of stitching five separate products.</p>
       </article>
       <article class="who">
         <h3>Restaurant groups</h3>
-        <p>Run multi-vendor ordering with drivers, commissions, and partner payouts.</p>
+        <p>Multi-vendor ordering, drivers, commissions, and partner payouts.</p>
       </article>
     </div>
 
     <footer>
       <span>Good Food Pro</span>
-      <span>Customer · Driver · Restaurant · Admin · Backend</span>
+      <span>Self-hosted marketplace · CodeCanyon</span>
     </footer>
   </div>
 </body>
