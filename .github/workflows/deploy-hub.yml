@@ -1,0 +1,49 @@
+name: Deploy demo hub
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "hub/**"
+      - ".github/workflows/deploy-hub.yml"
+  workflow_dispatch:
+
+jobs:
+  deploy-hub:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build hub archive
+        run: |
+          tar -czf good-food-hub.tar.gz -C hub index.html logo.svg
+          ls -lh good-food-hub.tar.gz
+
+      - name: Upload archive to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: good-food-hub.tar.gz
+          target: /tmp/
+          overwrite: true
+
+      - name: Extract hub on VPS
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -eu
+            DEST=/var/www/html/hub
+            mkdir -p "$DEST"
+            tar -xzf /tmp/good-food-hub.tar.gz -C "$DEST"
+            rm -f /tmp/good-food-hub.tar.gz
+            chmod 644 "$DEST/index.html" "$DEST/logo.svg"
+            ls -la "$DEST"
+
+      - name: Hub URL
+        run: echo "https://good-foods.digitaldienste.fr/"

@@ -3,6 +3,9 @@ name: Deploy good-food-docs site
 on:
   push:
     branches: [master]
+    paths-ignore:
+      - "hub/**"
+      - ".github/workflows/deploy-hub.yml"
   workflow_dispatch:
 
 jobs:
@@ -24,6 +27,7 @@ jobs:
             --exclude="good-food-docs-site.tar.gz" \
             --exclude="source-docs" \
             --exclude="scripts" \
+            --exclude="hub" \
             -czf "$ARCHIVE" .
           mv "$ARCHIVE" good-food-docs-site.tar.gz
           ls -lh good-food-docs-site.tar.gz

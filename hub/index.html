@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Good Food Pro — Live Demo</title>
+      <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --canvas: #08090a;
+      --canvas-deep: #010102;
+      --surface: #0f1011;
+      --surface-2: #141516;
+      --surface-3: #191a1b;
+      --hairline: #23252a;
+      --hairline-strong: #34343a;
+      --ink: #f7f8f8;
+      --muted: #8a8f98;
+      --gold: #f5c518;
+      --gold-dim: rgba(245, 197, 24, 0.14);
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: var(--canvas-deep); color: var(--ink); }
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .bg {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(900px 480px at 18% -10%, rgba(245, 197, 24, 0.12), transparent 60%),
+        radial-gradient(700px 400px at 92% 8%, rgba(245, 197, 24, 0.05), transparent 55%),
+        var(--canvas-deep);
+    }
+    .bg::after {
+      content: "";
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 20%, transparent 75%);
+    }
+
+    .page {
+      position: relative; z-index: 1;
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 20px 0 64px;
+    }
+
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px; margin-bottom: 56px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 14px; letter-spacing: -0.02em; }
+    .mark {
+      width: 40px; height: 40px;
+      display: grid; place-items: center;
+    }
+    .mark img { width: 40px; height: 40px; object-fit: contain; display: block; }
+    .nav-link {
+      font-size: 13px; font-weight: 500; color: var(--muted);
+      border: 1px solid var(--hairline);
+      background: var(--surface);
+      padding: 8px 14px; border-radius: 999px;
+    }
+    .nav-link:hover { color: var(--ink); border-color: var(--hairline-strong); }
+
+    .hero { margin-bottom: 40px; max-width: 720px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 500; color: var(--gold);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .eyebrow::before {
+      content: ""; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold); box-shadow: 0 0 10px var(--gold);
+    }
+    h1 {
+      font-size: clamp(36px, 5.4vw, 64px);
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+    h1 span { color: var(--gold); }
+    .lead {
+      font-size: 17px; color: var(--muted); max-width: 540px;
+      letter-spacing: -0.011em;
+    }
+
+    .bento {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      grid-template-areas:
+        "cust drv rest"
+        "cust adm adm";
+      gap: 12px;
+    }
+    .tile-cust { grid-area: cust; }
+    .tile-drv { grid-area: drv; }
+    .tile-rest { grid-area: rest; }
+    .tile-adm { grid-area: adm; }
+    .tile {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius);
+      overflow: hidden;
+      min-height: 220px;
+      display: flex; flex-direction: column;
+      transition: border-color .2s ease, background .2s ease;
+    }
+    .tile:hover { border-color: var(--hairline-strong); background: var(--surface-2); }
+    .tile.hero-tile {
+      min-height: 460px;
+      background:
+        radial-gradient(500px 280px at 80% 20%, var(--gold-dim), transparent 70%),
+        var(--surface);
+    }
+    .tile.hero-tile:hover { border-color: rgba(245, 197, 24, 0.35); }
+    .tile-body { padding: 22px 22px 20px; display: flex; flex-direction: column; flex: 1; }
+    .num {
+      font-size: 11px; font-weight: 600; color: var(--muted);
+      letter-spacing: 0.12em; margin-bottom: 18px;
+    }
+    .tile h2 { font-size: 22px; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 6px; }
+    .tile p { font-size: 14px; color: var(--muted); margin-bottom: auto; padding-bottom: 18px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 36px; padding: 0 14px; border-radius: 8px;
+      font-size: 13px; font-weight: 600; letter-spacing: -0.01em;
+    }
+    .btn-gold { background: var(--gold); color: #111; }
+    .btn-gold:hover { filter: brightness(1.06); }
+    .btn-ghost {
+      color: var(--ink);
+      border: 1px solid var(--hairline-strong);
+      background: transparent;
+    }
+    .btn-ghost:hover { background: var(--surface-3); }
+
+    .preview {
+      margin: 8px 22px 0; flex: 1;
+      border: 1px solid var(--hairline);
+      border-radius: 14px 14px 0 0;
+      background: var(--canvas-deep);
+      padding: 16px 14px 0;
+      display: flex; flex-direction: column; gap: 10px;
+      min-height: 220px;
+    }
+    .preview-bar { display: flex; gap: 6px; margin-bottom: 6px; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: #2a2c31; }
+    .row {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--surface-2);
+      border: 1px solid var(--hairline);
+      border-radius: 10px;
+      padding: 10px;
+    }
+    .thumb { width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0; }
+    .t1 { background: linear-gradient(135deg, #e23b26, #f5c518); }
+    .t2 { background: linear-gradient(135deg, #1f6f4a, #f5c518); }
+    .t3 { background: linear-gradient(135deg, #3a3a40, #8a8f98); }
+    .meta { flex: 1; }
+    .meta b { display: block; font-size: 12px; font-weight: 600; }
+    .meta span { font-size: 11px; color: var(--muted); }
+    .chip {
+      font-size: 10px; font-weight: 600; color: #111;
+      background: var(--gold); border-radius: 999px; padding: 3px 7px;
+    }
+
+    .note {
+      margin-top: 18px;
+      font-size: 13px; color: var(--muted);
+    }
+    footer {
+      margin-top: 48px;
+      padding-top: 18px;
+      border-top: 1px solid var(--hairline);
+      font-size: 12px; color: #62666d;
+      display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    }
+
+    @media (max-width: 860px) {
+      .bento {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+          "cust cust"
+          "drv rest"
+          "adm adm";
+      }
+      .tile.hero-tile { min-height: 420px; }
+    }
+    @media (max-width: 560px) {
+      .page { width: min(100% - 28px, 1120px); }
+      .bento {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "cust"
+          "drv"
+          "rest"
+          "adm";
+      }
+      h1 { font-size: 36px; }
+      nav { margin-bottom: 36px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+  <div class="page">
+    <nav>
+      <div class="brand"><span class="mark"><img src="/hub/logo.svg" alt="" /></span> Good Food Pro</div>
+      <a class="nav-link" href="/go.html?_g=20260813c&amp;c=docs&amp;utm_source=codecanyon&amp;utm_medium=demo_url&amp;utm_campaign=good_food_pro">Documentation</a>
+    </nav>
+
+    <section class="hero">
+      <div class="eyebrow">Live preview</div>
+      <h1>Four apps.<br>One <span>marketplace.</span></h1>
+      <p class="lead">Open a product below. On desktop, mobile demos show a QR code — scan it on your phone. Login is already filled in.</p>
+    </section>
+
+    <div class="bento">
+      <article class="tile hero-tile tile-cust">
+        <div class="tile-body">
+          <div class="num">01</div>
+          <h2>Customer</h2>
+          <p>Browse restaurants, order, pay, and track the rider.</p>
+          <div class="actions">
+            <a class="btn btn-gold" href="/go.html?_g=20260813c&amp;c=customer_web&amp;utm_source=codecanyon&amp;utm_medium=demo_url&amp;utm_campaign=good_food_pro">Launch demo</a>
+            <a class="btn btn-ghost" href="/go.html?_g=20260813c&amp;c=customer_apk&amp;utm_source=codecanyon&amp;utm_medium=demo_url&amp;utm_campaign=good_food_pro">Android APK</a>
+          </div>
+        </div>
+        <div class="preview" aria-hidden="true">
+          <div class="preview-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="row"><div class="thumb t1"></div><div class="meta"><b>Nearby restaurants</b><span>Open now · 20–30 min</span></div><span class="chip">4.8</span></div>
+          <div class="row"><div class="thumb t2"></div><div class="meta"><b>Live order tracking</b><span>Driver on the way</span></div></div>
+          <div class="row"><div class="thumb t3"></div><div class="meta"><b>Checkout</b><span>Card · wallet · cash</span></div></div>
+        </div>
+      </article>
+
+      <article class="tile tile-drv">
+        <div class="tile-body">
+          <div class="num">02</div>
+          <h2>Driver</h2>
+          <p>Accept jobs, navigate, complete the drop-off.</p>
+          <div class="actions">
+            <a class="btn btn-gold" href="/go.html?_g=20260813c&amp;c=driver_web&amp;utm_source=codecanyon&amp;utm_medium=demo_url&amp;utm_campaign=good_food_pro">Launch demo</a>
+            <a class="btn btn-ghost" href="/go.html?_g=20260813c&amp;c=driver_demo&amp;utm_source=codecanyon&amp;utm_medium=demo_url&amp;utm_campaign=good_food_pro">Android APK</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="tile tile-rest">
+        <div class="tile-body">
+          <div class="num">03</div>
+          <h2>Restaurant</h2>
+          <p>Incoming tickets and kitchen board.</p>
+          <div class="actions">
+            <a class="btn btn-gold" href="/go.html?_g=20260813c&amp;c=restaurant_web&amp;utm_source=codecanyon&amp;utm_medium=demo_url&amp;utm_campaign=good_food_pro">Launch demo</a>
+            <a class="btn btn-ghost" href="/go.html?_g=20260813c&amp;c=restaurant_apk&amp;utm_source=codecanyon&amp;utm_medium=demo_url&amp;utm_campaign=good_food_pro">Android APK</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="tile tile-adm">
+        <div class="tile-body">
+          <div class="num">04</div>
+          <h2>Admin</h2>
+          <p>Marketplace dashboard — restaurants, orders, payouts.</p>
+          <div class="actions">
+            <a class="btn btn-gold" href="/go.html?_g=20260813c&amp;c=admin_demo&amp;utm_source=codecanyon&amp;utm_medium=demo_url&amp;utm_campaign=good_food_pro">Launch demo</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <p class="note">Web demos open with login already filled. Demo data may reset. Do not store personal information.</p>
+    <footer>
+      <span>Good Food Pro</span>
+      <span>Customer · Driver · Restaurant · Admin</span>
+    </footer>
+  </div>
+</body>
+</html>
