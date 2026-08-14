@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Good Food Pro — Launch your own Uber Eats–style marketplace</title>
+  <title>Launch your own Uber Eats–style marketplace</title>
   <link rel="icon" href="/hub/logo.svg" type="image/svg+xml" />
   <meta name="robots" content="noindex,nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -46,8 +46,12 @@
     }
     .brand { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; letter-spacing: -0.02em; }
     .brand img { width: 40px; height: 40px; object-fit: contain; }
-    .nav-link { font-size: 13px; font-weight: 500; color: var(--muted); }
-    .nav-link:hover { color: var(--ink); }
+    .nav-pitch {
+      font-size: 13px; font-weight: 500; color: var(--muted);
+      letter-spacing: -0.01em;
+      text-align: right;
+      max-width: 280px;
+    }
 
     .hero {
       min-height: calc(100vh - 72px);
@@ -164,12 +168,12 @@
   <div class="glow" aria-hidden="true"></div>
   <div class="wrap">
     <nav>
-      <div class="brand"><img src="/hub/logo.svg" alt="" /> Good Food Pro</div>
-      <a class="nav-link" href="/go.html?_g=20260814c&amp;c=docs&amp;utm_source=codecanyon&amp;utm_medium=demo_url&amp;utm_campaign=good_food_pro">Documentation</a>
+      <div class="brand"><img src="/hub/logo.svg" alt="Logo" /></div>
+      <p class="nav-pitch">White-label food delivery for your city</p>
     </nav>
 
     <header class="hero">
-      <p class="eyebrow">Good Food Pro</p>
+      <p class="eyebrow">Multi-restaurant marketplace</p>
       <h1>Launch your own <em>Uber Eats–style</em> marketplace</h1>
       <p class="lead">Customer, driver, restaurant, admin, and the backend you host. Real orders, live tracking, and <strong>AI recommendations, smart ETA, and surge pricing</strong> built into the customer app.</p>
       <p class="meta">One purchase · Five products · AI · Logistics · Recurring revenue</p>
@@ -307,7 +311,7 @@
     </section>
 
     <footer>
-      <span>Good Food Pro</span>
+      <span>Customer · Driver · Restaurant · Admin · Backend</span>
       <span>Self-hosted marketplace</span>
     </footer>
   </div>
