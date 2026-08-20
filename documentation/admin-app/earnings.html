@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Commissions &amp; earnings — Admin app — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Commissions &amp; earnings — Admin app</h1><p>Review platform vs restaurant (and delivery/tax) splits by period.</p><h2>Prerequisites</h2><ol><li>Backend migrated; demo or real completed orders that produce earnings rows.</li><li>Default commission set in <a href="app-settings.html">App Settings</a>.</li><li>Admin signed in against the same API.</li></ol><h2>Steps</h2><ol><li>Complete a test order end-to-end (customer → restaurant accept → complete / paid).</li><li>Open <strong>Earnings</strong> (<code>/earnings</code>) — list periods and totals.</li><li><strong>View</strong> a row → <strong>Earnings details</strong>:</li></ol><ul><li>Summary: period range, reference, total earnings</li><li>Split cards: platform commission, restaurant earnings, delivery earnings, taxes</li><li><strong>Transactions</strong> table for that period</li><li><strong>Payouts</strong> (pending/completed) when money is owed out</li></ul><ol><li>If the split looks wrong, re-check App Settings commission and the related orders; restaurant subscription benefits can soften the platform cut (<a href="subscriptions.html">subscriptions</a>).</li></ol><h2>Smoke test</h2><table><tr><th>Step</th><th>Expect</th></tr><tr><td>List after completed orders</td><td>Rows with period totals</td></tr><tr><td>View detail</td><td>Summary + four split cards + transactions</td></tr><tr><td>Payout pending</td><td>Restaurant earnings amount appears under Payouts when applicable</td></tr><tr><td>Change commission then new order</td><td>New earning rows reflect the new rate</td></tr></table><h2>Related</h2><ul><li><a href="monetization.html">monetization index</a></li><li><a href="../my-backend/commission-engine.html">backend commission engine</a></li><li><a href="transactions.html">transactions / money ledger</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "admin-app/earnings.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

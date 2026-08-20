@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paystack — how to configure (Admin) — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Paystack — how to configure (Admin)</h1><h2>What this gateway does</h2><ul><li>Identifier: <code>paystack</code></li><li>Init: <code>POST /api/gateways/initialize</code> → <code>POST https://api.paystack.co/transaction/initialize</code></li><li>Auth: <code>Authorization: Bearer &lt;secretKey&gt;</code></li><li>Amount converted to <strong>minor units</strong> via shared helper (zero-decimal currencies handled)</li><li>Returns <code>authorizationUrl</code>, <code>accessCode</code></li></ul><h2>Prerequisites</h2><ol><li>Paystack test keys, then live keys.</li><li>Callback URL registered consistently (Paystack dashboard + <code>callbackUrl</code> on initialize).</li><li>Seeded <code>paystack</code> gateway row.</li></ol><h2>Admin steps</h2><ol><li><strong>Gateways</strong> → <strong>Paystack</strong>.</li><li>Paste <strong>public key</strong> + <strong>secret key</strong>.</li><li>Capabilities (seed often enables refunds, withdrawals, webhooks, subscriptions).</li><li><strong>Active</strong> → Save.</li></ol><h2>Smoke test</h2><pre><code>curl -s -X POST http://localhost:5000/api/gateways/initialize \
+  -H &quot;Authorization: Bearer $TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#x27;{&quot;provider&quot;:&quot;paystack&quot;,&quot;amount&quot;:10,&quot;currency&quot;:&quot;NGN&quot;,&quot;email&quot;:&quot;buyer@example.com&quot;,&quot;callbackUrl&quot;:&quot;https://example.com/paystack/callback&quot;}&#x27;</code></pre><table><tr><th>Step</th><th>Expect</th></tr><tr><td>Demo secret</td><td><code>demo: true</code> hint</td></tr><tr><td>Real secret</td><td><code>authorizationUrl</code> + <code>accessCode</code></td></tr><tr><td>Customer pays on Paystack page</td><td>Reference settles; order/ledger updates</td></tr><tr><td>Wrong currency for merchant</td><td>Provider error — fix currency in app settings / checkout</td></tr></table><h2>Differs from others</h2><ul><li>No environment dropdown — test vs live = which keys you paste.</li><li>No encryption key field (unlike Flutterwave).</li></ul><h2>Related</h2><ul><li><a href="gateways.html">gateways.md</a> · <a href="gateway-flutterwave.html">gateway-flutterwave.md</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "admin-app/gateway-paystack.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

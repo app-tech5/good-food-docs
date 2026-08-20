@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Internal Wallet — how to configure (Admin) — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Internal Wallet — how to configure (Admin)</h1><h2>What this gateway does</h2><ul><li>Identifier: <code>internal-wallet</code></li><li>Spends the customer’s <strong>in-app balance</strong> (ledger debit) — not an external authorize URL</li><li>Seed credential: <strong>platformSecret</strong> (server-side only)</li><li>Capabilities often: refunds to wallet on; withdrawals off; no provider webhooks</li><li><strong>Top-ups</strong> still require an external PSP (Stripe / Paystack / …)</li></ul><h2>Prerequisites</h2><ol><li>At least one external gateway configured for top-up.</li><li>Wallet / cashback flags understood in App Settings (<a href="app-settings.html">app-settings.md</a>).</li><li>Backend wallet ledger services healthy (<a href="../my-backend/payments-wallet.html">payments-wallet.md</a>).</li></ol><h2>Admin steps</h2><ol><li><strong>Gateways</strong> → <strong>Internal Wallet</strong>.</li><li>Set/rotate <strong>platform secret</strong> per your deploy practice — never ship it in mobile apps or public repos.</li><li>Tick <strong>Active</strong> if checkout should offer “pay with wallet”.</li><li>Align refund-to-wallet / cashback behaviour in App Settings.</li><li>Save.</li></ol><h2>Smoke test</h2><table><tr><th>Step</th><th>Expect</th></tr><tr><td>Top up via external PSP</td><td>Wallet balance increases (<a href="../customer-app/wallet.html">customer wallet</a>)</td></tr><tr><td>Pay order with wallet</td><td>Order paid; ledger debit exists</td></tr><tr><td>Insufficient balance</td><td>Clear failure — not a card decline</td></tr><tr><td>Instant refund to wallet (if enabled)</td><td>Credit appears after eligible cancel/refund</td></tr><tr><td>Platform secret in client bundle</td><td><strong>Fail security review</strong> — keep server-only</td></tr></table><h2>Differs from others</h2><ul><li>Ledger method. Combine with a card/mobile-money gateway for funding the wallet.</li></ul><h2>Related</h2><ul><li><a href="gateways.html">gateways.md</a> · <a href="../customer-app/wallet.html">wallet.md</a> · <a href="../my-backend/payments-wallet.html">payments-wallet.md</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "admin-app/gateway-wallet.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

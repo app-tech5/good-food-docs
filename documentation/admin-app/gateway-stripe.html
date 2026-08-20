@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stripe — how to configure (Admin) — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Stripe — how to configure (Admin)</h1><h2>What this gateway does in the suite</h2><ul><li><strong>Checkout / saved cards / payment intents</strong> via <code>/api/payments/stripe/…</code></li><li><strong>Driver payouts (Connect)</strong> via <code>/api/connect</code> when Connect is enabled</li><li>Admin row identifier: <code>stripe</code></li><li>Credential shape: publishable key, secret key, webhook signing secret (plus capabilities / fees on the Gateway document)</li></ul><p>This is <strong>not</strong> the same code path as Paystack/Flutterwave (<code>POST /api/gateways/initialize</code>).</p><h2>Prerequisites</h2><ol><li><code>my-backend</code> running; migrations applied (Stripe row seeded).</li><li>For live Stripe calls beyond admin storage, set backend env (see <code>my-backend/.env.example</code>):</li></ol><pre><code>STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key
+STRIPE_CONNECT_COUNTRY=FR
+STRIPE_CONNECT_RETURN_URL=goodfooddriver://stripe-connect/return
+STRIPE_CONNECT_REFRESH_URL=goodfooddriver://stripe-connect/refresh</code></pre><ol><li>Admin open on the same API base URL.</li></ol><h2>Admin steps</h2><ol><li>Open <strong>Gateways</strong> → <strong>View</strong> on <strong>Stripe</strong>.</li><li>Set capabilities to match what you operate:</li></ol><ul><li><code>canRefund</code> / Refunds supported</li><li><code>canWithdraw</code> / Payouts</li><li><code>hasWebhook</code> / Webhooks</li><li><code>isSubscriptionReady</code> / Subscriptions</li></ul><ol><li>Paste credentials from Stripe Dashboard → Developers → API keys / Webhooks:</li></ol><table><tr><th>Admin field (typical)</th><th>Stripe Dashboard</th></tr><tr><td>Publishable key</td><td><code>pk_test_…</code> / <code>pk_live_…</code></td></tr><tr><td>Secret key</td><td><code>sk_test_…</code> / <code>sk_live_…</code></td></tr><tr><td>Webhook signing secret</td><td><code>whsec_…</code> from your webhook endpoint</td></tr></table><ol><li>Tick <strong>Active</strong> only when keys are valid for the environment you are testing.</li><li>Save (<strong>Send</strong>).</li><li>Configure a Stripe webhook endpoint that hits your deployed API Stripe webhook handler; use that endpoint’s signing secret in admin (and keep server <code>STRIPE_SECRET_KEY</code> in sync with the same mode — test vs live).</li></ol><h2>Smoke test</h2><table><tr><th>Step</th><th>Expect</th></tr><tr><td>Gateway Active with demo/placeholder keys only</td><td>Card flows fail or stay in demo — replace keys</td></tr><tr><td><code>POST /api/payments/stripe/payment-intent</code> with auth</td><td>Intent created when <code>STRIPE_SECRET_KEY</code> is real</td></tr><tr><td>Customer checkout pays with card</td><td>Order paid; transaction/ledger row exists</td></tr><tr><td>Connect onboarding (driver app)</td><td>Account link opens when Connect env URLs are set</td></tr><tr><td>Deactivate Stripe in admin while apps still offer card</td><td>Init/checkout should fail clearly — do not leave stale Active+demo</td></tr></table><h2>Differs from other gateways (ops checklist)</h2><ul><li>No sandbox/live dropdown — mode is encoded in the key prefix.</li><li>Do not use <code>/api/gateways/initialize</code> as your only Stripe check; exercise <code>/api/payments/stripe/…</code>.</li><li>Subscriptions / Connect are Stripe-specific concerns in this suite.</li></ul><h2>Related</h2><ul><li><a href="gateways.html">gateways.md</a> · <a href="../my-backend/payments-wallet.html">payments-wallet.md</a> · <a href="../my-backend/getting-started.html">backend getting started</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "admin-app/gateway-stripe.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

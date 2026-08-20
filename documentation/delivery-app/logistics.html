@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Logistics &amp; POD — index — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Logistics &amp; POD — index</h1><p>Driver logistics HOW-TOs, split by topic. All three share the same backend <code>logisticsService.js</code> and the same <code>Order</code> status pipeline the customer and restaurant apps use.</p><table><tr><th>Guide</th><th>What you configure</th></tr><tr><td><a href="deliveries.html">Job board &amp; batching</a></td><td>Per-restaurant <code>autoAssignmentRadius</code> (batch distance) and <code>driverAssignmentMethod</code> (AUTO/MANUAL/HYBRID) in Delivery Settings.</td></tr><tr><td><a href="active-delivery.html">On the road</a></td><td>Nothing new to configure — it&#x27;s a live view of the assigned order(s); depends on location permission staying granted.</td></tr><tr><td><a href="proof-of-delivery.html">Photo &amp; signature POD</a></td><td>Backend env vars <code>LOGISTICS_POD_GEOFENCE_M</code> (default 150m) and <code>LOGISTICS_POD_GEOFENCE_SOFT</code> (default true = warn, not block) — not Admin UI fields.</td></tr></table><p>Backend: <a href="../my-backend/logistics-engine.html">Logistics engine</a>.</p><h3>Full smoke checklist</h3><ol><li>Customer orders delivery.</li><li>Restaurant accepts / marks ready.</li><li>Driver goes online → accepts the job (batch if offered based on <code>autoAssignmentRadius</code>).</li><li>Customer watches live tracking while the driver&#x27;s location streams in.</li><li>Driver completes with photo + signature (subject to the geofence check above).</li><li>Admin/customer/restaurant all see the same order marked delivered.</li></ol>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "delivery-app/logistics.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

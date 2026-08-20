@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wallet &amp; cashback — Customer app — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Wallet &amp; cashback — Customer app</h1><p>In-app balance the customer can top up and pay checkout with, plus platform-funded cashback and instant refunds. The balance itself is not a stored number — it is computed live from the customer&#x27;s <code>Transaction</code> ledger: completed credits (<code>customer_top_up</code>, <code>refund</code>, <code>adjustment</code>, <code>cashback</code>) minus completed debits (<code>customer_payment</code> paid with <code>platform_credit</code>).</p><h2>What drives this (Admin → App Settings → Wallet)</h2><ul><li><strong><code>walletCashbackEnabled</code></strong> — when true (default), every order that reaches <code>delivered</code> status automatically credits cashback to the customer&#x27;s wallet. Turn it off and no cashback transactions are created, but existing balance/history stays.</li><li><strong><code>walletCashbackPercent</code></strong> — the percent (default 2%) applied to the order&#x27;s <code>subtotal</code> to compute the cashback amount. The system won&#x27;t cashback the same order twice.</li><li><strong><code>walletInstantRefundEnabled</code></strong> — when true (default), cancelling a <strong>paid</strong> order (card, wallet, gateway — not unpaid cash-on-delivery) immediately credits the full order total back to the customer&#x27;s wallet instead of waiting for a manual refund.</li><li><strong>Top-up / pay-with-wallet at checkout</strong> still depends on which gateways are marked <strong>Active</strong> in Admin (<a href="../admin-app/gateways.html">gateways</a>) — the wallet itself has no separate &quot;enabled&quot; switch; it&#x27;s always available as a payment method once a customer has a balance.</li></ul><h2>Try it</h2><ol><li>Customer → <strong>Wallet</strong> — note the balance and recent transactions.</li><li><strong>Add Money</strong> — pick an amount chip, pay with an active gateway, confirm the balance increases.</li><li>Checkout an order using the wallet when the balance covers it.</li><li>To see cashback: place an order and advance it to <strong>delivered</strong> (restaurant + driver apps) — confirm a <code>cashback</code> line appears in <strong>Wallet → Transactions</strong> at <code>walletCashbackPercent</code> of the subtotal.</li><li>To see instant refund: cancel a <strong>paid</strong> order and confirm a <code>refund</code> transaction lands in the wallet immediately (cancelling an unpaid cash-on-delivery order does not create a refund — there was nothing charged).</li></ol><h2>Related</h2><ul><li><a href="checkout.html">Checkout</a> · Admin <a href="../admin-app/gateways.html">gateways</a> · Backend <a href="../my-backend/payments-wallet.html">payments &amp; wallet</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "customer-app/wallet.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

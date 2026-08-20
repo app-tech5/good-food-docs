@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Languages &amp; RTL — Restaurant app — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Languages &amp; RTL — Restaurant app</h1><p>EN / FR / ES / AR strings switchable from restaurant Settings (RTL for Arabic). This app has its own <code>lang/</code> files — separate from the customer, driver, and admin apps.</p><h2>What drives this</h2><ul><li><strong>App Settings → <code>defaultLanguage</code></strong> (Admin) sets the language a fresh restaurant session starts in; it doesn&#x27;t override a staff member who already picked a language.</li><li><strong><code>lang/en.json</code> / <code>fr.json</code> / <code>es.json</code> / <code>ar.json</code> + <code>i18n.js</code></strong> hold this app&#x27;s copy — Orders, Menu, Kitchen Display, and drawer strings all pull from here.</li><li><strong>RTL</strong> mirrors navigation and text direction automatically for Arabic — worth testing on the Orders list and Kitchen Display since those are the highest-traffic screens during service.</li></ul><h2>Try it</h2><ol><li>Restaurant → <strong>Settings</strong> → language.</li><li>Confirm Orders / Menu / drawer strings update.</li><li>Try Arabic RTL during a quiet moment (not mid-rush) and confirm layout — not just text — mirrors.</li></ol><h2>Related</h2><ul><li><a href="../customer-app/languages-rtl.html">Customer languages</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "restaurant-app/languages.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

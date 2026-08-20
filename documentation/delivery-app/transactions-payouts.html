@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payouts &amp; history — Driver app — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Payouts &amp; history — Driver app</h1><p>Transaction trail (every <code>delivery_fee</code>, adjustment, or payout line for this driver) and the bank/Connect setup that turns accrued earnings into an actual bank deposit.</p><h2>What drives this</h2><ul><li><strong>Transaction list</strong> — each row is a <code>Transaction</code> document scoped to this driver (<code>driver_payout</code>, <code>delivery_fee</code>, <code>adjustment</code>, etc.) — the same records support and admin use to resolve a dispute, so what the driver sees here matches what admin sees on their side.</li><li><strong>Payout methods</strong> — backed by <code>PaymentMethod.stripeConnectAccountId</code> when Stripe Connect is configured on the backend, or manual bank details (<code>bankDetails</code>) otherwise. Whether Connect onboarding is offered at all depends on the backend having Stripe Connect environment keys configured — see <a href="../my-backend/getting-started.html">backend getting started</a>.</li><li><strong>&quot;Ready for settlement&quot;</strong> in this build simply reflects whether a payout method exists and is complete/verified; actual bank transfer timing depends on your Stripe Connect account, not on anything inside this app.</li></ul><h2>Try it</h2><ol><li>Open <strong>Transactions</strong> — use these rows for support disputes (they should match what admin sees for the same driver).</li><li>Open <strong>Payout methods</strong> — add bank details or complete Stripe Connect onboarding if enabled.</li><li>Confirm the method shows as ready before expecting a real bank settlement.</li></ol><h2>Related</h2><ul><li><a href="earnings.html">Shift earnings</a> · <a href="../my-backend/getting-started.html">Backend getting started</a> (Stripe Connect env)</li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "delivery-app/transactions-payouts.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

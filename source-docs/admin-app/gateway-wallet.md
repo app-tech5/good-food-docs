@@ -1,7 +1,5 @@
 # Internal Wallet — how to configure (Admin)
 
-Technical HOW-TO. Online HTML: `admin-app/gateway-wallet.html`.
-
 ## What this gateway does
 
 - Identifier: `internal-wallet`

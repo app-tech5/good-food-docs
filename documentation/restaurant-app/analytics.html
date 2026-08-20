@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Performance — Restaurant app — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Performance — Restaurant app</h1><p>Revenue, average order value, trends, and bestsellers for a selected period — computed from this restaurant&#x27;s real completed orders, not sample/mock data. An empty chart on day one is the correct behaviour, not a bug.</p><h2>What drives this</h2><ul><li><strong>Period selector</strong> re-queries orders for that window (day/week/month depending on your build) and recomputes every metric — nothing here is cached beyond the current period.</li><li><strong>Revenue / average order value / trend</strong> are aggregated from this restaurant&#x27;s own <code>Order</code> totals (<code>totalPrice</code>, including delivery fee and tax as charged) — orders still <code>pending</code>/<code>cancelled</code> don&#x27;t count as revenue.</li><li><strong>Bestsellers</strong> come from actual item quantities across completed orders — a menu item with zero real orders will never appear here regardless of how it&#x27;s priced or photographed.</li><li>Numbers here are restaurant-scoped; platform-wide equivalents live in Admin (<a href="../admin-app/reports.html">reports</a>, <a href="../admin-app/sales-reports.html">sales reports</a>).</li></ul><h2>Try it</h2><ol><li>Complete several live orders over a day or two (empty charts on day one are expected).</li><li>Open <strong>Analytics</strong> and switch the period selector — confirm totals change with the window.</li><li>Use bestsellers and quiet time slots to adjust the <a href="menu.html">menu</a> (feature or 86 items) and staffing.</li></ol><h2>Related</h2><ul><li><a href="orders.html">Incoming orders</a> · <a href="menu.html">Menu</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "restaurant-app/analytics.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

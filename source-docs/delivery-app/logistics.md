@@ -1,6 +1,6 @@
 # Logistics & POD — index
 
-Driver logistics HOW-TOs, split like the online docs. All three share the same backend `logisticsService.js` and the same `Order` status pipeline the customer and restaurant apps use.
+Driver logistics HOW-TOs, split by topic. All three share the same backend `logisticsService.js` and the same `Order` status pipeline the customer and restaurant apps use.
 
 | Guide | What you configure |
 |-------|---------------------|

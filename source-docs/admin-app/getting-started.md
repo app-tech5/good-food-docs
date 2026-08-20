@@ -78,7 +78,6 @@ Languages, currency, channels: [Market adaptability](./market.md).
 
 Browser tab title and PWA labels live under `public/` (`index.html`, `manifest.json`). Logo assets follow the project’s public logo path. Full branding notes: [environment-config.md](./environment-config.md).
 
-
 ## Stack & where things live (for launch)
 
 The admin app is a **React** web dashboard (Create React App–style). Deploy the built static assets to any static host; day-to-day work is desktop-first (wide tables).
@@ -121,5 +120,5 @@ Some builds expose quick-fill role credentials on the login screen. Replace samp
 ## Next
 
 - [00-launch-suite.md](../00-launch-suite.md) — end-to-end smoke test
-- Feature HOW-TOs under this folder (same topics as the online sidebar) — start with [orders](./orders.md), [earnings](./earnings.md), [languages](./languages.md); indexes: [monetization.md](./monetization.md), [market.md](./market.md)
+- Feature HOW-TOs under this folder  — start with [orders](./orders.md), [earnings](./earnings.md), [languages](./languages.md); indexes: [monetization.md](./monetization.md), [market.md](./market.md)
 - Mobile apps — customer / driver / restaurant getting-started pages

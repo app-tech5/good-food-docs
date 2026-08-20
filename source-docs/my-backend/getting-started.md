@@ -130,7 +130,6 @@ If you set `PORT=6000`, update **every** client:
 - Rotate `JWT_SECRET` and Stripe keys for production.
 - Restrict `CORS_ORIGINS` to real admin (and any web) origins — not `*`.
 
-
 ## Stack & where things live (for launch)
 
 The API is **Node.js + Express** with **MongoDB** (Mongoose), JWT auth, file uploads, i18n, and **migrate-mongo** for schema/seed evolution. Real-time channels (for example live tracking) are available when enabled in your deploy.

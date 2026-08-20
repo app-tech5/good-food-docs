@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flutterwave — how to configure (Admin) — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Flutterwave — how to configure (Admin)</h1><h2>What this gateway does</h2><ul><li>Identifier: <code>flutterwave</code></li><li>Init: <code>POST /api/gateways/initialize</code> → Flutterwave <strong>v3</strong> <code>POST /v3/payments</code></li><li>Returns <code>authorizationUrl</code> from <code>data.link</code> (hosted redirect)</li><li>Credentials: <strong>publicKey</strong>, <strong>secretKey</strong>, <strong>encryptionKey</strong></li></ul><h2>Prerequisites</h2><ol><li>Flutterwave dashboard keys for your country/currency mix.</li><li>Backend can reach <code>https://api.flutterwave.com</code>.</li><li>Admin gateway row <code>flutterwave</code> present (seed).</li></ol><h2>Admin steps</h2><ol><li><strong>Gateways</strong> → <strong>Flutterwave</strong>.</li><li>Paste public, secret, and encryption keys.</li><li>Set capabilities; note seed often has <code>isSubscriptionReady: false</code>.</li><li><strong>Active</strong> → Save.</li><li>Ensure checkout passes a <strong>currency Flutterwave supports</strong> for that merchant.</li></ol><h2>Smoke test</h2><pre><code>curl -s -X POST http://localhost:5000/api/gateways/initialize \
+  -H &quot;Authorization: Bearer $TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#x27;{&quot;provider&quot;:&quot;flutterwave&quot;,&quot;amount&quot;:5000,&quot;currency&quot;:&quot;NGN&quot;,&quot;email&quot;:&quot;buyer@example.com&quot;,&quot;callbackUrl&quot;:&quot;https://example.com/flw/return&quot;}&#x27;</code></pre><table><tr><th>Step</th><th>Expect</th></tr><tr><td>Secret contains <code>demo_</code></td><td><code>demo: true</code> + configure hint</td></tr><tr><td>Real secret</td><td><code>authorizationUrl</code> set</td></tr><tr><td>Complete hosted pay + redirect</td><td>Order advances after callback/webhook handling</td></tr></table><h2>Differs from others</h2><ul><li>Extra <strong>encryption key</strong> vs Paystack.</li><li>Redirect-first (unlike Razorpay orderId + SDK).</li></ul><h2>Related</h2><ul><li><a href="gateways.html">gateways.md</a> · <a href="gateway-paystack.html">gateway-paystack.md</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "admin-app/gateway-flutterwave.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

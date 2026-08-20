@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subscriptions engine — Backend API — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Subscriptions engine — Backend API</h1><p>What each plan benefit does once a customer, driver, or restaurant is enrolled.</p><h2>Plan shape</h2><p>A <code>Subscription</code> is a template: <code>target</code> (<code>customer</code> / <code>restaurant</code> / <code>driver</code>), <code>price</code>, <code>currency</code>, <code>billing_cycle</code>, display <code>benefits</code> tags, and <code>benefitFlags</code> (the flags that change money and checkout).</p><p>Enrollment creates a <code>UserSubscription</code> (active + period end). Other services resolve perks via the member’s active plan for their role.</p><h2>Benefit flags — what they do</h2><table><tr><th>Flag</th><th>Audience</th><th>Effect</th></tr><tr><td><code>reducedCommissionPercent</code></td><td>Restaurant</td><td>Lowers platform commission on completed orders</td></tr><tr><td><code>waiveCommission</code> / <code>platformAccess</code></td><td>Restaurant</td><td>Platform commission <strong>0%</strong> while enrolled (flat SaaS fee instead)</td></tr><tr><td><code>freeDelivery</code></td><td>Customer</td><td>Checkout sets delivery fee to <strong>0</strong></td></tr><tr><td><code>discountPercent</code></td><td>Customer</td><td>Checkout takes that % off subtotal (before tax)</td></tr><tr><td><code>prioritySupport</code></td><td>Driver (also customer/restaurant display)</td><td>Drivers get first look at new pending jobs and a wider batch radius</td></tr></table><p>Restaurant commission math: <a href="commission-engine.html">commission engine</a>.  </p><p>Customer pricing is applied when the order is created (app checkout and channel intake), so totals cannot be bypassed by the client.</p><h2>Configure a plan</h2><ol><li>Admin → <strong>Subscriptions</strong> — set <code>target</code>, price, cycle, and the benefit flags above.</li><li>Restaurant SaaS: prefer <code>waiveCommission</code> + <code>platformAccess</code>; or use <code>reducedCommissionPercent</code> for a softer cut.</li><li>Customer perks: turn on <code>freeDelivery</code> and/or set <code>discountPercent</code>.</li><li><code>is_active: false</code> hides the plan from new sign-ups without wiping existing members.</li></ol><h2>Verify</h2><table><tr><th>Check</th><th>Expect</th></tr><tr><td>Restaurant + <code>waiveCommission</code></td><td>Earnings show 0% platform cut on new orders</td></tr><tr><td>Restaurant + <code>reducedCommissionPercent</code></td><td>Platform cut softens by that %</td></tr><tr><td>Customer + <code>freeDelivery</code></td><td>Checkout delivery fee is 0</td></tr><tr><td>Customer + <code>discountPercent</code></td><td>Checkout subtotal reduced before tax</td></tr></table><h2>Related</h2><ul><li><a href="commission-engine.html">Commission engine</a></li><li>Admin: <a href="../admin-app/subscriptions.html">subscriptions</a></li><li>Apps: <a href="../customer-app/subscriptions.html">customer</a> · <a href="../delivery-app/subscriptions.html">driver</a> · <a href="../restaurant-app/subscriptions.html">restaurant</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "my-backend/subscriptions-engine.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

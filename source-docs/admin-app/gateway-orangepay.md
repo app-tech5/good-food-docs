@@ -1,7 +1,5 @@
 # OrangePay — how to configure (Admin)
 
-Technical HOW-TO. Online HTML: `admin-app/gateway-orangepay.html`.
-
 ## What this gateway does
 
 - Identifier: `orange-pay`

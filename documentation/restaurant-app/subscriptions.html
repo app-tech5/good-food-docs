@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Partner plans — Restaurant app — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Partner plans — Restaurant app</h1><p>Restaurant-targeted SaaS tiers — this is the one subscription surface in the suite where the benefit flags are fully wired into real money math, not just a display label.</p><h2>What operators set in Admin (Subscriptions, <code>target = restaurant</code>)</h2><ul><li><strong><code>price</code></strong>, <strong><code>billing_cycle</code></strong> — what the restaurant pays for the plan.</li><li><strong><code>benefits</code></strong> — plain-text bullets shown on the plan card (tools, visibility, support, etc.).</li><li><strong><code>benefitFlags.reducedCommissionPercent</code></strong> — shaves this many percentage points off the restaurant&#x27;s normal commission rate on every order while the subscription is active.</li><li><strong><code>benefitFlags.waiveCommission</code></strong> or <strong><code>platformAccess</code></strong> — either flag drops the restaurant&#x27;s commission to <strong>0%</strong> entirely (SaaS-access mode: the flat subscription fee replaces per-order commission).</li><li><strong><code>benefitFlags.prioritySupport</code></strong> — display-only perk (support routing/labeling on your side).</li></ul><h2>What the restaurant actually sees</h2><p><code>commissionService.getEffectiveCommissionRate()</code> is called on every order split: it looks up the restaurant owner&#x27;s active <code>restaurant</code>-target subscription and applies whichever of the rules above is active, before splitting the order total into platform vs. restaurant amounts. So a restaurant on a commission-relief plan will see a <strong>larger payout on the very next order</strong> — this is real, not cosmetic. Restaurants don&#x27;t see the raw <code>benefitFlags</code> field, just the resulting lower commission line in their earnings.</p><h2>Try it</h2><ol><li>In Admin, confirm an active plan exists with <code>target = restaurant</code> and <code>benefitFlags.reducedCommissionPercent</code> (or <code>waiveCommission</code>) set (<a href="../admin-app/subscriptions.html">admin subscriptions</a>).</li><li>Restaurant app → <strong>Subscriptions</strong> → Subscribe, complete payment.</li><li>Accept and complete a new order.</li><li>Compare the commission taken on that order against the restaurant&#x27;s base <code>commission_rate</code> — it should be reduced (or zero) per the plan&#x27;s flags.</li></ol><h2>Related</h2><ul><li><a href="sponsored.html">Sponsored visibility</a> · <a href="../my-backend/subscriptions-engine.html">Backend subscriptions</a> · <a href="../my-backend/commission-engine.html">Backend commission engine</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "restaurant-app/subscriptions.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

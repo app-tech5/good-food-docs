@@ -1,6 +1,6 @@
 # AI intelligence — index
 
-Customer-facing intelligence is split into three HOW-TOs, matching the online docs. All three are served by the same backend engine (`src/services/intelligenceService.js`) and share the same weather/routing fallbacks.
+Customer-facing intelligence is split into three HOW-TOs. All three are served by the same backend engine (`src/services/intelligenceService.js`) and share the same weather/routing fallbacks.
 
 | Guide | What you configure |
 |-------|---------------------|

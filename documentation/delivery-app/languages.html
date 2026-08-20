@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Languages &amp; RTL — Driver app — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Languages &amp; RTL — Driver app</h1><p>EN / FR / ES / AR strings switchable from driver Settings (RTL for Arabic). This app has its own <code>lang/</code> files independent of the customer/restaurant apps — translating one does not translate the others.</p><h2>What drives this</h2><ul><li><strong>App Settings → <code>defaultLanguage</code></strong> (Admin) sets the language a fresh driver session starts in; it doesn&#x27;t override a driver who already picked a language.</li><li><strong><code>lang/en.json</code> / <code>fr.json</code> / <code>es.json</code> / <code>ar.json</code> + <code>i18n.js</code></strong> hold this app&#x27;s actual copy — job board, active-delivery, and POD strings all come from here.</li><li><strong>RTL</strong> is applied automatically for Arabic by the app&#x27;s i18n layer — useful to demo mid-shift screens (job board, active job) since drivers rely on quick scanning, not just readable text direction.</li></ul><h2>Try it</h2><ol><li>Driver → <strong>Settings</strong> → language.</li><li>Confirm Deliveries / Active job strings update immediately.</li><li>Try Arabic RTL on the job board and confirm layout mirrors, not just text.</li></ol><h2>Related</h2><ul><li><a href="../customer-app/languages-rtl.html">Customer languages</a> · <a href="../admin-app/languages.html">Admin languages</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "delivery-app/languages.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart delivery ETA — Customer app — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Smart delivery ETA — Customer app</h1><p>The ETA chip on the restaurant page and checkout is a real min–max range computed per request from kitchen load, prep time, and travel — it is not a fixed label.</p><h2>What drives this</h2><ul><li><strong>Prep time floor</strong> — each restaurant&#x27;s <code>DeliverySetting.deliveryPreparationTime</code> (default 30 min) is the base; there&#x27;s no Admin App Settings equivalent, it&#x27;s set per restaurant.</li><li><strong>Kitchen load</strong> — the number of that restaurant&#x27;s orders currently <code>pending</code>/<code>preparing</code>/<code>ready</code> adds extra minutes (capped at 45 extra minutes) — a busy kitchen genuinely widens the ETA shown to customers.</li><li><strong>Travel time</strong> — uses live <strong>OSRM</strong> driving-time routing between the restaurant and customer coordinates when reachable; falls back to a distance-based heuristic (faster in normal hours, slower during rush windows) when OSRM is unreachable.</li><li><strong>Rush hour</strong> — 7–9, 12–14, and 17–20 apply a travel-time multiplier on top of the routed or heuristic time.</li><li><strong>Weather</strong> — rain adds ~6 minutes, cold adds ~3 minutes to the top of the range (via the same Open-Meteo/heuristic weather lookup used by recommendations and surge).</li></ul><p>None of this is Admin-configurable beyond the restaurant&#x27;s prep time — the rest reacts to real order volume, distance, and weather at request time.</p><h2>Try it</h2><ol><li>Build up kitchen load for a restaurant (several accepted/preparing orders), or use seeded demo activity.</li><li>Open that restaurant&#x27;s detail page / checkout — note the ETA range (e.g. &quot;26–36 min&quot;).</li><li>Clear the kitchen queue (advance/deliver those orders) and reload — the range should tighten back toward the base prep + travel time.</li><li>Explain to the client: OSRM routing when online, heuristic distance × time-per-km when offline — both are visible in the API response&#x27;s <code>factors.routingSource</code>.</li></ol><h2>Related</h2><ul><li><a href="restaurant-page.html">Restaurant details</a> · <a href="recommendations.html">Recommendations</a> · <a href="delivery-fee.html">Surge pricing</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "customer-app/smart-eta.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

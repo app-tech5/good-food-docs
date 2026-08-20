@@ -103,7 +103,6 @@ If auth fails with a reachable API, re-check migrations and that the user role i
 - Open **Subscriptions** / wallet screens if you are following the [monetization guide](../admin-app/monetization.md).
 - Switch language in Settings (EN / FR / ES / AR) — see [market adaptability](../admin-app/market.md).
 
-
 ## Stack & where things live (for launch)
 
 The customer app is **React Native + Expo** (Android & iOS from one codebase). It talks to your HTTP API; it does not store the marketplace database on the phone.
@@ -150,4 +149,4 @@ Customer login hits the suite auth endpoints on your API (same host/port as ever
 
 - Full suite smoke test: [00-launch-suite.md](../00-launch-suite.md)
 - Branding & production env: [environment-config.md](../environment-config.md)
-- Feature HOW-TOs (same topics as the online sidebar): [discovery](./discovery.md) · [checkout](./checkout.md) · [tracking](./order-tracking.md) · [wallet](./wallet.md) · [recommendations](./recommendations.md) · [languages](./languages-rtl.md) — see [README index](../README.md)
+- Feature HOW-TOs : [discovery](./discovery.md) · [checkout](./checkout.md) · [tracking](./order-tracking.md) · [wallet](./wallet.md) · [recommendations](./recommendations.md) · [languages](./languages-rtl.md) 

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Razorpay — how to configure (Admin) — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Razorpay — how to configure (Admin)</h1><h2>What this gateway does</h2><ul><li>Identifier: <code>razorpay</code></li><li>Init: <code>POST /api/gateways/initialize</code> → <code>POST https://api.razorpay.com/v1/orders</code> (Basic auth <code>keyId:keySecret</code>)</li><li>Returns <strong><code>orderId</code></strong>, <strong><code>keyId</code></strong>, amount, currency for the <strong>client SDK</strong> (not primarily an authorization URL)</li><li>Credentials: <strong>keyId</strong> (or publicKey alias), <strong>keySecret</strong> (or secretKey alias)</li></ul><h2>Prerequisites</h2><ol><li>Razorpay test Key Id / Key Secret.</li><li>Customer app build that opens Razorpay Checkout with <code>orderId</code> + <code>keyId</code>.</li><li>Seeded <code>razorpay</code> row.</li></ol><h2>Admin steps</h2><ol><li><strong>Gateways</strong> → <strong>Razorpay</strong>.</li><li>Paste key id + key secret.</li><li>Capabilities (seed often enables refunds, withdrawals, webhooks, subscriptions).</li><li><strong>Active</strong> → Save.</li><li>Confirm mobile/web never embeds the <strong>key secret</strong>.</li></ol><h2>Smoke test</h2><pre><code>curl -s -X POST http://localhost:5000/api/gateways/initialize \
+  -H &quot;Authorization: Bearer $TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#x27;{&quot;provider&quot;:&quot;razorpay&quot;,&quot;amount&quot;:100,&quot;currency&quot;:&quot;INR&quot;,&quot;email&quot;:&quot;buyer@example.com&quot;}&#x27;</code></pre><table><tr><th>Step</th><th>Expect</th></tr><tr><td>Demo key secret</td><td><code>demo: true</code> hint</td></tr><tr><td>Real keys</td><td><code>orderId</code> + <code>keyId</code> in JSON</td></tr><tr><td>SDK payment completes</td><td>Signature/webhook verification path updates order</td></tr><tr><td>Looking for <code>authorizationUrl</code> like Paystack</td><td>Wrong expectation — use orderId/keyId</td></tr></table><h2>Differs from others</h2><ul><li>SDK/order model vs Paystack/Flutterwave/PayPal redirect approve links.</li></ul><h2>Related</h2><ul><li><a href="gateways.html">gateways.md</a> · <a href="../customer-app/checkout.html">customer checkout</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "admin-app/gateway-razorpay.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

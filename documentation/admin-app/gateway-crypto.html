@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crypto (Commerce) — how to configure (Admin) — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Crypto (Commerce) — how to configure (Admin)</h1><h2>What this gateway does</h2><ul><li>Commerce / crypto checkout slot (e.g. Coinbase Commerce–style integrations)</li><li>Identifiers treated by initializer include <code>crypto</code> / <code>coinbase-commerce</code> (demo path until real keys)</li><li>Admin credentials typically: <strong>API key</strong> + <strong>webhook signing secret</strong></li><li>Capabilities often emphasize webhooks; classic card refunds/payouts/subscriptions may be off until you wire them</li><li>Init via <code>POST /api/gateways/initialize</code> returns demo payload until non-demo keys are configured</li></ul><h2>Prerequisites</h2><ol><li>Account with your chosen crypto commerce provider.</li><li>Public HTTPS webhook URL to your API.</li><li>Compliance/support ready for delayed confirmations and refund limits.</li></ol><h2>Admin steps</h2><ol><li><strong>Gateways</strong> → <strong>Crypto (Commerce)</strong> (or your seeded crypto-named row).</li><li>Paste API key + webhook signing secret from the provider.</li><li>Enable webhook capability; set <strong>Active</strong> only when the webhook endpoint is verified.</li><li>Save.</li><li>Confirm checkout only advances order status <strong>after</strong> webhook confirmation (not on “invoice shown”).</li></ol><h2>Smoke test</h2><pre><code>curl -s -X POST http://localhost:5000/api/gateways/initialize \
+  -H &quot;Authorization: Bearer $TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#x27;{&quot;provider&quot;:&quot;crypto&quot;,&quot;amount&quot;:25,&quot;currency&quot;:&quot;USD&quot;,&quot;email&quot;:&quot;buyer@example.com&quot;}&#x27;</code></pre><table><tr><th>Step</th><th>Expect</th></tr><tr><td>Demo keys</td><td><code>demo: true</code> + configure hint</td></tr><tr><td>Real keys + webhook</td><td>Invoice/session created; order waits for webhook</td></tr><tr><td>Premature “paid” in UI before webhook</td><td>Bug — fix client to wait for confirmed status</td></tr><tr><td>Refund request</td><td>Follow provider policy — may not mirror Stripe refunds</td></tr></table><h2>Differs from others</h2><ul><li>On-chain / commerce confirmation latency. Not a substitute for COD or Internal Wallet.</li></ul><h2>Related</h2><ul><li><a href="gateways.html">gateways.md</a> · <a href="../my-backend/payments-wallet.html">payments-wallet.md</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "admin-app/gateway-crypto.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Source documentation — Good Food Pro</title>
+  <link rel="stylesheet" href="./assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Source documentation</h1><p>HOW-TO guides that ship with the source ZIP: commands, <code>.env</code>, configuration fields, and smoke tests for the full suite (API + customer + driver + restaurant + admin).</p><h2>Recommended read order</h2><ol><li><strong><a href="launch.html">Launch the whole suite</a></strong></li><li><strong><a href="my-backend/getting-started.html">Backend getting started</a></strong> then backend feature guides as needed</li><li>Per app getting started (any order after the API is up)</li><li><strong><a href="environment.html">Environment &amp; branding</a></strong></li><li>Feature HOW-TOs under the owning app folder</li></ol><h2>Conventions</h2><ul><li><strong>“The suite”</strong> = backend API + customer + driver + restaurant + admin.</li><li>Commands assume you are inside the matching project folder (<code>my-backend</code>, <code>customer-app</code>, <code>delivery-app</code>, <code>restaurant-app</code>, <code>admin-app</code>).</li><li>Demo credentials come from each app’s <code>.env.example</code> after migrations. Change them before any public deploy.</li><li>Keep the <strong>same API base URL</strong> (including <code>/api</code>) across every client.</li><li>Index files (<code>intelligence.md</code>, <code>logistics.md</code>, <code>monetization.md</code>, <code>market.md</code>) link out to the split feature guides.</li></ul>
+  </article>
+  <script>window.DOCS_BASE = "./"; window.DOCS_PATH = "index.html";</script>
+  <script src="./assets/nav-data.js"></script>
+  <script src="./assets/docs.js"></script>
+</body>
+</html>

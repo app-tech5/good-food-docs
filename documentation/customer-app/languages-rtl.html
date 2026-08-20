@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Languages &amp; RTL — Customer app — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Languages &amp; RTL — Customer app</h1><p>EN / FR / ES / AR strings, switchable from in-app Settings; Arabic mirrors the layout (RTL). Every client app (customer, driver, restaurant, admin) ships the same four locale files independently — translating one app does not translate the others.</p><h2>What drives this</h2><ul><li><strong>App Settings → <code>defaultLanguage</code></strong> (Admin) sets the language a <em>fresh</em> install/session starts in; it does not force-override a customer who has already picked a language in their own Settings.</li><li><strong>Per-app locale files</strong> (<code>lang/en.json</code>, <code>lang/fr.json</code>, <code>lang/es.json</code>, <code>lang/ar.json</code> + <code>i18n.js</code>) hold the actual copy for this app — edit these to change wording, not the backend.</li><li><strong>RTL</strong> is applied automatically by the app&#x27;s i18n layer when Arabic is selected — navigation direction and text alignment mirror; this is a layout behaviour, not a separate setting.</li><li><strong>Currency/number formatting</strong> is separate from language — see <a href="../admin-app/market.html">market adaptability</a> for currency/timezone, which is driven by App Settings <strong><code>timezone</code></strong> and the currency configured per market, not by <code>defaultLanguage</code>.</li></ul><h2>Try it</h2><ol><li>Confirm the Admin languages catalogue is populated (<a href="../admin-app/languages.html">admin languages</a>).</li><li>Customer → <strong>Settings</strong> → pick a language.</li><li>Confirm home / menu / cart strings update immediately (no restart needed).</li><li>Select Arabic — navigation and text direction should mirror (RTL).</li></ol><p>Editing copy: edit that app’s locale JSON (copy English keys, translate values only). Register a new language the same way EN/FR/ES/AR are registered, then expose the code in Admin → Languages.</p><h2>Related</h2><ul><li><a href="../my-backend/market-data.html">Backend market data</a> · Driver / restaurant language guides under those apps</li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "customer-app/languages-rtl.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

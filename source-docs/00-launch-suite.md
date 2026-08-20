@@ -1,6 +1,6 @@
 # Launch the whole suite
 
-This guide is the big-picture bootstrap for buyers who just unzipped the source pack. Follow it once to get MongoDB, the API, the admin dashboard, and the three mobile apps talking to each other — then run a full order smoke test.
+Bootstrap the suite once: MongoDB, the API, the admin dashboard, and the three mobile apps talking to each other — then run a full order smoke test.
 
 If you only need one app later, jump to that app’s getting-started page. On first install, start here.
 

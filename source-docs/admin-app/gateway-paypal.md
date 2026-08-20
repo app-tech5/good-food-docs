@@ -1,7 +1,5 @@
 # PayPal — how to configure (Admin)
 
-Technical HOW-TO. Online HTML: `admin-app/gateway-paypal.html`.
-
 ## What this gateway does
 
 - Identifier: `paypal`

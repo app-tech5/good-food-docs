@@ -86,7 +86,6 @@ Also verify language switching and currency formatting after you change market s
 | Orders never arrive | Customer pointed at same API; restaurant user tied to the correct restaurant document |
 | KDS empty | Accept an order, or rely on KDS demo seed from migrations |
 
-
 ## Stack & where things live (for launch)
 
 The restaurant app is **React Native + Expo**. Use **live** mode against your API for real orders (`npm run start:live` / equivalent in the package scripts).

@@ -1,7 +1,5 @@
 # Crypto (Commerce) — how to configure (Admin)
 
-Technical HOW-TO. Online HTML: `admin-app/gateway-crypto.html`.
-
 ## What this gateway does
 
 - Commerce / crypto checkout slot (e.g. Coinbase Commerce–style integrations)

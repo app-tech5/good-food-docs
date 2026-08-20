@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job board &amp; batching — Driver app — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Job board &amp; batching — Driver app</h1><p>Go online, work today&#x27;s list, and accept nearby batch suggestions. Batching is a real backend feature (<code>POST /api/logistics/batch-suggestions</code>, <code>.../accept-batch</code>) that groups genuinely nearby orders, not a UI gimmick.</p><h2>What drives this</h2><ul><li><strong>Which orders are batchable</strong> — only orders in <code>ready</code> or <code>out_for_delivery</code> status with no driver assigned yet (or already assigned to this driver) are candidates.</li><li><strong>Batch radius</strong> — each restaurant&#x27;s <code>DeliverySetting.autoAssignmentRadius</code> (km), clamped between 0.5 and 15 km; if a restaurant has no explicit setting the platform falls back to an environment default (~2.5 km). Set this too small in Admin and drivers will rarely see batch suggestions for that restaurant.</li><li><strong>Batch size</strong> — capped at 3 orders per batch by default (server-side constant, not an Admin field).</li><li><strong>Driver assignment method</strong> — <code>DeliverySetting.driverAssignmentMethod</code> (<code>AUTO</code> / <code>MANUAL</code> / <code>HYBRID</code>) is the restaurant-level dial for how much the platform auto-offers vs. requires manual dispatch; it affects whether jobs appear on this board automatically at all.</li><li><strong>Going online</strong> flips the driver&#x27;s own <code>status</code> to <code>available</code>, which is what makes them eligible to receive offers/batches in the first place.</li></ul><h2>Try it</h2><ol><li>Driver goes <strong>online</strong>.</li><li>Open <strong>Deliveries</strong> — pending / on the way / completed lists.</li><li>Accept or start the next job.</li><li>For batching: with two nearby <code>ready</code> orders from restaurants whose <code>autoAssignmentRadius</code> covers the distance between them, open <strong>batch suggestions</strong> and accept the batch — confirm both orders now share the same driver and move together.</li><li>Continue to <a href="active-delivery.html">on the road</a>.</li></ol><h2>Related</h2><ul><li><a href="logistics.html">Logistics index</a> · <a href="../restaurant-app/hours.html">Restaurant delivery settings</a> · <a href="../my-backend/logistics-engine.html">Backend logistics engine</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "delivery-app/deliveries.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

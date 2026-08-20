@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shift earnings — Driver app — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Shift earnings — Driver app</h1><p>Period/shift totals for completed jobs — a rollup of this driver&#x27;s <code>delivery_fee</code> transactions and completed-order count, not a separate manually-maintained ledger.</p><h2>What drives this</h2><ul><li><strong><code>Driver.totalDeliveries</code></strong> increments by one every time <a href="proof-of-delivery.html">proof of delivery</a> is successfully completed for an order assigned to this driver.</li><li><strong>Per-order earnings</strong> come from the <code>delivery_fee</code> amount charged on that order, which is itself driven by <a href="delivery-fee.html">surge pricing</a> — a surge order genuinely pays the driver more, this isn&#x27;t cosmetic.</li><li><strong>Marketplace commission</strong> (<code>AppSetting.commissionRate</code>, or a restaurant&#x27;s own <code>commission_rate</code>, adjusted by any active restaurant subscription relief) applies to the <em>restaurant&#x27;s</em> cut, not the driver&#x27;s delivery fee — driver earnings and platform commission are computed independently on the same order.</li><li><strong>Batched deliveries</strong> (<a href="deliveries.html">job board &amp; batching</a>) each retain their own <code>delivery_fee</code>, so a 2-order batch pays out as two separate line items, not a single combined fee.</li></ul><h2>Try it</h2><ol><li>Complete a few deliveries for the shift (via <a href="proof-of-delivery.html">proof of delivery</a>).</li><li>Open <strong>Earnings</strong> — confirm the totals match the number and fee amounts of the jobs just completed.</li><li>Push demand up (surge active) for one delivery and confirm that job&#x27;s line item pays more than a standard-fee job.</li><li>For line-by-line detail / payout setup, see <a href="transactions-payouts.html">payouts &amp; history</a>.</li></ol><h2>Related</h2><ul><li><a href="../my-backend/commission-engine.html">Backend commission engine</a> (marketplace side) · <a href="../customer-app/delivery-fee.html">Surge pricing</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "delivery-app/earnings.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

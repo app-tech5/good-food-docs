@@ -1,7 +1,5 @@
 # Flutterwave — how to configure (Admin)
 
-Technical HOW-TO. Online HTML: `admin-app/gateway-flutterwave.html`.
-
 ## What this gateway does
 
 - Identifier: `flutterwave`

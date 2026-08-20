@@ -1,6 +1,6 @@
 # Commissions & earnings — Admin app
 
-Review platform vs restaurant (and delivery/tax) splits by period. Soft product copy + screenshots: online `admin-app/earnings.html`.
+Review platform vs restaurant (and delivery/tax) splits by period.
 
 ## Prerequisites
 

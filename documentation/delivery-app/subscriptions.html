@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Priority plans — Driver app — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Priority plans — Driver app</h1><p>Driver subscription tiers (<code>target = driver</code>). Priority members get first look at new jobs and a wider batch radius.</p><h2>What you configure (Admin → Subscriptions)</h2><table><tr><th>Field / flag</th><th>Effect</th></tr><tr><td><strong>Price / billing cycle</strong></td><td>What the driver pays</td></tr><tr><td><strong>Benefits</strong> (display tags)</td><td>Copy on the plan card</td></tr><tr><td><strong><code>prioritySupport</code></strong></td><td>First look at new pending jobs (~90s lead), plus wider batch-suggestion radius</td></tr><tr><td><strong><code>platformAccess</code></strong></td><td>Marks the plan as access/SaaS-style</td></tr><tr><td><strong><code>is_active</code></strong></td><td>Plan purchasable or hidden</td></tr></table><h2>Try it</h2><ol><li>Admin: active plan with <code>target = driver</code> and <code>prioritySupport</code> on.</li><li>Driver → <strong>Subscriptions</strong> → subscribe.</li><li>Go online — new pending jobs appear for the priority driver before non-members.</li><li>On an active delivery, request batch suggestions — search radius is wider for priority members.</li></ol><h2>Related</h2><ul><li><a href="deliveries.html">Job board &amp; batching</a></li><li><a href="../my-backend/subscriptions-engine.html">Backend subscriptions</a> · Admin <a href="../admin-app/subscriptions.html">subscriptions</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "delivery-app/subscriptions.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>On the road — Driver app — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>On the road — Driver app</h1><p>Active job controls and customer/address details while a delivery (or batch of deliveries) is in progress. This screen is a view over the same <code>Order</code> documents the customer and restaurant apps see — there&#x27;s no separate driver-only order state.</p><h2>What drives this</h2><ul><li><strong>Which orders show here</strong> — orders assigned to this driver with status <code>ready</code> or <code>out_for_delivery</code> (the same statuses used for batching eligibility).</li><li><strong>Batch grouping</strong> — if the driver accepted a <a href="deliveries.html">batch</a>, all orders in the batch share a <code>batchId</code> and appear together.</li><li><strong>Live customer tracking</strong> — while this screen is open and the driver&#x27;s location permission stays granted, the app streams location updates into the order&#x27;s socket room (<code>order-&lt;id&gt;</code>), which is what powers the customer&#x27;s <a href="../customer-app/order-tracking.html">live tracking</a> map. Backgrounding the app or revoking location permission stalls the customer&#x27;s map, not just the driver&#x27;s.</li><li><strong>Completion</strong> requires <a href="proof-of-delivery.html">proof of delivery</a> — this screen hands off to that flow rather than allowing a bare &quot;mark delivered.&quot;</li></ul><h2>Try it</h2><ol><li>From <a href="deliveries.html">deliveries</a>, open the active job (or batch).</li><li>Confirm status actions (navigate, arrived, complete) match the order&#x27;s real status.</li><li>Open details — customer phone, address notes, order lines — all sourced from the order document.</li><li>Keep location permission granted and the app foregrounded; check the customer app&#x27;s tracking map updates in near real time.</li><li>Finish with <a href="proof-of-delivery.html">proof of delivery</a>.</li></ol><h2>Related</h2><ul><li><a href="earnings.html">Shift earnings</a> · <a href="deliveries.html">Job board &amp; batching</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "delivery-app/active-delivery.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

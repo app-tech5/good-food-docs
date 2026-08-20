@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monetization — index — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Monetization — index</h1><p>Everything that touches marketplace money, split to match the online admin menu:</p><table><tr><th>Guide</th><th>What you configure there</th></tr><tr><td><a href="app-settings.html">App Settings</a></td><td>Baseline commission, wallet cashback, Stripe &amp; COD switches, delivery defaults, channels</td></tr><tr><td><a href="gateways.html">Gateways</a></td><td>Which payment providers are active and their credentials/fees</td></tr><tr><td><a href="earnings.html">Earnings</a></td><td>Review platform/restaurant/delivery/tax splits by period (read-only)</td></tr><tr><td><a href="subscriptions.html">Subscriptions</a></td><td>SaaS tiers for customer/restaurant/driver — free delivery, discount %, commission waiver, priority support</td></tr><tr><td><a href="sponsored.html">Sponsored listings</a></td><td>Oversight of restaurant-run paid placement campaigns (placement, status, bid, schedule)</td></tr><tr><td><a href="promotions.html">Promotions</a></td><td>Automatic checkout-time discount campaigns (type, scope, schedule, eligibility)</td></tr><tr><td><a href="coupons.html">Coupons</a></td><td>Redeemable codes with limits, targeting, and expiry</td></tr><tr><td><a href="transactions.html">Transactions</a></td><td>The full money ledger — payments, payouts, refunds, tips, commission (read-only)</td></tr><tr><td><a href="../customer-app/wallet.html">Customer wallet</a></td><td>Customer-side wallet balance, top-ups, cashback display</td></tr></table><p>Backend internals: <a href="../my-backend/payments-wallet.html">payments &amp; wallet</a>, <a href="../my-backend/commission-engine.html">commission engine</a>, <a href="../my-backend/subscriptions-engine.html">subscriptions engine</a>.</p><p>After <code>migrate:up</code> you usually already have commission defaults, sample subscription tiers, and sample sponsored listings seeded — review them against the tables above before changing anything for real.</p><h2>Related</h2><ul><li><a href="market.html">Market index</a> · <a href="getting-started.html">Getting started</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "admin-app/monetization.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

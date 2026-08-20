@@ -1,7 +1,5 @@
 # Stripe — how to configure (Admin)
 
-Technical HOW-TO. Online HTML: soft explanation + screenshot (`admin-app/gateway-stripe.html`).
-
 ## What this gateway does in the suite
 
 - **Checkout / saved cards / payment intents** via `/api/payments/stripe/…`

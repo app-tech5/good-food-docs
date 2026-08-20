@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sponsored visibility — Restaurant app — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Sponsored visibility — Restaurant app</h1><p>Paid search/home-banner placement campaigns, launched by the restaurant, ranked and served live to customers — this is a real ranking query against <code>SponsoredListing</code>, not a mock ad unit.</p><h2>What the restaurant sets when creating a campaign</h2><ul><li><strong><code>headline</code></strong> — the promo text shown on the card.</li><li><strong><code>placement</code></strong> — <code>search</code>, <code>home_banner</code>, or <code>both</code>; determines which customer-app surfaces can show this listing.</li><li><strong><code>bidAmount</code></strong> and <strong><code>dailyBudget</code></strong> — bid used for ranking (higher bids sort first alongside <code>priority</code>); budget capping isn&#x27;t automatically enforced by a spend-tracker in this build, so don&#x27;t promise buyers hard budget cutoffs without checking your fork.</li><li><strong><code>startAt</code> / <code>endAt</code></strong> — the campaign&#x27;s active window.</li><li><strong>Launching</strong> moves the listing from <code>draft</code>/<code>pending_payment</code> to <strong><code>active</code></strong> — only <code>active</code> listings inside their date window are eligible to be served.</li></ul><h2>What actually makes a listing appear to customers</h2><p><code>getActiveListings()</code> only returns listings where <code>status: &#x27;active&#x27;</code>, the current time is between <code>startAt</code> and <code>endAt</code>, the placement matches the requested slot, and — critically — the listing&#x27;s restaurant still has <strong><code>isActivated: true</code></strong>. Results are sorted by <code>priority</code> then <code>bidAmount</code> descending. A restaurant that gets deactivated in Admin stops showing sponsored placements immediately, even mid-campaign.</p><h2>Try it</h2><ol><li>Prefer <strong>live</strong> API mode for a real campaign test.</li><li>Open <strong>Sponsored listings</strong> in the restaurant app.</li><li>Create a new campaign — headline, daily bid, placement (search / home banner / both), and a date range that includes now.</li><li><strong>Launch</strong> it; confirm it appears under <strong>My campaigns</strong> with status <code>active</code>.</li><li>Check the customer app&#x27;s home/search for that placement, and check Admin&#x27;s <a href="../admin-app/sponsored.html">sponsored inventory</a> to confirm impressions/clicks tick up as customers see/tap it.</li></ol><h2>Related</h2><ul><li><a href="subscriptions.html">Partner plans</a> · Backend: <code>sponsoredListingService.js</code></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "restaurant-app/sponsored.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

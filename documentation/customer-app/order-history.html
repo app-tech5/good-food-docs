@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order history — Customer app — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Order history — Customer app</h1><p>Past and live orders, pulled from the customer&#x27;s own <code>Order</code> documents (<code>GET /api/orders</code> filtered by <code>user</code>). There is nothing to configure here beyond what already drives the order pipeline elsewhere — this page is a read view of that pipeline.</p><h2>What drives this</h2><ul><li><strong>Status labels</strong> mirror the real order lifecycle set by the restaurant/driver apps: <code>pending → preparing → ready → out_for_delivery → delivered</code>, or <code>cancelled</code>. A row&#x27;s status only changes when the restaurant or driver actually advances the order — this list never fakes progress.</li><li><strong>Amount</strong> shown is <code>totalPrice</code> (items + delivery fee + tax) as computed at checkout, including any surge fee or free-delivery discount that applied at the time.</li><li><strong>Cancelled + paid</strong> orders trigger an instant wallet refund if App Settings <strong><code>walletInstantRefundEnabled</code></strong> is on (<a href="wallet.html">wallet</a>) — you&#x27;ll see the refunded order&#x27;s total reflected in the customer&#x27;s wallet, not in this list.</li><li><strong>Reorder / repeat</strong> flows (if exposed in your build) reuse the same restaurant + items, subject to that restaurant&#x27;s current availability.</li></ul><h2>Try it</h2><ol><li>Place and complete a checkout, then open <strong>Orders</strong> / history.</li><li>Confirm the restaurant name, total, and status on the new row match what you just did.</li><li>Open an active (non-delivered, non-cancelled) order → continues to <a href="order-tracking.html">Track order</a>.</li><li>Cancel a paid order and confirm the wallet reflects the refund per the setting above.</li></ol><h2>Related</h2><ul><li><a href="checkout.html">Checkout</a> · <a href="wallet.html">Wallet</a> · <a href="order-tracking.html">Order tracking</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "customer-app/order-history.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

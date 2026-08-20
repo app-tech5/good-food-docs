@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Restaurant details — Customer app — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Restaurant details — Customer app</h1><p>Open/closed state, ETA chip, delivery fee/surge chip, restaurant-scoped offers, and reviews for a single restaurant — everything here is computed against that restaurant&#x27;s own settings, not global defaults.</p><h2>What drives this</h2><ul><li><strong>Open/closed</strong> — <code>Restaurant.is_closed</code> plus <code>openingTime</code>/<code>closingTime</code> (<a href="../restaurant-app/hours.html">restaurant hours</a>); a restaurant outside its own opening window shows closed even if <code>is_closed</code> is <code>false</code>.</li><li><strong>ETA chip</strong> — <a href="smart-eta.html">smart ETA</a>: that restaurant&#x27;s prep time + current kitchen load + travel distance/time.</li><li><strong>Fee / surge chip</strong> — <a href="delivery-fee.html">surge pricing</a>: that restaurant&#x27;s <code>DeliverySetting</code> base fee/threshold, multiplied by the live demand/weather surge factor.</li><li><strong>Available Offers</strong> on this page are restaurant-scoped promotions/sponsored placements — distinct from the global <strong>Offers</strong> tab in <a href="checkout.html">checkout</a>.</li><li><strong>Reviews / rating</strong> roll up from delivered orders&#x27; review data tied to this restaurant.</li></ul><h2>Try it</h2><ol><li>From <a href="discovery.html">discovery</a>, open a restaurant.</li><li>Confirm <strong>open/closed</strong> matches that restaurant&#x27;s configured hours.</li><li>Note the <strong>ETA</strong> chip and cross-check against current kitchen load.</li><li>Note the <strong>fee/surge</strong> chip and cross-check against active orders/drivers near that restaurant.</li><li>Scroll <strong>Available Offers</strong> / reviews for that restaurant specifically (not the global Offers tab).</li></ol><h2>Related</h2><ul><li><a href="menu-cart.html">Menu &amp; basket</a> · <a href="../restaurant-app/hours.html">Restaurant hours &amp; delivery zone</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "customer-app/restaurant-page.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

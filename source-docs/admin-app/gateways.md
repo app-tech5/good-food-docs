@@ -1,6 +1,6 @@
 # Payment gateways — how to configure them (Admin)
 
-Technical HOW-TO for buyers with the ZIP. Soft product copy lives in the **online HTML** docs (`admin-app/gateways.html` + per-gateway pages). Here you get routes, credential fields, env keys, and smoke tests.
+Configure each payment provider from Admin → Gateways: credentials, fees, capabilities, and a smoke test per provider.
 
 Each PSP has a different admin form and API initialize shape. Do **not** paste Stripe keys into Paystack (or any other row).
 

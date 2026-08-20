@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OrangePay — how to configure (Admin) — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>OrangePay — how to configure (Admin)</h1><h2>What this gateway does</h2><ul><li>Identifier: <code>orange-pay</code></li><li>Targets Orange Money / Orange Pay style merchant checkout (mobile-money heavy markets)</li><li>Credentials: <strong>merchantId</strong>, <strong>apiKey</strong>, <strong>clientId</strong>, <strong>clientSecret</strong></li><li>Seed capabilities often: webhooks on; refunds / withdrawals / subscriptions off</li></ul><h2>Prerequisites</h2><ol><li>Orange developer / merchant enrollment for the countries you sell in.</li><li>Backend + admin; <code>orange-pay</code> row from seed.</li><li>Clear ops plan for async mobile-money confirmation (not instant card auth).</li></ol><h2>Admin steps</h2><ol><li><strong>Gateways</strong> → <strong>OrangePay</strong>.</li><li>Fill all four credential fields from the Orange portal.</li><li>Enable only capabilities your merchant account actually has.</li><li>Set fees to your commercial terms (seed may show ~1% / 0 fixed).</li><li><strong>Active</strong> only after a successful test payment in a supported country/currency.</li></ol><h2>Smoke test</h2><table><tr><th>Step</th><th>Expect</th></tr><tr><td>Active with empty/demo merchant fields</td><td>Checkout/init fails or stays non-production</td></tr><tr><td>Real merchant credentials + test pay</td><td>Payment pending → confirmed via Orange callback/webhook</td></tr><tr><td>Card-only city with OrangePay Active</td><td>Customers may see a method they cannot complete — deactivate per market</td></tr></table><h2>Differs from others</h2><ul><li>Four merchant/OAuth-style fields — not Stripe publishable/secret, not Paystack public/secret pair alone.</li><li>UX is wallet/USSD confirmation; support scripts differ from card chargebacks.</li></ul><h2>Related</h2><ul><li><a href="gateways.html">gateways.md</a> · <a href="../my-backend/payments-wallet.html">payments-wallet.md</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "admin-app/gateway-orangepay.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

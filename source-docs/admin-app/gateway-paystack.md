@@ -1,7 +1,5 @@
 # Paystack — how to configure (Admin)
 
-Technical HOW-TO. Online HTML: `admin-app/gateway-paystack.html`.
-
 ## What this gateway does
 
 - Identifier: `paystack`

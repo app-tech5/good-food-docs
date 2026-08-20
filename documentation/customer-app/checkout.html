@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout &amp; vouchers — Customer app — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Checkout &amp; vouchers — Customer app</h1><p>Delivery vs pickup, address, payment method, membership perks, vouchers, and order placement — where Admin settings become one price.</p><h2>What drives the total</h2><table><tr><th>Setting</th><th>Where</th><th>Effect</th></tr><tr><td>Active gateways + Stripe / COD App Settings</td><td>Gateways + App Settings</td><td>Which payment methods appear and are accepted</td></tr><tr><td>Restaurant / platform delivery fee, free threshold, max distance</td><td>Delivery settings / App Settings</td><td>Delivery fee and distance eligibility</td></tr><tr><td>Member <code>freeDelivery</code> / <code>discountPercent</code></td><td>Active customer subscription</td><td>Fee waived and/or % off subtotal</td></tr><tr><td>Tax</td><td>Restaurant / default tax</td><td>Applied after membership discount</td></tr><tr><td>Coupons / promos</td><td>Admin promotions &amp; coupons</td><td>Applied when claimed and still valid</td></tr><tr><td>Wallet balance</td><td>Ledger</td><td>Pay with platform credit when balance covers the total</td></tr><tr><td>Address autocomplete</td><td>Google Places key on the customer build</td><td>Suggestions appear while typing a delivery address</td></tr></table><h2>Try it</h2><ol><li>From cart, open <strong>Offers</strong> if vouchers are seeded — claim/apply.</li><li>Checkout — delivery vs pickup, address (with Places suggestions when configured), payment method.</li><li>With an active membership, confirm free delivery and/or discount on the totals.</li><li>Place the order → <a href="order-history.html">history</a> / <a href="order-tracking.html">tracking</a>.</li><li>Turn off COD or Stripe in App Settings and confirm that method can no longer complete checkout.</li></ol><h3>Places (address autocomplete)</h3><ol><li>Google Cloud → enable <strong>Places API</strong> → create an API key → attach billing.</li><li>Put the key where this customer app expects it (see <a href="getting-started.html">getting started</a> / env example).</li><li>At checkout, type an address and confirm suggestions return.</li></ol><h2>Related</h2><ul><li><a href="wallet.html">Wallet</a> · <a href="subscriptions.html">Subscriptions</a> · <a href="delivery-fee.html">Surge / delivery fee</a></li><li><a href="../my-backend/payments-wallet.html">Payments API</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "customer-app/checkout.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

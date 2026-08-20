@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI intelligence — index — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>AI intelligence — index</h1><p>Customer-facing intelligence is split into three HOW-TOs. All three are served by the same backend engine (<code>src/services/intelligenceService.js</code>) and share the same weather/routing fallbacks.</p><table><tr><th>Guide</th><th>What you configure</th></tr><tr><td><a href="recommendations.html">AI recommendations</a></td><td>Nothing to toggle — always on; quality depends on product tags/discounts, ratings, and real order history.</td></tr><tr><td><a href="smart-eta.html">Smart delivery ETA</a></td><td>Per-restaurant <code>deliveryPreparationTime</code> (prep minutes) drives the floor of the range; live kitchen load and travel distance drive the rest.</td></tr><tr><td><a href="delivery-fee.html">Surge pricing</a></td><td>Per-restaurant delivery fee type/thresholds set the base; the surge multiplier itself reacts to live order/driver demand and weather, not an Admin dial.</td></tr></table><p>Backend overview: <a href="../my-backend/intelligence-engine.html">AI &amp; pricing brain</a>.</p><p>Offline fallbacks (Open-Meteo weather → heuristic; OSRM routing → haversine heuristic) keep all three features working without external network access — each linked page documents its own fallback behaviour.</p>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "customer-app/intelligence.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

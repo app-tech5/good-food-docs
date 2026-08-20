@@ -1,6 +1,6 @@
 # Commission engine — Backend API
 
-Platform vs restaurant (and delivery/tax) splits on completed orders, including subscription benefit adjustments. Soft product story + screenshots: online `my-backend/commission-engine.html`.
+Platform vs restaurant (and delivery/tax) splits on completed orders, including subscription benefit adjustments.
 
 ## Prerequisites
 

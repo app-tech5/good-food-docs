@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photo &amp; signature POD — Driver app — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Photo &amp; signature POD — Driver app</h1><p>Completing a delivery requires real multimedia proof — the backend actively rejects a completion call that doesn&#x27;t satisfy the rules below, this isn&#x27;t just a UI form.</p><h2>What drives this</h2><ul><li><strong>Contactless toggle (on by default in this app)</strong> — when on, a <strong>photo is required</strong>; the app blocks submission client-side and the backend also rejects it server-side if missing.</li><li><strong>Signature or photo, always</strong> — regardless of contactless, the backend requires at least one of <code>signatureData</code> or <code>photoUrl</code> to be present (<code>assertPodPayload</code>); this app&#x27;s UI is slightly stricter and always asks for a signature too.</li><li><strong>Geofence</strong> — the backend compares the driver&#x27;s submitted GPS coordinates against the order&#x27;s drop-off location. The allowed radius defaults to <strong>150 meters</strong> (<code>LOGISTICS_POD_GEOFENCE_M</code> env var — not an Admin UI field). By default the geofence check is <strong>soft-fail</strong>: being outside it is recorded (<code>geofenceOk: false</code>, with the measured <code>distanceMeters</code>) but doesn&#x27;t block completion, unless the backend operator has set <code>LOGISTICS_POD_GEOFENCE_SOFT=false</code>.</li><li><strong>What each artifact means downstream</strong>: the photo and/or signature are stored on <code>Order.delivery.proofOfDelivery</code> and are visible to Admin/support for dispute resolution; they are not shown back to the customer in this build.</li></ul><h2>Try it</h2><ol><li>Arrive at (or near) the drop-off — geofence is soft-fail by default, so testing from across town will still succeed but be flagged.</li><li>Tap <strong>Mark as Delivered</strong> / complete.</li><li>With contactless on, capture a <strong>photo</strong>; sign on the <strong>signature pad</strong> (use <strong>Clear</strong> to retry).</li><li>Submit — confirm the order flips to delivered for the customer, restaurant, and admin simultaneously.</li><li>To see a rejection: turn contactless on and submit without a photo, or clear the signature and submit without one — the API should return the corresponding proof-required error.</li></ol><h2>Related</h2><ul><li><a href="deliveries.html">Deliveries</a> · Full flow in <a href="logistics.html">logistics.md</a> · <a href="../my-backend/logistics-engine.html">Backend logistics engine</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "delivery-app/proof-of-delivery.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

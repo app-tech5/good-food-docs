@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu &amp; basket — Customer app — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Menu &amp; basket — Customer app</h1><p>Categories, items, variants, and the running cart for a single restaurant. What&#x27;s orderable here is a live reflection of that restaurant&#x27;s catalog — nothing is cached into the app at build time.</p><h2>What drives this</h2><ul><li><strong><code>Product.availability</code></strong> — the restaurant&#x27;s 86 toggle (<a href="../restaurant-app/menu.html">restaurant menu</a>). Set to <code>false</code> and the item disappears from the customer menu on next refresh; it cannot be added to cart even if it&#x27;s still in an old cart screenshot.</li><li><strong>Categories, prices, photos, variants/extras</strong> all come straight from the restaurant&#x27;s (or Admin&#x27;s centrally-curated <a href="../admin-app/catalog.html">catalog</a>) product documents — editing there is what changes what the customer sees, there is no separate customer-app copy of the menu.</li><li><strong>Cross-sell rail</strong> on the menu is the same <a href="recommendations.html">AI recommendations</a> engine used elsewhere — driven by order pairing, time of day, and weather, not manual merchandising.</li><li><strong>Restaurant open/closed state</strong> (<a href="restaurant-page.html">restaurant page</a>) doesn&#x27;t hide the menu, but checkout will reject placing an order against a closed restaurant.</li></ul><h2>Try it</h2><ol><li>On a restaurant menu, add 2+ items (use variants if the build exposes them).</li><li>Confirm quantity steppers and the <strong>View Cart</strong> badge update.</li><li>Open the cart — change a quantity, remove a line, confirm totals recompute (tax + delivery fee are added at checkout, not shown in the basket subtotal).</li><li>From the restaurant app, 86 one of the items in the cart and refresh the customer menu — it should no longer be orderable.</li><li>Continue to <a href="checkout.html">checkout</a>.</li></ol><h2>Related</h2><ul><li><a href="recommendations.html">Recommendations</a> · <a href="../restaurant-app/menu.html">Restaurant menu management</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "customer-app/menu-cart.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

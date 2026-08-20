@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Membership plans — Customer app — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Membership plans — Customer app</h1><p>Customer-facing subscription tiers (e.g. Good Food+). Plans are created in Admin (<code>target = customer</code>) and enrolled from the app.</p><h2>What you configure (Admin → Subscriptions)</h2><table><tr><th>Field / flag</th><th>Effect for the member</th></tr><tr><td><strong>Price / currency / billing cycle</strong></td><td>What they pay and how often</td></tr><tr><td><strong>Benefits</strong> (display tags)</td><td>Copy on the plan card</td></tr><tr><td><strong><code>freeDelivery</code></strong></td><td>Delivery fee is <strong>0</strong> at checkout</td></tr><tr><td><strong><code>discountPercent</code></strong></td><td>That % off cart subtotal (before tax) at checkout</td></tr><tr><td><strong><code>prioritySupport</code></strong></td><td>Priority support badge / routing</td></tr><tr><td><strong><code>is_active</code></strong></td><td>Plan purchasable or hidden from new sign-ups</td></tr></table><h2>Try it</h2><ol><li>Admin: active plan with <code>target = customer</code>, turn on <code>freeDelivery</code> and/or set <code>discountPercent</code>.</li><li>Customer app → <strong>Subscriptions</strong> → subscribe.</li><li>Place an order — confirm free delivery and/or discounted subtotal on checkout and on the order total.</li></ol><h2>Related</h2><ul><li><a href="checkout.html">Checkout</a> · <a href="wallet.html">Wallet</a></li><li><a href="../my-backend/subscriptions-engine.html">Backend subscriptions</a> · Admin <a href="../admin-app/subscriptions.html">subscriptions</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "customer-app/subscriptions.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

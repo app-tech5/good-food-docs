@@ -1,7 +1,5 @@
 # Cash on Delivery — how to configure (Admin)
 
-Technical HOW-TO. Online HTML: `admin-app/gateway-cod.html`.
-
 ## What this gateway does
 
 - Identifier: `cash-on-delivery`

@@ -1,7 +1,5 @@
 # Razorpay — how to configure (Admin)
 
-Technical HOW-TO. Online HTML: `admin-app/gateway-razorpay.html`.
-
 ## What this gateway does
 
 - Identifier: `razorpay`

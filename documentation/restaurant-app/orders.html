@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Incoming orders — Restaurant app — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Incoming orders — Restaurant app</h1><p>Accept/reject live tickets and advance status through prep → ready → pickup/driver handoff. This is the same order pipeline that feeds <a href="kitchen-display.html">Kitchen Display</a>, the driver app, and customer tracking — accepting here is the hinge point for all of it.</p><h2>What drives this</h2><ul><li><strong>Restaurant must be open</strong> — <code>Restaurant.is_closed</code> and the <code>openingTime</code>/<code>closingTime</code> window (<a href="hours.html">hours &amp; delivery zone</a>) gate whether new orders can even be placed against this restaurant; being &quot;closed&quot; doesn&#x27;t hide existing tickets already in the pipeline.</li><li><strong>Auto-accept</strong> — per-user <code>UserSettings.restaurantSettings.autoAcceptOrders</code> (off by default) will accept incoming orders automatically instead of waiting for a manual tap; paired with <code>preparationTime</code>, a per-user default prep estimate distinct from the restaurant-wide <code>DeliverySetting.deliveryPreparationTime</code> used in <a href="../customer-app/smart-eta.html">smart ETA</a>.</li><li><strong>Status advances</strong> (<code>pending → preparing → ready → out_for_delivery/pickup</code>) are what <a href="kitchen-display.html">Kitchen Display</a> and the driver app read to know what to show — advancing status here is not cosmetic, it unlocks the next actor&#x27;s screen (e.g. <code>ready</code> is what makes an order eligible for driver batching).</li><li><strong>Reject reason</strong> is recorded on the order for support/analytics, not silently discarded.</li></ul><h2>Try it</h2><ol><li>Keep the restaurant <strong>open</strong>.</li><li>Watch the orders list — accept what you can cook; reject with a reason when you can&#x27;t.</li><li>Advance status as food progresses; mark ready for courier/pickup and confirm it becomes assignable in the <a href="../delivery-app/deliveries.html">driver job board</a>.</li><li>Optionally run the same pipeline on <a href="kitchen-display.html">Kitchen Display</a> instead of this list — both read/write the same order.</li></ol><h2>Related</h2><ul><li><a href="hours.html">Hours &amp; delivery zone</a> · <a href="menu.html">Menu</a> · <a href="kitchen-display.html">Kitchen Display</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "restaurant-app/orders.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

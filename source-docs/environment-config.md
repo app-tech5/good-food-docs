@@ -1,8 +1,8 @@
 # Environment & branding configuration
 
-Technical HOW-TO for buyers with the ZIP: **toolchain commands**, **`.env` tables**, reachability matrix, branding files, FCM, maps keys, CORS, and a production checklist.
+Toolchain commands, `.env` tables, reachability matrix, branding files, FCM, maps keys, CORS, and a production checklist.
 
-The online [Environment setup](../environment-setup.html) page is the soft product story (currency UI, languages, push, Places) — it does **not** repeat Admin captures for App Settings, gateways, or channels. Those live on their own guides (linked below). This markdown is where the install/config detail belongs.
+Currency, languages, push, and Places are covered here together with App Settings, gateways, and channels (linked below).
 
 ## Boot order (short)
 

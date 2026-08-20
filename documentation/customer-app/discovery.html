@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browse &amp; discover — Customer app — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Browse &amp; discover — Customer app</h1><p>Home, search, and the nearby map — how customers find a restaurant before opening its page. What appears here is a direct read of restaurant/product data and a couple of Admin gates, not hardcoded demo content.</p><h2>What drives this</h2><ul><li><strong><code>Restaurant.isActivated</code></strong> must be <code>true</code> for a restaurant to appear anywhere in discovery (home, search, map). Newly onboarded restaurants stay invisible to customers until an admin activates them.</li><li><strong><code>Restaurant.isAvailableForDelivery</code></strong> and <code>serviceModes</code> (<code>delivery</code> / <code>pickup</code>) control which toggle state (Delivery vs Pickup) a restaurant shows under.</li><li><strong>Promo / Special Offers cards</strong> on home are populated from active Admin promotions/coupons and any live <a href="../restaurant-app/sponsored.html">sponsored listings</a> placed in the <code>home_banner</code> slot.</li><li><strong>Map pins</strong> use <code>Restaurant.latitude</code> / <code>longitude</code>; a restaurant with unset coordinates won&#x27;t render a pin even if it&#x27;s activated.</li><li><strong>Map provider</strong> defaults to <code>MapLibre + OpenStreetMap</code> (<code>EXPO_PUBLIC_MAP_PROVIDER=osm</code>, zero map API fee). Buyers can switch to <code>maptiler</code>, <code>mapbox</code>, or <code>google</code> with env config (<code>EXPO_PUBLIC_MAP_PROVIDER</code> + matching key/token) without editing map screen code.</li><li><strong>Search</strong> matches restaurant name, category, and product name/description across activated restaurants.</li><li>App Settings <strong><code>isMaintenance</code></strong> exists in Admin as a platform-wide flag; note that the current app builds don&#x27;t read it directly, so treat it as a backend-only signal rather than a customer-facing kill switch unless you&#x27;ve wired it into your fork.</li></ul><h2>Try it</h2><ol><li>Open home — the Delivery/Pickup toggle, categories, and promo cards should load from the API (empty ≠ broken if you have zero activated restaurants or zero live promos).</li><li>Open <strong>Search</strong> — type a restaurant or dish keyword and open a result.</li><li>Open the nearby <strong>map</strong> — pins plus a swipeable card per restaurant (this is not the post-checkout tracking map).</li><li>Tap a restaurant → continues to <a href="restaurant-page.html">restaurant details</a>.</li></ol><p>Empty home is almost always: API URL misconfigured, migrations not run, or every restaurant still has <code>isActivated: false</code>.</p><h2>Related</h2><ul><li><a href="restaurant-page.html">Restaurant details</a> · <a href="recommendations.html">AI recommendations</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "customer-app/discovery.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

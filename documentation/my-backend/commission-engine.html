@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Commission engine — Backend API — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Commission engine — Backend API</h1><p>Platform vs restaurant (and delivery/tax) splits on completed orders, including subscription benefit adjustments.</p><h2>Prerequisites</h2><ol><li><code>migrate:up</code> — settings, restaurants, subscriptions, earnings seeds as needed.</li><li>Admin pointed at the API (<a href="../admin-app/getting-started.html">admin getting started</a>).</li><li>Ability to complete a full order (customer → restaurant → delivery).</li></ol><h2>Configure the rate stack</h2><p>The API resolves an <strong>effective commission</strong> roughly as:</p><ol><li><strong>Marketplace baseline</strong> — Admin → <strong>Settings → App Settings</strong> → <strong>Commission Rate</strong> (e.g. <code>15</code>).</li><li><strong>Restaurant override</strong> (optional) — Admin → <strong>Restaurants</strong> → View → <strong>Commission Rate (%)</strong> on that partner.</li><li><strong>Active restaurant plan benefits</strong> (optional) — Admin → <strong>Subscriptions</strong> → restaurant-target plan → benefit flags:</li></ol><ul><li><code>reducedCommissionPercent</code> / <strong>Reduced commission %</strong></li><li><code>waiveCommission</code> / <strong>Waive commission</strong></li></ul><p>See <a href="subscriptions-engine.html">subscriptions engine</a> for plan catalogue / enforcement.</p><h2>Verify</h2><ol><li>Note the rates you set (baseline / override / plan benefits).</li><li>Complete a full paid order for that restaurant.</li><li>Admin → <strong>Earnings</strong> → list row → <strong>View</strong> detail:</li></ol><ul><li>Summary cards: platform commission, restaurant earnings, delivery earnings, taxes</li><li>Transactions: per-order <strong>Commission</strong> column</li><li>Payouts when restaurant share is owed out</li></ul><ol><li>Attach (or activate) a restaurant plan with reduced/waive commission and place another order — platform commission on the new earning lines should soften (or zero if waived).</li></ol><h2>Smoke test</h2><table><tr><th>Step</th><th>Expect</th></tr><tr><td>App Settings Commission Rate = 15, no override/plan</td><td>~15% platform commission on new completed orders</td></tr><tr><td>Restaurant Commission Rate (%) set differently</td><td>That restaurant’s new earnings use the override</td></tr><tr><td>Plan Reduced commission % / Waive</td><td>Softened or zero platform cut while plan active</td></tr><tr><td>Earnings detail</td><td>Split cards + transaction commission lines match the rules above</td></tr></table><h2>Related</h2><ul><li><a href="payments-wallet.html">Payments &amp; wallet</a></li><li><a href="subscriptions-engine.html">Subscriptions engine</a></li><li><a href="../admin-app/earnings.html">Admin earnings HOW-TO</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "my-backend/commission-engine.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

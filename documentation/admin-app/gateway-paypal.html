@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PayPal — how to configure (Admin) — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>PayPal — how to configure (Admin)</h1><h2>What this gateway does</h2><ul><li>Identifier: <code>paypal</code></li><li>Init path: <code>POST /api/gateways/initialize</code> with <code>&quot;provider&quot;:&quot;paypal&quot;</code></li><li>Server flow: OAuth token (<code>sandbox</code> or <code>live</code> API host) → create Checkout Order (<code>intent: CAPTURE</code>) → return <strong>approve</strong> URL</li><li>Credentials: <strong>clientId</strong>, <strong>clientSecret</strong>, <strong>mode</strong> (<code>sandbox</code> | <code>live</code>)</li></ul><h2>Prerequisites</h2><ol><li>PayPal Developer Dashboard REST app (sandbox first).</li><li>Backend + admin running; PayPal row seeded Active/inactive as you choose.</li><li>Public/callback URLs reachable for return/cancel (see <code>PUBLIC_APP_URL</code> / callback passed into initialize).</li></ol><h2>Admin steps</h2><ol><li><strong>Gateways</strong> → <strong>PayPal</strong>.</li><li>Paste:</li></ol><table><tr><th>Field</th><th>Source</th></tr><tr><td>Client ID</td><td>PayPal app → Client ID</td></tr><tr><td>Client secret</td><td>PayPal app → Secret</td></tr><tr><td>Environment mode</td><td><code>Sandbox</code> while testing; <code>Live</code> only with live credentials</td></tr></table><ol><li>Align capabilities (refunds / payouts / webhooks / subscriptions) with what you will wire in PayPal webhooks.</li><li><strong>Active</strong> → Save.</li></ol><h2>Smoke test</h2><pre><code>curl -s -X POST http://localhost:5000/api/gateways/initialize \
+  -H &quot;Authorization: Bearer $TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#x27;{&quot;provider&quot;:&quot;paypal&quot;,&quot;amount&quot;:12.5,&quot;currency&quot;:&quot;USD&quot;,&quot;email&quot;:&quot;buyer@example.com&quot;,&quot;callbackUrl&quot;:&quot;https://example.com/paypal/return&quot;}&#x27;</code></pre><table><tr><th>Step</th><th>Expect</th></tr><tr><td>Demo / placeholder client id</td><td>JSON with <code>demo: true</code> and configure hint</td></tr><tr><td>Real sandbox credentials</td><td><code>authorizationUrl</code> (approve link), <code>orderId</code></td></tr><tr><td>Customer completes approval</td><td>Order capture / status update per your webhook + order flow</td></tr><tr><td>Mode <code>live</code> with sandbox keys</td><td>Auth failure — keep mode and keys matched</td></tr></table><h2>Differs from others</h2><ul><li>OAuth client credentials + mode dropdown (not Stripe key prefixes, not Paystack Bearer-only).</li><li>Amount sent as decimal string in purchase units (not always minor units like Paystack).</li></ul><h2>Related</h2><ul><li><a href="gateways.html">gateways.md</a> · <a href="../my-backend/payments-wallet.html">payments-wallet.md</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "admin-app/gateway-paypal.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

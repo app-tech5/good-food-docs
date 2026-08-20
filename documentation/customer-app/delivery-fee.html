@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Surge pricing — Customer app — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Surge pricing — Customer app</h1><p>The delivery fee chip on the restaurant page and checkout shows a <strong>base fee</strong> (set per restaurant, or a platform default) multiplied by a <strong>live surge multiplier</strong> computed by the intelligence engine — not a manual Admin toggle.</p><h2>What drives this</h2><p><strong>Base fee</strong> — per-restaurant delivery config wins over the platform default:</p><ul><li>Each restaurant&#x27;s <code>DeliverySetting.deliveryFeeType</code> is <code>FIXED</code>, <code>DYNAMIC</code>, <code>FREE</code>, or <code>RESTAURANT_DEFINED</code>. <code>FIXED</code> uses <code>fixedDeliveryFee</code>; <code>DYNAMIC</code>/<code>RESTAURANT_DEFINED</code> computes <code>baseFee + distanceKm × perKmFee</code>, clamped between <code>minFee</code> and <code>maxFee</code>.</li><li><code>DeliverySetting.freeDeliveryThreshold</code> (or <code>freeDeliveryEnabled</code>) zeroes the fee once the cart subtotal clears it, at the restaurant level.</li><li>If a restaurant has no <code>DeliverySetting</code>, the platform falls back to App Settings <strong><code>deliveryFee</code></strong> and <strong><code>freeDeliveryThreshold</code></strong>.</li><li><strong><code>maxDeliveryDistance</code></strong> (per restaurant, or the App Settings default) caps how far the order can be from the restaurant before delivery isn&#x27;t offered at all.</li></ul><p><strong>Surge multiplier</strong> — recomputed on every quote from live signals (demand vs online drivers, weather, rush hours), capped at 2×. Membership <code>freeDelivery</code> still forces the fee to <strong>0</strong> after surge.</p><h2>Try it</h2><ol><li>Get a few drivers online and create several open delivery orders for one restaurant.</li><li>Open that restaurant / checkout — the fee chip should show an elevated amount or a surge label when demand is high.</li><li>Bring more drivers online — the fee should drop back toward the base.</li><li>Free delivery: cart above <code>freeDeliveryThreshold</code>, or an active membership with <code>freeDelivery</code>.</li><li>Member discount: active plan with <code>discountPercent</code> reduces subtotal before tax.</li></ol><h2>Related</h2><ul><li><a href="smart-eta.html">Smart ETA</a> (time ≠ fee — they share inputs but compute separately)</li><li><a href="intelligence.html">Intelligence hub</a> · <a href="../my-backend/intelligence-engine.html">Backend AI brain</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "customer-app/delivery-fee.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

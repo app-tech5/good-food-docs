@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live tracking — Customer app — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Live tracking — Customer app</h1><p>Status timeline and delivery map while the courier is en route, driven by real-time socket events on the order&#x27;s room, not polling.</p><h2>What drives this</h2><ul><li><strong>Timeline steps</strong> mirror <code>Order.status</code>: <code>pending → preparing → ready → out_for_delivery → delivered</code>. Each step only advances when the restaurant or driver app actually calls the corresponding action — this screen never simulates progress.</li><li><strong>Map + driver marker</strong> appears once a driver is assigned and the order is <code>out_for_delivery</code>; the driver&#x27;s device emits location updates that fan out to everyone subscribed to that order&#x27;s room (<code>order-&lt;id&gt;</code>), which is why keeping the driver app foregrounded/online matters.</li><li><strong>Route/ETA</strong> on the tracking map reuses the same <a href="smart-eta.html">smart ETA</a> engine (OSRM when reachable, heuristic otherwise).</li><li><strong>Delivery completion</strong> requires the driver to submit <a href="../delivery-app/proof-of-delivery.html">proof of delivery</a> — the timeline only reaches &quot;delivered&quot; after that succeeds (photo/signature and, if enforced, within the geofence).</li></ul><h2>Try it</h2><ol><li>Place a delivery order; have the restaurant accept it; have a driver go online and accept/be assigned.</li><li>Open <strong>Track order</strong> — the timeline should advance as the restaurant/driver apps change status.</li><li>Once out for delivery, confirm the <strong>map</strong> shows destination, courier position, and route/ETA — this is a different map from the pre-checkout <a href="discovery.html">discovery</a> map.</li><li>Have the driver complete with proof of delivery — the order should flip to delivered here within a few seconds.</li></ol><p>Broken map is almost always: location permission denied on the driver&#x27;s device, a stale API URL, or the driver app not actually online.</p><h2>Related</h2><ul><li><a href="../my-backend/live-updates.html">Backend live updates</a> · <a href="../delivery-app/logistics.html">Driver logistics</a> · <a href="../delivery-app/proof-of-delivery.html">Proof of delivery</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "customer-app/order-tracking.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

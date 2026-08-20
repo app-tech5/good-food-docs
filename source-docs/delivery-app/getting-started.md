@@ -88,7 +88,6 @@ This single path exercises logistics assignment, live tracking, and POD — the 
 
 Drivers may see a **Subscriptions** screen for courier tiers (access / support style benefits). Configure plans in admin first — [Monetization](../admin-app/monetization.md).
 
-
 ## Stack & where things live (for launch)
 
 The driver app is **React Native + Expo**, same family as the customer and restaurant apps. Configuration sits at the **project root** (not under a nested `config/` folder in every build — check `config.js` / `.env` as shipped).

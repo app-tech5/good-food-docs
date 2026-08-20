@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cash on Delivery — how to configure (Admin) — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Cash on Delivery — how to configure (Admin)</h1><h2>What this gateway does</h2><ul><li>Identifier: <code>cash-on-delivery</code></li><li><strong>No card PSP</strong> — checkout marks the order as COD; courier collects cash</li><li>Credentials are minimal (seed uses an <code>enabled</code>-style flag)</li><li>Capabilities typically: no refunds / withdrawals / webhooks / subscriptions at the PSP layer</li><li>Fees usually <code>0</code> / <code>0</code> — cost is ops risk, not interchange</li></ul><h2>Prerequisites</h2><ol><li>Markets where you allow cash collection.</li><li>Driver / POD process that records cash collected (<a href="../delivery-app/proof-of-delivery.html">delivery POD</a>).</li><li>Support playbook: COD disputes ≠ Stripe chargebacks.</li></ol><h2>Admin steps</h2><ol><li><strong>Gateways</strong> → <strong>Cash on Delivery</strong>.</li><li>Confirm the method is the one you intend (name/identifier).</li><li>Set <strong>Active</strong> only for cities/modes that allow COD (disable for prepaid-only campaigns).</li><li>Save. No Stripe/Paystack secrets belong on this form.</li></ol><h2>Smoke test</h2><table><tr><th>Step</th><th>Expect</th></tr><tr><td>COD Active</td><td>Customer checkout can select cash</td></tr><tr><td>Place COD order</td><td>Order created without PSP authorize URL</td></tr><tr><td>Driver completes delivery</td><td>Cash collection / POD consistent with restaurant + admin ledger</td></tr><tr><td>COD Inactive</td><td>Checkout hides or rejects cash method</td></tr></table><h2>Differs from others</h2><ul><li>No <code>/api/gateways/initialize</code> hosted session. Failures are operational (customer not home, wrong change), not <code>card_declined</code>.</li></ul><h2>Related</h2><ul><li><a href="gateways.html">gateways.md</a> · <a href="../delivery-app/proof-of-delivery.html">proof-of-delivery.md</a> · <a href="orders.html">orders.md</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "admin-app/gateway-cod.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>

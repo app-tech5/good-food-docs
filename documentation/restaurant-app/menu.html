@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu management — Restaurant app — Good Food Pro</title>
+  <link rel="stylesheet" href="../assets/docs.css" />
+</head>
+<body>
+  <article class="doc">
+<h1>Menu management — Restaurant app</h1><p>Categories, dishes, prices, photos, variants, and the 86 (availability) toggle — this is the same <code>Product</code> collection the customer app reads from directly, so changes here are live, not published on a delay.</p><h2>What drives this</h2><ul><li><strong><code>Product.availability</code></strong> is the 86 switch — flip it off and the item is immediately unorderable in the <a href="../customer-app/menu-cart.html">customer menu</a>, even mid-service, without deleting the item or its history.</li><li><strong>Price, photo, description, variants/extras</strong> edited here are exactly what the customer sees — there is no separate &quot;draft&quot; copy.</li><li><strong><code>discount</code></strong> on a product (if set) feeds directly into <a href="../customer-app/recommendations.html">AI recommendations</a> scoring — discounted items get a small ranking boost on the customer&#x27;s cross-sell rail.</li><li><strong>Categories</strong> organize the menu and also drive customer-app category browsing/search matching.</li><li>Admin can also curate menus centrally across restaurants via the <a href="../admin-app/catalog.html">catalog</a> tool — both paths write to the same <code>Product</code> documents.</li></ul><h2>Try it</h2><ol><li>Drawer → <strong>Menu</strong>.</li><li>Add or edit categories and items; set price and photo.</li><li>Toggle availability off on one item (86 it).</li><li>Refresh the <a href="../customer-app/menu-cart.html">customer menu</a> for the same restaurant and confirm that item is gone/greyed and cannot be added to cart.</li><li>Turn availability back on and confirm it reappears.</li></ol><h2>Related</h2><ul><li><a href="analytics.html">Analytics</a> · <a href="../admin-app/catalog.html">Admin catalog</a></li></ul>
+  </article>
+  <script>window.DOCS_BASE = "../"; window.DOCS_PATH = "restaurant-app/menu.html";</script>
+  <script src="../assets/nav-data.js"></script>
+  <script src="../assets/docs.js"></script>
+</body>
+</html>
