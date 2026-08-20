@@ -8,6 +8,7 @@ Home, search, and the nearby map — how customers find a restaurant before open
 - **`Restaurant.isAvailableForDelivery`** and `serviceModes` (`delivery` / `pickup`) control which toggle state (Delivery vs Pickup) a restaurant shows under.
 - **Promo / Special Offers cards** on home are populated from active Admin promotions/coupons and any live [sponsored listings](../restaurant-app/sponsored.md) placed in the `home_banner` slot.
 - **Map pins** use `Restaurant.latitude` / `longitude`; a restaurant with unset coordinates won't render a pin even if it's activated.
+- **Map provider** defaults to `MapLibre + OpenStreetMap` (`EXPO_PUBLIC_MAP_PROVIDER=osm`, zero map API fee). Buyers can switch to `maptiler`, `mapbox`, or `google` with env config (`EXPO_PUBLIC_MAP_PROVIDER` + matching key/token) without editing map screen code.
 - **Search** matches restaurant name, category, and product name/description across activated restaurants.
 - App Settings **`isMaintenance`** exists in Admin as a platform-wide flag; note that the current app builds don't read it directly, so treat it as a backend-only signal rather than a customer-facing kill switch unless you've wired it into your fork.
 

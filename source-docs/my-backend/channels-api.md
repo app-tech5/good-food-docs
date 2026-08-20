@@ -14,14 +14,16 @@ Each channel is gated by its own flags on the **one** `AppSetting` document. The
 |---|---|---|
 | `webOrderingEnabled` | boolean (default **on**) | Lets an authenticated browser/web client place an order via the channel intake path. Off → that path refuses new orders. |
 | `whatsappEnabled` | boolean (default **off**) | Turns on WhatsApp Cloud API messaging: outbound order-status notifications and, if your build wires the webhook, inbound catalog ordering. |
-| `whatsappPhoneNumberId` | string | Meta phone number ID the messages are sent from. |
-| `whatsappAccessToken` | string | Meta access token used to call `graph.facebook.com`. |
+| `whatsappPhoneNumberId` | string | Meta phone number ID the messages are sent from. Can also come from `.env` `WHATSAPP_PHONE_NUMBER_ID`. |
+| `whatsappAccessToken` | string | Meta access token used to call `graph.facebook.com`. Can also come from `.env` `WHATSAPP_ACCESS_TOKEN`. |
+| `whatsappVerifyToken` | string | Verify token used by Meta's webhook challenge. Falls back to `.env` `WHATSAPP_VERIFY_TOKEN`. |
+| `whatsappTemplateLang` | string | Default template language (for template sends) — e.g. `en`, `fr`, `es`. |
 | `whatsappNotifyOnStatus` | boolean (default **on**) | When a WhatsApp-eligible order changes status, the customer's phone gets a WhatsApp message automatically. Independent of `whatsappEnabled` being used for intake — this is the outbound leg. |
 | `ussdEnabled` | boolean (default **off**) | Turns on the USSD session handler (feature-phone dial codes, e.g. `*123#`, via an aggregator like Africa's Talking). |
 | `ussdShortCode` | string | The short code customers dial — must match what you configured with your aggregator. |
 | `ussdApiKey` | string | Aggregator API key, used to validate/sign sessions. |
 
-**Precedence / safety net:** every send checks its own flag first, then whether the credentials look real. If a token or key still contains the word "demo" (i.e. you left the seeded placeholder), the backend silently skips the external call instead of erroring — WhatsApp sends and USSD ordering just won't happen until you replace those values. `whatsappNotifyOnStatus` only fires messages for orders where the customer has a phone number on file.
+**Precedence / safety net:** every send checks its own flag first, then whether the credentials look real. App Settings values win; if they are empty, the backend can fall back to `.env` (`WHATSAPP_PHONE_NUMBER_ID`, `WHATSAPP_ACCESS_TOKEN`, `WHATSAPP_VERIFY_TOKEN`, `WHATSAPP_TEMPLATE_LANG`). If a token or key still contains the word "demo", the backend silently skips the external call instead of erroring — WhatsApp sends and USSD ordering just won't happen until you replace those values. `whatsappNotifyOnStatus` only fires messages for orders where the customer has a phone number on file.
 
 Credential fields (`whatsappAccessToken`, `ussdApiKey`) are the kind of thing you don't want sitting in a form screenshot — your build may hide or mask them in the Admin UI. Set real values via a migration/seed edit or a small secure-config step rather than typing them into a shared screen.
 
@@ -31,7 +33,7 @@ Credential fields (`whatsappAccessToken`, `ussdApiKey`) are the kind of thing yo
 - The backend (`channelService`) is what actually reads `AppSetting` before calling Meta or answering a USSD session — the Admin toggle isn't cosmetic, it's the switch the code checks.
 - Every channel order still goes through the one order pipeline: restaurant accept/prepare/ready, driver assignment, delivery — see [order lifecycle](./order-lifecycle.md).
 
-Small "where it lives" note, not the focus of this doc: the intake surfaces are exposed under `/api/channels` (config + USSD session + channel order creation).
+Small "where it lives" note, not the focus of this doc: the intake surfaces are exposed under `/api/channels` (config + USSD session + channel order creation). The WhatsApp webhook verify challenge is `GET /api/channels/whatsapp`; inbound/status callbacks are `POST /api/channels/whatsapp`. Outbound sends now return Meta `messageId` when accepted so operators can correlate status callbacks.
 
 ## Smoke test
 

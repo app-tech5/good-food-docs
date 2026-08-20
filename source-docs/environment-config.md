@@ -50,6 +50,8 @@ Full sequence: [Launch the suite](./00-launch-suite.md).
 | `STRIPE_CONNECT_RETURN_URL` / `REFRESH_URL` | Driver Connect deep links | Return/refresh after Stripe Connect |
 | `FIREBASE_SERVICE_ACCOUNT_JSON` | FCM Admin SDK | API can push to devices (single-line JSON) |
 | `WHATSAPP_VERIFY_TOKEN` | Meta webhook verify token | WhatsApp Cloud API handshake (default `goodfood_whatsapp_verify` if unset) |
+| `WHATSAPP_PHONE_NUMBER_ID` / `WHATSAPP_ACCESS_TOKEN` | WhatsApp Cloud API sender credentials | Optional env fallback when App Settings fields are empty |
+| `WHATSAPP_TEMPLATE_LANG` | Default WhatsApp template language | Used for approved template sends |
 | `PUBLIC_APP_URL` | Public web origin | PayPal return/cancel fallbacks when no callback passed |
 | `DEMO_MODE` | Demo safety | Blocks destructive writes when `true` |
 | `LOGISTICS_BATCH_RADIUS_KM` | Default batch search radius | Nearby job suggestions for drivers |
@@ -60,6 +62,9 @@ Full sequence: [Launch the suite](./00-launch-suite.md).
 | `LOGISTICS_PRIORITY_BATCH_BONUS_KM` | Extra batch radius for priority drivers | Wider multi-drop search for subscribed drivers |
 | `INTELLIGENCE_HTTP_TIMEOUT_MS` | Weather/routing timeout | Fallback heuristics if Open-Meteo/OSRM slow |
 | `OPEN_METEO_BASE_URL` / `OSRM_BASE_URL` | Optional self-hosted weather/routing | Defaults to public endpoints |
+| `AI_PROVIDER` / `AI_RECOMMENDATION_PROVIDER` | Recommendation provider selector | `builtin` (default) or `openai`/`gemini` with automatic fallback |
+| `OPENAI_API_KEY` / `OPENAI_RECOMMENDATION_MODEL` | Optional OpenAI recommendation re-rank | Usage-billed by OpenAI when enabled |
+| `GEMINI_API_KEY` / `GEMINI_RECOMMENDATION_MODEL` | Optional Gemini recommendation re-rank | Usage-billed by Google when enabled |
 | `IMGBB_API_KEY` / `CLOUDINARY_*` | Image upload providers | Optional media hosting for uploads |
 | `MONGODB_*` / `VPS_*` | Tooling / backup scripts | Optional; not required for `npm start` |
 
@@ -118,7 +123,10 @@ Configure plans so membership **does** change money and logistics: restaurant co
 | `EXPO_PUBLIC_DEMO_MODE` | Demo login prefill | `true` / `false` |
 | `EXPO_PUBLIC_DEMO_EMAIL` / `PASSWORD` | Demo credentials | Default `demo@customer.com` / `demo123` |
 | `EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Client Stripe | Card UI when Stripe is enabled server-side |
-| `EXPO_PUBLIC_MAPTILER_API_KEY` | Map tiles | Map surfaces that use MapTiler |
+| `EXPO_PUBLIC_MAP_PROVIDER` | Customer map tile provider | `osm` (default), `maptiler`, `mapbox`, or `google` |
+| `EXPO_PUBLIC_MAPTILER_API_KEY` | MapTiler tiles | Used when provider is `maptiler` |
+| `EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN` | Mapbox tiles/style | Used when provider is `mapbox` |
+| `EXPO_PUBLIC_GOOGLE_MAPS_API_KEY` | Google map tiles | Used when provider is `google` (web tiles endpoint) |
 
 Start: `npm start`; first native install `npm run android` / `npm run ios` (dev client, not Expo Go).
 
@@ -130,7 +138,10 @@ Start: `npm start`; first native install `npm run android` / `npm run ios` (dev 
 |----------|--------------------|--------|
 | `EXPO_PUBLIC_API_URL` | Same `/api` base | Jobs, POD, earnings |
 | `EXPO_PUBLIC_DEMO_MODE` / email / password | Demo login | Default `driver@demo.com` / `driver123` |
-| `EXPO_PUBLIC_GOOGLE_MAPS_API_KEY` | Optional Google Maps | When production Android config needs Maps SDK |
+| `EXPO_PUBLIC_MAP_PROVIDER` | Driver map provider | `osm` (default), `maptiler`, `mapbox`, or `google` |
+| `EXPO_PUBLIC_MAPTILER_API_KEY` | MapTiler tiles/style | Used when provider is `maptiler` |
+| `EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN` | Mapbox tiles/style | Used when provider is `mapbox` |
+| `EXPO_PUBLIC_GOOGLE_MAPS_API_KEY` | Google map tiles | Used when provider is `google` (web tiles endpoint) |
 
 Maps default to MapLibre; add Google when your store build embeds the SDK key.
 

@@ -170,7 +170,10 @@
           <section class="section-block">
             <h2>Arrival times customers can trust</h2>
             <p>
-              Smart ETA estimates how long food will take, using kitchen load and travel time where your backend intelligence stack is enabled. On the restaurant page the estimate appears as its own chip (for example “ETA 26–36 min”).
+              Smart ETA estimates how long food will take, using kitchen load and travel time where your backend intelligence stack is enabled. On the restaurant page the estimate appears as its own chip (for example “ETA 26–36 min”). Travel time uses public/self-hosted OSRM when reachable (heuristic fallback otherwise) — <strong>not a billed Google Maps Directions API</strong>. The same built-in intelligence stack as recommendations and surge; <strong>no OpenAI account</strong>.
+            </p>
+            <p class="section-subtext">
+              <strong>Buyer heads-up:</strong> the shipped ETA flow does not need Google Maps or Mapbox billing to work. Routing uses OSRM with heuristic fallback, and the ETA logic itself is included in the backend.
             </p>
             <p class="section-subtext">
               Clearer arrivals reduce “where is my food?” support load before checkout.

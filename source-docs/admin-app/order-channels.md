@@ -12,6 +12,8 @@ These toggles live on the same **App Settings** form as commission and wallet �
 | **Whatsapp Enabled** | Turn on WhatsApp Cloud API for this marketplace | Off → no Meta calls. On → needs phone number ID + access token below |
 | **Whatsapp Phone Number Id** | Meta phone number ID messages are sent from | Required with the token before WhatsApp does anything real |
 | **Whatsapp Access Token** | Meta access token | Often hidden/masked in the UI — set via seed/secure config if the form hides it. Placeholder/"demo" tokens are skipped silently by the backend |
+| **Whatsapp Verify Token** | Token Meta sends on webhook verification | Must match the token configured in Meta webhook settings |
+| **Whatsapp Template Lang** | Default template language code | Used when sending approved template messages (for example `en` / `fr`) |
 | **Whatsapp Notify On Status** | Push order status updates over WhatsApp | On → eligible orders with a customer phone get WhatsApp status messages |
 | **Ussd Enabled** | Turn on feature-phone dial-code intake | Off → USSD sessions get "unavailable". On → needs short code + aggregator API key |
 | **Ussd Short Code** | Code customers dial (e.g. `*123#`) | Must match what you registered with the aggregator |
@@ -26,7 +28,7 @@ These toggles live on the same **App Settings** form as commission and wallet �
 3. Enable **only** channels you have real credentials for.
 4. Save.
 5. Place one test order per enabled channel; in **Orders**, confirm `orderSource`.
-6. For WhatsApp: change an order status and confirm a message fan-out when notify-on-status is on (real credentials only).
+6. For WhatsApp: configure Meta webhook verify URL/token, then change an order status and confirm a message fan-out when notify-on-status is on (real credentials only).
 
 ## Verify
 
