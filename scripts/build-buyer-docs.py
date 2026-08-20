@@ -396,7 +396,7 @@ def build() -> None:
 ================================
 
 Open index.html in your browser.
-Markdown sources live in ../source-docs/ (same content).
+Use the sidebar to browse guides by app.
 """,
         encoding="utf-8",
     )
