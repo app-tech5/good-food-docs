@@ -70,6 +70,38 @@ jobs:
             rm -rf "$TMP_DIR" /tmp/good-food-docs-site.tar.gz
             chmod -R 755 "$DEPLOY_DOCS_DIR"
 
+            CONF=/etc/nginx/sites-enabled/default
+            mkdir -p /root/nginx-backups
+            if grep -q 'location = /docs/demos/admin' "$CONF"; then
+              echo "nginx /docs/demos/admin redirect already configured"
+            else
+              cp -a "$CONF" "/root/nginx-backups/default.bak-docs-admin-demo-$(date +%Y%m%d%H%M%S)"
+              python3 - <<'PY'
+from pathlib import Path
+path = Path("/etc/nginx/sites-enabled/default")
+text = path.read_text()
+snippet = """
+    # Admin demo lives at /login — not a mobile QR page under /docs/demos/
+    location = /docs/demos/admin {
+        return 301 /login;
+    }
+    location ^~ /docs/demos/admin/ {
+        return 301 /login;
+    }
+
+"""
+marker = "location / {"
+idx = text.find(marker)
+if idx < 0:
+    raise SystemExit("Could not find location / block in nginx config")
+path.write_text(text[:idx] + snippet + text[idx:])
+print("Inserted /docs/demos/admin -> /login nginx redirect")
+PY
+              nginx -t
+              systemctl reload nginx
+              echo "nginx reloaded"
+            fi
+
       - name: Deployment URLs
         run: |
           echo "Site deployed to ${DEPLOY_DOCS_DIR:-/var/www/html/docs}"
