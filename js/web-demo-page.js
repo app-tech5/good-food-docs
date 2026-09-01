@@ -9,8 +9,9 @@ window.addEventListener("DOMContentLoaded", () => {
     navigator.userAgent || ""
   );
 
-  // Phones/tablets open the web demo directly. Desktops stay on the QR page.
-  if (isMobile) {
+  // Phones/tablets open the web demo directly. Desktops stay on the QR page,
+  // except dashboards (admin) that are meant for desktop too.
+  if (isMobile || config.openOnDesktop) {
     window.location.replace(demoUrl);
     return;
   }
