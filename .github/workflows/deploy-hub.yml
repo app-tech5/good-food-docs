@@ -46,4 +46,4 @@ jobs:
             ls -la "$DEST"
 
       - name: Hub URL
-        run: echo "https://fromcm.com/"
+        run: echo "https://fromcm.com/hub/"
