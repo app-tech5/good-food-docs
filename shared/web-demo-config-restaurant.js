@@ -1,6 +1,6 @@
 window.GOOD_FOOD_WEB_DEMO_CONFIG = {
   appName: "Good Food Pro Restaurant",
-  demoUrl: "https://good-foods.digitaldienste.fr/demo/restaurant/",
+  demoUrl: "https://fromcm.com/demo/restaurant/",
   demoPath: "/demo/restaurant/",
   pageTitle: "Restaurant web demo (mobile)",
   pageSubtitle:

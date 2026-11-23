@@ -3,7 +3,7 @@
 HOW-TO guides that ship with the source ZIP: commands, `.env`, configuration fields, and smoke tests for the full suite (API + customer + driver + restaurant + admin).
 
 **Product / demos (do not confuse with this docs tree):**  
-[good-foods.digitaldienste.fr/pro/](https://good-foods.digitaldienste.fr/pro/) · [Live demos](https://good-foods.digitaldienste.fr/pro/demo/)
+[fromcm.com/pro/](https://fromcm.com/pro/) · [Live demos](https://fromcm.com/pro/demo/)
 
 ## Recommended read order
 

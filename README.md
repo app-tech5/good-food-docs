@@ -4,10 +4,10 @@ Public docs for **Good Food Pro**: white-label multi-restaurant food delivery ma
 
 ## Product & demos (marketing site)
 
-- **Product site:** https://good-foods.digitaldienste.fr/pro/
-- **Live demos:** https://good-foods.digitaldienste.fr/pro/demo/
-- **Press / citation kit:** https://good-foods.digitaldienste.fr/pro/press/
-- **Docs (this site):** https://good-foods.digitaldienste.fr/docs/
+- **Product site:** https://fromcm.com/pro/
+- **Live demos:** https://fromcm.com/pro/demo/
+- **Press / citation kit:** https://fromcm.com/pro/press/
+- **Docs (this site):** https://fromcm.com/docs/
 
 ## In this repo
 

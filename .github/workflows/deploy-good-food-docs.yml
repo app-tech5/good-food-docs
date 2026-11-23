@@ -73,8 +73,8 @@ jobs:
       - name: Deployment URLs
         run: |
           echo "Site deployed to ${DEPLOY_DOCS_DIR:-/var/www/html/docs}"
-          echo "Docs URL (new): https://good-foods.digitaldienste.fr/docs/"
-          echo "Download hub: https://good-foods.digitaldienste.fr/docs/downloads/"
-          echo "Customer APK page: https://good-foods.digitaldienste.fr/docs/downloads/customer/"
-          echo "Driver APK page: https://good-foods.digitaldienste.fr/docs/downloads/driver/"
-          echo "Restaurant APK page: https://good-foods.digitaldienste.fr/docs/downloads/restaurant/"
+          echo "Docs URL (new): https://fromcm.com/docs/"
+          echo "Download hub: https://fromcm.com/docs/downloads/"
+          echo "Customer APK page: https://fromcm.com/docs/downloads/customer/"
+          echo "Driver APK page: https://fromcm.com/docs/downloads/driver/"
+          echo "Restaurant APK page: https://fromcm.com/docs/downloads/restaurant/"

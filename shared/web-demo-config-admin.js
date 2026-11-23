@@ -1,6 +1,6 @@
 window.GOOD_FOOD_WEB_DEMO_CONFIG = {
   appName: "Good Food Pro Admin",
-  demoUrl: "https://good-foods.digitaldienste.fr/login",
+  demoUrl: "https://fromcm.com/login",
   demoPath: "/login",
   openOnDesktop: true,
   pageTitle: "Admin dashboard demo",

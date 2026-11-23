@@ -1,6 +1,6 @@
 window.GOOD_FOOD_WEB_DEMO_CONFIG = {
   appName: "Good Food Pro Driver",
-  demoUrl: "https://good-foods.digitaldienste.fr/demo/driver/",
+  demoUrl: "https://fromcm.com/demo/driver/",
   demoPath: "/demo/driver/",
   pageTitle: "Driver web demo (mobile)",
   pageSubtitle:
